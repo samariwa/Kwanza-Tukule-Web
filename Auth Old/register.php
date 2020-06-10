@@ -188,8 +188,8 @@ echo recaptcha_get_html($publickey);
             <br /><br />
             <a href="index.php">Back to Homepage</a><br />
             <!-- Display validation errors -->
-<?php if ($captchavalidation == FALSE)
-        echo '<font color="red">Please enter correct captcha</font>'; ?><br />
+            <?php if ($captchavalidation == FALSE)
+                    echo '<font color="red">Please enter correct captcha</font>'; ?><br />
             <?php if ($usernamenotempty == FALSE)
                     echo '<font color="red">You have entered an empty username.</font>'; ?><br />
             <?php if ($usernamevalidate == FALSE)

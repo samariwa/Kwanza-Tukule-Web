@@ -2,6 +2,13 @@
 require('config.php');
 $connection = mysqli_connect($hostname,$username, $password, $database)
         or die("Unable to connect to Server");
+        //Pre-define validation
+$usernamenotempty = TRUE;
+$usernamevalidate = TRUE;
+$usernamenotduplicate = TRUE;
+$passwordnotempty = TRUE;
+$passwordvalidate = TRUE;
+$passwordmatch  = TRUE;
 if ((isset($_POST["pass"])) && (isset($_POST["user"])) && (isset($_POST["pass2"]))) {
 //Username and Password has been submitted by the user
 //Receive and validate the submitted information
@@ -28,6 +35,7 @@ if ((isset($_POST["pass"])) && (isset($_POST["user"])) && (isset($_POST["pass2"]
     $desired_username = sanitize($_POST["user"]);
     $desired_password = sanitize($_POST["pass"]);
     $desired_password1 = sanitize($_POST["pass2"]);
+
 
 //validate username
 
@@ -124,7 +132,6 @@ echo "Hello World";
     <div id="stars"></div>
 <div id="stars2"></div>
 <div id="stars3"></div>
-<br>
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card" style="opacity: 0.8">
@@ -194,19 +201,19 @@ echo "Hello World";
                             <label for="user"  class="offset-md-2 col-form-label text-md-right">Username:</label>
 
                             <div class="col-md-3 ">
-                                <input id="user" type="text"  name="user" value="" required autocomplete="text" autofocus>
+                                <input id="user" type="text"  name="user" value="" required autocomplete="text" autofocus class="<?php if (($usernamenotempty == FALSE) || ($usernamevalidate == FALSE) || ($usernamenotduplicate == FALSE)) echo "invalid"; ?>" id="desired_username" name="desired_username">
                             </div>
                         </div>
                         <div class="form-group row" >
                            <label for="pass"  class="offset-md-1 col-form-label text-md-right">Password:</label>
 
                             <div class="col-md-3 ">
-                                <input id="pass" type="password"  name="pass" value="" required  autofocus>
+                                <input id="pass" type="password"  name="pass" value="" required  autofocus class="<?php if (($passwordnotempty == FALSE) || ($passwordmatch == FALSE) || ($passwordvalidate == FALSE)) echo "invalid"; ?>" id="desired_password">
                             </div>
                             <label for="pass2"  class="offset-md-1 col-form-label text-md-right">Confirm Password:</label>
 
                             <div class="col-md-3 ">
-                                <input id="pass2" type="password"  name="pass2" value="" required  autofocus>
+                                <input id="pass2" type="password"  name="pass2" value="" required  autofocus class="<?php if (($passwordnotempty == FALSE) || ($passwordmatch == FALSE) || ($passwordvalidate == FALSE)) echo "invalid"; ?>" id="desired_password1">
                             </div>
                         </div>
                         <br>
@@ -222,13 +229,15 @@ echo "Hello World";
                                 </button>
                             </div>
                         </div>
-					        <?php  if ($passwordmatch == FALSE)
-					        echo '<br><br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<font color="red">Your password does not match.</font>'; 
-					 if ($passwordvalidate == FALSE)
-					        echo '<br><br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<font color="red">Your password should be greater than 8 characters.</font>'; 
-					    if ($usernamevalidate == FALSE)
-					        echo '<br><br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<font color="red">Your username should be less than 11 characters.</font>'; 
-					    if ($usernamenotduplicate == FALSE)
+                        <!-- Display validation errors -->
+					        <?php 
+					         if ($passwordmatch == FALSE)
+					        echo '<br><br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<font color="red">Your password does not match.</font>'; ?>
+					<?php  if ($passwordvalidate == FALSE)
+					        echo '<br><br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<font color="red">Your password should be greater than 8 characters.</font>'; ?>
+					   <?php if ($usernamevalidate == FALSE)
+					        echo '<br><br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<font color="red">Your username should be less than 11 characters.</font>'; ?>
+					     <?php if ($usernamenotduplicate == FALSE)
 					        echo '<br><br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<font color="red">Username already exists.</font>'; ?>
                     </form>
                 </div>
