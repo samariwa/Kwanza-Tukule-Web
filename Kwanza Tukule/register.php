@@ -102,7 +102,7 @@ echo "Hello World";
         $message = "New member has just registered: $desired_username";
         mail($email, $subject, $message, $from);
 //redirect to login page
-         header("Location: login.html"); 
+         header("Location: login.php"); 
          exit;
     }
 }
@@ -117,6 +117,8 @@ echo "Hello World";
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Open+Sans'>
+    <link href='https://unpkg.com/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <script src="response.js" defer></script>
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
@@ -136,7 +138,7 @@ echo "Hello World";
         <div class="col-md-8">
             <div class="card" style="opacity: 0.8">
                   <br>  
-                <h4 style="text-align: center;">Register</h4>
+                <h4 style="text-align: center;"><i class="fa fa-user-plus"></i>&ensp;Register</h4>
                 <div class="card-body">         
                     <form method="POST" >
                         <div class="form-group row" >
@@ -232,13 +234,13 @@ echo "Hello World";
                         <!-- Display validation errors -->
 					        <?php 
 					         if ($passwordmatch == FALSE)
-					        echo '<br><br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<font color="red">Your password does not match.</font>'; ?>
+					        echo '<br><br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;<font color="red"><i class="bx bxs-error bx-flashing"></i>&ensp;Your passwords do not match.</font>'; ?>
 					<?php  if ($passwordvalidate == FALSE)
-					        echo '<br><br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<font color="red">Your password should be greater than 8 characters.</font>'; ?>
+					        echo '<br><br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<font color="red"><i class="bx bx-shield-quarter bx-flashing"></i>&ensp;Your password should be greater than 8 characters.</font>'; ?>
 					   <?php if ($usernamevalidate == FALSE)
-					        echo '<br><br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<font color="red">Your username should be less than 11 characters.</font>'; ?>
+					        echo '<br><br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<font color="red"><i class="bx bx-shield-quarter bx-flashing"></i>&ensp;Your username should be less than 11 characters.</font>'; ?>
 					     <?php if ($usernamenotduplicate == FALSE)
-					        echo '<br><br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<font color="red">Username already exists.</font>'; ?>
+					        echo '<br><br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<font color="red"><i class="bx bxs-data bx-flashing"></i>&ensp;Username already exists.</font>'; ?>
                     </form>
                 </div>
                 <br><br>

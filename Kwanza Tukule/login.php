@@ -6,7 +6,6 @@ session_start();
 
 //require user configuration and database connection parameters
 require('config.php');
-
 if (($_SESSION['logged_in']) == TRUE) {
 //valid user has logged-in to the website
 //Check for unauthorized use of user sessions
@@ -272,6 +271,8 @@ if (!$_SESSION['logged_in']):
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Open+Sans'>
+    <link href='https://unpkg.com/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <script src="response.js" defer></script>
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
@@ -291,7 +292,7 @@ if (!$_SESSION['logged_in']):
         <div class="col-md-5">
             <div class="card" style="opacity: 0.8">
                   <br>  
-                <h4 style="text-align: center;">Login</h4>
+                <h4 style="text-align: center;"><i class="fa fa-user"></i>&ensp;Login</h4>
                 <div class="card-body">         
                     <form method="POST" >
                          <br>
@@ -329,7 +330,7 @@ if (!$_SESSION['logged_in']):
                         </div>
                         <br>
                         <?php if ($validationresults == FALSE)
-                        echo '&emsp;&emsp;&emsp;<font color="red">Please enter valid username, password (if required).</font>'; ?>
+                        echo '&emsp;&emsp;&emsp;<font color="red"><i class="bx bxs-lock bx-flashing"></i>&ensp;Please enter valid username, password (if required).</font>'; ?>
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-5"><br>
                                 <button type="submit" class="btn btn-primary">
