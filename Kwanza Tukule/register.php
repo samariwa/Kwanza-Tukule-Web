@@ -85,7 +85,7 @@ if ((isset($_POST["pass"])) && (isset($_POST["user"])) && (isset($_POST["pass2"]
         && ($passwordmatch == TRUE)
         && ($passwordvalidate == TRUE)
         ) {
-echo "Hello World";
+
 //The username, password and recaptcha validation succeeds.
 //Hash the password
 //This is very important for security reasons because once the password has been compromised,
@@ -111,7 +111,7 @@ echo "Hello World";
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Kwanza Tukule | Login</title>
+    <title>Kwanza Tukule | Register</title>
     <link rel="stylesheet" href="auth.css"/>
     <link rel="stylesheet" href="style.css"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
@@ -142,48 +142,48 @@ echo "Hello World";
                 <div class="card-body">         
                     <form method="POST" >
                         <div class="form-group row" >
-                            <label for="first"  class="offset-md-1 col-form-label text-md-right">First Name:</label>
+                            <label for="first"  class="offset-md-1 col-form-label text-md-right" style="margin-left: 110px">First Name:</label>
 
                             <div class="col-md-3 ">
                                 <input id="first" type="text"  name="first" value="" required autocomplete="text" autofocus>
                             </div>
-                            <label for="last"  class="offset-md-1 col-form-label text-md-right">Last Name:</label>
+                            <label for="last"  class="offset-md-0 col-form-label text-md-right" style="margin-left: 60px">Last Name:</label>
 
                             <div class="col-md-3 ">
                                 <input id="last" type="text"  name="last" value="" required autocomplete="text" autofocus>
                             </div>
                         </div>
                         <div class="form-group row" >
-                            <label for="number"  class="offset-md-1 col-form-label text-md-right">Telephone Number:</label>
+                            <label for="number"  class="offset-md-1 col-form-label text-md-right" style="margin-left: 50px">Telephone Number:</label>
 
                             <div class="col-md-3 ">
                                 <input id="number" type="text"  name="number" value="" required autocomplete="text" autofocus>
                             </div>
-                            <label for="email"  class="offset-md-0 col-form-label text-md-right">Email Address:</label>
+                            <label for="email"  class="offset-md-0 col-form-label text-md-right" style="margin-left: 35px">Email Address:</label>
 
                             <div class="col-md-3 ">
                                 <input id="email" type="email"  name="email" value="" required autocomplete="email" autofocus>
                             </div>
                         </div>
                         <div class="form-group row" >
-                            <label for="national"  class="offset-md-1 col-form-label text-md-right">National ID No.:</label>
+                            <label for="national"  class="offset-md-1 col-form-label text-md-right" style="margin-left: 80px">National ID No.:</label>
 
                             <div class="col-md-2 ">
                                 <input id="national" type="number"  name="national" value="" required autocomplete="number" autofocus>
                             </div>
-                            <label for="staff"  class="offset-md-2 col-form-label text-md-right">Staff ID No.:</label>
+                            <label for="staff"  class="offset-md-1 col-form-label text-md-right" style="margin-left: 125px">Staff ID No.:</label>
 
                             <div class="col-md-3 ">
                                 <input id="staff" type="number"  name="staff" value="" required autocomplete="number" autofocus>
                             </div>
                         </div>
                         <div class="form-group row" >
-                            <label for="dob"  class="offset-md-1 col-form-label text-md-right">Date of Birth:</label>
+                            <label for="dob"  class="offset-md-1 col-form-label text-md-right"style="margin-left: 95px">Date of Birth:</label>
 
                             <div class="col-md-3 ">
                                 <input id="dob" type="date"  name="dob" value="" required autocomplete="date" autofocus>
                             </div>
-                            <label for="gender"  class="offset-md-1 col-form-label text-md-right">Gender:</label>
+                            <label for="gender"  class="offset-md-1 col-form-label text-md-right" style="margin-left: 85px">Gender:</label>
 
                             <div class="col-md-3 ">
                                <select id="gender" name="gender" class="form-control">
@@ -195,24 +195,24 @@ echo "Hello World";
                             </div>
                         </div>
                         <div class="form-group row" >
-                            <label for="role"  class="offset-md-1 col-form-label text-md-right">Role:</label>
+                            <label for="role"  class="offset-md-1 col-form-label text-md-right" style="margin-left: 155px">Role:</label>
 
                             <div class="col-md-3 ">
                                 <input id="role" type="text"  name="role" value="" required autocomplete="text" autofocus>
                             </div>
-                            <label for="user"  class="offset-md-2 col-form-label text-md-right">Username:</label>
+                            <label for="user"  class="offset-md-2 col-form-label text-md-right" style="margin-left: 65px">Username:</label>
 
                             <div class="col-md-3 ">
                                 <input id="user" type="text"  name="user" value="" required autocomplete="text" autofocus class="<?php if (($usernamenotempty == FALSE) || ($usernamevalidate == FALSE) || ($usernamenotduplicate == FALSE)) echo "invalid"; ?>" id="desired_username" name="desired_username">
                             </div>
                         </div>
                         <div class="form-group row" >
-                           <label for="pass"  class="offset-md-1 col-form-label text-md-right">Password:</label>
+                           <label for="pass"  class="offset-md-1 col-form-label text-md-right" style="margin-left: 115px">Password:</label>
 
                             <div class="col-md-3 ">
                                 <input id="pass" type="password"  name="pass" value="" required  autofocus class="<?php if (($passwordnotempty == FALSE) || ($passwordmatch == FALSE) || ($passwordvalidate == FALSE)) echo "invalid"; ?>" id="desired_password">
                             </div>
-                            <label for="pass2"  class="offset-md-1 col-form-label text-md-right">Confirm Password:</label>
+                            <label for="pass2"  class="offset-md-1 col-form-label text-md-right" style="margin-left: 10px">Confirm Password:</label>
 
                             <div class="col-md-3 ">
                                 <input id="pass2" type="password"  name="pass2" value="" required  autofocus class="<?php if (($passwordnotempty == FALSE) || ($passwordmatch == FALSE) || ($passwordvalidate == FALSE)) echo "invalid"; ?>" id="desired_password1">

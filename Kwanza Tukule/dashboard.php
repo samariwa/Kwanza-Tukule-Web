@@ -1,6 +1,9 @@
 <?php
 //require('login.php');
- include "admin_nav.html" ?> 
+session_start();
+ include "admin_nav.php";
+ ?> 
+
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
@@ -259,4 +262,4 @@
   <!-- End of Page Wrapper -->
 
   <!-- Scroll to Top Button-->
-  <?php include "admin_footer.html" ?> 
+  <?php include "admin_footer.php" ?> 

@@ -6,7 +6,8 @@ session_start();
 
 //require user configuration and database connection parameters
 require('config.php');
-if (($_SESSION['logged_in']) == TRUE) {
+if (isset($_SESSION['logged_in'])) {
+	if ($_SESSION['logged_in'] == TRUE) {
 //valid user has logged-in to the website
 //Check for unauthorized use of user sessions
 
@@ -34,7 +35,7 @@ if (($_SESSION['logged_in']) == TRUE) {
 //This is unauthorized access
 //Block it
 
-        header(sprintf("Location: %s", $forbidden_url));
+        header("Location: dashboard.php");
         exit;
     }
 
@@ -47,12 +48,12 @@ if (($_SESSION['logged_in']) == TRUE) {
 
 //redirect the user back to login page for re-authentication
 
-        $redirectback = $domain . 'securelogin/';
-        header(sprintf("Location: %s", $redirectback));
+         header("Location: login.php");
+        exit;
     }
     $_SESSION['LAST_ACTIVITY'] = time();
 }
-
+}
 //Pre-define validation
 $validationresults = TRUE;
 $registered = TRUE;
@@ -106,7 +107,7 @@ if ((isset($_POST["pass"])) && (isset($_POST["user"])) && ($_SESSION['logged_in'
 
     $user = sanitize($_POST["user"]);
     $pass = sanitize($_POST["pass"]);
-
+    $_SESSION['user'] = $user;
 //validate username
     if (!($fetch = mysqli_fetch_array(mysqli_query($connection,"SELECT `username` FROM `users` WHERE `username`='$user'")))) {
 
@@ -152,6 +153,9 @@ if ((isset($_POST["pass"])) && (isset($_POST["user"])) && ($_SESSION['logged_in'
         $row = mysqli_fetch_array($result);
         $correctpassword = $row['password'];
     }
+    $result = mysqli_query($connection,"SELECT `password` FROM `users` WHERE `username`='$user'");
+        $row = mysqli_fetch_array($result);
+        $correctpassword = $row['password'];
     if (!password_verify($pass, $correctpassword) || ($registered == FALSE)) {
 
 //user login validation fails
@@ -330,7 +334,7 @@ if (!$_SESSION['logged_in']):
                         </div>
                         <br>
                         <?php if ($validationresults == FALSE)
-                        echo '&emsp;&emsp;&emsp;<font color="red"><i class="bx bxs-lock bx-flashing"></i>&ensp;Please enter valid username, password (if required).</font>'; ?>
+                        echo '&emsp;&emsp;<font color="red"><i class="bx bxs-lock bx-flashing"></i>&ensp;Please enter valid username, password (if required).</font>'; ?>
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-5"><br>
                                 <button type="submit" class="btn btn-primary">
@@ -340,7 +344,7 @@ if (!$_SESSION['logged_in']):
                         </div>
                         <br>
                         <div class="col-md-8 offset-md-4">
-                         <a href="#">Forgot Password</a>
+                         <a href="forgotPassword.php">Forgot Password</a>
                        </div>
                     </form>
                 </div>

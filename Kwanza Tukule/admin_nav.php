@@ -191,15 +191,15 @@
              <li class="nav-item dropdown" >
               <a class="nav-link " style="color: grey;" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">  
                     <?php
-                   // if (isset($_SESSION['logged_in'])) {
-                   //  echo $user;
+                    if (isset($_SESSION['logged_in'])) 
+                    echo $_SESSION['user'];
                     ?>
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <div class="dropdown-divider"></div>
 
 
-                <a class="dropdown-item" href="login.php?signature=<?php echo $_SESSION['signature']; ?>">Logout</a>
+                <a class="dropdown-item" href="login.php<?php session_destroy() ?>">Logout</a>
               </div>
             </li>
               <?php
