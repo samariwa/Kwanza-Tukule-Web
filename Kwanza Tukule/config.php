@@ -32,7 +32,7 @@ $maxfailedattempt = 5;
 
 //Define session timeout in seconds
 //minimum 60 (for one minute)
-$sessiontimeout = 60;
+$sessiontimeout = 60*20;
 
 ////////////////////////////////////
 //END OF USER CONFIGURATION/////////

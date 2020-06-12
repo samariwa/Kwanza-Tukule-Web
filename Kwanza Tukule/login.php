@@ -1,4 +1,6 @@
 <?php
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
 //require user configuration and database connection parameters
 //Start PHP session
 session_start();
@@ -51,7 +53,7 @@ require('config.php');
 $validationresults = TRUE;
 $registered = TRUE;
 $recaptchavalidation = TRUE;
-
+$illegalattempts = FALSE;
 //Trapped brute force attackers and give them more hard work by providing a captcha-protected page
 
 $iptocheck = $_SERVER['REMOTE_ADDR'];
@@ -118,24 +120,36 @@ if ((isset($_POST["pass"])) && (isset($_POST["user"])) && ($_SESSION['logged_in'
         $loginattempts_username = $row['loginattempt'];
     }
 
-  /*  if (($loginattempts_username > 2) || ($registered == FALSE)) {
-
+    if (($loginattempts_username == 5) && ($registered == TRUE)) {
 //Require those user with login attempts failed records to
-//submit captcha and validate recaptcha
-
-        require_once('recaptchalib.php');
-        $resp = recaptcha_check_answer($privatekey, $_SERVER["REMOTE_ADDR"],
-            $_POST["recaptcha_challenge_field"], $_POST["recaptcha_response_field"]);
-        if (!$resp->is_valid) {
-
-//captcha validation fails
-
-            $recaptchavalidation = FALSE;
-        } else {
-            $recaptchavalidation = TRUE;
-        }
-    }*/
-
+//send an email to inform admin of unusual login attempt.
+       require_once "PHPMailer/PHPMailer.php";
+        require_once "PHPMailer/Exception.php";
+        require_once "PHPMailer/SMTP.php";
+        $mail = new PHPMailer(true);
+        $mail -> addAddress('samuelmariwa@gmail.com','Mariwa');
+        $mail -> setFrom("samuelmariwa@gmail.com", "Kwanza Tukule");
+        $mail->IsSMTP();
+        $mail->Host = "smtp.gmail.com";
+        // optional
+        // used only when SMTP requires authentication  
+        $mail->SMTPAuth = true;
+        $mail->Username = 'samuelmariwa@gmail.com';
+        $mail->Password = 'samokoth.1999';
+        $mail -> Subject = "Unusual Login Attempt";
+        $mail -> isHTML(true);
+        $mail -> Body = "
+              Hi Sam;<br><br>
+                An unusual login attempt using $user's account has been detected.<br> Please ensure that it is an authorized attempt. If it isn't kindly notify Mariwa for necessary security measures to be taken.<br> Thank you for your co-operation.<br><br>
+                Kind Regards,
+                ";
+        $mail -> send();
+        
+    }
+    //display warning message
+if (($loginattempts_username > 4) && ($registered == TRUE)) {
+        $illegalattempts = TRUE;
+    }
 
 //Get correct hashed password based on given username stored in MySQL database
 
@@ -341,9 +355,11 @@ if (!$_SESSION['logged_in']):
                                 </div>
                             </div>
                         </div>
-                        <br>
+                        
                         <?php if ($validationresults == FALSE)
                         echo '&emsp;&emsp;<font color="red"><i class="bx bxs-lock bx-flashing"></i>&ensp;Please enter valid username, password (if required).</font>'; ?>
+                        <?php if ($illegalattempts == TRUE)
+                        echo '&emsp;&emsp;<font color="red"><i class="bx bxs-error-alt bx-flashing"></i>&ensp;<b><i>Warning!</i></b> Approaching attempt limit and this account will be &emsp;&emsp;blocked. Kindly reset your password using the link below &emsp;&ensp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;(if required).</font>'; ?>
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-5"><br>
                                 <button type="submit" class="btn btn-primary">
