@@ -102,7 +102,7 @@ if ((isset($_POST["pass"])) && (isset($_POST["user"])) && (isset($_POST["pass2"]
         $message = "New member has just registered: $desired_username";
         mail($email, $subject, $message, $from);
 //redirect to login page
-         header("Location: login.php"); 
+         header("$Location: login_url"); 
          exit;
     }
 }

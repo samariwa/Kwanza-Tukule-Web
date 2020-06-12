@@ -12,7 +12,7 @@ if (isset($_SESSION['logged_in'])) {
     $_SESSION['logged_in'] = False;
     session_destroy();
     session_unset();
-   header("Location: login.php"); 
+   header("Location: $login_url"); 
     exit();
 }
     ?>

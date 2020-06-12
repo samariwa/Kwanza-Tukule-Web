@@ -9,7 +9,8 @@
             return $string;
    }
    function redirectToLoginPage(){
- 	header('Location:login.php');
+   require('config.php');
+ 	header('Location:$login_url');
    	exit();
  }
  ?>

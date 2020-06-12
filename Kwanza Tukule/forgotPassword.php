@@ -107,10 +107,10 @@ $exists = TRUE;
                         </div>
                         <?php if ($verified == TRUE)
                         echo '<br><br>&emsp;&emsp;&emsp;<font color="green"><i class="bx bx-check-circle bx-flashing"></i>&ensp;Please check your email for verification code.<br> &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<i class="bx bxs-hourglass-bottom bx-flashing"></i>&ensp;The code expires in 5 minutes.</font>'; ?>
-                        <?php if ($no_Error = FALSE)
-                        echo '<br><br>&emsp;&emsp;<font color="red"><i class="bx bxs-lock bx-flashing"></i>&ensp;Oops! Something went wrong. Please try again.</font>'; ?>
-                        <?php if ($exists = FALSE)
-                        echo '<br><br>&emsp;&emsp;<font color="red"><i class="bx bxs-lock bx-flashing"></i>&ensp;Please ensure that the email address entered was used in registration.</font>'; ?>
+                        <?php if ($no_Error == FALSE)
+                        echo '<br><br>&emsp;&emsp;<font color="red"><i class="bx bx-error-alt bx-flashing"></i>&ensp;Oops! Something went wrong. Please try again.</font>'; ?>
+                        <?php if ($exists == FALSE)
+                        echo '<br><br>&emsp;&emsp;<font color="red"><i class="bx bx-error-alt bx-flashing"></i>&ensp;Please ensure that the email address entered was <br>&emsp;&emsp;&emsp;&ensp;used in registration.</font>'; ?>
                         <br><br>
                         <div class="col-md-8 offset-md-4">
                          <a href="login.php" style="margin-left: 10px">Back to Login</a>

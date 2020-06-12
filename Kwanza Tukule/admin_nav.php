@@ -1,3 +1,49 @@
+<?php
+session_start();
+require('config.php');
+if (isset($_SESSION['logged_in'])) {
+  if ($_SESSION['logged_in'] == TRUE) {
+//valid user has logged-in to the website
+//Check for unauthorized use of user sessions
+
+    $iprecreate = $_SERVER['REMOTE_ADDR'];
+    $useragentrecreate = $_SERVER["HTTP_USER_AGENT"];
+    $signaturerecreate = $_SESSION['signature'];
+
+//Extract original salt from authorized signature
+
+    $saltrecreate = substr($signaturerecreate, 0, $length_salt);
+
+//Extract original hash from authorized signature
+
+    $originalhash = substr($signaturerecreate, $length_salt, 40);
+
+//Re-create the hash based on the user IP and user agent
+//then check if it is authorized or not
+
+    $hashrecreate = sha1($saltrecreate . $iprecreate . $useragentrecreate);
+
+    if (!($hashrecreate == $originalhash)) {
+
+//Signature submitted by the user does not matched with the
+//authorized signature
+//This is unauthorized access
+//Block it
+        header("Location: $dashboard_url");
+        exit;
+    }
+
+//Session Lifetime control for inactivity
+
+    if ((isset($_SESSION['LAST_ACTIVITY'])) && (time() - $_SESSION['LAST_ACTIVITY'] > $sessiontimeout)) {
+//redirect the user back to login page for re-authentication
+         header("Location: $logout_url");
+        exit;
+    }
+    $_SESSION['LAST_ACTIVITY'] = time();
+}
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,7 +76,7 @@
     <ul class="navbar-nav bg-gradient-light sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/admin">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard.php">
         <div class="sidebar-brand-icon ">
         <img src="assets/img/Kwanza Tukule.png" height="60" width="155">
         </div>
@@ -41,7 +87,7 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
-        <a class="nav-link" href="/admin" style="color: black">
+        <a class="nav-link" href="dashboard.php" style="color: black">
           <i class="fa fa-fw fa-tachometer-alt"></i>
           <span>Administrator</span></a>
       </li>

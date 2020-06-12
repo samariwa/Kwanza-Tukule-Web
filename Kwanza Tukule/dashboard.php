@@ -1,8 +1,4 @@
 <?php
-//require('login.php');
-session_set_cookie_params('180');
-session_start();
- $_SESSION['LAST_ACTIVITY'] = time();
  include "admin_nav.php";
  ?> 
 

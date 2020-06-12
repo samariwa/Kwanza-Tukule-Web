@@ -32,7 +32,7 @@ $maxfailedattempt = 5;
 
 //Define session timeout in seconds
 //minimum 60 (for one minute)
-$sessiontimeout = 180;
+$sessiontimeout = 60;
 
 ////////////////////////////////////
 //END OF USER CONFIGURATION/////////
@@ -41,6 +41,7 @@ $sessiontimeout = 180;
 
 $connection = mysqli_connect($hostname,$username, $password, $database)
 or die("Unable to connect to Server");
-$loginpage_url = $domain . 'securelogin/';
-$forbidden_url = $domain . 'securelogin/403forbidden.php';
+$login_url = 'login.php';
+$logout_url = 'logout.php';
+$dashboard_url = 'dashboard.php';
 ?>

@@ -1,9 +1,7 @@
 <?php
 //require user configuration and database connection parameters
 //Start PHP session
-
 session_start();
-
 //require user configuration and database connection parameters
 require('config.php');
 if (isset($_SESSION['logged_in'])) {
@@ -34,26 +32,21 @@ if (isset($_SESSION['logged_in'])) {
 //authorized signature
 //This is unauthorized access
 //Block it
-
-        header("Location: dashboard.php");
+        header("Location: $dashboard_url");
         exit;
     }
 
 //Session Lifetime control for inactivity
 
-    if ((isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > $sessiontimeout))) {
-
-        session_destroy();
-        session_unset();
-
+    if ((isset($_SESSION['LAST_ACTIVITY'])) && (time() - $_SESSION['LAST_ACTIVITY'] > $sessiontimeout)) {
 //redirect the user back to login page for re-authentication
-
-         header("Location: logout.php");
+         header("Location: $logout_url");
         exit;
     }
     $_SESSION['LAST_ACTIVITY'] = time();
 }
 }
+require('config.php');
 //Pre-define validation
 $validationresults = TRUE;
 $registered = TRUE;
@@ -375,8 +368,8 @@ if (!$_SESSION['logged_in']):
 
 <?php
 else:
-	//redirect to login page
-    header("Location: dashboard.php"); 
+	//redirect to dashboard
+    header("Location: $dashboard_url"); 
     exit();
 endif;
 ?>

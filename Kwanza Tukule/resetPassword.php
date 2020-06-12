@@ -50,7 +50,7 @@ $passwordmatch  = TRUE;
                  $hash = password_hash($desired_password, PASSWORD_DEFAULT);
                  mysqli_query($connection, "UPDATE users SET password= '$hash' WHERE email='$email'");
                  //redirect to login page
-		         header("Location: login.php"); 
+		         header("Location: $login_url"); 
 		         exit;
              }
          }
