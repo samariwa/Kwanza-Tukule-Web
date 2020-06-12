@@ -13,6 +13,7 @@
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   <!-- Custom styles for this template-->
  <link rel="stylesheet" href="admin.css"/>
@@ -56,7 +57,6 @@
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">&emsp;
         <a style="color: black;" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo" >
-          <i class="fa fa-fw fa-cog"></i>
           <span>Expenses</span>
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -71,7 +71,6 @@
       <!-- Nav Item - Utilities Collapse Menu -->
       <li class="nav-item">&emsp;
         <a style="color: black;"href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-          <i class="fa fa-fw fa-wrench"></i>
           <span>Liabilities</span>
         </a>
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
@@ -104,7 +103,7 @@
       <!-- Nav Item - Charts -->
       <li class="nav-item">&emsp;
         <a style="color: black;" href="/reports">
-          <i class="fa fa-fw fa-chart-area"></i>
+         <i class="fa fa-pie-chart" ></i>
           <span>Charts</span></a>
       </li>
        <br>
@@ -113,11 +112,6 @@
         <a style="color: black;" href="#">
           <i class="fa fa-fw fa-table"></i>
           <span>Targets</span></a>
-      </li>
-        <br>
-      <li class="nav-item">&emsp;
-        <a style="color: black;" href="/meals">
-          <span>Meal packages</span></a>
       </li>
     </ul>
     <!-- End of Sidebar -->
@@ -190,6 +184,7 @@
              <div class="topbar-divider d-none d-sm-block"></div>
              <li class="nav-item dropdown" >
               <a class="nav-link " style="color: grey;" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">  
+                <i class="fa fa-user"></i>&ensp;
                     <?php
                     if (isset($_SESSION['logged_in'])) 
                     echo $_SESSION['user'];
@@ -199,7 +194,7 @@
                 <div class="dropdown-divider"></div>
 
 
-                <a class="dropdown-item" href="login.php<?php session_destroy() ?>">Logout</a>
+                <a class="dropdown-item" href="logout.php">Logout</a>
               </div>
             </li>
               <?php

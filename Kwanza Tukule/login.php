@@ -48,7 +48,7 @@ if (isset($_SESSION['logged_in'])) {
 
 //redirect the user back to login page for re-authentication
 
-         header("Location: login.php");
+         header("Location: logout.php");
         exit;
     }
     $_SESSION['LAST_ACTIVITY'] = time();
@@ -143,6 +143,7 @@ if ((isset($_POST["pass"])) && (isset($_POST["user"])) && ($_SESSION['logged_in'
         }
     }*/
 
+
 //Get correct hashed password based on given username stored in MySQL database
 
     if ($registered == TRUE) {
@@ -213,6 +214,22 @@ if ((isset($_POST["pass"])) && (isset($_POST["user"])) && ($_SESSION['logged_in'
         }*/
     } else {
 
+    	//remember me functionality
+        $rem = sanitize($_POST["remember"]);
+        if(isset($rem)){
+        setcookie('user', $user, time()+60*60*7*24);
+        setcookie('pass', $pass, time()+60*60*7*24);
+        }
+        else{
+        	if(isset($_COOKIE['user']))
+        	{
+        		setcookie('user','');
+        	}
+        	if(isset($_COOKIE['pass']))
+        	{
+        		setcookie('pass','');
+        	}
+        }
 //user successfully authenticates with the provided username and password
 //Reset login attempts for a specific username to 0 as well as the ip address
 
@@ -307,7 +324,7 @@ if (!$_SESSION['logged_in']):
                             <label for="user"  class="offset-md-2 col-form-label text-md-right">Username:</label>
 
                             <div class="col-md-6 ">
-                                <input id="user" type="text"  name="user" value="" required autocomplete="text" autofocus class="<?php if ($validationresults == FALSE)
+                                <input id="user" type="text"  name="user" value="<?php if(isset($_COOKIE['user'])){echo $_COOKIE['user'];}?>" required autocomplete="text" autofocus class="<?php if ($validationresults == FALSE)
                                 echo "invalid"; ?>">
                             </div>
                         </div>
@@ -317,15 +334,14 @@ if (!$_SESSION['logged_in']):
 
                             <div class="col-md-6 ">
                                 <input id="pass" type="password"  name="pass" required autocomplete="current-password" class=" <?php if ($validationresults == FALSE)
-                            echo "invalid"; ?>">
+                            echo "invalid"; ?>" value="<?php if(isset($_COOKIE['pass'])){echo $_COOKIE['pass'];}?>">
                             </div>
                         </div>
                         <br>
                         <div class="form-group row">
                             <div class="col-md-8 offset-md-4">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" >
-
+                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" <?php if(isset($_COOKIE['user'])){ ?> checked <?php }?> >
                                     <label class="form-check-label" for="remember">
                                         Remember Me
                                     </label>

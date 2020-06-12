@@ -95,7 +95,7 @@ $exists = TRUE;
                             <label for="email"  class="offset-md-2 col-form-label text-md-right"style="margin-left: 105px">Email-address:</label>
 
                             <div class="col-md-6 ">
-                                <input id="email" type="email"  name="email" value="" required autocomplete="email" autofocus class="<?php if ($validationresults == FALSE) echo "invalid"; ?>" >
+                                <input id="email" type="email"  name="email" value="" required autocomplete="email" autofocus >
                             </div>
                         </div>
                           <div class="form-group row mb-0">
@@ -106,7 +106,7 @@ $exists = TRUE;
                             </div>
                         </div>
                         <?php if ($verified == TRUE)
-                        echo '<br><br>&emsp;&emsp;&emsp;<font color="green"><i class="bx bxs-lock bx-flashing"></i>&ensp;Please check your email for verification code.<br> &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;The code expires in 5 minutes.</font>'; ?>
+                        echo '<br><br>&emsp;&emsp;&emsp;<font color="green"><i class="bx bx-check-circle bx-flashing"></i>&ensp;Please check your email for verification code.<br> &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<i class="bx bxs-hourglass-bottom bx-flashing"></i>&ensp;The code expires in 5 minutes.</font>'; ?>
                         <?php if ($no_Error = FALSE)
                         echo '<br><br>&emsp;&emsp;<font color="red"><i class="bx bxs-lock bx-flashing"></i>&ensp;Oops! Something went wrong. Please try again.</font>'; ?>
                         <?php if ($exists = FALSE)
