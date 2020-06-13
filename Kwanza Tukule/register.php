@@ -1,14 +1,18 @@
 <?php 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
 require('config.php');
+session_start();
 $connection = mysqli_connect($hostname,$username, $password, $database)
         or die("Unable to connect to Server");
         //Pre-define validation
 $usernamenotempty = TRUE;
 $usernamevalidate = TRUE;
-$usernamenotduplicate = TRUE;
+$usernotduplicate = TRUE;
 $passwordnotempty = TRUE;
 $passwordvalidate = TRUE;
 $passwordmatch  = TRUE;
+$active = TRUE;
 if ((isset($_POST["pass"])) && (isset($_POST["user"])) && (isset($_POST["pass2"]))) {
 //Username and Password has been submitted by the user
 //Receive and validate the submitted information
@@ -53,11 +57,31 @@ if ((isset($_POST["pass"])) && (isset($_POST["user"])) && (isset($_POST["pass2"]
 
     if (!($fetch = mysqli_fetch_array(mysqli_query($connection,"SELECT `username` FROM `users` WHERE `username`='$desired_username'")))) {
 //no records for this user in the MySQL database
-        $usernamenotduplicate = TRUE;
+        $usernotduplicate = TRUE;
     } else {
-        $usernamenotduplicate = FALSE;
+       $usernotduplicate = FALSE;
     }
 
+    if (!($fetch = mysqli_fetch_array(mysqli_query($connection,"SELECT `nationalID` FROM `users` WHERE `nationalID`='$national_id'")))) {
+//no records for this user in the MySQL database
+        $usernotduplicate = TRUE;
+    } else {
+        $usernotduplicate = FALSE;
+    }
+
+    if (!($fetch = mysqli_fetch_array(mysqli_query($connection,"SELECT `staffID` FROM `users` WHERE `staffID`='$staff_id'")))) {
+//no records for this user in the MySQL database
+        $usernotduplicate = TRUE;
+    } else {
+        $usernotduplicate = FALSE;
+    }
+
+    if (!($fetch = mysqli_fetch_array(mysqli_query($connection,"SELECT `email` FROM `users` WHERE `email`='$email'")))) {
+//no records for this user in the MySQL database
+        $usernotduplicate = TRUE;
+    } else {
+        $usernotduplicate = FALSE;
+    }
 //validate password
 
     if (empty($desired_password)) {
@@ -65,7 +89,7 @@ if ((isset($_POST["pass"])) && (isset($_POST["user"])) && (isset($_POST["pass2"]
     } else {
         $passwordnotempty = TRUE;
     }
-
+//php function ctype_alnum for checking the characters used in registration
     if ( ((strlen($desired_password)) < 8)) {
         $passwordvalidate = FALSE;
     } else {
@@ -77,15 +101,15 @@ if ((isset($_POST["pass"])) && (isset($_POST["user"])) && (isset($_POST["pass2"]
     } else {
         $passwordmatch = FALSE;
     }
-//php function ctype_alnum for checking the characters used in registration
+
     if (($usernamenotempty == TRUE)
         && ($usernamevalidate == TRUE)
-        && ($usernamenotduplicate == TRUE)
+        && ($usernotduplicate == TRUE)
         && ($passwordnotempty == TRUE)
         && ($passwordmatch == TRUE)
         && ($passwordvalidate == TRUE)
         ) {
-
+    $active = FALSE;
 //The username, password and recaptcha validation succeeds.
 //Hash the password
 //This is very important for security reasons because once the password has been compromised,
@@ -98,12 +122,34 @@ if ((isset($_POST["pass"])) && (isset($_POST["user"])) && (isset($_POST["pass2"]
 //Insert details password to MySQL database
 
         mysqli_query($connection,"INSERT INTO `users` (`firstname`,`lastname`,`number`,`email`,`nationalID`,`staffID`,`yob`,`gender`,`role`,`username`, `password`) VALUES ('$first_name','$last_name','$phone_no','$email','$national_id','$staff_id','$dob','$gender','$role','$desired_username', '$hash')") or die(mysqli_error($connection));
-//Send notification to webmaster
-        $message = "New member has just registered: $desired_username";
-        mail($email, $subject, $message, $from);
-//redirect to login page
-         header("$Location: login_url"); 
-         exit;
+//Send notification to email
+        require_once "PHPMailer/PHPMailer.php";
+        require_once "PHPMailer/Exception.php";
+        require_once "PHPMailer/SMTP.php";
+        $mail = new PHPMailer(true);
+        $mail -> addAddress('samuelmariwa@gmail.com','Mariwa');
+        $mail -> setFrom("samuelmariwa@gmail.com", "Kwanza Tukule");
+        $mail->IsSMTP();
+        $mail->Host = "smtp.gmail.com";
+        // optional
+        // used only when SMTP requires authentication  
+        $mail->SMTPAuth = true;
+        $mail->Username = 'samuelmariwa@gmail.com';
+        $mail->Password = 'samokoth.1999';
+        $mail -> Subject = "New User";
+        $mail -> isHTML(true);
+        $mail -> Body = "
+              Hi Sam,<br><br>
+                A new user has been just been registered. Kindly ensure that the registration has done by a rightful user.<br><br>
+                User details:<br> 
+                Name: $first_name&ensp;$last_name<br> 
+                Phone Number:$phone_no<br> 
+                Email Address:$email<br> 
+                Role:$role<br><br> <br> 
+                Kind Regards,
+                ";
+        $mail -> send();
+
     }
 }
 ?>
@@ -218,6 +264,7 @@ if ((isset($_POST["pass"])) && (isset($_POST["user"])) && (isset($_POST["pass2"]
                                 <input id="pass2" type="password"  name="pass2" value="" required  autofocus class="<?php if (($passwordnotempty == FALSE) || ($passwordmatch == FALSE) || ($passwordvalidate == FALSE)) echo "invalid"; ?>" id="desired_password1">
                             </div>
                         </div>
+                        <p style="color: grey ;margin-left:100px;font-size: 14px;"><i>Hint: For a secure account, password should have more than 8 alphanumeric characters.</i></p>
                         <br>
                         <div class="form-group row mb-0">
                             <div class="col-md-2 offset-md-4">
@@ -232,6 +279,9 @@ if ((isset($_POST["pass"])) && (isset($_POST["user"])) && (isset($_POST["pass2"]
                             </div>
                         </div>
                         <!-- Display validation errors -->
+                         <?php 
+					         if ($active == FALSE) {  $_SESSION['activation'] = $desired_username;
+					        echo '<br><br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;<font color="green"><i class="bx bx-check-circle bx-flashing"></i>&ensp;Registration Complete. Kindly <a href="activation.php" style="color: inherit;">(click here)</a> to activate your account.</font>'; } ?>
 					        <?php 
 					         if ($passwordmatch == FALSE)
 					        echo '<br><br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;<font color="red"><i class="bx bxs-error bx-flashing"></i>&ensp;Your passwords do not match.</font>'; ?>
@@ -239,8 +289,8 @@ if ((isset($_POST["pass"])) && (isset($_POST["user"])) && (isset($_POST["pass2"]
 					        echo '<br><br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<font color="red"><i class="bx bx-shield-quarter bx-flashing"></i>&ensp;Your password should be greater than 8 characters.</font>'; ?>
 					   <?php if ($usernamevalidate == FALSE)
 					        echo '<br><br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<font color="red"><i class="bx bx-shield-quarter bx-flashing"></i>&ensp;Your username should be less than 11 characters.</font>'; ?>
-					     <?php if ($usernamenotduplicate == FALSE)
-					        echo '<br><br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<font color="red"><i class="bx bxs-data bx-flashing"></i>&ensp;Username already exists.</font>'; ?>
+					     <?php if ($usernotduplicate == FALSE)
+					        echo '<br><br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<font color="red"><i class="bx bxs-data bx-flashing"></i>&ensp;User already exists.</font>'; ?>
                     </form>
                 </div>
                 <br><br>

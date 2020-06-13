@@ -8,7 +8,7 @@
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-            <a href="/reports" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm"><i class="fa fa-download fa-sm text-white-50"></i> Generate Report</a>
+            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm"><i class="fa fa-download fa-sm text-white-50"></i> Generate Report</a>
           </div>
 
           <!-- Content Row -->
@@ -20,7 +20,7 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <a class="text-xs font-weight-bold text-primary text-uppercase mb-1" href="/pending">Pending Customer Orders</a>
+                      <a class="text-xs font-weight-bold text-primary text-uppercase mb-1" href="#">Customers</a>
                       
                     </div>
                   </div>
@@ -34,7 +34,7 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <a class="text-xs font-weight-bold text-success text-uppercase mb-1" href="#">Place Inventory Order</a>
+                      <a class="text-xs font-weight-bold text-success text-uppercase mb-1" href="#">Stock</a>
                     </div>
                   </div>
                 </div>
@@ -47,20 +47,7 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <a class="text-xs font-weight-bold text-info text-uppercase mb-1" href="#">Tasks</a>
-                      <div class="row no-gutters align-items-center">
-                        <div class="col-auto">
-                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
-                        </div>
-                        <div class="col">
-                          <div class="progress progress-sm mr-2">
-                            <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fa fa-clipboard-list fa-2x text-gray-300"></i>
+                      <a class="text-xs font-weight-bold text-info text-uppercase mb-1" href="#">Orders</a>
                     </div>
                   </div>
                 </div>
@@ -73,7 +60,7 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <a class="text-xs font-weight-bold text-warning text-uppercase mb-1" href="/stock">Stock</a>
+                      <a class="text-xs font-weight-bold text-warning text-uppercase mb-1" href="/stock">Summary</a>
                     </div>   
                   </div>
                 </div>
@@ -90,17 +77,15 @@
               <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-success">Order Locations</h6>
+                  <h6 class="m-0 font-weight-bold text-success">Customers Order Weekly Overview</h6>
                   <div class="dropdown no-arrow">
                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <i class="fa fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                      <div class="dropdown-header">Dropdown Header:</div>
-                      <a class="dropdown-item" href="#">Action</a>
-                      <a class="dropdown-item" href="#">Another action</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">Something else here</a>
+                      <div class="dropdown-header">View:</div>
+                      <a class="dropdown-item" href="#">Last Week</a>
+                      <a class="dropdown-item" href="#">Last Week but one</a>
                     </div>
                   </div>
                 </div>
@@ -130,17 +115,15 @@
               <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-success">Report Overview</h6>
+                  <h6 class="m-0 font-weight-bold text-success">Product Sales Weekly Overview</h6>
                   <div class="dropdown no-arrow">
                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <i class="fa fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                      <div class="dropdown-header">Dropdown Header:</div>
-                      <a class="dropdown-item" href="#">Action</a>
-                      <a class="dropdown-item" href="#">Another action</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">Something else here</a>
+                      <div class="dropdown-header">View:</div>
+                      <a class="dropdown-item" href="#">Last Week</a>
+                      <a class="dropdown-item" href="#">Last Week but one</a>
                     </div>
                   </div>
                 </div>
@@ -150,16 +133,16 @@
       google.charts.setOnLoadCallback(drawChart);
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
-          ['Meal', 'Number of meal packages sold'],
-         ['Chapati', 132],
-          ['Sukuma Wiki', 67],
-          ['Cabbages', 50],
-          ['Beef', 70],
-          ['Ugali', 70],
+          ['Products', 'Number of products sold'],
+         ['Jahazi Flour', 132],
+          ['Dola Flour', 67],
+          ['Yellow Beans', 50],
+          ['Salit Oil', 70],
+          ['Cosmo Flour', 70],
           ['Others', 90]
         ]);
         var options = {
-          title: 'Fast moving meals',
+          title: 'Fast moving products',
           legend: 'none',
           pieSliceText: 'label',
           slices: {  1: {offset: 0.2},
@@ -191,7 +174,7 @@
               <!-- Project Card Example -->
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-success">Today's Tasks</h6>
+                  <h6 class="m-0 font-weight-bold text-success"><i class="fa fa-tasks"></i> Today's Tasks</h6>
                 </div>
                 <div class="card-body">
                   <h4 class="small font-weight-bold">Processing orders <span class="float-right">20%</span></h4>
@@ -215,35 +198,35 @@
                     <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
                 </div>
-              </div>
-
-              
+              </div>  
             </div>
-
-            <div class="col-lg-6 mb-4">
-
-              
+            <div class="col-lg-3 mb-4" style="margin-left: -7px;margin-top: 50px">   
+            <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-success">Total Customers</h6>    
+                </div>
+                <!-- Card Body -->
+    <div class="card-body" style=" height: 200px;">
+      <br>
+      <i class="fa fa-address-book fa-4x" style="margin-left: 70px;"></i>
+      <br><br>
+      <p style="text-align: center;font-size: 35px">300</p>
+    </div>
+ </div>
+            </div>
+            <div class="col-lg-3 mb-5" style="margin-left: -10px;margin-top: 50px">
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-success">Projects</h6>
+                  <h6 class="m-0 font-weight-bold text-success">Average Daily Orders</h6>
                 </div>
-                <div class="card-body">
-                  <div class="text-center">
-                    <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;" src="img/undraw_posting_photo.svg" alt="">
-                  </div>
-                </div>
-              </div>
-
-             
-              <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-success">Milestones</h6>
-                </div>
-                <div class="card-body">
-                 
+                <div class="card-body" style=" height: 200px;">  
+                  <br>
+                  <i class="fa fa-clipboard fa-4x" style="margin-left: 70px"></i>
+                  <br><br>
+                  <p style="text-align: center;font-size: 35px">100</p>
                 </div>
               </div>
-
             </div>
           </div>
 

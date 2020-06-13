@@ -139,16 +139,16 @@ if (isset($_SESSION['logged_in'])) {
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Categories:</h6>
-            <a class="collapse-item" href="/deliverers">Deliverers</a>
-            <a class="collapse-item" href="/cleaners">Cleaners</a>
-            <a class="collapse-item" href="/cooks">Cooks</a>
+            <a class="collapse-item" href="#">Deliverers</a>
+            <a class="collapse-item" href="#">Cleaners</a>
+            <a class="collapse-item" href="#">Cooks</a>
           </div>
         </div>
       </li>
        <br>
       <!-- Nav Item - Charts -->
       <li class="nav-item">&emsp;
-        <a style="color: black;" href="/reports">
+        <a style="color: black;" href="#">
          <i class="fa fa-pie-chart" ></i>
           <span>Charts</span></a>
       </li>
@@ -158,6 +158,21 @@ if (isset($_SESSION['logged_in'])) {
         <a style="color: black;" href="#">
           <i class="fa fa-fw fa-table"></i>
           <span>Targets</span></a>
+      </li>
+
+       <br>
+      
+      <li class="nav-item">&emsp;
+        <a style="color: black;" href="#">
+          <span>Projects</span></a>
+      </li>
+
+       <br>
+      
+      <li class="nav-item">&emsp;
+        <a style="color: black;" href="#">
+          <i class="fa fa-flag-checkered"></i>
+          <span>Milestones</span></a>
       </li>
     </ul>
     <!-- End of Sidebar -->
@@ -233,7 +248,7 @@ if (isset($_SESSION['logged_in'])) {
                 <i class="fa fa-user"></i>&ensp;
                     <?php
                     if (isset($_SESSION['logged_in'])) 
-                    echo $_SESSION['user'];
+                    {echo $_SESSION['user'];}
                     ?>
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
