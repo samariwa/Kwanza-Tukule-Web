@@ -7,7 +7,7 @@
 
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Dashboard <span style="font-size: 18px;">/Stock</span></h1>
+            <h1 class="h3 mb-0 text-gray-800">Dashboard <span style="font-size: 18px;">/Stock</span> <span style="font-size: 15px;">/Categories</span></h1>
           </div>
 
           <!-- Content Row -->
@@ -66,51 +66,37 @@
             </div>
           </div>
      <div class="row">
-      <h5 style="margin-left: 50px">Search Stock:</h5>
-          <input type="text" name="filter" style="padding:15px;margin-left: 50px" id="filter" placeholder="By Name..." autocomplete="off" class="form-control col-md-4 " />
-          <input type="text" name="filter" style="padding:15px;margin-left: 50px" id="filter" placeholder="By Category..." autocomplete="off" class="form-control col-md-4 " />
+      <h5 style="margin-left: 130px">Search Category:</h5>
+          <input type="text" name="filter" style="padding:15px;margin-left: 50px" id="filter" placeholder="By Name..." autocomplete="off" class="form-control col-md-6 " />
     </div> <br> 
          <div class="row">
-      <a href="#" class="btn btn-success btn-md active" role="button" aria-pressed="true" style="margin-left: 30px;"><i class="fa fa-plus-circle"></i>&ensp;Add Stock</a>
+      <a href="stock.php" class="btn btn-primary btn-md active" role="button" aria-pressed="true" style="margin-left: 30px;"><i class="fa fa-arrow-left"></i>&ensp;Back</a>
       <?php
-       $result = mysqli_query($connection,"SELECT * FROM stock");
+       $result = mysqli_query($connection,"SELECT * FROM category");
         $customersrowcount = mysqli_num_rows($result);
       ?>
       <h6 style="margin-left: 280px;">Total Number: <?php echo $customersrowcount; ?></h6>
-      <a href="categories.php" class="btn btn-primary btn-md active" role="button" aria-pressed="true" style="margin-left: 300px;">Stock Categories</a>
     </div><br>     
       <table class="table table-striped table-hover" style="display:block; height:500px;overflow-y:scroll;">
   <thead class="thead-dark">
     <tr>
-      <th scope="col" width="5%">#</th>
-      <th scope="col" width="15%">Category</th>
-      <th scope="col" width="20%">Stock Name</th>
-      <th scope="col" width="10%">Buying Price</th>
-      <th scope="col"width="10%">Selling Price</th>
-      <th scope="col"width="15%">Quantity Available</th>
-      <th scope="col"width="10%"></th>
+      <th scope="col" width="20%">#</th>
+      <th scope="col" width="70%">Category Name</th>
+      <th scope="col"width="60%"></th>
     </tr>
   </thead>
   <tbody >
     <?php
         $count = 0;
-        $result = mysqli_query($connection,"SELECT stock.id,category.Category_Name,stock.Name,stock.Buying_price,stock.Price,stock.Quantity FROM stock INNER JOIN category ON stock.Category_id=category.id ORDER BY id ASC");
+        $result = mysqli_query($connection,"SELECT * FROM category ORDER BY id ASC");
         foreach($result as $row){
          $count++;
          $id = $row['id'];
         $category = $row['Category_Name'];
-        $name = $row['Name'];
-        $buying_price = $row['Buying_price'];
-        $selling_price = $row['Price'];
-        $quantity = $row['Quantity'];
       ?>
     <tr>
       <th scope="row"><?php echo $id; ?></th>
       <td><?php echo $category; ?></td>
-      <td><?php echo $name; ?></td>
-      <td><?php echo $buying_price; ?></td>
-      <td><?php echo $selling_price; ?></td>
-      <td><?php echo $quantity; ?></td>
        <td>
        <a href="#" class="btn btn-danger btn-sm active" role="button" aria-pressed="true" ><i class="fa fa-user-times"></i>Delete</a></td>
     </tr>

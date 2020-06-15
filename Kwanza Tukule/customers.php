@@ -1,5 +1,6 @@
 <?php
  include "admin_nav.php";
+ include('config.php');
  ?> 
 
         <!-- Begin Page Content -->
@@ -67,28 +68,33 @@
           </div>
 
     <div class="row">
-      <h5 style="margin-left: 30px">Search:</h5>
-          <input type="text" name="filter" style="padding:15px;margin-left: 30px" id="filter" placeholder="By Name..." autocomplete="off" class="form-control col-md-3 " />
-          <input type="text" name="filter" style="padding:15px;margin-left: 30px" id="filter" placeholder="By Deliverer..." autocomplete="off" class="form-control col-md-3 " />
-          <input type="text" name="filter" style="padding:15px;margin-left: 30px" id="filter" placeholder="By Number..." autocomplete="off" class="form-control col-md-3 " />
+      <h5 style="margin-left: 20px">Search Customer:</h5>
+          <input type="text" name="filter" style="padding:15px;margin-left: 20px" id="filter" placeholder="By Name..." autocomplete="off" class="form-control col-md-3 " />
+          <input type="text" name="filter" style="padding:15px;margin-left: 20px" id="filter" placeholder="By Deliverer..." autocomplete="off" class="form-control col-md-3 " />
+          <input type="text" name="filter" style="padding:15px;margin-left: 20px" id="filter" placeholder="By Number..." autocomplete="off" class="form-control col-md-3 " />
     </div> <br> 
     <div class="row">
       <a href="#" class="btn btn-success btn-md active" role="button" aria-pressed="true" style="margin-left: 30px;"><i class="fa fa-plus-circle"></i>&ensp;Add Customer</a>
-      <a href="#" class="btn btn-dark btn-md active" role="button" aria-pressed="true" style="margin-left: 640px;">BlackListed Customers</a>
+      <?php
+       $result = mysqli_query($connection,"SELECT * FROM customers WHERE `status`!='blacklisted'");
+        $customersrowcount = mysqli_num_rows($result);
+      ?>
+      <h6 style="margin-left: 200px;">Total Number: <?php echo $customersrowcount; ?></h6>
+      <a href="blacklisted.php" class="btn btn-dark btn-md active" role="button" aria-pressed="true" style="margin-left: 300px;">Blacklisted Customers</a>
     </div><br>
     <table class="table table-striped table-hover" style="display:block; height:500px;overflow-y:scroll;">
   <thead class="thead-dark">
     <tr>
       <th scope="col" width="20%">Name</th>
       <th scope="col" width="20%">Location</th>
-      <th scope="col" width="10%">Contact Number</th>
+      <th scope="col" width="15%">Contact Number</th>
       <th scope="col" width="10%">Deliverer</th>
       <th scope="col"width="10%">Status</th>
+      <th scope="col"width="20%"></th>
     </tr>
   </thead>
   <tbody >
     <?php
-        include('config.php');
         $count = 0;
         $result = mysqli_query($connection,"SELECT Name,Location,Number,Deliverer,Status FROM customers WHERE Status != 'blacklisted'ORDER BY id ASC");
         foreach($result as $row){
@@ -105,6 +111,8 @@
       <td><?php echo $number; ?></td>
       <td><?php echo $deliverer; ?></td>
       <td><?php echo $status; ?></td>
+       <td><a href="#" class="btn btn-dark btn-sm active" role="button" aria-pressed="true">Blacklist</a>
+       <a href="#" class="btn btn-danger btn-sm active" role="button" aria-pressed="true" ><i class="fa fa-user-times"></i>Delete</a></td>
     </tr>
     <?php
     }

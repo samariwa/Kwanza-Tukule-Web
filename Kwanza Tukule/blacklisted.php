@@ -1,5 +1,6 @@
 <?php
  include "admin_nav.php";
+ include('config.php');
  ?> 
 
         <!-- Begin Page Content -->
@@ -7,7 +8,7 @@
 
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Dashboard <span style="font-size: 18px;">/Stock</span></h1>
+            <h1 class="h3 mb-0 text-gray-800">Dashboard <span style="font-size: 18px;">/Customers</span> <span style="font-size: 15px;">/Blacklisted</span></h1>
           </div>
 
           <!-- Content Row -->
@@ -19,7 +20,7 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <a class="text-xs font-weight-bold text-primary text-uppercase mb-1" href="customers.php"><i class="fa fa-users fa-2x"></i>&emsp;Customers</a> 
+                      <a class="text-xs font-weight-bold text-primary text-uppercase mb-1" href="#"><i class="fa fa-users fa-2x"></i>&emsp;Customers</a> 
                     </div>
                   </div>
                 </div>
@@ -32,7 +33,7 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <a class="text-xs font-weight-bold text-success text-uppercase mb-1" href="#"><i class="fa fa-cubes fa-2x"></i>&emsp;Stock</a>
+                      <a class="text-xs font-weight-bold text-success text-uppercase mb-1" href="stock.php"><i class="fa fa-cubes fa-2x"></i>&emsp;Stock</a>
                     </div>
                   </div>
                 </div>
@@ -65,53 +66,48 @@
               </div>
             </div>
           </div>
-     <div class="row">
-      <h5 style="margin-left: 50px">Search Stock:</h5>
-          <input type="text" name="filter" style="padding:15px;margin-left: 50px" id="filter" placeholder="By Name..." autocomplete="off" class="form-control col-md-4 " />
-          <input type="text" name="filter" style="padding:15px;margin-left: 50px" id="filter" placeholder="By Category..." autocomplete="off" class="form-control col-md-4 " />
+
+    <div class="row">
+      <h5 style="margin-left: 60px">Search Blacklisted Customer:</h5>
+          <input type="text" name="filter" style="padding:15px;margin-left: 50px" id="filter" placeholder="By Name..." autocomplete="off" class="form-control col-md-3 " />
+          <input type="text" name="filter" style="padding:15px;margin-left: 50px" id="filter" placeholder="By Number..." autocomplete="off" class="form-control col-md-3 " />
     </div> <br> 
-         <div class="row">
-      <a href="#" class="btn btn-success btn-md active" role="button" aria-pressed="true" style="margin-left: 30px;"><i class="fa fa-plus-circle"></i>&ensp;Add Stock</a>
+    <div class="row">
+      <a href="customers.php" class="btn btn-primary btn-md active" role="button" aria-pressed="true" style="margin-left: 30px;"><i class="fa fa-arrow-left"></i>&ensp;Back</a>
       <?php
-       $result = mysqli_query($connection,"SELECT * FROM stock");
+       $result = mysqli_query($connection,"SELECT * FROM customers WHERE `status`='blacklisted'");
         $customersrowcount = mysqli_num_rows($result);
       ?>
-      <h6 style="margin-left: 280px;">Total Number: <?php echo $customersrowcount; ?></h6>
-      <a href="categories.php" class="btn btn-primary btn-md active" role="button" aria-pressed="true" style="margin-left: 300px;">Stock Categories</a>
-    </div><br>     
-      <table class="table table-striped table-hover" style="display:block; height:500px;overflow-y:scroll;">
+      <h6 style="margin-left: 300px;">Total Number: <?php echo $customersrowcount; ?></h6>
+    </div><br>
+    <table class="table table-striped table-hover" style="display:block; height:500px;overflow-y:scroll;">
   <thead class="thead-dark">
     <tr>
-      <th scope="col" width="5%">#</th>
-      <th scope="col" width="15%">Category</th>
-      <th scope="col" width="20%">Stock Name</th>
-      <th scope="col" width="10%">Buying Price</th>
-      <th scope="col"width="10%">Selling Price</th>
-      <th scope="col"width="15%">Quantity Available</th>
-      <th scope="col"width="10%"></th>
+      <th scope="col" width="20%">Name</th>
+      <th scope="col" width="20%">Location</th>
+      <th scope="col" width="15%">Contact Number</th>
+      <th scope="col" width="10%">Deliverer</th>
+      <th scope="col"width="15%"></th>
     </tr>
   </thead>
   <tbody >
     <?php
         $count = 0;
-        $result = mysqli_query($connection,"SELECT stock.id,category.Category_Name,stock.Name,stock.Buying_price,stock.Price,stock.Quantity FROM stock INNER JOIN category ON stock.Category_id=category.id ORDER BY id ASC");
+        $result = mysqli_query($connection,"SELECT Name,Location,Number,Deliverer,Status FROM customers WHERE Status = 'blacklisted 'ORDER BY id ASC");
         foreach($result as $row){
          $count++;
-         $id = $row['id'];
-        $category = $row['Category_Name'];
-        $name = $row['Name'];
-        $buying_price = $row['Buying_price'];
-        $selling_price = $row['Price'];
-        $quantity = $row['Quantity'];
+         $name = $row['Name'];
+        $location = $row['Location'];
+        $number = $row['Number'];
+        $deliverer = $row['Deliverer'];
+        $status = $row['Status'];
       ?>
     <tr>
-      <th scope="row"><?php echo $id; ?></th>
-      <td><?php echo $category; ?></td>
-      <td><?php echo $name; ?></td>
-      <td><?php echo $buying_price; ?></td>
-      <td><?php echo $selling_price; ?></td>
-      <td><?php echo $quantity; ?></td>
-       <td>
+      <th scope="row"><?php echo $name; ?></th>
+      <td><?php echo $location; ?></td>
+      <td><?php echo $number; ?></td>
+      <td><?php echo $deliverer; ?></td>
+       <td><a href="#" class="btn btn-success btn-sm active" role="button" aria-pressed="true">Restore</a>
        <a href="#" class="btn btn-danger btn-sm active" role="button" aria-pressed="true" ><i class="fa fa-user-times"></i>Delete</a></td>
     </tr>
     <?php
@@ -119,5 +115,7 @@
     ?>
   </tbody>
 </table>
+
+
   <!-- Scroll to Top Button-->
   <?php include "admin_footer.php" ?> 
