@@ -57,6 +57,7 @@ if (isset($_SESSION['logged_in'])) {
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+  <link href='https://unpkg.com/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
@@ -193,7 +194,15 @@ if (isset($_SESSION['logged_in'])) {
 
 
           <!-- Topbar Navbar -->
-          <ul class="navbar-nav ml-auto">
+          <ul class="navbar-nav ">
+             <li><?php
+                $Today = date('y:m:d',mktime());
+                $new = date('l, F d, Y', strtotime($Today));
+                ?><i class="fa fa-calendar"></i>&ensp;<?php
+                echo $new;
+                ?></li>
+          </ul>
+          <ul class="navbar-nav ml-auto">  
             <!-- Nav Item - Alerts -->
             <li class="nav-item dropdown no-arrow mx-1">
               <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: grey;">
@@ -255,7 +264,7 @@ if (isset($_SESSION['logged_in'])) {
                 <div class="dropdown-divider"></div>
 
 
-                <a class="dropdown-item" href="logout.php">Logout</a>
+                <a class="dropdown-item" href="logout.php"><i class="bx bx-exit"></i>&ensp;Logout</a>
               </div>
             </li>
               <?php

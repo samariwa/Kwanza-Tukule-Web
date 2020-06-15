@@ -207,8 +207,16 @@ if (($loginattempts_username > 4) && ($registered == TRUE)) {
         $row = mysqli_fetch_array($result);
         $correctpassword = $row['password'];
     if (!password_verify($pass, $correctpassword) || ($registered == FALSE) || ($activate == FALSE)) {
-        if ($activate == FALSE) {
-          $activate = FALSE;
+    	$result1 = mysqli_query($connection,"SELECT `active` FROM `users` WHERE `username`='$user'");
+        $row = mysqli_fetch_array($result1);
+        $active = $row['active'];
+       if(($active == 0) && ($registered == FALSE) || !password_verify($pass, $correctpassword)){
+          $activate = TRUE;
+          $validationresults = FALSE;
+        }
+        else if(($active == 0) && ($registered == TRUE) && password_verify($pass, $correctpassword)){
+            $activate = FALSE;
+          $validationresults = TRUE;
         }
         else{
 //log login failed attempts to database
