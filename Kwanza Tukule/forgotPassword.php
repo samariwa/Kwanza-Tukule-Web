@@ -20,16 +20,16 @@ $exists = TRUE;
         require_once "PHPMailer/PHPMailer.php";
         require_once "PHPMailer/Exception.php";
         require_once "PHPMailer/SMTP.php";
-        $mail = new PHPMailer(true);
-        $mail -> addAddress($email);
-        $mail -> setFrom("samuelmariwa@gmail.com", "Kwanza Tukule");
+         $mail = new PHPMailer(true);
+        $mail -> addAddress('kwanzatukuleauthenticator@gmail.com','Kwanza Tukule');
+        $mail -> setFrom("kwanzatukuleauthenticator@gmail.com", "Kwanza Tukule");
         $mail->IsSMTP();
         $mail->Host = "smtp.gmail.com";
         // optional
         // used only when SMTP requires authentication  
         $mail->SMTPAuth = true;
-        $mail->Username = 'samuelmariwa@gmail.com';
-        $mail->Password = 'samokoth.1999';
+        $mail->Username = 'kwanzatukuleauthenticator@gmail.com';
+        $mail->Password = 'Kenya.2030';
         $mail -> Subject = "Reset Password";
         $mail -> isHTML(true);
         $mail -> Body = "
