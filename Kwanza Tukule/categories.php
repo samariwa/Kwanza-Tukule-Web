@@ -73,9 +73,9 @@
       <a href="stock.php" class="btn btn-primary btn-md active" role="button" aria-pressed="true" style="margin-left: 30px;"><i class="fa fa-arrow-left"></i>&ensp;Back</a>
       <?php
        $result = mysqli_query($connection,"SELECT * FROM category");
-        $customersrowcount = mysqli_num_rows($result);
+        $categoriesrowcount = mysqli_num_rows($result);
       ?>
-      <h6 style="margin-left: 280px;">Total Number: <?php echo $customersrowcount; ?></h6>
+      <h6 style="margin-left: 280px;">Total Number: <?php echo $categoriesrowcount; ?></h6>
     </div><br>     
       <table class="table table-striped table-hover" style="display:block; height:500px;overflow-y:scroll;">
   <thead class="thead-dark">

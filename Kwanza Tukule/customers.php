@@ -9,8 +9,9 @@
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Dashboard <span style="font-size: 18px;">/Customers</span></h1>
+             <a href="categories.php" class="btn btn-light btn-md active" role="button" aria-pressed="true" style="margin-left: 220px;"><i class="fa fa-print"></i>&ensp;Print</a>
           </div>
-
+         
           <!-- Content Row -->
           <div class="row">
 
@@ -74,7 +75,40 @@
           <input type="text" name="filter" style="padding:15px;margin-left: 20px" id="filter" placeholder="By Number..." autocomplete="off" class="form-control col-md-3 " />
     </div> <br> 
     <div class="row">
-      <a href="#" class="btn btn-success btn-md active" role="button" aria-pressed="true" style="margin-left: 30px;"><i class="fa fa-plus-circle"></i>&ensp;Add Customer</a>
+      <a data-toggle="modal" data-target="#exampleModalScrollable" class="btn btn-success btn-md active" role="button" aria-pressed="true" style="margin-left: 30px;"><i class="fa fa-plus-circle"></i>&ensp;Add Customer</a>
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalScrollableTitle">Add Customer</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form method="POST">
+                <div class="row">
+                 <input type="text" name="name" class="form-control col-md-9" style="padding:15px;margin-left: 60px" placeholder="Customer Name...">
+                  </div><br>
+                 <div class="row">
+                 <input type="text" name="location" class="form-control col-md-9" style="padding:15px;margin-left: 60px" placeholder="Customer Location...">
+                  </div><br>
+                 <div class="row">
+                 <input type="text" name="number" class="form-control col-md-9" style="padding:15px;margin-left: 60px" placeholder="Contact Number...">
+                  </div><br>
+                 <div class="row">
+                 <input type="text" name="deliverer" class="form-control col-md-9" style="padding:15px;margin-left: 60px" placeholder="Deliverer...">
+                  </div>   
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary" style="margin-right: 50px">Add Customer</button>
+            </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <?php
        $result = mysqli_query($connection,"SELECT * FROM customers WHERE `status`!='blacklisted'");
         $customersrowcount = mysqli_num_rows($result);

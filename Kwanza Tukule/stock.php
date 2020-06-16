@@ -71,13 +71,59 @@
           <input type="text" name="filter" style="padding:15px;margin-left: 50px" id="filter" placeholder="By Category..." autocomplete="off" class="form-control col-md-4 " />
     </div> <br> 
          <div class="row">
-      <a href="#" class="btn btn-success btn-md active" role="button" aria-pressed="true" style="margin-left: 30px;"><i class="fa fa-plus-circle"></i>&ensp;Add Stock</a>
+      <a data-toggle="modal" data-target="#exampleModalScrollable" class="btn btn-success btn-md active" role="button" aria-pressed="true" style="margin-left: 30px;"><i class="fa fa-plus-circle"></i>&ensp;Add Stock</a>
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalScrollableTitle">Add Stock</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form method="POST">
+                <div class="row">
+                 <input type="text" name="id" class="form-control col-md-9" style="padding:15px;margin-left: 60px" placeholder="Category...">
+                  </div><br>
+                 <div class="row">
+                 <input type="text" name="name" class="form-control col-md-9" style="padding:15px;margin-left: 60px" placeholder="Stock Name...">
+                  </div><br>
+                  <div class="row">
+                 <input type="number" name="unit" class="form-control col-md-9" style="padding:15px;margin-left: 60px" placeholder="Unit...">
+                  </div><br>
+                  <div class="row">
+                 <input type="text" name="supplier" class="form-control col-md-9" style="padding:15px;margin-left: 60px" placeholder="Supplier...">
+                  </div><br>
+                  <div class="row">
+                    <label for="date" style="margin-left: 60px;">Date Received:</label>
+                 <input type="date" name="date" class="form-control col-md-9" style="padding:15px;margin-left: 60px" >
+                  </div><br>
+                 <div class="row">
+                 <input type="text" name="number" class="form-control col-md-9" style="padding:15px;margin-left: 60px" placeholder="Buying Price...">
+                  </div><br>
+                  <div class="row">
+                 <input type="text" name="number" class="form-control col-md-9" style="padding:15px;margin-left: 60px" placeholder="Selling Price...">
+                  </div><br>
+                 <div class="row">
+                 <input type="number" name="deliverer" class="form-control col-md-9" style="padding:15px;margin-left: 60px" placeholder="Quantity...">
+                  </div>   
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary" style="margin-right: 50px">Add Stock</button>
+            </form>
+            </div>
+          </div>
+        </div>
+      </div>
       <?php
        $result = mysqli_query($connection,"SELECT * FROM stock");
-        $customersrowcount = mysqli_num_rows($result);
+        $stockrowcount = mysqli_num_rows($result);
       ?>
-      <h6 style="margin-left: 280px;">Total Number: <?php echo $customersrowcount; ?></h6>
-      <a href="categories.php" class="btn btn-primary btn-md active" role="button" aria-pressed="true" style="margin-left: 300px;">Stock Categories</a>
+      <h6 style="margin-left: 190px;">Total Number: <?php echo $stockrowcount; ?></h6>
+      <a href="categories.php" class="btn btn-warning btn-md active" role="button" aria-pressed="true" style="margin-left: 220px;">Stock Valuation</a>
+      <a href="categories.php" class="btn btn-primary btn-md active" role="button" aria-pressed="true" style="margin-left: 30px;">Stock Categories</a>
     </div><br>     
       <table class="table table-striped table-hover" style="display:block; height:500px;overflow-y:scroll;">
   <thead class="thead-dark">
