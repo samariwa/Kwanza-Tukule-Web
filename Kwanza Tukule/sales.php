@@ -66,12 +66,6 @@
               </div>
             </div>
           </div>
-         <div class="row">
-      <h5 style="margin-left: 20px">Search Order:</h5>
-          <input type="text" name="filter" style="padding:15px;margin-left: 20px" id="filter" placeholder="By Name..." autocomplete="off" class="form-control col-md-3 " />
-          <input type="text" name="filter" style="padding:15px;margin-left: 20px" id="filter" placeholder="By Deliverer..." autocomplete="off" class="form-control col-md-3 " />
-          <input type="date" name="filter" style="padding:15px;margin-left: 20px" id="filter" placeholder="By Date..." autocomplete="off" class="form-control col-md-3 " />
-    </div> <br> 
       <div class="row">
       <a href="#" class="btn btn-success btn-md active" role="button" aria-pressed="true" style="margin-left: 25px;"><i class="fa fa-plus-circle"></i>&ensp;New Order</a>
       <a href="blacklisted.php" class="btn btn-warning btn-md active" role="button" aria-pressed="true" style="margin-left: 25px;">Goods Distribution</a>

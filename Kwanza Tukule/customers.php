@@ -71,7 +71,7 @@
       <a data-toggle="modal" data-target="#exampleModalScrollable" class="btn btn-success btn-md active" role="button" aria-pressed="true" style="margin-left: 30px;"><i class="fa fa-plus-circle"></i>&ensp;Add Customer</a>
       <!-- Modal -->
       <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalScrollableTitle">Add Customer</h5>
@@ -138,7 +138,7 @@
       <td><?php echo $number; ?></td>
       <td><?php echo $deliverer; ?></td>
       <td><?php echo $status; ?></td>
-       <td><a href="#" class="btn btn-dark btn-sm active" role="button" aria-pressed="true">Blacklist</a>
+       <td>&emsp;&emsp;<a href="#" class="btn btn-dark btn-sm active" role="button" aria-pressed="true">Blacklist</a>
        <a href="#" class="btn btn-danger btn-sm active" role="button" aria-pressed="true" ><i class="fa fa-user-times"></i>Delete</a></td>
     </tr>
     <?php

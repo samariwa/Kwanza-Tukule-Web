@@ -72,6 +72,30 @@
         $categoriesrowcount = mysqli_num_rows($result);
       ?>
       <h6 style="margin-left: 280px;">Total Number: <?php echo $categoriesrowcount; ?></h6>
+      <a data-toggle="modal" data-target="#exampleModalScrollable" class="btn btn-success btn-md active" role="button" aria-pressed="true" style="margin-left: 335px;"><i class="fa fa-plus-circle"></i>&ensp;Add Category</a>
+       <!-- Modal -->
+      <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalScrollableTitle">Add Category</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form method="POST">
+                 <div class="row">
+                 <input type="text" name="category" class="form-control col-md-9" style="padding:15px;margin-left: 60px" placeholder="Category Name...">
+                  </div>   
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary" style="margin-right: 50px">Add Category</button>
+            </form>
+            </div>
+          </div>
+        </div>
+      </div>
     </div><br>     
       <table class="table table-striped table-hover" style="display:block;height:737px;overflow-y:scroll;">
   <thead class="thead-dark">
