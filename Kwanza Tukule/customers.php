@@ -67,13 +67,6 @@
               </div>
             </div>
           </div>
-
-    <div class="row">
-      <h5 style="margin-left: 20px">Search Customer:</h5>
-          <input type="text" name="filter" style="padding:15px;margin-left: 20px" id="filter" placeholder="By Name..." autocomplete="off" class="form-control col-md-3 " />
-          <input type="text" name="filter" style="padding:15px;margin-left: 20px" id="filter" placeholder="By Deliverer..." autocomplete="off" class="form-control col-md-3 " />
-          <input type="text" name="filter" style="padding:15px;margin-left: 20px" id="filter" placeholder="By Number..." autocomplete="off" class="form-control col-md-3 " />
-    </div> <br> 
     <div class="row">
       <a data-toggle="modal" data-target="#exampleModalScrollable" class="btn btn-success btn-md active" role="button" aria-pressed="true" style="margin-left: 30px;"><i class="fa fa-plus-circle"></i>&ensp;Add Customer</a>
       <!-- Modal -->
@@ -116,7 +109,7 @@
       <h6 style="margin-left: 200px;">Total Number: <?php echo $customersrowcount; ?></h6>
       <a href="blacklisted.php" class="btn btn-dark btn-md active" role="button" aria-pressed="true" style="margin-left: 300px;">Blacklisted Customers</a>
     </div><br>
-    <table class="table table-striped table-hover" style="display:block; height:500px;overflow-y:scroll;">
+    <table class="table table-striped table-hover" style="display:block; height:527px;overflow-y:scroll;">
   <thead class="thead-dark">
     <tr>
       <th scope="col" width="20%">Name</th>
@@ -130,7 +123,7 @@
   <tbody >
     <?php
         $count = 0;
-        $result = mysqli_query($connection,"SELECT Name,Location,Number,Deliverer,Status FROM customers WHERE Status != 'blacklisted'ORDER BY id ASC");
+        $result = mysqli_query($connection,"SELECT Name,Location,Number,Deliverer,Status FROM customers WHERE Status != 'blacklisted'ORDER BY id DESC");
         foreach($result as $row){
          $count++;
          $name = $row['Name'];

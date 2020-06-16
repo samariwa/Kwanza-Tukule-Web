@@ -64,12 +64,7 @@
                 </div>
               </div>
             </div>
-          </div>
-     <div class="row">
-      <h5 style="margin-left: 50px">Search Stock:</h5>
-          <input type="text" name="filter" style="padding:15px;margin-left: 50px" id="filter" placeholder="By Name..." autocomplete="off" class="form-control col-md-4 " />
-          <input type="text" name="filter" style="padding:15px;margin-left: 50px" id="filter" placeholder="By Category..." autocomplete="off" class="form-control col-md-4 " />
-    </div> <br> 
+          </div> 
          <div class="row">
       <a data-toggle="modal" data-target="#exampleModalScrollable" class="btn btn-success btn-md active" role="button" aria-pressed="true" style="margin-left: 30px;"><i class="fa fa-plus-circle"></i>&ensp;Add Stock</a>
       <!-- Modal -->
@@ -125,15 +120,15 @@
       <a href="categories.php" class="btn btn-warning btn-md active" role="button" aria-pressed="true" style="margin-left: 220px;">Stock Valuation</a>
       <a href="categories.php" class="btn btn-primary btn-md active" role="button" aria-pressed="true" style="margin-left: 30px;">Stock Categories</a>
     </div><br>     
-      <table class="table table-striped table-hover" style="display:block; height:500px;overflow-y:scroll;">
+      <table class="table table-striped table-hover" style="display:block; height:527px;overflow-y:scroll;">
   <thead class="thead-dark">
     <tr>
       <th scope="col" width="5%">#</th>
       <th scope="col" width="15%">Category</th>
       <th scope="col" width="20%">Stock Name</th>
-      <th scope="col" width="10%">Buying Price</th>
-      <th scope="col"width="10%">Selling Price</th>
-      <th scope="col"width="15%">Quantity Available</th>
+      <th scope="col" width="15%">Buying Price</th>
+      <th scope="col"width="15%">Selling Price</th>
+      <th scope="col"width="20%">Quantity Available</th>
       <th scope="col"width="10%"></th>
     </tr>
   </thead>
@@ -158,7 +153,7 @@
       <td><?php echo $selling_price; ?></td>
       <td><?php echo $quantity; ?></td>
        <td>
-       <a href="#" class="btn btn-danger btn-sm active" role="button" aria-pressed="true" ><i class="fa fa-user-times"></i>Delete</a></td>
+       <a href="#" class="btn btn-danger btn-sm active" role="button" aria-pressed="true" ><i class="fa fa-trash"></i>&ensp;Delete</a></td>
     </tr>
     <?php
     }

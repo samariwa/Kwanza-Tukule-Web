@@ -65,10 +65,6 @@
               </div>
             </div>
           </div>
-     <div class="row">
-      <h5 style="margin-left: 130px">Search Category:</h5>
-          <input type="text" name="filter" style="padding:15px;margin-left: 50px" id="filter" placeholder="By Name..." autocomplete="off" class="form-control col-md-6 " />
-    </div> <br> 
          <div class="row">
       <a href="stock.php" class="btn btn-primary btn-md active" role="button" aria-pressed="true" style="margin-left: 30px;"><i class="fa fa-arrow-left"></i>&ensp;Back</a>
       <?php
@@ -77,12 +73,12 @@
       ?>
       <h6 style="margin-left: 280px;">Total Number: <?php echo $categoriesrowcount; ?></h6>
     </div><br>     
-      <table class="table table-striped table-hover" style="display:block; height:500px;overflow-y:scroll;">
+      <table class="table table-striped table-hover" style="display:block;height:737px;overflow-y:scroll;">
   <thead class="thead-dark">
     <tr>
-      <th scope="col" width="20%">#</th>
-      <th scope="col" width="70%">Category Name</th>
-      <th scope="col"width="60%"></th>
+      <th scope="col" width="30%">#</th>
+      <th scope="col" width="80%">Category Name</th>
+      <th scope="col"width="80%"></th>
     </tr>
   </thead>
   <tbody >
@@ -98,7 +94,7 @@
       <th scope="row"><?php echo $id; ?></th>
       <td><?php echo $category; ?></td>
        <td>
-       <a href="#" class="btn btn-danger btn-sm active" role="button" aria-pressed="true" ><i class="fa fa-user-times"></i>Delete</a></td>
+       <a href="#" class="btn btn-danger btn-sm active" role="button" aria-pressed="true" ><i class="fa fa-trash"></i>Delete</a></td>
     </tr>
     <?php
     }
