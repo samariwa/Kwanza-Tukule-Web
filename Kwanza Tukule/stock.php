@@ -19,7 +19,7 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <a class="text-xs font-weight-bold text-primary text-uppercase mb-1" href="customers.php"><i class="fa fa-users fa-2x"></i>&emsp;Customers</a> 
+                      <a class="text-xs font-weight-bold text-primary text-uppercase mb-1" href="customers.php" style="text-decoration: none;"><i class="fa fa-users fa-2x"></i>&emsp;Customers</a> 
                     </div>
                   </div>
                 </div>
@@ -32,7 +32,7 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <a class="text-xs font-weight-bold text-success text-uppercase mb-1" href="#"><i class="fa fa-cubes fa-2x"></i>&emsp;Stock</a>
+                      <a class="text-xs font-weight-bold text-success text-uppercase mb-1" href="#" style="text-decoration: none;"><i class="fa fa-cubes fa-2x"></i>&emsp;Stock</a>
                     </div>
                   </div>
                 </div>
@@ -45,7 +45,7 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <a class="text-xs font-weight-bold text-info text-uppercase mb-1" href="sales.php"><i class="fa fa-shopping-cart fa-2x"></i>&emsp;Sales</a>
+                      <a class="text-xs font-weight-bold text-info text-uppercase mb-1" href="sales.php" style="text-decoration: none;"><i class="fa fa-shopping-cart fa-2x"></i>&emsp;Sales</a>
                     </div>
                   </div>
                 </div>
@@ -124,7 +124,7 @@
       <a href="categories.php" class="btn btn-warning btn-md active" role="button" aria-pressed="true" style="margin-left: 220px;">Stock Valuation</a>
       <a href="categories.php" class="btn btn-primary btn-md active" role="button" aria-pressed="true" style="margin-left: 30px;">Stock Categories</a>
     </div><br>     
-      <table class="table table-striped table-hover" style="display:block; height:527px;overflow-y:scroll;">
+      <table class="table table-striped table-hover paginate" style="display:block; height:527px;overflow-y:scroll;">
   <thead class="thead-dark">
     <tr>
       <th scope="col" width="5%">#</th>

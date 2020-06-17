@@ -21,7 +21,7 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <a class="text-xs font-weight-bold text-primary text-uppercase mb-1" href="#"><i class="fa fa-users fa-2x"></i>&emsp;Customers</a> 
+                      <a class="text-xs font-weight-bold text-primary text-uppercase mb-1" href="#" style="text-decoration: none;"><i class="fa fa-users fa-2x"></i>&emsp;Customers</a> 
                     </div>
                   </div>
                 </div>
@@ -34,7 +34,7 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <a class="text-xs font-weight-bold text-success text-uppercase mb-1" href="stock.php"><i class="fa fa-cubes fa-2x"></i>&emsp;Stock</a>
+                      <a class="text-xs font-weight-bold text-success text-uppercase mb-1" href="stock.php" style="text-decoration: none;"><i class="fa fa-cubes fa-2x"></i>&emsp;Stock</a>
                     </div>
                   </div>
                 </div>
@@ -47,7 +47,7 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <a class="text-xs font-weight-bold text-info text-uppercase mb-1" href="sales.php"><i class="fa fa-shopping-cart fa-2x"></i>&emsp;Sales</a>
+                      <a class="text-xs font-weight-bold text-info text-uppercase mb-1" href="sales.php" style="text-decoration: none;"><i class="fa fa-shopping-cart fa-2x"></i>&emsp;Sales</a>
                     </div>
                   </div>
                 </div>
@@ -60,7 +60,7 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <a class="text-xs font-weight-bold text-warning text-uppercase mb-1" href="summary.php"><i class="fa fa-clipboard fa-2x"></i>&emsp;Summary</a>
+                      <a class="text-xs font-weight-bold text-warning text-uppercase mb-1" href="summary.php" style="text-decoration: none;"><i class="fa fa-clipboard fa-2x"></i>&emsp;Summary</a>
                     </div>   
                   </div>
                 </div>
@@ -109,12 +109,12 @@
       <h6 style="margin-left: 200px;">Total Number: <?php echo $customersrowcount; ?></h6>
       <a href="blacklisted.php" class="btn btn-dark btn-md active" role="button" aria-pressed="true" style="margin-left: 300px;">Blacklisted Customers</a>
     </div><br>
-    <table id="editable" class="table table-striped table-hover" style="display:block; height:600px;overflow-y:scroll;">
+    <table id="editable" class="table table-striped table-hover paginate" style="display:block; height:600px;overflow-y:scroll;">
   <thead class="thead-dark">
     <tr>
-      <th scope="col" width="20%">Name</th>
+      <th scope="col" width="17%">Name</th>
       <th scope="col" width="15%">Location</th>
-      <th scope="col" width="15%">Contact Number</th>
+      <th scope="col" width="17%">Contact Number</th>
       <th scope="col" width="10%">Deliverer</th>
       <th scope="col"width="10%">Status</th>
       <th scope="col"width="10%">Note</th>
@@ -140,7 +140,7 @@
       <td class="editable"><?php echo $number; ?></td>
       <td class="editable"><?php echo $deliverer; ?></td>
       <td class="uneditable"><?php echo $status; ?></td>
-      <td class="uneditable"><?php echo $note; ?></td>
+      <td class="editable"><?php echo $note; ?></td>
        <td>&emsp;&emsp;<a href="#" class="btn btn-dark btn-sm active" role="button" aria-pressed="true">Blacklist</a>
        <a href="#" class="btn btn-danger btn-sm active" role="button" aria-pressed="true" ><i class="fa fa-user-times"></i>Delete</a></td>
     </tr>

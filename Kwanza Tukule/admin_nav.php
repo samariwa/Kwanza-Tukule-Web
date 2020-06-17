@@ -185,6 +185,15 @@ if (isset($_SESSION['logged_in'])) {
           <i class="fa fa-flag-checkered"></i>
           <span>Milestones</span></a>
       </li>
+
+       <br>
+
+      <li class="nav-item">&emsp;
+        <a style="color: black;" href="#">
+           <i class="fa fa-user"></i>
+          <span>Users</span></a>
+      </li>
+     
     </ul>
     <!-- End of Sidebar -->
 

@@ -32,13 +32,16 @@
               <!-- MDBootstrap Datatables  -->
     <script src="assets/js/main.js"></script>
      <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.21/datatables.min.js"></script>  
-     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
      <script type="text/javascript">
        $(document).ready(function(){
-         $(".table").DataTable({
+         $(".paginate").DataTable({
           "ordering": false
          });
-          $('#customerSearch').keyup(function(){
+
+       });
+       $(document).ready(function(){
+            $('#customerSearch').keyup(function(){
             var txt = $('#customerSearch').val();
             if(txt != '')
             {
@@ -66,7 +69,7 @@
               });
             }
          });
-       });
+        });
      </script>               
       </body>
 </html>
