@@ -77,30 +77,32 @@
     <table class="table table-striped table-hover" style="display:block; height:527px;overflow-y:scroll;">
   <thead class="thead-dark">
     <tr>
-      <th scope="col" width="20%">Name</th>
-      <th scope="col" width="20%">Location</th>
+      <th scope="col" width="25%">Name</th>
+      <th scope="col" width="15%">Location</th>
       <th scope="col" width="15%">Contact Number</th>
       <th scope="col" width="10%">Deliverer</th>
+      <th scope="col" width="10%">Balance</th>
       <th scope="col"width="15%"></th>
     </tr>
   </thead>
   <tbody >
     <?php
-        $count = 0;
-        $result = mysqli_query($connection,"SELECT Name,Location,Number,Deliverer,Status FROM customers WHERE Status = 'blacklisted 'ORDER BY id ASC");
+        $count = 0;    
+        $result = mysqli_query($connection,"SELECT Name,Location,Number,Deliverer,Balance FROM orders INNER JOIN customers ON orders.Customer_id=customers.id WHERE orders.Created_at IN (SELECT MAX(orders.id) FROM orders INNER JOIN customers ON orders.Customer_id=customers.id where customers.Status='blacklisted'  GROUP BY customers.id );");
         foreach($result as $row){
          $count++;
          $name = $row['Name'];
         $location = $row['Location'];
         $number = $row['Number'];
         $deliverer = $row['Deliverer'];
-        $status = $row['Status'];
+        $balance = $row['Balance'];
       ?>
     <tr>
       <th scope="row"><?php echo $name; ?></th>
       <td><?php echo $location; ?></td>
       <td><?php echo $number; ?></td>
       <td><?php echo $deliverer; ?></td>
+      <td><?php echo $balance; ?></td>
        <td><a href="#" class="btn btn-success btn-sm active" role="button" aria-pressed="true">Restore</a>
        <a href="#" class="btn btn-danger btn-sm active" role="button" aria-pressed="true" ><i class="fa fa-user-times"></i>Delete</a></td>
     </tr>

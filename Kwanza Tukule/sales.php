@@ -67,7 +67,7 @@
             </div>
           </div>
       <div class="row">
-      <a href="#" class="btn btn-success btn-md active" role="button" aria-pressed="true" style="margin-left: 25px;"><i class="fa fa-plus-circle"></i>&ensp;New Order</a>
+      <a href="addOrder.php" class="btn btn-success btn-md active" role="button" aria-pressed="true" style="margin-left: 25px;"><i class="fa fa-plus-circle"></i>&ensp;New Order</a>
       <a href="blacklisted.php" class="btn btn-warning btn-md active" role="button" aria-pressed="true" style="margin-left: 25px;">Goods Distribution</a>
       <?php
        $result = mysqli_query($connection,"SELECT * FROM orders ");
@@ -77,32 +77,32 @@
       <a href="blacklisted.php" class="btn btn-dark btn-md active" role="button" aria-pressed="true" style="margin-left: 130px;">Gate Pass</a>
       <a href="blacklisted.php" class="btn btn-info btn-md active" role="button" aria-pressed="true" style="margin-left: 25px;">Returned Goods</a>
     </div><br>    
-    <table class="table table-striped table-hover" style="display:block; height:500px;overflow-y:scroll;">
+    <table class="table table-striped table-hover" style="display:block;height:1070px;overflow-x:scroll;overflow-y:scroll;">
   <thead class="thead-dark">
     <tr>
-      <th scope="col" width="10%">#</th>
-      <th scope="col" width="40%">Name</th>
-      <th scope="col" width="15%">Contact No.</th>
-      <th scope="col" width="40%">Product</th>
-      <th scope="col"width="10%">Quantity</th>
-      <th scope="col"width="10%">Price</th>
-      <th scope="col"width="10%">C/F/Debt</th>
-      <th scope="col"width="10%">MPesa</th>
-      <th scope="col"width="10%">Cash</th>
-      <th scope="col"width="10%">Fine</th>
-      <th scope="col"width="10%">Balance</th>
-      <th scope="col"width="15%">Delivery Date</th>
-      <th scope="col"width="10%">Returned</th>
-      <th scope="col"width="10%">Banked</th>
-      <th scope="col"width="10%">Slip No.</th>
-      <th scope="col"width="10%">Banked By</th>
-      <th scope="col"width="20%"></th>
+      <th scope="col" width="5%">#</th>
+      <th scope="col" width="5%">Name</th>
+      <th scope="col" width="5%">Contact No.</th>
+      <th scope="col" width="5%">Product</th>
+      <th scope="col"width="5%">Quantity</th>
+      <th scope="col"width="5%">Price</th>
+      <th scope="col"width="5%">C/F/Debt</th>
+      <th scope="col"width="5%">MPesa</th>
+      <th scope="col"width="5%">Cash</th>
+      <th scope="col"width="5%">Fine</th>
+      <th scope="col"width="5%">Balance</th>
+      <th scope="col"width="5%">Delivery Date</th>
+      <th scope="col"width="5%">Returned</th>
+      <th scope="col"width="5%">Banked</th>
+      <th scope="col"width="5%">Slip No.</th>
+      <th scope="col"width="5%">Banked By</th>
+      <th scope="col"width="10%"></th>
     </tr>
   </thead>
   <tbody >
     <?php
         $count = 0;
-        $result = mysqli_query($connection,"SELECT orders.id AS id,customers.Name AS Name, Number,stock.Name AS name, Quantity,Debt,MPesa,Cash,Fine,Balance,Late_Order,Returned,Banked,Slip_Number,Banked_By FROM orders INNER JOIN customers ON orders.Customer_id=customers.id INNER JOIN stock ON orders.Stock_id=stock.id ORDER BY orders.id ASC ;");
+        $result = mysqli_query($connection,"SELECT orders.id AS id,customers.Name AS Name, Number,stock.Name AS name, orders.Quantity AS Quantity,Price,Debt,MPesa,Cash,Fine,Balance,Late_Order,Returned,Banked,Slip_Number,Banked_By FROM orders INNER JOIN customers ON orders.Customer_id=customers.id INNER JOIN stock ON orders.Stock_id=stock.id  ORDER BY orders.id ASC;")or die($connection->error);
         foreach($result as $row){
          $count++;
          $id = $row['id'];
@@ -141,7 +141,7 @@
       <td><?php echo $slip; ?></td>
       <td><?php echo $banked_by; ?></td>
        <td><a href="#" class="btn btn-dark btn-sm active" role="button" aria-pressed="true">Fine</a>
-       <a href="#" class="btn btn-danger btn-sm active" role="button" aria-pressed="true" ><i class="fa fa-user-times"></i>Delete</a></td>
+       <a href="#" class="btn btn-danger btn-sm active" role="button" aria-pressed="true" ><i class="fa fa-trash"></i>&ensp;Delete</a></td>
     </tr>
     <?php
     }

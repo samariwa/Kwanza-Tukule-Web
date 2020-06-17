@@ -80,29 +80,33 @@
             <div class="modal-body">
               <form method="POST">
                 <div class="row">
-                 <input type="text" name="id" class="form-control col-md-9" style="padding:15px;margin-left: 60px" placeholder="Category...">
+                 <input type="text" name="id" class="form-control col-md-9" style="padding:15px;margin-left: 60px" required placeholder="Category...">
                   </div><br>
                  <div class="row">
-                 <input type="text" name="name" class="form-control col-md-9" style="padding:15px;margin-left: 60px" placeholder="Stock Name...">
+                 <input type="text" name="name" class="form-control col-md-9" style="padding:15px;margin-left: 60px" required  placeholder="Stock Name...">
                   </div><br>
                   <div class="row">
-                 <input type="number" name="unit" class="form-control col-md-9" style="padding:15px;margin-left: 60px" placeholder="Unit...">
+                 <input type="number" name="unit" class="form-control col-md-9" style="padding:15px;margin-left: 60px" required placeholder="Unit...">
                   </div><br>
                   <div class="row">
-                 <input type="text" name="supplier" class="form-control col-md-9" style="padding:15px;margin-left: 60px" placeholder="Supplier...">
+                 <input type="text" name="supplier" class="form-control col-md-9" style="padding:15px;margin-left: 60px" required  placeholder="Supplier...">
                   </div><br>
                   <div class="row">
-                    <label for="date" style="margin-left: 60px;">Date Received:</label>
-                 <input type="date" name="date" class="form-control col-md-9" style="padding:15px;margin-left: 60px" >
+                    <label for="received" style="margin-left: 60px;">Date Received:</label>
+                 <input type="date" name="received" class="form-control col-md-9" required  style="padding:15px;margin-left: 60px" >
+                  </div><br>
+                  <div class="row">
+                    <label for="expiry" style="margin-left: 60px;">Expiration Date:</label>
+                 <input type="date" name="expiry" class="form-control col-md-9" required style="padding:15px;margin-left: 60px" >
                   </div><br>
                  <div class="row">
-                 <input type="text" name="number" class="form-control col-md-9" style="padding:15px;margin-left: 60px" placeholder="Buying Price...">
+                 <input type="text" name="number" class="form-control col-md-9" required style="padding:15px;margin-left: 60px" placeholder="Buying Price...">
                   </div><br>
                   <div class="row">
-                 <input type="text" name="number" class="form-control col-md-9" style="padding:15px;margin-left: 60px" placeholder="Selling Price...">
+                 <input type="text" name="number" class="form-control col-md-9" required style="padding:15px;margin-left: 60px" placeholder="Selling Price...">
                   </div><br>
                  <div class="row">
-                 <input type="number" name="deliverer" class="form-control col-md-9" style="padding:15px;margin-left: 60px" placeholder="Quantity...">
+                 <input type="number" name="deliverer" class="form-control col-md-9" required style="padding:15px;margin-left: 60px" placeholder="Quantity...">
                   </div>   
             </div>
             <div class="modal-footer">

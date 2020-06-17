@@ -82,16 +82,16 @@
             <div class="modal-body">
               <form method="POST">
                 <div class="row">
-                 <input type="text" name="name" class="form-control col-md-9" style="padding:15px;margin-left: 60px" placeholder="Customer Name...">
+                 <input type="text" name="name" class="form-control col-md-9" style="padding:15px;margin-left: 60px" required  placeholder="Customer Name...">
                   </div><br>
                  <div class="row">
-                 <input type="text" name="location" class="form-control col-md-9" style="padding:15px;margin-left: 60px" placeholder="Customer Location...">
+                 <input type="text" name="location" class="form-control col-md-9" required style="padding:15px;margin-left: 60px" placeholder="Customer Location...">
                   </div><br>
                  <div class="row">
-                 <input type="text" name="number" class="form-control col-md-9" style="padding:15px;margin-left: 60px" placeholder="Contact Number...">
+                 <input type="text" name="number" class="form-control col-md-9" required style="padding:15px;margin-left: 60px" placeholder="Contact Number...">
                   </div><br>
                  <div class="row">
-                 <input type="text" name="deliverer" class="form-control col-md-9" style="padding:15px;margin-left: 60px" placeholder="Deliverer...">
+                 <input type="text" name="deliverer" class="form-control col-md-9" required  style="padding:15px;margin-left: 60px" placeholder="Deliverer...">
                   </div>   
             </div>
             <div class="modal-footer">
@@ -109,21 +109,22 @@
       <h6 style="margin-left: 200px;">Total Number: <?php echo $customersrowcount; ?></h6>
       <a href="blacklisted.php" class="btn btn-dark btn-md active" role="button" aria-pressed="true" style="margin-left: 300px;">Blacklisted Customers</a>
     </div><br>
-    <table class="table table-striped table-hover" style="display:block; height:527px;overflow-y:scroll;">
+    <table id="editable" class="table table-striped table-hover" style="display:block; height:600px;overflow-y:scroll;">
   <thead class="thead-dark">
     <tr>
       <th scope="col" width="20%">Name</th>
-      <th scope="col" width="20%">Location</th>
+      <th scope="col" width="15%">Location</th>
       <th scope="col" width="15%">Contact Number</th>
       <th scope="col" width="10%">Deliverer</th>
       <th scope="col"width="10%">Status</th>
+      <th scope="col"width="10%">Note</th>
       <th scope="col"width="20%"></th>
     </tr>
   </thead>
   <tbody >
     <?php
         $count = 0;
-        $result = mysqli_query($connection,"SELECT Name,Location,Number,Deliverer,Status FROM customers WHERE Status != 'blacklisted'ORDER BY id DESC");
+        $result = mysqli_query($connection,"SELECT Name,Location,Number,Deliverer,Status,Note FROM customers WHERE Status != 'blacklisted'ORDER BY id DESC");
         foreach($result as $row){
          $count++;
          $name = $row['Name'];
@@ -131,13 +132,15 @@
         $number = $row['Number'];
         $deliverer = $row['Deliverer'];
         $status = $row['Status'];
+        $note = $row['Note'];
       ?>
     <tr>
-      <th scope="row"><?php echo $name; ?></th>
-      <td><?php echo $location; ?></td>
-      <td><?php echo $number; ?></td>
-      <td><?php echo $deliverer; ?></td>
-      <td><?php echo $status; ?></td>
+      <th scope="row" class="editable"><?php echo $name; ?></th>
+      <td class="editable"><?php echo $location; ?></td>
+      <td class="editable"><?php echo $number; ?></td>
+      <td class="editable"><?php echo $deliverer; ?></td>
+      <td class="uneditable"><?php echo $status; ?></td>
+      <td class="uneditable"><?php echo $note; ?></td>
        <td>&emsp;&emsp;<a href="#" class="btn btn-dark btn-sm active" role="button" aria-pressed="true">Blacklist</a>
        <a href="#" class="btn btn-danger btn-sm active" role="button" aria-pressed="true" ><i class="fa fa-user-times"></i>Delete</a></td>
     </tr>
