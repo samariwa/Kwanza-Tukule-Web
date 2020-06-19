@@ -1,6 +1,6 @@
 <?php
  include "admin_nav.php";
- include('config.php');
+include('queries.php');
  ?> 
 
         <!-- Begin Page Content -->
@@ -9,6 +9,7 @@
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Dashboard <span style="font-size: 18px;">/Customers</span> <span style="font-size: 15px;">/Blacklisted</span></h1>
+            <h6 style="margin-right: 30px;">Time: <span id="time"></span></h6>
           </div>
 
           <!-- Content Row -->
@@ -69,17 +70,17 @@
     <div class="row">
       <a href="customers.php" class="btn btn-primary btn-md active" role="button" aria-pressed="true" style="margin-left: 30px;"><i class="fa fa-arrow-left"></i>&ensp;Back</a>
       <?php
-       $result = mysqli_query($connection,"SELECT * FROM customers WHERE `status`='blacklisted'");
-        $blacklistedrowcount = mysqli_num_rows($result);
+        $blacklistedrowcount = mysqli_num_rows($blacklistedList);
       ?>
       <h6 style="margin-left: 300px;">Total Number: <?php echo $blacklistedrowcount; ?></h6>
     </div><br>
-    <table class="table table-dark table-striped table-hover" style="display:block; height:527px;overflow-y:scroll;">
+    <table id="editable" class="table table-dark table-striped table-hover" style="display:block; height:527px;overflow-y:scroll;">
   <thead class="thead-dark">
     <tr>
-      <th scope="col" width="25%">Name</th>
+      <th scope="col" width="6%">#</th>
+      <th scope="col" width="15%">Name</th>
       <th scope="col" width="15%">Location</th>
-      <th scope="col" width="15%">Contact Number</th>
+      <th scope="col" width="14%">Contact Number</th>
       <th scope="col" width="10%">Deliverer</th>
       <th scope="col" width="10%">Balance</th>
       <th scope="col"width="15%"></th>
@@ -88,9 +89,9 @@
   <tbody >
     <?php
         $count = 0;    
-        $result = mysqli_query($connection,"SELECT Name,Location,Number,Deliverer,Balance FROM orders INNER JOIN customers ON orders.Customer_id=customers.id WHERE orders.Created_at IN (SELECT MAX(orders.id) FROM orders INNER JOIN customers ON orders.Customer_id=customers.id where customers.Status='blacklisted'  GROUP BY customers.id );");
-        foreach($result as $row){
+        foreach($blacklistedList as $row){
          $count++;
+          $id = $row['id'];
          $name = $row['Name'];
         $location = $row['Location'];
         $number = $row['Number'];
@@ -98,11 +99,12 @@
         $balance = $row['Balance'];
       ?>
     <tr>
-      <th scope="row"><?php echo $name; ?></th>
-      <td><?php echo $location; ?></td>
-      <td><?php echo $number; ?></td>
-      <td><?php echo $deliverer; ?></td>
-      <td><?php echo $balance; ?></td>
+      <th scope="row" class="uneditable" id="id<?php echo $count; ?>"><?php echo $id; ?></th>
+      <td class="editable" id="name<?php echo $count; ?>"><?php echo $name; ?></td>
+      <td class="editable" id="location<?php echo $count; ?>"><?php echo $location; ?></td>
+      <td class="editable" id="number<?php echo $count; ?>"><?php echo $number; ?></td>
+      <td class="uneditable" id="deliverer<?php echo $count; ?>"><?php echo $deliverer; ?></td>
+      <td class="editable" id="balance<?php echo $count; ?>"><?php echo $balance; ?></td>
        <td><a href="#" class="btn btn-success btn-sm active" role="button" aria-pressed="true">Restore</a>
        <a href="#" class="btn btn-danger btn-sm active" role="button" aria-pressed="true" ><i class="fa fa-user-times"></i>Delete</a></td>
     </tr>

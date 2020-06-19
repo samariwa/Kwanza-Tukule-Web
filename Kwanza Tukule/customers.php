@@ -1,6 +1,6 @@
 <?php
  include "admin_nav.php";
- include('config.php');
+ include('queries.php');
  ?> 
 
         <!-- Begin Page Content -->
@@ -9,7 +9,8 @@
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Dashboard <span style="font-size: 18px;">/Customers</span></h1>
-             <a href="categories.php" class="btn btn-light btn-md active" role="button" aria-pressed="true" style="margin-left: 220px;"><i class="fa fa-print"></i>&ensp;Print</a>
+            <h6 style="margin-right: -500px;">Time: <span id="time"></span></h6>
+             <a href="#" class="btn btn-light btn-md active" role="button" aria-pressed="true" ><i class="fa fa-print"></i>&ensp;Print</a>
           </div>
          
           <!-- Content Row -->
@@ -103,17 +104,17 @@
       </div>
 
       <?php
-       $result = mysqli_query($connection,"SELECT * FROM customers WHERE `status`!='blacklisted'");
-        $customersrowcount = mysqli_num_rows($result);
+        $customersrowcount = mysqli_num_rows($customersList);
       ?>
       <h6 style="margin-left: 200px;">Total Number: <?php echo $customersrowcount; ?></h6>
       <a href="blacklisted.php" class="btn btn-dark btn-md active" role="button" aria-pressed="true" style="margin-left: 300px;">Blacklisted Customers</a>
     </div><br>
-    <table id="editable" class="table table-striped table-hover paginate" style="display:block; height:600px;overflow-y:scroll;">
+    <table id="editable" class="table table-striped table-hover paginate" style="display:block; height:700px;overflow-y:scroll;">
   <thead class="thead-dark">
     <tr>
-      <th scope="col" width="17%">Name</th>
-      <th scope="col" width="15%">Location</th>
+      <th scope="col" width="3%">#</th>
+      <th scope="col" width="14%">Name</th>
+      <th scope="col" width="12%">Location</th>
       <th scope="col" width="17%">Contact Number</th>
       <th scope="col" width="10%">Deliverer</th>
       <th scope="col"width="10%">Status</th>
@@ -124,9 +125,9 @@
   <tbody >
     <?php
         $count = 0;
-        $result = mysqli_query($connection,"SELECT Name,Location,Number,Deliverer,Status,Note FROM customers WHERE Status != 'blacklisted'ORDER BY id DESC");
-        foreach($result as $row){
+        foreach($customersList as $row){
          $count++;
+         $id = $row['id'];
          $name = $row['Name'];
         $location = $row['Location'];
         $number = $row['Number'];
@@ -135,12 +136,13 @@
         $note = $row['Note'];
       ?>
     <tr>
-      <th scope="row" class="editable"><?php echo $name; ?></th>
-      <td class="editable"><?php echo $location; ?></td>
-      <td class="editable"><?php echo $number; ?></td>
-      <td class="editable"><?php echo $deliverer; ?></td>
-      <td class="uneditable"><?php echo $status; ?></td>
-      <td class="editable"><?php echo $note; ?></td>
+      <th scope="row" class="uneditable" id="id<?php echo $count; ?>"><?php echo $id; ?></th>
+      <td  class="editable" id="name<?php echo $count; ?>"><?php echo $name; ?></td>
+      <td class="editable" id="location<?php echo $count; ?>"><?php echo $location; ?></td>
+      <td class="editable" id="number<?php echo $count; ?>"><?php echo $number; ?></td>
+      <td class="editable" id="deliverer<?php echo $count; ?>"><?php echo $deliverer; ?></td>
+      <td class="uneditable"id="status<?php echo $count; ?>"><?php echo $status; ?></td>
+      <td class="editable"id="note<?php echo $count; ?>"><?php echo $note; ?></td>
        <td>&emsp;&emsp;<a href="#" class="btn btn-dark btn-sm active" role="button" aria-pressed="true">Blacklist</a>
        <a href="#" class="btn btn-danger btn-sm active" role="button" aria-pressed="true" ><i class="fa fa-user-times"></i>Delete</a></td>
     </tr>

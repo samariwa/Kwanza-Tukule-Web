@@ -1,5 +1,6 @@
 <?php
  include "admin_nav.php";
+ include('queries.php');
  ?> 
 
         <!-- Begin Page Content -->
@@ -8,6 +9,7 @@
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Dashboard <span style="font-size: 18px;">/Sales</span></h1>
+                        <h6 style="margin-right: -760px;">Time: <span id="time"></span></h6>
             <a href="categories.php" class="btn btn-light btn-md active" role="button" aria-pressed="true" style="margin-left: 220px;"><i class="fa fa-print"></i>&ensp;Print</a>
           </div>
 
@@ -70,14 +72,14 @@
       <a href="addOrder.php" class="btn btn-success btn-md active" role="button" aria-pressed="true" style="margin-left: 25px;"><i class="fa fa-plus-circle"></i>&ensp;New Order</a>
       <a href="blacklisted.php" class="btn btn-warning btn-md active" role="button" aria-pressed="true" style="margin-left: 25px;">Goods Distribution</a>
       <?php
-       $result = mysqli_query($connection,"SELECT * FROM orders ");
-        $ordersrowcount = mysqli_num_rows($result);
+        $ordersrowcount = mysqli_num_rows($salesList);
       ?>
       <h6 style="margin-left: 130px;">Total Number: <?php echo $ordersrowcount; ?></h6>
       <a href="blacklisted.php" class="btn btn-dark btn-md active" role="button" aria-pressed="true" style="margin-left: 130px;">Gate Pass</a>
       <a href="blacklisted.php" class="btn btn-info btn-md active" role="button" aria-pressed="true" style="margin-left: 25px;">Returned Goods</a>
     </div><br>    
-    <table class="table table-striped table-hover paginate" style="display:block;height:1070px;overflow-x:scroll;overflow-y:scroll;">
+    <table id="editable" class="table table-striped table-hover table-responsive  paginate" style="display:block;height:1120px;overflow-x:scroll;overflow-y:scroll;">
+      <caption>Sales Done Today</caption>
   <thead class="thead-dark">
     <tr>
       <th scope="col" width="5%">#</th>
@@ -102,8 +104,7 @@
   <tbody >
     <?php
         $count = 0;
-        $result = mysqli_query($connection,"SELECT orders.id AS id,customers.Name AS Name, Number,stock.Name AS name, orders.Quantity AS Quantity,Price,Debt,MPesa,Cash,Fine,Balance,Late_Order,Returned,Banked,Slip_Number,Banked_By FROM orders INNER JOIN customers ON orders.Customer_id=customers.id INNER JOIN stock ON orders.Stock_id=stock.id  ORDER BY orders.id ASC;")or die($connection->error);
-        foreach($result as $row){
+        foreach($salesList as $row){
          $count++;
          $id = $row['id'];
         $name = $row['Name'];
@@ -124,22 +125,22 @@
         $banked_by = $row['Banked_By'];
       ?>
     <tr>
-      <th scope="row"><?php echo $id; ?></th>
-      <td><?php echo $name; ?></td>
-      <td><?php echo $contact; ?></td>
-      <td><?php echo $product; ?></td>
-      <td><?php echo $qty; ?></td>
-      <td><?php echo $cost; ?></td>
-      <td><?php echo $debt; ?></td>
-      <td><?php echo $mpesa; ?></td>
-      <td><?php echo $cash; ?></td>
-      <td><?php echo $fine; ?></td>
-      <td><?php echo $balance; ?></td>
-      <td><?php echo $delivery_date; ?></td>
-      <td><?php echo $returned; ?></td>
-      <td><?php echo $banked; ?></td>
-      <td><?php echo $slip; ?></td>
-      <td><?php echo $banked_by; ?></td>
+      <th scope="row" class="uneditable" id="id<?php echo $count; ?>"><?php echo $id; ?></th>
+      <td class="uneditable" id="name<?php echo $count; ?>"><?php echo $name; ?></td>
+      <td class="uneditable" id="number<?php echo $count; ?>"><?php echo $contact; ?></td>
+      <td class="uneditable" id="product<?php echo $count; ?>"><?php echo $product; ?></td>
+      <td class="editable" id="qty<?php echo $count; ?>"><?php echo $qty; ?></td>
+      <td class="uneditable" id="cost<?php echo $count; ?>"><?php echo $cost; ?></td>
+      <td class="uneditable" id="debt<?php echo $count; ?>"><?php echo $debt; ?></td>
+      <td class="editable" id="mpesa<?php echo $count; ?>"><?php echo $mpesa; ?></td>
+      <td class="editable" id="cash<?php echo $count; ?>"><?php echo $cash; ?></td>
+      <td class="uneditable" id="fine<?php echo $count; ?>"><?php echo $fine; ?></td>
+      <td class="uneditable" id="balance<?php echo $count; ?>"><?php echo $balance; ?></td>
+      <td class="editable" id="date<?php echo $count; ?>"><?php echo $delivery_date; ?></td>
+      <td class="uneditable" id="returned<?php echo $count; ?>"><?php echo $returned; ?></td>
+      <td class="editable" id="banked<?php echo $count; ?>"><?php echo $banked; ?></td>
+      <td class="editable" id="slip<?php echo $count; ?>"><?php echo $slip; ?></td>
+      <td class="editable" id="banker<?php echo $count; ?>"><?php echo $banked_by; ?></td>
        <td><a href="#" class="btn btn-dark btn-sm active" role="button" aria-pressed="true">Fine</a>
        <a href="#" class="btn btn-danger btn-sm active" role="button" aria-pressed="true" ><i class="fa fa-trash"></i>&ensp;Delete</a></td>
     </tr>

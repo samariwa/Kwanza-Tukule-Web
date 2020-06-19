@@ -1,5 +1,6 @@
 <?php
  include "admin_nav.php";
+ include('queries.php');
  ?> 
 
         <!-- Begin Page Content -->
@@ -8,6 +9,7 @@
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Dashboard <span style="font-size: 18px;">/Stock</span></h1>
+            <h6 style="margin-right: 30px;">Time: <span id="time"></span></h6>
           </div>
 
           <!-- Content Row -->
@@ -117,14 +119,13 @@
         </div>
       </div>
       <?php
-       $result = mysqli_query($connection,"SELECT * FROM stock");
-        $stockrowcount = mysqli_num_rows($result);
+        $stockrowcount = mysqli_num_rows($stockList);
       ?>
       <h6 style="margin-left: 190px;">Total Number: <?php echo $stockrowcount; ?></h6>
       <a href="categories.php" class="btn btn-warning btn-md active" role="button" aria-pressed="true" style="margin-left: 220px;">Stock Valuation</a>
       <a href="categories.php" class="btn btn-primary btn-md active" role="button" aria-pressed="true" style="margin-left: 30px;">Stock Categories</a>
     </div><br>     
-      <table class="table table-striped table-hover paginate" style="display:block; height:527px;overflow-y:scroll;">
+      <table id="editable" class="table table-striped table-hover paginate" style="display:block; height:550px;overflow-y:scroll;">
   <thead class="thead-dark">
     <tr>
       <th scope="col" width="5%">#</th>
@@ -139,8 +140,7 @@
   <tbody >
     <?php
         $count = 0;
-        $result = mysqli_query($connection,"SELECT stock.id,category.Category_Name,stock.Name,stock.Buying_price,stock.Price,stock.Quantity FROM stock INNER JOIN category ON stock.Category_id=category.id ORDER BY id ASC");
-        foreach($result as $row){
+        foreach($stockList as $row){
          $count++;
          $id = $row['id'];
         $category = $row['Category_Name'];
@@ -150,12 +150,12 @@
         $quantity = $row['Quantity'];
       ?>
     <tr>
-      <th scope="row"><?php echo $id; ?></th>
-      <td><?php echo $category; ?></td>
-      <td><?php echo $name; ?></td>
-      <td><?php echo $buying_price; ?></td>
-      <td><?php echo $selling_price; ?></td>
-      <td><?php echo $quantity; ?></td>
+      <th scope="row" class="uneditable" id="id<?php echo $count; ?>"><?php echo $id; ?></th>
+      <td class="editable" id="category<?php echo $count; ?>"><?php echo $category; ?></td>
+      <td class="editable" id="name<?php echo $count; ?>"><?php echo $name; ?></td>
+      <td class="editable" id="bp<?php echo $count; ?>"><?php echo $buying_price; ?></td>
+      <td class="editable" id="sp<?php echo $count; ?>"><?php echo $selling_price; ?></td>
+      <td class="uneditable" id="qty<?php echo $count; ?>"><?php echo $quantity; ?></td>
        <td>
        <a href="#" class="btn btn-danger btn-sm active" role="button" aria-pressed="true" ><i class="fa fa-trash"></i>&ensp;Delete</a></td>
     </tr>

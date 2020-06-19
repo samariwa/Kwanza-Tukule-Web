@@ -10,7 +10,7 @@ if (isset($_SESSION['logged_in'])) {
 	if ($_SESSION['logged_in'] == TRUE) {
 //valid user has logged-in to the website
 //Check for unauthorized use of user sessions
-
+    mysqli_query($connection,"UPDATE `users` SET `on` = '1' WHERE `username` = '$user'");
     $iprecreate = $_SERVER['REMOTE_ADDR'];
     $useragentrecreate = $_SERVER["HTTP_USER_AGENT"];
     $signaturerecreate = $_SESSION['signature'];
@@ -34,6 +34,10 @@ if (isset($_SESSION['logged_in'])) {
 //authorized signature
 //This is unauthorized access
 //Block it
+        header("Location: $logout_url");
+        exit;
+    }
+    else{
         header("Location: $dashboard_url");
         exit;
     }
@@ -230,7 +234,7 @@ if (($loginattempts_username > 4) && ($registered == TRUE)) {
 //update login attempt records
          
             mysqli_query($connection,"UPDATE `users` SET `loginattempt` = '$loginattempts_username' WHERE `username` = '$user'");
-
+            mysqli_query($connection,"UPDATE `users` SET `on` = '1' WHERE `username` = '$user'");
 //Possible brute force attacker is targeting registered usernames
 //check if has some IP address records
 
@@ -335,6 +339,10 @@ if (($loginattempts_username > 4) && ($registered == TRUE)) {
         $_SESSION['signature'] = $signature;
         $_SESSION['logged_in'] = TRUE;
         $_SESSION['LAST_ACTIVITY'] = time();
+        if (isset($_SESSION['logged_in'])) {
+            mysqli_query($connection,"UPDATE `users` SET `on` = '1' WHERE `username` = '$user'");
+        }
+        
     }
 }
 

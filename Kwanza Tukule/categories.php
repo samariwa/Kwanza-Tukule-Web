@@ -1,5 +1,6 @@
 <?php
  include "admin_nav.php";
+ include('queries.php');
  ?> 
 
         <!-- Begin Page Content -->
@@ -8,6 +9,7 @@
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Dashboard <span style="font-size: 18px;">/Stock</span> <span style="font-size: 15px;">/Categories</span></h1>
+            <h6 style="margin-right: 30px;">Time: <span id="time"></span></h6>
           </div>
 
           <!-- Content Row -->
@@ -68,8 +70,7 @@
          <div class="row">
       <a href="stock.php" class="btn btn-primary btn-md active" role="button" aria-pressed="true" style="margin-left: 30px;"><i class="fa fa-arrow-left"></i>&ensp;Back</a>
       <?php
-       $result = mysqli_query($connection,"SELECT * FROM category");
-        $categoriesrowcount = mysqli_num_rows($result);
+        $categoriesrowcount = mysqli_num_rows($categoriesList);
       ?>
       <h6 style="margin-left: 280px;">Total Number: <?php echo $categoriesrowcount; ?></h6>
       <a data-toggle="modal" data-target="#exampleModalScrollable" class="btn btn-success btn-md active" role="button" aria-pressed="true" style="margin-left: 335px;"><i class="fa fa-plus-circle"></i>&ensp;Add Category</a>
@@ -97,7 +98,7 @@
         </div>
       </div>
     </div><br>     
-      <table class="table table-striped table-hover paginate" style="display:block;height:737px;overflow-y:scroll;">
+      <table id="editable" class="table table-striped table-hover paginate" style="display:block;height:737px;overflow-y:scroll;">
   <thead class="thead-dark">
     <tr>
       <th scope="col" width="30%">#</th>
@@ -108,15 +109,14 @@
   <tbody >
     <?php
         $count = 0;
-        $result = mysqli_query($connection,"SELECT * FROM category ORDER BY id ASC");
-        foreach($result as $row){
+        foreach($categoriesList as $row){
          $count++;
          $id = $row['id'];
         $category = $row['Category_Name'];
       ?>
     <tr>
-      <th scope="row"><?php echo $id; ?></th>
-      <td><?php echo $category; ?></td>
+      <th scope="row" class="uneditable" id="id<?php echo $count; ?>"><?php echo $id; ?></th>
+      <td class="editable" id="category<?php echo $count; ?>"><?php echo $category; ?></td>
        <td>
        <a href="#" class="btn btn-danger btn-sm active" role="button" aria-pressed="true" ><i class="fa fa-trash"></i>Delete</a></td>
     </tr>

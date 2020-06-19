@@ -1,11 +1,12 @@
 <?php
 session_start();
 require('config.php');
+require('functions.php');
 if (isset($_SESSION['logged_in'])) {
   if ($_SESSION['logged_in'] == TRUE) {
 //valid user has logged-in to the website
 //Check for unauthorized use of user sessions
-
+   
     $iprecreate = $_SERVER['REMOTE_ADDR'];
     $useragentrecreate = $_SERVER["HTTP_USER_AGENT"];
     $signaturerecreate = $_SESSION['signature'];
@@ -22,7 +23,6 @@ if (isset($_SESSION['logged_in'])) {
 //then check if it is authorized or not
 
     $hashrecreate = sha1($saltrecreate . $iprecreate . $useragentrecreate);
-
     if (!($hashrecreate == $originalhash)) {
 
 //Signature submitted by the user does not matched with the
@@ -98,7 +98,7 @@ if (isset($_SESSION['logged_in'])) {
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
-        <a class="nav-link" href="dashboard.php" style="color: black">
+        <a class="nav-link" href="dashboard.php" style="color: black ;margin-left: 20px">
           <i class="fa fa-fw fa-tachometer-alt"></i>
           <span>Administrator</span></a>
       </li>
@@ -189,7 +189,7 @@ if (isset($_SESSION['logged_in'])) {
        <br>
 
       <li class="nav-item">&emsp;
-        <a style="color: black;" href="#">
+        <a style="color: black;" href="users.php">
            <i class="fa fa-user"></i>
           <span>Users</span></a>
       </li>
@@ -272,7 +272,8 @@ if (isset($_SESSION['logged_in'])) {
             </li>
              <div class="topbar-divider d-none d-sm-block"></div>
              <li class="nav-item dropdown" >
-              <a class="nav-link " style="color: grey;" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">  
+              <a class="nav-link " style="color: grey;" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
+
                 <i class="fa fa-user"></i>&ensp;
                     <?php
                     if (isset($_SESSION['logged_in'])) 

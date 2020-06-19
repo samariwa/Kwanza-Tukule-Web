@@ -1,32 +1,5 @@
 <?php
  include "admin_nav.php";
-
- $output = '';
-       $result = mysqli_query($connection,"SELECT Name,Location,Number,Deliverer FROM customers WHERE Status != 'blacklisted' AND Name LIKE '%".$_POST["search"]."%' OR Location LIKE  '%".$_POST["search"]."%' OR Number LIKE  '%".$_POST["search"]."%' OR Deliverer LIKE  '%".$_POST["search"]."%'");
-       if (mysqli_num_rows($result) > 0) {
-             $output .= '<h6 align="center" ><b>Search Result(s)</b></h6>';
-             $output .= '<div class="table-responsive">
-                             <table class="table table-striped table-hover">
-                             <tr>
-                                 <th style="font-size :15px">Customer Name</th>
-                                 <th style="font-size :15px">Location</th>
-                                 <th style="font-size :15px">Number</th>
-                                 <th style="font-size :15px">Deliverer</th>
-                             </tr>';
-        while($row = mysqli_fetch_array($result))
-        {
-          $output .= '
-              <tr >
-                  <td style="font-size :13px">'.$row["Name"].'</td>
-                  <td style="font-size :13px">'.$row["Location"].'</td>
-                  <td style="font-size :13px">'.$row["Number"].'</td>
-                  <td style="font-size :13px">'.$row["Deliverer"].'</td>
-              </tr>';
-        }   
-        echo $output;                  
-       }else{
-          echo "Customer Not Found";
-       }
  ?> 
         <!-- Begin Page Content -->
         <div class="container-fluid">
@@ -34,6 +7,7 @@
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Dashboard <span style="font-size: 18px;">/Sales </span><span style="font-size: 15px;">/New Order</span></h1>
+         <h6 style="margin-right: 30px;">Time: <span id="time"></span></h6>
           </div>
 
           <!-- Content Row -->
@@ -98,22 +72,26 @@
         <div class="row">
           <div class="input-group mb-3" style="margin-left: 250px;">
           <div class="input-group-prepend" >
-           <span class="input-group-text" id="inputGroup-sizing-default">Customer:</span>
+           <span class="input-group-text" id="inputGroup-sizing-default">Customer #:</span>
            </div>
          <input type="text" class="form-control col-md-6" required aria-label="Default" aria-describedby="inputGroup-sizing-default" style="font-family: FontAwesome, Arial; font-style: normal;" placeholder='Search...&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;&#xf002;' name="customerSearch" id="customerSearch">
        </div>
-       <div id="customer_results">
-         
+       <div class="list-group" id="customer_results" style="margin-top: -5px;margin-left: 350px;">
+
        </div>
         </div><br>
         <div class="row">
-          <div class="input-group mb-3" style="margin-left: 260px;">
+          <div class="input-group mb-3" style="margin-left: 160px;">
           <div class="input-group-prepend" >
            <span class="input-group-text" id="inputGroup-sizing-default">Product:</span>
            </div>
-         <input type="text" class="form-control col-md-6" required aria-label="Default" aria-describedby="inputGroup-sizing-default" style="font-family: FontAwesome, Arial; font-style: normal;" placeholder='Search...&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;&#xf002;' name="productSearch" id="productSearch">
+         <input type="text" class="form-control col-md-6" required aria-label="Default" aria-describedby="inputGroup-sizing-default" style="font-family: FontAwesome, Arial; font-style: normal;" placeholder='Search...&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;&#xf002;' name="productSearch" id="productSearch">
+         <div class="input-group-prepend"style="margin-left: 30px;" >
+           <span class="input-group-text" id="inputGroup-sizing-default">Quantity:</span>
+           </div>
+         <input type="number" class="form-control col-md-1" name="qty" id="qty">
        </div>
-       <div id="product_results">
+       <div class="list-group" id="product_results" style="margin-top: -5px;margin-left: 350px;">
          
        </div>
         </div>
