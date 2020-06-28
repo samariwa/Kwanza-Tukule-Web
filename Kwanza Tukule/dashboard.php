@@ -233,7 +233,19 @@
               </div>
             </div>
           </div>
-
+         <div class="row">
+           <div class="col-lg-4 mb-5" style="margin-left: -10px;margin-top: -10px">
+              <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-success"><i class="fa fa-calendar"></i>&ensp;Calendar</h6>
+                </div>
+                <div class="card-body" style=" height: 300px;">  
+                  <br>
+                  <div id="calendar"></div>
+                </div>
+              </div>
+            </div>
+         </div>
         </div>
         <!-- /.container-fluid -->
 

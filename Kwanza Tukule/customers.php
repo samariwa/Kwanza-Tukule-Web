@@ -83,20 +83,20 @@
             <div class="modal-body">
               <form method="POST">
                 <div class="row">
-                 <input type="text" name="name" class="form-control col-md-9" style="padding:15px;margin-left: 60px" required  placeholder="Customer Name...">
+                 <input type="text" name="name" id= "name" class="form-control col-md-9" style="padding:15px;margin-left: 60px" required  placeholder="Customer Name...">
                   </div><br>
                  <div class="row">
-                 <input type="text" name="location" class="form-control col-md-9" required style="padding:15px;margin-left: 60px" placeholder="Customer Location...">
+                 <input type="text" name="location" id= "location" class="form-control col-md-9" required style="padding:15px;margin-left: 60px" placeholder="Customer Location...">
                   </div><br>
                  <div class="row">
-                 <input type="text" name="number" class="form-control col-md-9" required style="padding:15px;margin-left: 60px" placeholder="Contact Number...">
+                 <input type="text" name="number" id= "number"class="form-control col-md-9" required style="padding:15px;margin-left: 60px" placeholder="Contact Number...">
                   </div><br>
                  <div class="row">
-                 <input type="text" name="deliverer" class="form-control col-md-9" required  style="padding:15px;margin-left: 60px" placeholder="Deliverer...">
-                  </div>   
+                 <input type="text" name="deliverer" id= "deliverer" class="form-control col-md-9" required  style="padding:15px;margin-left: 60px" placeholder="Deliverer...">
+                  </div>
             </div>
             <div class="modal-footer">
-              <button type="submit" class="btn btn-primary" style="margin-right: 50px">Add Customer</button>
+              <button type="submit" class="btn btn-primary" style="margin-right: 50px" id="addCustomer">Add Customer</button>
             </form>
             </div>
           </div>
@@ -109,7 +109,7 @@
       <h6 style="margin-left: 200px;">Total Number: <?php echo $customersrowcount; ?></h6>
       <a href="blacklisted.php" class="btn btn-dark btn-md active" role="button" aria-pressed="true" style="margin-left: 300px;">Blacklisted Customers</a>
     </div><br>
-    <table id="editable" class="table table-striped table-hover paginate" style="display:block; height:700px;overflow-y:scroll;">
+    <table id="customersEditable" class="table table-striped table-hover paginate" style="display:block; height:700px;overflow-y:scroll;">
   <thead class="thead-dark">
     <tr>
       <th scope="col" width="3%">#</th>
@@ -144,7 +144,7 @@
       <td class="uneditable"id="status<?php echo $count; ?>"><?php echo $status; ?></td>
       <td class="editable"id="note<?php echo $count; ?>"><?php echo $note; ?></td>
        <td>&emsp;&emsp;<a href="#" class="btn btn-dark btn-sm active" role="button" aria-pressed="true">Blacklist</a>
-       <a href="#" class="btn btn-danger btn-sm active" role="button" aria-pressed="true" ><i class="fa fa-user-times"></i>Delete</a></td>
+       <button id="del_<?php echo $id; ?>" data_id="<?php echo $id; ?>" class="btn btn-danger btn-sm active delete" role="button" aria-pressed="true" ><i class="fa fa-user-times"></i>Delete</button></td>
     </tr>
     <?php
     }

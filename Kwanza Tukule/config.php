@@ -5,9 +5,9 @@
 /////////////////////////////////////
 //Define MySQL database parameters
 
-$username = "tukule";
-$password = "tIlNEYbuBHuhE5hs";
-$hostname = "41.190.141.49";
+$username = "mariwa";
+$password = "Yu4kPkB8fpb5ZqBD";
+$hostname = "mariwa.ddns.net";
 $database = "tukule_kwanza";
 
 //Define your canonical domain including trailing slash!, example:

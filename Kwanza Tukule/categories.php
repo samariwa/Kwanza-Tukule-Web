@@ -1,6 +1,20 @@
 <?php
  include "admin_nav.php";
  include('queries.php');
+  $exists = FALSE;
+            $success = FALSE;
+               if (isset($_POST['category'])) {
+                 $category = $_POST['category'];
+                 $row = mysqli_query($connection,"SELECT * FROM category WHERE Category_Name = '".$category."'")or die($connection->error);
+                 $result = mysqli_fetch_array($row);
+                 if ( $result == TRUE) {
+                   $exists = TRUE;
+                 }
+                 else{
+                  $success = TRUE;
+                  mysqli_query($connection,"INSERT INTO `category` (`Category_Name`) VALUES ('$category')") or die(mysqli_error($connection));
+                 }
+               }
  ?> 
 
         <!-- Begin Page Content -->
@@ -87,18 +101,18 @@
             <div class="modal-body">
               <form method="POST">
                  <div class="row">
-                 <input type="text" name="category" class="form-control col-md-9" style="padding:15px;margin-left: 60px" placeholder="Category Name...">
-                  </div>   
+                 <input type="text" name="category" id="category" class="form-control col-md-9" style="padding:15px;margin-left: 60px" placeholder="Category Name...">
+                  </div>
             </div>
             <div class="modal-footer">
-              <button type="submit" class="btn btn-primary" style="margin-right: 50px">Add Category</button>
+              <button type="submit" class="btn btn-primary" style="margin-right: 50px" id="addCategory">Add Category</button>
             </form>
             </div>
           </div>
         </div>
       </div>
     </div><br>     
-      <table id="editable" class="table table-striped table-hover paginate" style="display:block;height:737px;overflow-y:scroll;">
+      <table id="categoriesEditable" class="table table-striped table-hover paginate" style="display:block;height:737px;overflow-y:scroll;">
   <thead class="thead-dark">
     <tr>
       <th scope="col" width="30%">#</th>

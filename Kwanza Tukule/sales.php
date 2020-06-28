@@ -78,7 +78,7 @@
       <a href="blacklisted.php" class="btn btn-dark btn-md active" role="button" aria-pressed="true" style="margin-left: 130px;">Gate Pass</a>
       <a href="blacklisted.php" class="btn btn-info btn-md active" role="button" aria-pressed="true" style="margin-left: 25px;">Returned Goods</a>
     </div><br>    
-    <table id="editable" class="table table-striped table-hover table-responsive  paginate" style="display:block;height:1120px;overflow-x:scroll;overflow-y:scroll;">
+    <table id="salesEditable" class="table table-striped table-hover table-responsive  paginate" style="display:block;height:1120px;overflow-x:scroll;overflow-y:scroll;">
       <caption>Sales Done Today</caption>
   <thead class="thead-dark">
     <tr>

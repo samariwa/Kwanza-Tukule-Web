@@ -74,10 +74,7 @@ if (isset($_SESSION['logged_in'])) {
 <script type="text/javascript" src="js/addons/datatables.min.js"></script>
   <!-- Custom styles for this template-->
  <link rel="stylesheet" href="admin.css"/>
-
-</head>
-
-     
+</head>    
 <body id="page-top">
 
   <!-- Page Wrapper -->
@@ -193,7 +190,38 @@ if (isset($_SESSION['logged_in'])) {
            <i class="fa fa-user"></i>
           <span>Users</span></a>
       </li>
+
+      <br>
+
+      <li class="nav-item">&emsp;
+        <a style="color: black;" href="#">
+          <i class="bx bxs-truck"></i>
+          <span>Delivery Trucks</span></a>
+      </li>
+
+      <br>
+
+      <li class="nav-item">&emsp;
+        <a style="color: black;" href="#">
+          <span>Suppliers</span></a>
+      </li>
+
+      <br>
+
+      <li class="nav-item">&emsp;
+        <a style="color: black;" href="#">
+           <i class="bx bx-notepad"></i>
+          <span>Notes</span></a>
+      </li>
      
+      <br>
+
+      <li class="nav-item">&emsp;
+        <a style="color: black;" href="#">
+           <i class="fa fa-blogger-b"></i>
+          <span>Public Blogs</span></a>
+      </li>
+    
     </ul>
     <!-- End of Sidebar -->
 

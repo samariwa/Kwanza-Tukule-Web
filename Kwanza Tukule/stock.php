@@ -68,7 +68,7 @@
             </div>
           </div> 
          <div class="row">
-      <a data-toggle="modal" data-target="#exampleModalScrollable" class="btn btn-success btn-md active" role="button" aria-pressed="true" style="margin-left: 30px;"><i class="fa fa-plus-circle"></i>&ensp;Add Stock</a>
+      <a data-toggle="modal" data-target="#exampleModalScrollable" class="btn btn-success btn-md active" role="button" aria-pressed="true" style="margin-left: 25px;"><i class="fa fa-plus-circle"></i>&ensp;Add Stock</a>
       <!-- Modal -->
       <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
@@ -82,50 +82,48 @@
             <div class="modal-body">
               <form method="POST">
                 <div class="row">
-                 <input type="text" name="id" class="form-control col-md-9" style="padding:15px;margin-left: 60px" required placeholder="Category...">
+                 <input type="text" name="category" id="category" class="form-control col-md-9" style="padding:15px;margin-left: 60px" required placeholder="Category...">
                   </div><br>
                  <div class="row">
-                 <input type="text" name="name" class="form-control col-md-9" style="padding:15px;margin-left: 60px" required  placeholder="Stock Name...">
+                 <input type="text" name="name" id="name" class="form-control col-md-9" style="padding:15px;margin-left: 60px" required  placeholder="Stock Name...">
                   </div><br>
                   <div class="row">
-                 <input type="number" name="unit" class="form-control col-md-9" style="padding:15px;margin-left: 60px" required placeholder="Unit...">
-                  </div><br>
-                  <div class="row">
-                 <input type="text" name="supplier" class="form-control col-md-9" style="padding:15px;margin-left: 60px" required  placeholder="Supplier...">
+                 <input type="text" name="supplier" id="supplier" class="form-control col-md-9" style="padding:15px;margin-left: 60px" required  placeholder="Supplier...">
                   </div><br>
                   <div class="row">
                     <label for="received" style="margin-left: 60px;">Date Received:</label>
-                 <input type="date" name="received" class="form-control col-md-9" required  style="padding:15px;margin-left: 60px" >
+                 <input type="date" name="received" id="received" class="form-control col-md-9" required  style="padding:15px;margin-left: 60px" >
                   </div><br>
                   <div class="row">
                     <label for="expiry" style="margin-left: 60px;">Expiration Date:</label>
-                 <input type="date" name="expiry" class="form-control col-md-9" required style="padding:15px;margin-left: 60px" >
+                 <input type="date" name="expiry" id="expiry" class="form-control col-md-9" required style="padding:15px;margin-left: 60px" >
                   </div><br>
                  <div class="row">
-                 <input type="text" name="number" class="form-control col-md-9" required style="padding:15px;margin-left: 60px" placeholder="Buying Price...">
+                 <input type="number" name="bp" id="bp" class="form-control col-md-9" required style="padding:15px;margin-left: 60px" placeholder="Buying Price...">
                   </div><br>
                   <div class="row">
-                 <input type="text" name="number" class="form-control col-md-9" required style="padding:15px;margin-left: 60px" placeholder="Selling Price...">
+                 <input type="number" name="sp" id="sp" class="form-control col-md-9" required style="padding:15px;margin-left: 60px" placeholder="Selling Price...">
                   </div><br>
                  <div class="row">
-                 <input type="number" name="deliverer" class="form-control col-md-9" required style="padding:15px;margin-left: 60px" placeholder="Quantity...">
-                  </div>   
+                 <input type="number" name="qty" id="qty" class="form-control col-md-9" required style="padding:15px;margin-left: 60px" placeholder="Quantity...">
+                  </div>
             </div>
             <div class="modal-footer">
-              <button type="submit" class="btn btn-primary" style="margin-right: 50px">Add Stock</button>
+              <button type="submit" class="btn btn-primary" style="margin-right: 50px" id="addStock">Add Stock</button>
             </form>
             </div>
           </div>
         </div>
       </div>
+      <a href="#" class="btn btn-info btn-md active" role="button" aria-pressed="true" style="margin-left: 30px;">Stock Expiry</a>
       <?php
         $stockrowcount = mysqli_num_rows($stockList);
       ?>
-      <h6 style="margin-left: 190px;">Total Number: <?php echo $stockrowcount; ?></h6>
-      <a href="categories.php" class="btn btn-warning btn-md active" role="button" aria-pressed="true" style="margin-left: 220px;">Stock Valuation</a>
+      <h6 style="margin-left: 140px;">Total Number: <?php echo $stockrowcount; ?></h6>
+      <a href="categories.php" class="btn btn-warning btn-md active" role="button" aria-pressed="true" style="margin-left: 140px;">Stock Valuation</a>
       <a href="categories.php" class="btn btn-primary btn-md active" role="button" aria-pressed="true" style="margin-left: 30px;">Stock Categories</a>
     </div><br>     
-      <table id="editable" class="table table-striped table-hover paginate" style="display:block; height:550px;overflow-y:scroll;">
+      <table id="stockEditable" class="table table-striped table-hover paginate" style="display:block; height:550px;overflow-y:scroll;">
   <thead class="thead-dark">
     <tr>
       <th scope="col" width="5%">#</th>

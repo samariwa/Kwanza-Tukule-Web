@@ -74,7 +74,7 @@ include('queries.php');
       ?>
       <h6 style="margin-left: 300px;">Total Number: <?php echo $blacklistedrowcount; ?></h6>
     </div><br>
-    <table id="editable" class="table table-dark table-striped table-hover" style="display:block; height:527px;overflow-y:scroll;">
+    <table id="blacklistEditable" class="table table-dark table-striped table-hover" style="display:block; height:527px;overflow-y:scroll;">
   <thead class="thead-dark">
     <tr>
       <th scope="col" width="6%">#</th>
@@ -100,7 +100,7 @@ include('queries.php');
       ?>
     <tr>
       <th scope="row" class="uneditable" id="id<?php echo $count; ?>"><?php echo $id; ?></th>
-      <td class="editable" id="name<?php echo $count; ?>"><?php echo $name; ?></td>
+      <td class="uneditable" id="name<?php echo $count; ?>"><?php echo $name; ?></td>
       <td class="editable" id="location<?php echo $count; ?>"><?php echo $location; ?></td>
       <td class="editable" id="number<?php echo $count; ?>"><?php echo $number; ?></td>
       <td class="uneditable" id="deliverer<?php echo $count; ?>"><?php echo $deliverer; ?></td>

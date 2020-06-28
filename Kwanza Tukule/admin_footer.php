@@ -9,7 +9,7 @@
  <!-- Bootstrap core JavaScript-->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
+ <script type="text/javascript" src="bootbox/bootbox.min.js"></script>
   <!-- Core plugin JavaScript-->
   <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
@@ -97,12 +97,13 @@ setTime();
             if(txt != '')
             {
               $.ajax({
-                url: 'stockSeach.php',
+                url: 'stockSearch.php',
                 type:"post",
                 data:{search2:txt},
                 dataType:"text",
                 success:function(data)
                 {
+
                   $('#product_results').html(data);
                 }
               });
@@ -127,16 +128,174 @@ setTime();
         $("#product_results").html('');
        });
         });
-  $('#editable').editableTableWidget();
-  $('#editable td.uneditable').on('change', function(evt, newValue) {
+  $('#customersEditable').editableTableWidget();
+  $('#customersEditable td.uneditable').on('change', function(evt, newValue) {
   return false;
 });
-  $('#editable td').on('change', function(evt, newValue) {
-  alert(JSON.stringify(evt.target._DT_CellIndex.row));
-   alert(newValue);
+  $('#customersEditable td').on('change', function(evt, newValue) {
    var rowx = parseInt(evt.target._DT_CellIndex.row)+1;
-
+  var id = $(`#id${rowx}`).text();
+  var name = $(`#name${rowx}`).text();
+  var number = $(`#number${rowx}`).text();
+  var location = $(`#location${rowx}`).text();
+  var deliverer = $(`#deliverer${rowx}`).text();
+  var note = $(`#note${rowx}`).text();
+  var where = 'customer';
+  $.post("save.php",{id:id,name:name,location:location,number:number,deliverer:deliverer,note:note,where:where},
+  function(result){});
 });
+
+
+  $('#stockEditable').editableTableWidget();
+  $('#stockEditable td.uneditable').on('change', function(evt, newValue) {
+  return false;
+});
+  $('#stockEditable td').on('change', function(evt, newValue) {
+   var rowx = parseInt(evt.target._DT_CellIndex.row)+1;
+  var id = $(`#id${rowx}`).text();
+  var category = $(`#category${rowx}`).text();
+  var name = $(`#name${rowx}`).text();
+  var bp = $(`#bp${rowx}`).text();
+  var sp = $(`#sp${rowx}`).text();
+  var qty = $(`#qty${rowx}`).text();
+  var where = 'stock';
+  $.post("save.php",{id:id,name:name,bp:bp,category:category,qty:qty,sp:sp,where:where},
+  function(result){});
+});
+
+
+$('#blacklistEditable').editableTableWidget();
+  $('#blacklistEditable td.uneditable').on('change', function(evt, newValue) {
+  return false;
+});
+  $('#blacklistEditable td').on('change', function(evt, newValue) {
+   var rowx = parseInt(evt.target._DT_CellIndex.row)+1;
+   alert("Chief");
+  var id = $(`#id${rowx}`).text();
+  var location = $(`#location${rowx}`).text();
+  var number = $(`#number${rowx}`).text();
+  var balance = $(`#balance${rowx}`).text();
+  var where = 'blacklist';
+  alert("Chief");
+  $.post("save.php",{id:id,location:location,number:number,balance:balance,where:where},
+  function(result){alert(result);});
+});  
+
+
+$('#categoriesEditable').editableTableWidget();
+  $('#categoriesEditable td.uneditable').on('change', function(evt, newValue) {
+  return false;
+});
+  $('#categoriesEditable td').on('change', function(evt, newValue) {
+   var rowx = parseInt(evt.target._DT_CellIndex.row)+1;
+  var id = $(`#id${rowx}`).text();
+  var name = $(`#category${rowx}`).text();
+  var where = 'categories';
+  $.post("save.php",{id:id,name:name,where:where},
+  function(result){});
+}); 
+
+
+  $('#salesEditable').editableTableWidget();
+  $('#salesEditable td.uneditable').on('change', function(evt, newValue) {
+  return false;
+});
+  $('#salesEditable td').on('change', function(evt, newValue) {
+   var rowx = parseInt(evt.target._DT_CellIndex.row)+1;
+  var id = $(`#id${rowx}`).text();
+  var qty = $(`#qty${rowx}`).text();
+  var mpesa = $(`#mpesa${rowx}`).text();
+  var cash = $(`#cash${rowx}`).text();
+  var date = $(`#date${rowx}`).text();
+  var banked = $(`#banked${rowx}`).text();
+  var slip = $(`#slip${rowx}`).text();
+  var banker = $(`#banker${rowx}`).text();
+  var where = 'orders';
+  $.post("save.php",{id:id,qty:qty,mpesa:mpesa,cash:cash,date:date,banked:banked,slip:slip,banker:banker,where:where},
+  function(result){});
+}); 
+
+  $(document).on('click','#addCustomer',function(){
+        var name = $('#name').val();
+        var number = $('#number').val();
+        var location = $('#location').val();
+        var deliverer = $('#deliverer').val();
+        var where = 'customer';
+        $.post("add.php",{name:name,number:number,location:location,deliverer:deliverer,where:where},
+        function(result){
+         if (result == 'success') {
+          alert('Customer Added Successfully');
+         }
+          if (result == 'exists') {
+          alert('Customer Already Exists');
+         }
+         });
+       });
+
+  $(document).on('click','#addStock',function(){
+        var name = $('#name').val();
+        var category = $('#category').val();
+        var supplier = $('#supplier').val();
+        var received = $('#received').val();
+        var expiry = $('#expiry').val();
+        var bp = $('#bp').val();
+        var sp = $('#sp').val();
+        var qty = $('#qty').val();
+        var where = 'stock';
+        $.post("add.php",{name:name,category:category,supplier:supplier,received:received,expiry:expiry,bp:bp,sp:sp,qty:qty,where:where},
+        function(result){
+         if (result == 'success') {
+          alert('Stock Added Successfully');
+         }
+          if (result == 'exists') {
+          alert('Stock Already Exists');
+         }
+         });
+       });
+
+  $(document).on('click','#addCategory',function(){
+        var category = $('#category').val();
+        var where = 'categories';
+        $.post("add.php",{category:category,where:where},
+        function(result){
+         if (result == 'success') {
+          alert('Category Added Successfully');
+         }
+          if (result == 'exists') {
+          alert('Category Already Exists');
+         }
+         });
+       });
+
+  $(document).ready(function(){
+    $('.delete').click(function(){
+      confirm("Do you really want to delete the selected customer?");
+      var rowx = parseInt(evt.target._DT_CellIndex.row)+1;
+
+      var el = $(this);
+      var where = 'customer';
+      var id = el.attr("id");
+
+      var info = 'id=' + id;
+      if (confirm("Do you really want to delete the selected customer?")) {
+
+      }
+
+
+      bootbox.confirm('Do you really want to delete the selected customer?',function(result)
+        {if(result){
+          $.post("delete.php",{id:id,where:where},
+        function(result){  
+            if(result == 1){
+              $(el).closest('tr').css('background','tomato');
+              $(el).closest('tr').fadeOut(800,function(){
+                $(this).remove();
+              });
+            }
+        });
+      }});
+    });
+  });
      </script>             
       </body>
 </html>
