@@ -105,8 +105,10 @@ include('queries.php');
       <td class="editable" id="number<?php echo $count; ?>"><?php echo $number; ?></td>
       <td class="uneditable" id="deliverer<?php echo $count; ?>"><?php echo $deliverer; ?></td>
       <td class="editable" id="balance<?php echo $count; ?>"><?php echo $balance; ?></td>
-       <td><a href="#" class="btn btn-success btn-sm active" role="button" aria-pressed="true">Restore</a>
-       <a href="#" class="btn btn-danger btn-sm active" role="button" aria-pressed="true" ><i class="fa fa-user-times"></i>Delete</a></td>
+
+       <td> <button id="<?php echo $id; ?>" data_id="<?php echo $id; ?>" class="btn btn-success btn-sm active restoreBlacklist" role="button" aria-pressed="true" >Restore</button>
+         <button id="<?php echo $id; ?>" data_id="<?php echo $id; ?>" class="btn btn-danger btn-sm active deleteBlacklist" role="button" aria-pressed="true" ><i class="fa fa-user-times"></i>Delete</button>
+     </td>
     </tr>
     <?php
     }

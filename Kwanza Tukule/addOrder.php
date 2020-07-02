@@ -80,6 +80,14 @@
 
        </div>
         </div><br>
+          <div class="row">
+           <div class="input-group mb-3" style="margin-left: 270px;">
+          <div class="input-group-prepend" >
+           <span class="input-group-text" id="inputGroup-sizing-default">Date of Delivery:</span>
+           </div>
+         <input type="date" class="form-control col-md-5" required aria-label="Default" aria-describedby="inputGroup-sizing-default" style="font-family: FontAwesome, Arial; font-style: normal;"  name="deliveryDate" id="deliveryDate">
+       </div>
+        </div><br>
         <div class="row">
           <div class="input-group mb-3" style="margin-left: 160px;">
           <div class="input-group-prepend" >
@@ -89,12 +97,42 @@
          <div class="input-group-prepend"style="margin-left: 30px;" >
            <span class="input-group-text" id="inputGroup-sizing-default">Quantity:</span>
            </div>
-         <input type="number" class="form-control col-md-1" name="qty" id="qty">
+         <input type="number" class="form-control col-md-1" name="orderQty" id="orderQty">
        </div>
        <div class="list-group" id="product_results" style="margin-top: -5px;margin-left: 350px;">
          
        </div>
-        </div>
+        </div><br>
+        <div class="row">
+          <button type="button" class="btn btn-success col-md-4 addToCart" style="margin-left: 320px"><i class="fa fa-cart-plus" id="addToCart"></i>&emsp;Add to Cart</button>
+        </div><br>
+        <h3>Cart</h3>
+        <div class="row">
+        <table class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col" width="5%">#</th>
+      <th scope="col" width="40%">Product Description</th>
+      <th scope="col" width="10%">Unit Price</th>
+      <th scope="col" width="10%">Quantity</th>
+      <th scope="col" width="10%"></th>
+      <th scope="col" width="15%">Sub-Total</th>
+    </tr>
+  </thead>
+  <tbody id="cartData">
+ </tbody>
+    <tfoot>
+      <th scope="row" colspan="5"><b>Total:</b></th>
+      <td id="cartTotal"></td>
+    </tfoot>
+</table>
+</div><br>
+<div class="row" id="customerDetails">
+  
+</div><br>
+<div class="row">
+          <button type="button" class="btn btn-success col-md-4 completeOrder" style="margin-left: 320px"><i class="fa fa-check"></i>&emsp;Complete Order</button>
+        </div><br>
         </form>
   <!-- Scroll to Top Button-->
   <?php include "admin_footer.php" ?> 

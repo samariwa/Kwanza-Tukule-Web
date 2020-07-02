@@ -107,15 +107,15 @@
             $activity = $row['on'];
             $lastActivity = $row['lastActivity'];
             $date = date( 'l, F d, Y h:i A', strtotime($lastActivity) );
-            $day = date('d.m.Y',strtotime($lastActivity));
-            $yesterday = date('d.m.Y',strtotime("-1 days"));  
+            $day = date('d.m.Y',strtotime($date));
+            $yesterday = date('d.m.Y',strtotime("yesterday"));  
             $time = date("h:i A",strtotime($lastActivity));  
             $today = date('d.m.Y', time());
-               if ($activity == 0 && $day == $yesterday ) {
+               if (($activity == 0) && ($day == $yesterday)) {
                 echo "<img src='assets/img/offIcon.png' height='15' width='15' style='margin-top:0px;'>&emsp;" . $name . "&emsp;Last Seen: Yesterday $time<br/><br/>";    
-               } if($activity == 0 && $day == $today){
+               }else if(($activity == 0) && ($day == $today)){
                 echo "<img src='assets/img/offIcon.png' height='15' width='15' style='margin-top:0px;'>&emsp;" . $name . "&emsp;Last Seen: $time<br/><br/>"; 
-               }if($activity == 0 && $day < $yesterday){
+               }else{
                 echo "<img src='assets/img/offIcon.png' height='15' width='15' style='margin-top:0px;'>&emsp;" . $name . "&emsp;Last Seen: $date<br/><br/>"; 
                }
              }

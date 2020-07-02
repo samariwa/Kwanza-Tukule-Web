@@ -202,7 +202,7 @@ if (isset($_SESSION['logged_in'])) {
       <br>
 
       <li class="nav-item">&emsp;
-        <a style="color: black;" href="#">
+        <a style="color: black;" href="suppliers.php">
           <span>Suppliers</span></a>
       </li>
 
@@ -281,7 +281,7 @@ if (isset($_SESSION['logged_in'])) {
                   </div>
                   <div>
                     <div class="small text-gray-500">December 7, 2019</div>
-                    $290.29 has been deposited into your account!
+                    Ksh.290.29 has been deposited into your account!
                   </div>
                 </a>
                 <a class="dropdown-item d-flex align-items-center" href="#">

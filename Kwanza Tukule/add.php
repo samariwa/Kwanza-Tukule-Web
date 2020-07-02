@@ -18,7 +18,6 @@ if($where == 'customer' )
                  }             
 }
 else if ($where == 'stock') {
-               if ( isset($_POST['category']) && isset($_POST['name']) && isset($_POST['unit']) && isset($_POST['supplier']) &&isset( $_POST['received']) && isset($_POST['expiry']) && isset($_POST['bp']) && isset($_POST['sp']) && isset($_POST['qty'])) {
                  $name = $_POST['name'];
                  $category = $_POST['category'];
                  $supplier = $_POST['supplier'];
@@ -27,7 +26,7 @@ else if ($where == 'stock') {
                  $bp = $_POST['bp'];
                  $sp = $_POST['sp'];
                  $qty = $_POST['qty'];
-                 $row = mysqli_query($connection,"SELECT * FROM stock WHERE Name = '".$name."'")or die($connection->error);
+                 $row = mysqli_query($connection,"SELECT `Name` FROM stock WHERE Name = '".$name."'")or die($connection->error);
                  $result = mysqli_fetch_array($row);
                  if ( $result == TRUE) {
                    echo "exists";
@@ -40,12 +39,11 @@ else if ($where == 'stock') {
                  $result2 = mysqli_query($connection,"SELECT * FROM suppliers WHERE Name = '".$supplier."'")or die($connection->error);
                  $row2 = mysqli_fetch_array($result2);
                  $supplier = $row2['id'];
-                  mysqli_query($connection,"INSERT INTO `stock` (`Category_id`,`Supplier_id`,`Name`,`Expiry_date`,`Buying_price`,`Price`,`Received`,`Quantity`) VALUES ('$category','$supplier','$name,'$expiry','$bp','$sp','$received','$qty')") or die(mysqli_error($connection));
+                  mysqli_query($connection,"INSERT INTO `stock` (`Category_id`,`Supplier_id`,`Name`,`Expiry_date`,`Buying_price`,`Price`,`Received_date`,`Quantity`) VALUES ('$category','$supplier','$name,'$expiry','$bp','$sp','$received','$qty')") or die(mysqli_error($connection));
                  }
-               }	
+               
 }
 else if ($where == 'categories') {
-               if (isset($_POST['category'])) {
                  $category = $_POST['category'];
                  $row = mysqli_query($connection,"SELECT * FROM category WHERE Category_Name = '".$category."'")or die($connection->error);
                  $result = mysqli_fetch_array($row);
@@ -56,6 +54,18 @@ else if ($where == 'categories') {
                   echo "success";
                   mysqli_query($connection,"INSERT INTO `category` (`Category_Name`) VALUES ('$category')") or die(mysqli_error($connection));
                  }
-               }
+}
+else if ($where == 'supplier') {
+                 $name = $_POST['name'];
+                 $contact = $_POST['contact'];
+                 $row = mysqli_query($connection,"SELECT * FROM suppliers WHERE Name = '".$name."' OR Supplier_contact = '".$contact."'")or die($connection->error);
+                 $result = mysqli_fetch_array($row);
+                 if ( $result == TRUE) {
+                   echo "exists";
+                 }
+                 else{
+                  echo "success";
+                  mysqli_query($connection,"INSERT INTO `suppliers` (`Name`,`Supplier_contact`) VALUES ('$name','$contact')") or die(mysqli_error($connection));
+                 }
 }
  ?>

@@ -58,12 +58,13 @@ setTime();
        $(document).ready(function(){
             $('#customerSearch').keyup(function(){
             var txt = $('#customerSearch').val();
+            var where = 'customer';
             if(txt != '')
             {
               $.ajax({
-                url: 'customerSearch.php',
+                url: 'search.php',
                 type:"post",
-                data:{search:txt},
+                data:{search:txt,where:where},
                 dataType:"text",
                 success:function(data)
                 {
@@ -75,9 +76,9 @@ setTime();
             {
               $('#customer_results').html('');
               $.ajax({
-                url: 'customerSearch.php',
+                url: 'search.php',
                 type:"post",
-                data:{search:txt},
+                data:{search:txt,where:where},
                 dataType:"text",
                 success:function(data)
                 {
@@ -89,21 +90,42 @@ setTime();
             $(document).on('click','a',function(){
         $("#customerSearch").val($(this).find('.idX').text());
         $("#customer_results").html('');
+        var customerId = $('#customerSearch').val();
+           var where = 'customerDetails';
+           $.post("search.php",{customerId:customerId,where:where},
+            function(result){var data = $.parseJSON(result);
+              var customerDetails = "";
+              var Name = data[0].Name;
+               var Location = data[0].Location;
+                var Deliverer = data[0].Deliverer;
+            customerDetails += "<h5>Confirm Customer Details</h5>&emsp;&emsp;-";
+            customerDetails += "&emsp;&emsp;Name: ";
+            customerDetails += Name;
+             customerDetails += "<br>&emsp;&emsp;&emsp;&emsp;&ensp;Location: ";
+            customerDetails += Location;
+             customerDetails += "<br>&emsp;&emsp;&emsp;&emsp;&ensp;Deliverer: ";
+            customerDetails += Deliverer;
+            if ($('#customerDetails').html('')){
+            $("#customerDetails").append(customerDetails);
+          }
+          });
        });
         });
+
        $(document).ready(function(){
+        var txt2 = $('#customerSearch').val();
             $('#productSearch').keyup(function(){
             var txt = $('#productSearch').val();
+            var where = 'product';
             if(txt != '')
             {
               $.ajax({
-                url: 'stockSearch.php',
+                url: 'search.php',
                 type:"post",
-                data:{search2:txt},
+                data:{search2:txt,where:where},
                 dataType:"text",
                 success:function(data)
                 {
-
                   $('#product_results').html(data);
                 }
               });
@@ -112,9 +134,9 @@ setTime();
             {
               $('#product_results').html('');
               $.ajax({
-                url: 'stockSearch.php',
+                url: 'search.php',
                 type:"post",
-                data:{search2:txt},
+                data:{search2:txt,where:where},
                 dataType:"text",
                 success:function(data)
                 {
@@ -126,8 +148,67 @@ setTime();
             $(document).on('click','#selected2',function(){
         $("#productSearch").val($(this).text());
         $("#product_results").html('');
+         $("#customerSearch").val(txt2.text());
        });
         });
+
+       
+         $(document).ready(function(){
+        var txt = $('#productSearch').val();
+        var button = document.getElementById('addToCart');
+          if ($('#product_results').html('') && txt != '') {
+            button.disabled = false;
+          }
+          else{
+            button.disabled = true;
+          }
+       });
+
+    
+
+       $(document).ready(function(){
+        $('.addToCart').click(function(){
+           var productName = $('#productSearch').val();
+           var productQty = $('#orderQty').val();
+           var where = 'cart';
+           $.post("search.php",{productName:productName,where:where},
+            function(result){var data = $.parseJSON(result);
+              var Quantity = data[0].Quantity;
+              if (productQty >= Quantity) {
+                alert("Quantity of Product ordered is currently unavailable.");
+              }
+              else{
+            var productDetails = "";
+            var id = data[0].id;
+              var Price = data[0].Price;
+                var Total = Price * productQty;
+                productDetails += "<tr>";
+                productDetails += "<th>"+id+"</th>";
+                productDetails += "<td>"+productName+"</td>";
+                productDetails += "<td>"+Price+"</td>";
+                productDetails += "<td>"+productQty+"</td>";
+                productDetails += "<td><button type='button' class='btn btn-danger btn-sm deleteFromCart' id='"+id+"' data_id='"+id+"'><i class='fa fa-times-circle'></i>&ensp;Remove</button></td>";
+                productDetails += "<td>"+Total+"</td>";
+                productDetails += "</tr>";
+                $("#cartData").append(productDetails);
+              }
+            });
+        });
+      });
+
+       $(document).ready(function(){
+    $('.deleteFromCart').click(function(){
+      alert("lol");
+      var el = $(this);
+      var id = el.attr("id");
+      $(el).closest('tr').css('background','tomato');
+       $(el).closest('tr').fadeOut(800,function(){
+      $(this).remove();
+       });
+    });
+  });
+
+
   $('#customersEditable').editableTableWidget();
   $('#customersEditable td.uneditable').on('change', function(evt, newValue) {
   return false;
@@ -247,8 +328,11 @@ $('#categoriesEditable').editableTableWidget();
          if (result == 'success') {
           alert('Stock Added Successfully');
          }
-          if (result == 'exists') {
+          else if (result == 'exists') {
           alert('Stock Already Exists');
+         }
+         else{
+          alert("Something went wrong");
          }
          });
        });
@@ -267,27 +351,155 @@ $('#categoriesEditable').editableTableWidget();
          });
        });
 
-  $(document).ready(function(){
-    $('.delete').click(function(){
-      confirm("Do you really want to delete the selected customer?");
-      var rowx = parseInt(evt.target._DT_CellIndex.row)+1;
+  $(document).on('click','#addSupplier',function(){
+        var name = $('#name').val();
+         var contact = $('#contact').val();
+        var where = 'supplier';
+        $.post("add.php",{name:name,contact:contact,where:where},
+        function(result){
+         if (result == 'success') {
+          alert('Supplier Added Successfully');
+         }
+          if (result == 'exists') {
+          alert('Supplier Already Exists');
+         }
+         });
+       });
 
+  $(document).ready(function(){
+    $('.deleteCustomer').click(function(){
       var el = $(this);
       var where = 'customer';
       var id = el.attr("id");
-
-      var info = 'id=' + id;
-      if (confirm("Do you really want to delete the selected customer?")) {
-
-      }
-
-
       bootbox.confirm('Do you really want to delete the selected customer?',function(result)
         {if(result){
           $.post("delete.php",{id:id,where:where},
         function(result){  
             if(result == 1){
               $(el).closest('tr').css('background','tomato');
+              $(el).closest('tr').fadeOut(800,function(){
+                $(this).remove();
+              });
+            }
+        });
+      }});
+    });
+  });
+
+  $(document).ready(function(){
+    $('.deleteStock').click(function(){
+      var el = $(this);
+      var where = 'stock';
+      var id = el.attr("id");
+      bootbox.confirm('Do you really want to delete the selected stock?',function(result)
+        {if(result){
+          $.post("delete.php",{id:id,where:where},
+        function(result){  
+            if(result == 1){
+              $(el).closest('tr').css('background','tomato');
+              $(el).closest('tr').fadeOut(800,function(){
+                $(this).remove();
+              });
+            }
+        });
+      }});
+    });
+  });
+
+  $(document).ready(function(){
+    $('.deleteBlacklist').click(function(){
+      var el = $(this);
+      var where = 'blacklist';
+      var id = el.attr("id");
+      bootbox.confirm('Do you really want to delete the selected blacklisted customer?',function(result)
+        {if(result){
+          $.post("delete.php",{id:id,where:where},
+        function(result){  
+            if(result == 1){
+              $(el).closest('tr').css('background','tomato');
+              $(el).closest('tr').fadeOut(800,function(){
+                $(this).remove();
+              });
+            }
+        });
+      }});
+    });
+  });
+
+  $(document).ready(function(){
+    $('.deleteCategory').click(function(){
+      var el = $(this);
+      var where = 'category';
+      var id = el.attr("id");
+      bootbox.confirm('Do you really want to delete the selected category?',function(result)
+        {if(result){
+          $.post("delete.php",{id:id,where:where},
+        function(result){  
+            if(result == 1){
+              $(el).closest('tr').css('background','tomato');
+              $(el).closest('tr').fadeOut(800,function(){
+                $(this).remove();
+              });
+            }
+        });
+      }});
+    });
+  });
+
+  $(document).ready(function(){
+    $('.deleteSupplier').click(function(){
+      var el = $(this);
+      var where = 'supplier';
+      var id = el.attr("id");
+      bootbox.confirm('Do you really want to delete the selected supplier?',function(result)
+        {if(result){
+          $.post("delete.php",{id:id,where:where},
+        function(result){  
+            if(result == 1){
+              $(el).closest('tr').css('background','tomato');
+              $(el).closest('tr').fadeOut(800,function(){
+                $(this).remove();
+              });
+            }
+        });
+      }});
+    });
+  });
+
+  $(document).ready(function(){
+    $('.blacklistCustomer').click(function(){
+      var el = $(this);
+      var where = 'blacklist';
+      var id = el.attr("id");
+      bootbox.confirm('Do you really want to blacklist the selected customer?',function(result)
+        {if(result){
+          $.post("blacklist_restore.php",{id:id,where:where},
+        function(result){  
+            if(result == 1){
+              $(el).closest('tr').css('background','gray');
+              $(el).closest('tr').fadeOut(800,function(){
+                $(this).remove();
+              });
+            }
+            else{
+              alert("Error: Selected Customer hasn't made any order yet.");
+            }
+        });
+      }});
+    });
+  });
+
+  $(document).ready(function(){
+    $('.restoreBlacklist').click(function(){
+      var el = $(this);
+      var where = 'restore';
+      var id = el.attr("id");
+      bootbox.confirm('Do you really want to restore the selected blacklisted customer?',function(result)
+        {if(result){
+          $.post("blacklist_restore.php",{id:id,where:where},
+        function(result){  
+            if(result == 1){
+              $(el).closest('tr').css('background','lime');
               $(el).closest('tr').fadeOut(800,function(){
                 $(this).remove();
               });

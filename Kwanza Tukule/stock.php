@@ -82,13 +82,37 @@
             <div class="modal-body">
               <form method="POST">
                 <div class="row">
-                 <input type="text" name="category" id="category" class="form-control col-md-9" style="padding:15px;margin-left: 60px" required placeholder="Category...">
+                 <select type="text" name="category" id="category" class="form-control col-md-9" style="padding-right:15px;padding-left:15px;margin-left: 60px" required onfocus='this.size=3;' onblur='this.size=1;' onchange='this.size=1; this.blur();'>
+                  <option value="" selected="selected" disabled>Category...</option>
+                  <?php
+                    $count = 0;
+                    foreach($categoriesList as $row){
+                     $count++;
+                    $category = $row['Category_Name'];
+                  ?>
+                   <option value="<?php echo $category; ?>"><?php echo $category; ?></option>
+                  <?php
+                    }
+                  ?>
+                 </select>
                   </div><br>
                  <div class="row">
                  <input type="text" name="name" id="name" class="form-control col-md-9" style="padding:15px;margin-left: 60px" required  placeholder="Stock Name...">
                   </div><br>
                   <div class="row">
-                 <input type="text" name="supplier" id="supplier" class="form-control col-md-9" style="padding:15px;margin-left: 60px" required  placeholder="Supplier...">
+                 <select type="text" name="supplier" id="supplier" class="form-control col-md-9" style="padding-right:15px;padding-left:15px;margin-left: 60px" required onfocus='this.size=3;' onblur='this.size=1;' onchange='this.size=1; this.blur();'>
+                   <option value="" selected="selected" disabled>Supplier...</option>
+                  <?php
+                    $count = 0;
+                    foreach($suppliersList as $row){
+                     $count++;
+                    $supplier = $row['Name'];
+                  ?>
+                   <option value="<?php echo $supplier; ?>"><?php echo $supplier; ?></option>
+                  <?php
+                    }
+                  ?>
+                 </select>
                   </div><br>
                   <div class="row">
                     <label for="received" style="margin-left: 60px;">Date Received:</label>
@@ -115,12 +139,12 @@
           </div>
         </div>
       </div>
-      <a href="#" class="btn btn-info btn-md active" role="button" aria-pressed="true" style="margin-left: 30px;">Stock Expiry</a>
+      <a href="expiry.php" class="btn btn-info btn-md active" role="button" aria-pressed="true" style="margin-left: 30px;">Stock Expiry</a>
       <?php
         $stockrowcount = mysqli_num_rows($stockList);
       ?>
       <h6 style="margin-left: 140px;">Total Number: <?php echo $stockrowcount; ?></h6>
-      <a href="categories.php" class="btn btn-warning btn-md active" role="button" aria-pressed="true" style="margin-left: 140px;">Stock Valuation</a>
+      <a href="valuation.php" class="btn btn-warning btn-md active" role="button" aria-pressed="true" style="margin-left: 140px;">Stock Valuation</a>
       <a href="categories.php" class="btn btn-primary btn-md active" role="button" aria-pressed="true" style="margin-left: 30px;">Stock Categories</a>
     </div><br>     
       <table id="stockEditable" class="table table-striped table-hover paginate" style="display:block; height:550px;overflow-y:scroll;">
@@ -155,7 +179,8 @@
       <td class="editable" id="sp<?php echo $count; ?>"><?php echo $selling_price; ?></td>
       <td class="uneditable" id="qty<?php echo $count; ?>"><?php echo $quantity; ?></td>
        <td>
-       <a href="#" class="btn btn-danger btn-sm active" role="button" aria-pressed="true" ><i class="fa fa-trash"></i>&ensp;Delete</a></td>
+        <button id="<?php echo $id; ?>" data_id="<?php echo $id; ?>" class="btn btn-danger btn-sm active deleteStock" role="button" aria-pressed="true" ><i class="fa fa-trash"></i>&ensp;Delete</button></td>
+       </td>
     </tr>
     <?php
     }

@@ -143,8 +143,9 @@
       <td class="editable" id="deliverer<?php echo $count; ?>"><?php echo $deliverer; ?></td>
       <td class="uneditable"id="status<?php echo $count; ?>"><?php echo $status; ?></td>
       <td class="editable"id="note<?php echo $count; ?>"><?php echo $note; ?></td>
-       <td>&emsp;&emsp;<a href="#" class="btn btn-dark btn-sm active" role="button" aria-pressed="true">Blacklist</a>
-       <button id="del_<?php echo $id; ?>" data_id="<?php echo $id; ?>" class="btn btn-danger btn-sm active delete" role="button" aria-pressed="true" ><i class="fa fa-user-times"></i>Delete</button></td>
+       <td>&emsp;&emsp;
+         <button id="<?php echo $id; ?>" data_id="<?php echo $id; ?>" class="btn btn-dark btn-sm active blacklistCustomer" role="button" aria-pressed="true" >Blacklist</button>
+       <button id="<?php echo $id; ?>" data_id="<?php echo $id; ?>" class="btn btn-danger btn-sm active deleteCustomer" role="button" aria-pressed="true" ><i class="fa fa-user-times"></i>Delete</button></td>
     </tr>
     <?php
     }
