@@ -74,7 +74,7 @@ include('queries.php');
       ?>
       <h6 style="margin-left: 300px;">Total Number: <?php echo $blacklistedrowcount; ?></h6>
     </div><br>
-    <table id="blacklistEditable" class="table table-dark table-striped table-hover" style="display:block; height:527px;overflow-y:scroll;">
+    <table id="blacklistEditable" class="table table-striped table-hover paginate" style="display:block; height:527px;overflow-y:scroll;">
   <thead class="thead-dark">
     <tr>
       <th scope="col" width="6%">#</th>

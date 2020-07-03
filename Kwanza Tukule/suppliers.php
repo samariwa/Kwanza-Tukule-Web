@@ -70,13 +70,13 @@
  
 
         <div class="row">
-             <a data-toggle="modal" data-target="#exampleModalScrollable" class="btn btn-success btn-md active" role="button" aria-pressed="true" style="margin-left: 20px;"><i class="fa fa-plus-circle"></i>&ensp;Add Supplier</a>
+             <a data-toggle="modal" data-target="#exampleModalScrollable" class="btn btn-success btn-md active" role="button" aria-pressed="true" style="margin-left: 20px;"><i class="fa fa-plus-circle"></i>&ensp;New Supplier</a>
        <!-- Modal -->
       <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalScrollableTitle">Add Supplier</h5>
+              <h5 class="modal-title" id="exampleModalScrollableTitle">New Supplier</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -103,7 +103,7 @@
       <h6 style="margin-left: 270px;">Total Number: <?php echo $suppliersrowcount; ?></h6>
         </div><br>
 
-        <table id="categoriesEditable" class="table table-striped table-hover paginate" style="display:block;height:737px;overflow-y:scroll;">
+        <table id="suppliersEditable" class="table table-striped table-hover paginate" style="display:block;height:737px;overflow-y:scroll;">
   <thead class="thead-dark">
     <tr>
       <th scope="col" width="20%">#</th>
@@ -123,7 +123,7 @@
       ?>
     <tr>
       <th scope="row" class="uneditable" id="id<?php echo $count; ?>"><?php echo $id; ?></th>
-      <td class="editable" id="supplier<?php echo $count; ?>"><?php echo $supplier; ?></td>
+      <td class="uneditable" id="supplier<?php echo $count; ?>"><?php echo $supplier; ?></td>
       <td class="editable" id="contact<?php echo $count; ?>"><?php echo $contact; ?></td>
        <td>
         <button id="<?php echo $id; ?>" data_id="<?php echo $id; ?>" class="btn btn-danger btn-sm active deleteSupplier" role="button" aria-pressed="true" ><i class="fa fa-trash"></i>&ensp;Delete</button>

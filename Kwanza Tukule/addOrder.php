@@ -97,7 +97,7 @@
          <div class="input-group-prepend"style="margin-left: 30px;" >
            <span class="input-group-text" id="inputGroup-sizing-default">Quantity:</span>
            </div>
-         <input type="number" class="form-control col-md-1" name="orderQty" id="orderQty">
+         <input type="number" class="form-control col-md-1" name="orderQty" id="orderQty" min="1" oninput="validity.valid||(value='');">
        </div>
        <div class="list-group" id="product_results" style="margin-top: -5px;margin-left: 350px;">
          
@@ -108,7 +108,7 @@
         </div><br>
         <h3>Cart</h3>
         <div class="row">
-        <table class="table table-bordered">
+        <table class="table table-bordered" id="cartEditable">
   <thead>
     <tr>
       <th scope="col" width="5%">#</th>

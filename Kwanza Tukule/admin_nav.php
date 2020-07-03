@@ -194,7 +194,7 @@ if (isset($_SESSION['logged_in'])) {
       <br>
 
       <li class="nav-item">&emsp;
-        <a style="color: black;" href="#">
+        <a style="color: black;" href="vehicles.php">
           <i class="bx bxs-truck"></i>
           <span>Delivery Trucks</span></a>
       </li>

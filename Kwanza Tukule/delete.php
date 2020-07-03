@@ -36,4 +36,11 @@ mysqli_query($connection,"Delete from `suppliers` where id='".$id."'");
     echo 1;
     exit();
 }
+else if($where == 'vehicle' )
+{  
+	$id =$_POST['id'];
+mysqli_query($connection,"Delete from `vehicles` where id='".$id."'");
+    echo 1;
+    exit();
+ }
 ?>

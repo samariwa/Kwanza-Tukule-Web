@@ -68,13 +68,13 @@
             </div>
           </div> 
          <div class="row">
-      <a data-toggle="modal" data-target="#exampleModalScrollable" class="btn btn-success btn-md active" role="button" aria-pressed="true" style="margin-left: 25px;"><i class="fa fa-plus-circle"></i>&ensp;Add Stock</a>
+      <a data-toggle="modal" data-target="#exampleModalScrollable" class="btn btn-success btn-md active" role="button" aria-pressed="true" style="margin-left: 13px;"><i class="fa fa-plus-circle"></i>&ensp;New Stock</a>
       <!-- Modal -->
       <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalScrollableTitle">Add Stock</h5>
+              <h5 class="modal-title" id="exampleModalScrollableTitle">New Stock</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -139,7 +139,7 @@
           </div>
         </div>
       </div>
-      <a href="expiry.php" class="btn btn-info btn-md active" role="button" aria-pressed="true" style="margin-left: 30px;">Stock Expiry</a>
+      <a href="shelf_life.php" class="btn btn-info btn-md active" role="button" aria-pressed="true" style="margin-left: 30px;">Stock Shelf Life</a>
       <?php
         $stockrowcount = mysqli_num_rows($stockList);
       ?>
@@ -147,16 +147,16 @@
       <a href="valuation.php" class="btn btn-warning btn-md active" role="button" aria-pressed="true" style="margin-left: 140px;">Stock Valuation</a>
       <a href="categories.php" class="btn btn-primary btn-md active" role="button" aria-pressed="true" style="margin-left: 30px;">Stock Categories</a>
     </div><br>     
-      <table id="stockEditable" class="table table-striped table-hover paginate" style="display:block; height:550px;overflow-y:scroll;">
+      <table id="stockEditable" class="table table-striped table-hover paginate" style="display:block; height:600px;overflow-y:scroll;">
   <thead class="thead-dark">
     <tr>
       <th scope="col" width="5%">#</th>
       <th scope="col" width="15%">Category</th>
       <th scope="col" width="20%">Stock Name</th>
-      <th scope="col" width="15%">Buying Price</th>
-      <th scope="col"width="15%">Selling Price</th>
-      <th scope="col"width="20%">Quantity Available</th>
-      <th scope="col"width="10%"></th>
+      <th scope="col" width="12%">Buying Price</th>
+      <th scope="col"width="12%">Selling Price</th>
+      <th scope="col"width="12%">Quantity Available</th>
+      <th scope="col"width="30%"></th>
     </tr>
   </thead>
   <tbody >
@@ -168,7 +168,7 @@
         $category = $row['Category_Name'];
         $name = $row['Name'];
         $buying_price = $row['Buying_price'];
-        $selling_price = $row['Price'];
+        $selling_price = $row['Selling_Price'];
         $quantity = $row['Quantity'];
       ?>
     <tr>
@@ -179,6 +179,24 @@
       <td class="editable" id="sp<?php echo $count; ?>"><?php echo $selling_price; ?></td>
       <td class="uneditable" id="qty<?php echo $count; ?>"><?php echo $quantity; ?></td>
        <td>
+        <button data-toggle="modal" data-target="#exampleModalScrollable2" id="<?php echo $id; ?>" data_id="<?php echo $id; ?>" class="btn btn-light btn-sm active addPurchase" role="button" aria-pressed="true" ><i class="fa fa-plus"></i>&ensp;Add Purchase</button>
+        <div class="modal fade" id="exampleModalScrollable2" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalScrollableTitle">Add Purchase</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              
+            </div>
+            <div class="modal-footer">
+            </div>
+          </div>
+        </div>
+      </div>
         <button id="<?php echo $id; ?>" data_id="<?php echo $id; ?>" class="btn btn-danger btn-sm active deleteStock" role="button" aria-pressed="true" ><i class="fa fa-trash"></i>&ensp;Delete</button></td>
        </td>
     </tr>

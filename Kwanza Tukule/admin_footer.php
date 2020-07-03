@@ -183,12 +183,12 @@ setTime();
               var Price = data[0].Price;
                 var Total = Price * productQty;
                 productDetails += "<tr>";
-                productDetails += "<th>"+id+"</th>";
-                productDetails += "<td>"+productName+"</td>";
-                productDetails += "<td>"+Price+"</td>";
-                productDetails += "<td>"+productQty+"</td>";
-                productDetails += "<td><button type='button' class='btn btn-danger btn-sm deleteFromCart' id='"+id+"' data_id='"+id+"'><i class='fa fa-times-circle'></i>&ensp;Remove</button></td>";
-                productDetails += "<td>"+Total+"</td>";
+                productDetails += `<th id="id${id}" class='uneditable'>${id}</th>`;
+                productDetails += `<td id="productName${id}" class='uneditable'>${productName}</td>`;
+                productDetails += `<td id="Price${id}" class='uneditable'>${Price}</td>`;
+                productDetails += `<td id="productQty${id}" class='editable'>${productQty}</td>`;
+                productDetails += `<td class='uneditable'><button onclick="deleteCart();" type='button' class='btn btn-danger btn-sm deleteFromCart' id="deleteFromCart${id}"><i class='fa fa-times-circle'></i>&ensp;Remove</button></td>`;
+                productDetails += `<td id="Total${id}" class='uneditable'>${Total}</td>`;
                 productDetails += "</tr>";
                 $("#cartData").append(productDetails);
               }
@@ -196,18 +196,28 @@ setTime();
         });
       });
 
-       $(document).ready(function(){
-    $('.deleteFromCart').click(function(){
-      alert("lol");
-      var el = $(this);
-      var id = el.attr("id");
-      $(el).closest('tr').css('background','tomato');
-       $(el).closest('tr').fadeOut(800,function(){
-      $(this).remove();
-       });
-    });
-  });
 
+   function deleteCart(){
+    var el = $(this);
+      bootbox.confirm('Do you really want to remove the seleted item from the cart?',function(result)
+        {if(result){
+              $(el).closest('tr').css('background','lime');
+              $(el).closest('tr').fadeOut(800,function(){
+                $(this).remove();
+
+    });
+  }
+ });
+  }
+
+
+   $('#cartEditable').editableTableWidget();
+  $('#cartEditable td.uneditable').on('change', function(evt, newValue) {
+  return false;
+});
+  $('#cartEditable td').on('change', function(evt, newValue) {    
+    return true;
+});
 
   $('#customersEditable').editableTableWidget();
   $('#customersEditable td.uneditable').on('change', function(evt, newValue) {
@@ -241,7 +251,7 @@ setTime();
   var qty = $(`#qty${rowx}`).text();
   var where = 'stock';
   $.post("save.php",{id:id,name:name,bp:bp,category:category,qty:qty,sp:sp,where:where},
-  function(result){});
+  function(result){alert(result);});
 });
 
 
@@ -251,15 +261,13 @@ $('#blacklistEditable').editableTableWidget();
 });
   $('#blacklistEditable td').on('change', function(evt, newValue) {
    var rowx = parseInt(evt.target._DT_CellIndex.row)+1;
-   alert("Chief");
   var id = $(`#id${rowx}`).text();
   var location = $(`#location${rowx}`).text();
   var number = $(`#number${rowx}`).text();
   var balance = $(`#balance${rowx}`).text();
   var where = 'blacklist';
-  alert("Chief");
   $.post("save.php",{id:id,location:location,number:number,balance:balance,where:where},
-  function(result){alert(result);});
+  function(result){});
 });  
 
 
@@ -276,6 +284,31 @@ $('#categoriesEditable').editableTableWidget();
   function(result){});
 }); 
 
+$('#suppliersEditable').editableTableWidget();
+  $('#suppliersEditable td.uneditable').on('change', function(evt, newValue) {
+  return false;
+});
+  $('#suppliersEditable td').on('change', function(evt, newValue) {
+   var rowx = parseInt(evt.target._DT_CellIndex.row)+1;
+  var id = $(`#id${rowx}`).text();
+  var contact = $(`#contact${rowx}`).text();
+  var where = 'suppliers';
+  $.post("save.php",{id:id,contact:contact,where:where},
+  function(result){});
+});  
+
+$('#vehiclesEditable').editableTableWidget();
+  $('#vehiclesEditable td.uneditable').on('change', function(evt, newValue) {
+  return false;
+});
+  $('#vehiclesEditable td').on('change', function(evt, newValue) {
+   var rowx = parseInt(evt.target._DT_CellIndex.row)+1;
+  var id = $(`#id${rowx}`).text();
+  var route = $(`#route${rowx}`).text();
+  var where = 'vehicles';
+  $.post("save.php",{id:id,route:route,where:where},
+  function(result){});
+});  
 
   $('#salesEditable').editableTableWidget();
   $('#salesEditable td.uneditable').on('change', function(evt, newValue) {
@@ -307,8 +340,11 @@ $('#categoriesEditable').editableTableWidget();
          if (result == 'success') {
           alert('Customer Added Successfully');
          }
-          if (result == 'exists') {
+          else if (result == 'exists') {
           alert('Customer Already Exists');
+         }
+           else{
+          alert("Something went wrong");
          }
          });
        });
@@ -345,8 +381,11 @@ $('#categoriesEditable').editableTableWidget();
          if (result == 'success') {
           alert('Category Added Successfully');
          }
-          if (result == 'exists') {
+          else if (result == 'exists') {
           alert('Category Already Exists');
+         }
+         else{
+          alert("Something went wrong");
          }
          });
        });
@@ -360,8 +399,31 @@ $('#categoriesEditable').editableTableWidget();
          if (result == 'success') {
           alert('Supplier Added Successfully');
          }
-          if (result == 'exists') {
+          else if (result == 'exists') {
           alert('Supplier Already Exists');
+         }
+           else{
+          alert("Something went wrong");
+         }
+         });
+       });
+
+  $(document).on('click','#addVehicle',function(){
+        var type = $('#type').val();
+         var driver = $('#driver').val();
+         var reg = $('#reg').val();
+         var route = $('#route').val();
+        var where = 'vehicles';
+        $.post("add.php",{type:type,driver:driver,reg:reg,route:route,where:where},
+        function(result){
+         if (result == 'success') {
+          alert('Vehicle Added Successfully');
+         }
+          else if (result == 'exists') {
+          alert('Vehicle Already Exists');
+         }
+          else{
+          alert("Something went wrong");
          }
          });
        });
@@ -452,6 +514,26 @@ $('#categoriesEditable').editableTableWidget();
       var where = 'supplier';
       var id = el.attr("id");
       bootbox.confirm('Do you really want to delete the selected supplier?',function(result)
+        {if(result){
+          $.post("delete.php",{id:id,where:where},
+        function(result){  
+            if(result == 1){
+              $(el).closest('tr').css('background','tomato');
+              $(el).closest('tr').fadeOut(800,function(){
+                $(this).remove();
+              });
+            }
+        });
+      }});
+    });
+  });
+
+   $(document).ready(function(){
+    $('.deleteVehicle').click(function(){
+      var el = $(this);
+      var where = 'vehicle';
+      var id = el.attr("id");
+      bootbox.confirm('Do you really want to delete the selected vehicle?',function(result)
         {if(result){
           $.post("delete.php",{id:id,where:where},
         function(result){  
