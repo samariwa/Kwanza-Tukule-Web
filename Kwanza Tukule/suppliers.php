@@ -84,10 +84,10 @@
             <div class="modal-body">
               <form method="POST">
                  <div class="row">
-                 <input type="text" name="name" id="name" class="form-control col-md-9" style="padding:15px;margin-left: 60px" placeholder="Supplier Name...">
+                 <input type="text" name="name" id="name" class="form-control col-md-9" style="padding:15px;margin-left: 60px" placeholder="Supplier Name..." required>
                   </div><br>
                   <div class="row">
-                 <input type="text" name="contact" id="contact" class="form-control col-md-9" style="padding:15px;margin-left: 60px" placeholder="Supplier Contact...">
+                 <input type="text" name="contact" id="contact" class="form-control col-md-9" style="padding:15px;margin-left: 60px" placeholder="Supplier Contact..."required>
                   </div>
             </div>
             <div class="modal-footer">
@@ -107,9 +107,9 @@
   <thead class="thead-dark">
     <tr>
       <th scope="col" width="20%">#</th>
-      <th scope="col" width="40%">Supplier Name</th>
-      <th scope="col" width="40%">Supplier Contact</th>
-      <th scope="col"width="60%"></th>
+      <th scope="col" width="35%">Supplier Name</th>
+      <th scope="col" width="35%">Supplier Contact</th>
+      <th scope="col"width="70%"></th>
     </tr>
   </thead>
   <tbody >

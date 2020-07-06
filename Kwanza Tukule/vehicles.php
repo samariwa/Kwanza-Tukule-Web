@@ -84,13 +84,13 @@
             <div class="modal-body">
               <form method="POST">
                  <div class="row">
-                 <input type="text" name="type" id="type" class="form-control col-md-9" style="padding:15px;margin-left: 60px" placeholder="Vehicle Type...">
+                 <input type="text" name="type" id="type" class="form-control col-md-9" style="padding:15px;margin-left: 60px" placeholder="Vehicle Type..." required>
                   </div><br>
                   <div class="row">
-                 <select type="text" name="driver" id="driver" class="form-control col-md-9" style="padding-right:15px;padding-left:15px;margin-left: 60px" required onfocus='this.size=3;' onblur='this.size=1;' onchange='this.size=1; this.blur();'>
+                 <select type="text" name="driver" id="driver" class="form-control col-md-9" style="padding-right:15px;padding-left:15px;margin-left: 60px" required onfocus='this.size=3;' onblur='this.size=1;' onchange='this.size=1; this.blur();' required>
                   <option value="" selected="selected" disabled>Vehicle Driver...</option>
                   <?php
-                  $query = mysqli_query($connection,"SELECT * FROM users where role = 'Driver'")or die($connection->error);
+                  $query = mysqli_query($connection,"SELECT * FROM users where Job_id = '5'")or die($connection->error);
                     $count = 0;
                     foreach($query as $row){
                      $count++;
@@ -103,10 +103,10 @@
                  </select>
                   </div><br>
                   <div class="row">
-                 <input type="text" name="reg" id="reg" class="form-control col-md-9" style="padding:15px;margin-left: 60px" placeholder="Registration Number...">
+                 <input type="text" name="reg" id="reg" class="form-control col-md-9" style="padding:15px;margin-left: 60px" placeholder="Registration Number..." required>
                   </div><br>
                   <div class="row">
-                 <input type="text" name="route" id="route" class="form-control col-md-9" style="padding:15px;margin-left: 60px" placeholder="Vehicle Route...">
+                 <input type="text" name="route" id="route" class="form-control col-md-9" style="padding:15px;margin-left: 60px" placeholder="Vehicle Route..." required>
                   </div>
             </div>
             <div class="modal-footer">

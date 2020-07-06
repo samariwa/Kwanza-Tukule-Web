@@ -117,11 +117,13 @@ if ((isset($_POST["pass"])) && (isset($_POST["user"])) && (isset($_POST["pass2"]
 
   $hash = password_hash($desired_password, PASSWORD_DEFAULT);
 
-        
-
+  //check the id number of the job      
+    $role_query = mysqli_query($connection,"SELECT id FROM `jobs` WHERE `Name`='$role'");
+    $role1 = mysqli_fetch_array($role_query);
+    $job = $role1['id'];
 //Insert details password to MySQL database
 
-        mysqli_query($connection,"INSERT INTO `users` (`firstname`,`lastname`,`number`,`email`,`nationalID`,`staffID`,`yob`,`gender`,`role`,`username`, `password`) VALUES ('$first_name','$last_name','$phone_no','$email','$national_id','$staff_id','$dob','$gender','$role','$desired_username', '$hash')") or die(mysqli_error($connection));
+        mysqli_query($connection,"INSERT INTO `users` (`Job_id`,`firstname`,`lastname`,`number`,`email`,`nationalID`,`staffID`,`yob`,`gender`,`username`, `password`) VALUES ('$job','$first_name','$last_name','$phone_no','$email','$national_id','$staff_id','$dob','$gender','$desired_username', '$hash')") or die(mysqli_error($connection));
 //Send notification to email
         require_once "PHPMailer/PHPMailer.php";
         require_once "PHPMailer/Exception.php";
@@ -244,7 +246,12 @@ if ((isset($_POST["pass"])) && (isset($_POST["user"])) && (isset($_POST["pass2"]
                             <label for="role"  class="offset-md-1 col-form-label text-md-right" style="margin-left: 155px">Role:</label>
 
                             <div class="col-md-3 ">
-                                <input id="role" type="text"  name="role" value="" required autocomplete="text" autofocus>
+                                <select id="role" name="role" class="form-control">
+                                    <option value="">Role</option>
+                                    <option value="CEO">CEO</option>
+                                    <option value="General Operations Manager">General Manager</option>
+                                    <option value="Admin">Admin</option>
+                                    </select>
                             </div>
                             <label for="user"  class="offset-md-2 col-form-label text-md-right" style="margin-left: 65px">Username:</label>
 

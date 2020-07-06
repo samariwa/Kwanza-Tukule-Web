@@ -8,4 +8,7 @@ $salesList = mysqli_query($connection,"SELECT orders.id AS id,customers.Name AS 
 $usersList = mysqli_query($connection,"SELECT * FROM users")or die($connection->error);
 $suppliersList = mysqli_query($connection,"SELECT * FROM suppliers ORDER BY id ASC")or die($connection->error);
 $vehicleList = mysqli_query($connection,"SELECT * FROM vehicles ORDER BY id ASC")or die($connection->error);
+$officeStaffList = mysqli_query($connection,"SELECT * FROM users INNER JOIN jobs ON users.Job_id=jobs.id where Job_id = '2' or Job_id = '3' or Job_id = '4' or Job_id = '7'")or die($connection->error);
+$deliverersStaffList = mysqli_query($connection,"SELECT * FROM users where Job_id = '5'")or die($connection->error);
+$cooksStaffList = mysqli_query($connection,"SELECT * FROM users where Job_id = '6'")or die($connection->error);
  ?>
