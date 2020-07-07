@@ -81,16 +81,45 @@
               </button>
             </div>
             <div class="modal-body">
-              <form method="POST">
+             <form method="POST">
                  <div class="row">
-                 <input type="text" name="name" id="name" class="form-control col-md-9" style="padding:15px;margin-left: 60px" placeholder="Staff Name...">
+                 <input type="text" name="fname" id="fname" class="form-control col-md-9" style="padding:15px;margin-left: 60px" placeholder=" First Name..." required>
                   </div><br>
                   <div class="row">
-                 <input type="text" name="contact" id="contact" class="form-control col-md-9" style="padding:15px;margin-left: 60px" placeholder="Staff Contact...">
+                 <input type="text" name="lname" id="lname" class="form-control col-md-9" style="padding:15px;margin-left: 60px" placeholder="Last Name..." required>
+                  </div><br>
+                  <div class="row">
+                 <input type="text" name="contact" id="contact" class="form-control col-md-9" style="padding:15px;margin-left: 60px" placeholder="Contact Number..." required>
+                  </div><br>
+                  <div class="row">
+                 <input type="text" name="staffId" id="staffId" class="form-control col-md-9" style="padding:15px;margin-left: 60px" placeholder="Staff Id..." required>
+                  </div><br>
+                  <div class="row">
+                 <input type="text" name="nationalId" id="nationalId" class="form-control col-md-9" style="padding:15px;margin-left: 60px" placeholder="National Id..." required>
+                  </div><br>
+                  <div class="row">
+                 <input type="text" name="yob" id="yob" class="form-control col-md-9" style="padding:15px;margin-left: 60px" placeholder="Year of Birth..." required>
+                  </div><br>
+                  <div class="row">
+                  <select id="gender" name="gender" class="form-control col-md-9" required style="margin-left: 60px">
+                                    <option value="">Gender</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                    <option value="other">Other</option>
+                                    </select>
+                  </div><br>
+                  <div class="row">
+                    <select id="role" name="role" class="form-control col-md-9" required style="margin-left: 60px">
+                                    <option value="">Role</option>
+                                    <option value="Sales">Sales</option>
+                                    </select>
+                  </div><br>
+                  <div class="row">
+                 <input type="text" name="salary" id="salary" class="form-control col-md-9" style="padding:15px;margin-left: 60px" placeholder="Salary..." required>
                   </div>
             </div>
             <div class="modal-footer">
-              <button type="submit" class="btn btn-primary" style="margin-right: 50px" id="addSupplier">Add Office Staff</button>
+              <button type="submit" class="btn btn-primary" style="margin-right: 50px" id="addOfficeStaff">Add Office Staff</button>
             </form>
             </div>
           </div>
@@ -102,19 +131,19 @@
       <h6 style="margin-left: 270px;">Total Number: <?php echo $officerowcount; ?></h6>
         </div><br>
 
-        <table id="officeEditable" class="table table-striped table-hover paginate" style="display:block;height:737px;overflow-y:scroll;">
+        <table id="officeEditable" class="table table-striped table-hover paginate" style="display:block;overflow-y:scroll;">
   <thead class="thead-dark">
     <tr>
-      <th scope="col" width="5%">#</th>
+      <th scope="col" width="3%">#</th>
       <th scope="col" width="20%">Name</th>
       <th scope="col" width="12%">Contact</th>
       <th scope="col" width="8%">Gender</th>
       <th scope="col" width="8%">Position</th>
       <th scope="col" width="11%">Staff ID</th>
       <th scope="col" width="13%">National ID</th>
-       <th scope="col" width="8%">Age</th>
+       <th scope="col" width="5%">Age</th>
         <th scope="col" width="13%">Salary</th>
-      <th scope="col"width="35%"></th>
+      <th scope="col"width="40%"></th>
     </tr>
   </thead>
   <tbody >
@@ -147,7 +176,7 @@
       <td class="uneditable" id="age<?php echo $count; ?>"><?php echo $age; ?></td>
       <td class="editable" id="salary<?php echo $count; ?>">Ksh. <?php echo $salary; ?></td>
        <td>
-        <button id="<?php echo $id; ?>" data_id="<?php echo $id; ?>" class="btn btn-danger btn-sm active deleteSupplier" role="button" aria-pressed="true" ><i class="fa fa-trash"></i>&ensp;Delete</button>
+        <button id="<?php echo $id; ?>" data_id="<?php echo $id; ?>" class="btn btn-danger btn-sm active deleteOffice" role="button" aria-pressed="true" ><i class="fa fa-trash"></i>&ensp;Delete</button>
        </td>
     </tr>
     <?php

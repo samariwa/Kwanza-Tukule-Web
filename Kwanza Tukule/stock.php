@@ -147,7 +147,7 @@
       <a href="valuation.php" class="btn btn-warning btn-md active" role="button" aria-pressed="true" style="margin-left: 140px;">Stock Valuation</a>
       <a href="categories.php" class="btn btn-primary btn-md active" role="button" aria-pressed="true" style="margin-left: 30px;">Stock Categories</a>
     </div><br>     
-      <table id="stockEditable" class="table table-striped table-hover paginate" style="display:block; height:600px;overflow-y:scroll;">
+      <table id="stockEditable" class="table table-striped table-hover paginate" style="display:block;overflow-y:scroll;">
   <thead class="thead-dark">
     <tr>
       <th scope="col" width="5%">#</th>

@@ -109,7 +109,7 @@
       <h6 style="margin-left: 200px;">Total Number: <?php echo $customersrowcount; ?></h6>
       <a href="blacklisted.php" class="btn btn-dark btn-md active" role="button" aria-pressed="true" style="margin-left: 300px;">Blacklisted Customers</a>
     </div><br>
-    <table id="customersEditable" class="table table-striped table-hover paginate" style="display:block; height:700px;overflow-y:scroll;">
+    <table id="customersEditable" class="table table-striped table-hover paginate" style="display:block;overflow-y:scroll;">
   <thead class="thead-dark">
     <tr>
       <th scope="col" width="3%">#</th>

@@ -92,19 +92,33 @@
                 <!-- Card Body -->
                 <div class="card-body">
                   <div class="chart-area">
-                    <div id="map"></div>
-                    <script>
-              // Initialize and add the map
-              function initMap() {
-                // The location of headquaters
-                var hq = {lat: -1.305730, lng: 36.830139};
-                // The map, centered at headquaters
-                var map = new google.maps.Map(
-                    document.getElementById('map'), {zoom: 12, center: hq});
-                // The marker, positioned at headquaters
-                var marker = new google.maps.Marker({position: hq, map: map});
-              }
-                  </script>
+                    <div id="chart_div" style="width: 600px; height: 320px;"></div>
+                   <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawVisualization);
+
+      function drawVisualization() {
+        // Some raw data (not necessarily accurate)
+        var data = google.visualization.arrayToDataTable([
+          ['Month', 'Royson', 'Ken', 'Reuben', 'Damaris', 'George', 'Average'],
+          ['2004/06/05',  165,      938,         522,             998,           450,      614.6],
+          ['2005/06/06',  135,      1120,        599,             1268,          288,      682],
+          ['2006/06/07',  157,      1167,        587,             807,           397,      623],
+          ['2007/06/08',  139,      1110,        615,             968,           215,      609.4],
+          ['2008/06/09',  136,      691,         629,             1026,          366,      569.6]
+        ]);
+
+        var options = {
+          title : 'Weekly Sales Made per Deliverer',
+          vAxis: {title: 'Sales'},
+          hAxis: {title: 'Day'},
+          seriesType: 'bars',
+          series: {5: {type: 'line'}}        };
+
+        var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+    </script>
                   </div>
                 </div>
               </div>

@@ -122,7 +122,7 @@
       <h6 style="margin-left: 270px;">Total Number: <?php echo $vehiclesrowcount; ?></h6>
         </div><br>
 
-        <table id="vehiclesEditable" class="table table-striped table-hover paginate" style="display:block;height:737px;overflow-y:scroll;">
+        <table id="vehiclesEditable" class="table table-striped table-hover paginate" style="display:block;overflow-y:scroll;">
   <thead class="thead-dark">
     <tr>
       <th scope="col" width="10%">#</th>

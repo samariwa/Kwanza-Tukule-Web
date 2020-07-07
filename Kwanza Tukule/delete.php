@@ -43,4 +43,25 @@ mysqli_query($connection,"Delete from `vehicles` where id='".$id."'");
     echo 1;
     exit();
  }
+ else if($where == 'deliverer' )
+{  
+    $id =$_POST['id'];
+mysqli_query($connection,"Delete from `users` where id='".$id."'");
+    echo 1;
+    exit();
+ }
+ else if($where == 'cook' )
+{  
+    $id =$_POST['id'];
+mysqli_query($connection,"Delete from `users` where id='".$id."'");
+    echo 1;
+    exit();
+ }
+  else if($where == 'office' )
+{  
+    $id =$_POST['id'];
+mysqli_query($connection,"Delete from `users` where id='".$id."'");
+    echo 1;
+    exit();
+ }
 ?>

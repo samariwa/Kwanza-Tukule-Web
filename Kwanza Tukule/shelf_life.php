@@ -70,8 +70,43 @@
 
           <div class="row">
       <a href="stock.php" class="btn btn-primary btn-md active" role="button" aria-pressed="true" style="margin-left: 30px;"><i class="fa fa-arrow-left"></i>&ensp;Back</a>
-    </div>
-        
+    </div><br>
+     
+     <table  class="table table-striped table-hover paginate" style="display:block;overflow-y:scroll;">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col" width="10%">Batch #</th>
+      <th scope="col" width="30%">Stock Name</th>
+      <th scope="col"width="20%">Date Received</th>
+      <th scope="col"width="20%">Quantity Remaining</th>
+      <th scope="col"width="20%">Expiry Date</th>
+    </tr>
+  </thead>
+  <tbody >
+    <?php
+        $count = 0;
+        foreach($shelfLife as $row){
+         $count++;
+         $id = $row['id'];
+        $name = $row['Name'];
+        $received = $row['Received_date'];
+        $expiry = $row['Expiry_date'];
+        $remaining = $row['Qty'];
+        $receivedDate = date("d/m/Y", strtotime($received));
+        $expiryDate = date("d/m/Y", strtotime($expiry));
+      ?>
+    <tr>
+      <th scope="row"  id="id<?php echo $count; ?>"><?php echo $id; ?></th>
+      <td  id="name<?php echo $count; ?>"><?php echo $name; ?></td>
+      <td  id="received<?php echo $count; ?>"><?php echo $receivedDate; ?></td>
+       <td  id="remaining<?php echo $count; ?>"><?php echo $remaining; ?></td>
+      <td  id="expiry<?php echo $count; ?>"><?php echo $expiryDate; ?></td>
+    </tr>
+    <?php
+    }
+    ?>
+  </tbody>
+</table>   
 
   <!-- Scroll to Top Button-->
   <?php include "admin_footer.php" ?> 

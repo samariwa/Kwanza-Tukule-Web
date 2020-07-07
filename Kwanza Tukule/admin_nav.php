@@ -209,9 +209,9 @@ if (isset($_SESSION['logged_in'])) {
       <br>
 
       <li class="nav-item">&emsp;
-        <a style="color: black;" href="#">
+        <a style="color: black;" href="notes.php">
            <i class="bx bx-notepad"></i>
-          <span>Notes</span></a>
+          <span>NoteBook</span></a>
       </li>
      
       <br>

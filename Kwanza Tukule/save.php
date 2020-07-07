@@ -50,4 +50,35 @@ mysqli_query($connection,"UPDATE `suppliers` SET `Supplier_contact` = '".$contac
     $route = $_POST['route'];
 mysqli_query($connection,"UPDATE `vehicles` SET `Route` = '".$route."' WHERE `id` = '".$id."'")or die($connection->error);
 }
+elseif ($where == 'deliverer') {
+  $id = $_POST['id'];
+    $contact = $_POST['contact'];
+    $staffId = $_POST['staffId'];
+    $nationalId = $_POST['nationalId'];
+    $salary = $_POST['salary'];
+    $figure = str_replace("Ksh. ","",$salary);
+mysqli_query($connection,"UPDATE `users` SET `number` = '".$contact."',`staffID` = '".$staffId."',`nationalID` = '".$nationalId."',`salary` = '".$figure."' WHERE `id` = '".$id."'")or die($connection->error);
+}
+elseif ($where == 'cook') {
+  $id = $_POST['id'];
+    $contact = $_POST['contact'];
+    $staffId = $_POST['staffId'];
+    $nationalId = $_POST['nationalId'];
+    $salary = $_POST['salary'];
+    $figure = str_replace("Ksh. ","",$salary);
+mysqli_query($connection,"UPDATE `users` SET `number` = '".$contact."',`staffID` = '".$staffId."',`nationalID` = '".$nationalId."',`salary` = '".$figure."' WHERE `id` = '".$id."'")or die($connection->error);
+}
+elseif ($where == 'office') {
+  $id = $_POST['id'];
+    $contact = $_POST['contact'];
+    $staffId = $_POST['staffId'];
+    $nationalId = $_POST['nationalId'];
+    $salary = $_POST['salary'];
+    $role = $_POST['role'];
+    $result1 = mysqli_query($connection,"SELECT id FROM jobs where Name like '%$role%';")or die($connection->error);
+    $row = mysqli_fetch_array($result1);
+    $position = $row['id'];
+    $figure = str_replace("Ksh. ","",$salary);
+mysqli_query($connection,"UPDATE `users` SET `number` = '".$contact."',`staffID` = '".$staffId."',`nationalID` = '".$nationalId."',`salary` = '".$figure."' ,`Job_id` = '".$position."' WHERE `id` = '".$id."'")or die($connection->error);
+}
  ?>

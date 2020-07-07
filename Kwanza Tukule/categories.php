@@ -98,7 +98,7 @@
         </div>
       </div>
     </div><br>     
-      <table id="categoriesEditable" class="table table-striped table-hover paginate" style="display:block;height:535px;overflow-y:scroll;">
+      <table id="categoriesEditable" class="table table-striped table-hover paginate" style="display:block;overflow-y:scroll;">
   <thead class="thead-dark">
     <tr>
       <th scope="col" width="30%">#</th>

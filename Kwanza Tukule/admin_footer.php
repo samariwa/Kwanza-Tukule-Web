@@ -310,6 +310,60 @@ $('#vehiclesEditable').editableTableWidget();
   function(result){});
 });  
 
+  $('#deliverersEditable').editableTableWidget();
+  $('#deliverersEditable td.uneditable').on('change', function(evt, newValue) {
+  return false;
+});
+  $('#deliverersEditable td').on('change', function(evt, newValue) {
+   var rowx = parseInt(evt.target._DT_CellIndex.row)+1;
+  var id = $(`#id${rowx}`).text();
+  var contact = $(`#contact${rowx}`).text();
+  var staffId = $(`#staffId${rowx}`).text();
+  var nationalId = $(`#nationalId${rowx}`).text();
+  var salary = $(`#salary${rowx}`).text();
+  var where = 'deliverer';
+  $.post("save.php",{id:id,contact:contact,staffId:staffId,nationalId:nationalId,salary:salary,where:where},
+  function(result){});
+});  
+
+   $('#cooksEditable').editableTableWidget();
+  $('#cooksEditable td.uneditable').on('change', function(evt, newValue) {
+  return false;
+});
+  $('#cooksEditable td').on('change', function(evt, newValue) {
+   var rowx = parseInt(evt.target._DT_CellIndex.row)+1;
+  var id = $(`#id${rowx}`).text();
+  var contact = $(`#contact${rowx}`).text();
+  var staffId = $(`#staffId${rowx}`).text();
+  var nationalId = $(`#nationalId${rowx}`).text();
+  var salary = $(`#salary${rowx}`).text();
+  var where = 'cook';
+  $.post("save.php",{id:id,contact:contact,staffId:staffId,nationalId:nationalId,salary:salary,where:where},
+  function(result){});
+});
+
+$('#officeEditable').editableTableWidget();
+  $('#officeEditable td.uneditable').on('change', function(evt, newValue) {
+  return false;
+});
+  $('#officeEditable td').on('change', function(evt, newValue) {
+   var rowx = parseInt(evt.target._DT_CellIndex.row)+1;
+  var id = $(`#id${rowx}`).text();
+  var contact = $(`#contact${rowx}`).text();
+  var staffId = $(`#staffId${rowx}`).text();
+  var nationalId = $(`#nationalId${rowx}`).text();
+  var salary = $(`#salary${rowx}`).text();
+  var role = $(`#role${rowx}`).text();
+  var where = 'office';
+  $.post("save.php",{id:id,contact:contact,staffId:staffId,nationalId:nationalId,salary:salary,role:role,where:where},
+  function(result){});
+});  
+
+  $('#salesEditable').editableTableWidget();
+  $('#salesEditable td.uneditable').on('change', function(evt, newValue) {
+  return false;
+});  
+
   $('#salesEditable').editableTableWidget();
   $('#salesEditable td.uneditable').on('change', function(evt, newValue) {
   return false;
@@ -408,6 +462,27 @@ $('#vehiclesEditable').editableTableWidget();
          });
        });
 
+  $(document).on('click','#addNote',function(){
+        var title = $('#title').val();
+         var message = $('#body').val();
+         var radios = document.getElementsByName('access');
+          for (var i = 0, length = radios.length; i < length; i++) {
+          if (radios[i].checked) {
+            var access = radios[i].value;
+          }
+         }
+        var where = 'note';
+        $.post("add.php",{title:title,message:message,access:access,where:where},
+        function(result){
+         if (result == 'success') {
+          alert('Note Added Successfully');
+         }
+           else{
+          alert("Something went wrong");
+         }
+         });
+       });
+
   $(document).on('click','#addVehicle',function(){
         var type = $('#type').val();
          var driver = $('#driver').val();
@@ -421,6 +496,79 @@ $('#vehiclesEditable').editableTableWidget();
          }
           else if (result == 'exists') {
           alert('Vehicle Already Exists');
+         }
+          else{
+          alert("Something went wrong");
+         }
+         });
+       });
+
+  $(document).on('click','#addDeliverer',function(){
+        var fname = $('#fname').val();
+         var lname = $('#lname').val();
+         var contact = $('#contact').val();
+         var staffId = $('#staffId').val();
+         var nationalId = $('#nationalId').val();
+         var yob = $('#yob').val();
+         var gender = $('#gender').val();
+         var salary = $('#salary').val();
+        var where = 'deliverer';
+        $.post("add.php",{fname:fname,lname:lname,contact:contact,staffId:staffId,nationalId:nationalId,yob:yob,gender:gender,salary:salary,where:where},
+        function(result){
+         if (result == 'success') {
+          alert('Deliverer Added Successfully');
+         }
+          else if (result == 'exists') {
+          alert('Deliverer Already Exists');
+         }
+          else{
+          alert("Something went wrong");
+         }
+         });
+       });
+
+  $(document).on('click','#addCook',function(){
+        var fname = $('#fname').val();
+         var lname = $('#lname').val();
+         var contact = $('#contact').val();
+         var staffId = $('#staffId').val();
+         var nationalId = $('#nationalId').val();
+         var yob = $('#yob').val();
+         var gender = $('#gender').val();
+         var salary = $('#salary').val();
+        var where = 'cook';
+        $.post("add.php",{fname:fname,lname:lname,contact:contact,staffId:staffId,nationalId:nationalId,yob:yob,gender:gender,salary:salary,where:where},
+        function(result){
+         if (result == 'success') {
+          alert('Cook Added Successfully');
+         }
+          else if (result == 'exists') {
+          alert('Cook Already Exists');
+         }
+          else{
+          alert("Something went wrong");
+         }
+         });
+       });
+
+   $(document).on('click','#addOfficeStaff',function(){
+        var fname = $('#fname').val();
+         var lname = $('#lname').val();
+         var contact = $('#contact').val();
+         var staffId = $('#staffId').val();
+         var nationalId = $('#nationalId').val();
+         var yob = $('#yob').val();
+         var gender = $('#gender').val();
+         var role = $('#role').val();
+         var salary = $('#salary').val();
+        var where = 'office';
+        $.post("add.php",{fname:fname,lname:lname,contact:contact,staffId:staffId,nationalId:nationalId,yob:yob,role:role,gender:gender,salary:salary,where:where},
+        function(result){
+         if (result == 'success') {
+          alert('Office Staff Added Successfully');
+         }
+          else if (result == 'exists') {
+          alert('Office Staff Already Exists');
          }
           else{
           alert("Something went wrong");
@@ -534,6 +682,66 @@ $('#vehiclesEditable').editableTableWidget();
       var where = 'vehicle';
       var id = el.attr("id");
       bootbox.confirm('Do you really want to delete the selected vehicle?',function(result)
+        {if(result){
+          $.post("delete.php",{id:id,where:where},
+        function(result){  
+            if(result == 1){
+              $(el).closest('tr').css('background','tomato');
+              $(el).closest('tr').fadeOut(800,function(){
+                $(this).remove();
+              });
+            }
+        });
+      }});
+    });
+  });
+
+   $(document).ready(function(){
+    $('.deleteDeliverer').click(function(){
+      var el = $(this);
+      var where = 'deliverer';
+      var id = el.attr("id");
+      bootbox.confirm('Do you really want to delete the selected deliverer?',function(result)
+        {if(result){
+          $.post("delete.php",{id:id,where:where},
+        function(result){  
+            if(result == 1){
+              $(el).closest('tr').css('background','tomato');
+              $(el).closest('tr').fadeOut(800,function(){
+                $(this).remove();
+              });
+            }
+        });
+      }});
+    });
+  });
+
+   $(document).ready(function(){
+    $('.deleteCook').click(function(){
+      var el = $(this);
+      var where = 'cook';
+      var id = el.attr("id");
+      bootbox.confirm('Do you really want to delete the selected cook?',function(result)
+        {if(result){
+          $.post("delete.php",{id:id,where:where},
+        function(result){  
+            if(result == 1){
+              $(el).closest('tr').css('background','tomato');
+              $(el).closest('tr').fadeOut(800,function(){
+                $(this).remove();
+              });
+            }
+        });
+      }});
+    });
+  });
+
+   $(document).ready(function(){
+    $('.deleteOffice').click(function(){
+      var el = $(this);
+      var where = 'office';
+      var id = el.attr("id");
+      bootbox.confirm('Do you really want to delete the selected office staff?',function(result)
         {if(result){
           $.post("delete.php",{id:id,where:where},
         function(result){  

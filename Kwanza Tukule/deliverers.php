@@ -82,10 +82,33 @@
             <div class="modal-body">
               <form method="POST">
                  <div class="row">
-                 <input type="text" name="name" id="name" class="form-control col-md-9" style="padding:15px;margin-left: 60px" placeholder="Deliverer Name..." required>
+                 <input type="text" name="fname" id="fname" class="form-control col-md-9" style="padding:15px;margin-left: 60px" placeholder=" First Name..." required>
                   </div><br>
                   <div class="row">
-                 <input type="text" name="contact" id="contact" class="form-control col-md-9" style="padding:15px;margin-left: 60px" placeholder="Deliverer Number..." required>
+                 <input type="text" name="lname" id="lname" class="form-control col-md-9" style="padding:15px;margin-left: 60px" placeholder="Last Name..." required>
+                  </div><br>
+                  <div class="row">
+                 <input type="text" name="contact" id="contact" class="form-control col-md-9" style="padding:15px;margin-left: 60px" placeholder="Contact Number..." required>
+                  </div><br>
+                  <div class="row">
+                 <input type="text" name="staffId" id="staffId" class="form-control col-md-9" style="padding:15px;margin-left: 60px" placeholder="Staff Id..." required>
+                  </div><br>
+                  <div class="row">
+                 <input type="text" name="nationalId" id="nationalId" class="form-control col-md-9" style="padding:15px;margin-left: 60px" placeholder="National Id..." required>
+                  </div><br>
+                  <div class="row">
+                 <input type="text" name="yob" id="yob" class="form-control col-md-9" style="padding:15px;margin-left: 60px" placeholder="Year of Birth..." required>
+                  </div><br>
+                  <div class="row">
+                 <select id="gender" name="gender" class="form-control col-md-9" required style="margin-left: 60px">
+                                    <option value="">Gender</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                    <option value="other">Other</option>
+                                    </select>
+                  </div><br>
+                  <div class="row">
+                 <input type="text" name="salary" id="salary" class="form-control col-md-9" style="padding:15px;margin-left: 60px" placeholder="Salary..." required>
                   </div>
             </div>
             <div class="modal-footer">
@@ -101,7 +124,7 @@
       <h6 style="margin-left: 270px;">Total Number: <?php echo $deliverersrowcount; ?></h6>
         </div><br>
 
-        <table id="deliverersEditable" class="table table-striped table-hover paginate" style="display:block;height:737px;overflow-y:scroll;">
+        <table id="deliverersEditable" class="table table-striped table-hover paginate" style="display:block;overflow-y:scroll;">
   <thead class="thead-dark">
     <tr>
       <th scope="col" width="5%">#</th>
@@ -143,7 +166,7 @@
       <td class="uneditable" id="age<?php echo $count; ?>"><?php echo $age; ?></td>
       <td class="editable" id="salary<?php echo $count; ?>">Ksh. <?php echo $salary; ?></td>
        <td>
-        <button id="<?php echo $id; ?>" data_id="<?php echo $id; ?>" class="btn btn-danger btn-sm active deleteSupplier" role="button" aria-pressed="true" ><i class="fa fa-trash"></i>&ensp;Delete</button>
+        <button id="<?php echo $id; ?>" data_id="<?php echo $id; ?>" class="btn btn-danger btn-sm active deleteDeliverer" role="button" aria-pressed="true" ><i class="fa fa-trash"></i>&ensp;Delete</button>
        </td>
     </tr>
     <?php
