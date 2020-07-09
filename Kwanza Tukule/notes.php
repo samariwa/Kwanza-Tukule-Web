@@ -117,6 +117,7 @@
         $count = 0;
         foreach($publicNotes as $row){
          $count++;
+         $id = $row['id'];
          $title = $row['Title'];
          $name = $row['username'];
         $note = $row['Note'];
@@ -124,13 +125,37 @@
         $day = date( 'l, F d, Y h:i A', strtotime($date) );
         if ($_SESSION['user'] == $name) {
       ?>
-        <div class="card mb-3" style="max-width: 50rem;margin-left: 200px;">
+        <div class="card mb-3" id = "card<?php echo $id ?>" style="max-width: 50rem;margin-left: 200px;">
         <h5 class="card-header"><?php echo $title; ?></h5>
         <div class="card-body">
           <h5 class="card-title"><?php echo $name; ?></h5>
           <h6><?php echo $day; ?></h6>
           <p class="card-text"><?php echo $note; ?></p>
-          <a href="#" class="btn btn-primary"><i class="fa fa-edit"></i>&ensp;Edit</a><a href="#" class="btn btn-danger" style="margin-left: 580px"><i class="fa fa-trash"></i>&ensp;Delete</a>
+           <button data-toggle="modal" data-target="#exampleModalScrollable2" id="<?php echo $id; ?>" data_id="<?php echo $id; ?>" class="btn btn-primary" role="button" aria-pressed="true" ><i class="fa fa-edit"></i>&ensp;Edit</button>
+           <div class="modal fade" id="exampleModalScrollable2" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalScrollableTitle">Edit Note</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form method="POST">
+                 <div class="row">
+                 <input type="text" name="title" id="title<?php echo $id; ?>" class="form-control col-md-9" style="padding:15px;margin-left: 60px" value="<?php echo $title ?>" required>
+                  </div><br>
+                   <textarea type="text" name="body" id="body<?php echo $id; ?>" class="form-control col-md-9" style="padding:15px;margin-left: 60px"  required><?php echo $note ?></textarea>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary editPublicNote" style="margin-right: 50px" id="<?php echo $id; ?>">Done</button>
+            </form>
+            </div>
+          </div>
+        </div>
+      </div>
+          <button id="<?php echo $id; ?>" data_id="<?php echo $id; ?>" class="btn btn-danger deletePublicNote" role="button" aria-pressed="true" style="margin-left: 580px"><i class="fa fa-trash"></i>&ensp;Delete</button>
         </div>
         </div>
       <?php
@@ -156,6 +181,7 @@
         $count = 0;
         foreach($privateNotes as $row){
          $count++;
+         $id = $row['id'];
          $title = $row['Title'];
          $name = $row['username'];
         $note = $row['Note'];
@@ -167,7 +193,31 @@
         <div class="card-body">
           <h5 class="card-title"><?php echo $day; ?></h5>
           <p class="card-text"><?php echo $note; ?></p>
-          <a href="#" class="btn btn-primary"><i class="fa fa-edit"></i>&ensp;Edit</a><a href="#" class="btn btn-danger" style="margin-left: 580px"><i class="fa fa-trash"></i>&ensp;Delete</a>
+          <button data-toggle="modal" data-target="#exampleModalScrollable3" id="<?php echo $id; ?>" data_id="<?php echo $id; ?>" class="btn btn-primary" role="button" aria-pressed="true" ><i class="fa fa-edit"></i>&ensp;Edit</button>
+          <div class="modal fade" id="exampleModalScrollable3" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalScrollableTitle" style="color: grey;">Edit Note</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form method="POST">
+                 <div class="row">
+                 <input type="text" name="title" id="title<?php echo $id; ?>" class="form-control col-md-9" style="padding:15px;margin-left: 60px" value="<?php echo $title ?>" required>
+                  </div><br>
+                   <textarea type="text" name="body" id="body<?php echo $id; ?>" class="form-control col-md-9" style="padding:15px;margin-left: 60px"  required><?php echo $note ?></textarea>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary editPrivateNote" style="margin-right: 50px" id="<?php echo $id; ?>">Done</button>
+            </form>
+            </div>
+          </div>
+        </div>
+      </div>
+          <button id="<?php echo $id; ?>" data_id="<?php echo $id; ?>" class="btn btn-danger deletePrivateNote" role="button" aria-pressed="true" style="margin-left: 580px"><i class="fa fa-trash"></i>&ensp;Delete</button>
         </div>
         </div>
       <?php

@@ -756,6 +756,47 @@ $('#officeEditable').editableTableWidget();
     });
   });
 
+   $(document).ready(function(){
+    $('.deletePublicNote').click(function(){
+      var el = $(this);
+      var where = 'publicNote';
+      var id = el.attr("id");
+      bootbox.confirm('Do you really want to delete the selected note?',function(result)
+        {if(result){
+          $.post("delete.php",{id:id,where:where},
+        function(result){  
+            if(result == 1){
+              $(el).closest(`#card${id}`).css('background','silver');
+              $(el).closest(`#card${id}`).fadeOut(800,function(){
+                $(this).remove();
+              });
+            }
+        });
+      }});
+    });
+  });
+
+   $(document).ready(function(){
+    $('.deletePrivateNote').click(function(){
+      var el = $(this);
+      var where = 'privateNote';
+      var id = el.attr("id");
+      bootbox.confirm('Do you really want to delete the selected note?',function(result)
+        {if(result){
+          $.post("delete.php",{id:id,where:where},
+        function(result){  
+          alert(result);
+            if(result == 1){
+              $(el).closest(`#card${id}`).css('background','silver');
+              $(el).closest(`#card${id}`).fadeOut(800,function(){
+                $(this).remove();
+              });
+            }
+        });
+      }});
+    });
+  });
+
   $(document).ready(function(){
     $('.blacklistCustomer').click(function(){
       var el = $(this);
@@ -798,6 +839,42 @@ $('#officeEditable').editableTableWidget();
       }});
     });
   });
+
+  $(document).on('click','.editPublicNote',function(){
+        var where = 'publicNote';
+        var el = $(this);
+        var id = el.attr("id");
+        var title = $(`#title${id}`).val();
+        var body = $(`#body${id}`).val();
+        $.post("save.php",{id:id,title:title,body:body,where:where},
+        function(result){
+         });
+       });
+
+  $(document).on('click','.editPrivateNote',function(){
+        var where = 'privateNote';
+        var el = $(this);
+        var id = el.attr("id");
+        var title = $(`#title${id}`).val();
+        var body = $(`#body${id}`).val();
+        $.post("save.php",{id:id,title:title,body:body,where:where},
+        function(result){
+         });
+       });
+
+  $(document).on('click','.addPurchase',function(){
+        var where = 'purchase';
+        var el = $(this);
+        var id = el.attr("id");
+        var received = $(`#received${id}`).val();
+        var qty = $(`#qty${id}`).val();
+         var bp = $(`#bp${id}`).val();
+        var sp = $(`#sp${id}`).val();
+        var expiry = $(`#expiry${id}`).val();
+        $.post("save.php",{id:id,received:received,qty:qty,bp:bp,sp:sp,expiry:expiry,where:where},
+        function(result){
+         });
+       });
      </script>             
       </body>
 </html>

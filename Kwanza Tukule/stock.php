@@ -190,13 +190,33 @@
               </button>
             </div>
             <div class="modal-body">
-              
+              <form method="POST">
+                 <div class="row">
+                  <label for="expiry" style="margin-left: 60px;">Date Received:</label>
+                 <input type="date" name="received" id="received<?php echo $id; ?>" class="form-control col-md-9" style="padding:15px;margin-left: 60px" placeholder="Date Received..." required>
+                  </div><br>
+                  <div class="row">
+                 <input type="number" name="qty" id="qty<?php echo $id; ?>" class="form-control col-md-9" style="padding:15px;margin-left: 60px" placeholder="Quantity Purchased..." required min="1" oninput="validity.valid||(value='');">
+                  </div><br>
+                  <div class="row">
+                 <input type="number" name="bp" id="bp<?php echo $id; ?>" class="form-control col-md-9" style="padding:15px;margin-left: 60px" placeholder="Buying Price..." required min="0.01" step="0.01" oninput="validity.valid||(value='');">
+                  </div><br>
+                  <div class="row">
+                 <input type="number" name="sp" id="sp<?php echo $id; ?>" class="form-control col-md-9" style="padding:15px;margin-left: 60px" placeholder="Selling Price..." required min="0.01" step="0.01" oninput="validity.valid||(value='');">
+                  </div><br>
+                  <div class="row">
+                    <label for="expiry" style="margin-left: 60px;">Expiration Date:</label>
+                 <input type="date" name="expiry" id="expiry<?php echo $id; ?>" class="form-control col-md-9" style="padding:15px;margin-left: 60px" placeholder="Expiry Date..." required>
+                  </div>
             </div>
-            <div class="modal-footer">
+             <div class="modal-footer">
+              <button type="submit" class="btn btn-primary addPurchase" style="margin-right: 50px" id="<?php echo $id; ?>">Add Purchase</button>
+            </form>
             </div>
           </div>
         </div>
       </div>
+     </div>
         <button id="<?php echo $id; ?>" data_id="<?php echo $id; ?>" class="btn btn-danger btn-sm active deleteStock" role="button" aria-pressed="true" ><i class="fa fa-trash"></i>&ensp;Delete</button></td>
        </td>
     </tr>

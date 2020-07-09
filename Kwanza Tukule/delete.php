@@ -60,7 +60,21 @@ mysqli_query($connection,"Delete from `users` where id='".$id."'");
   else if($where == 'office' )
 {  
     $id =$_POST['id'];
-mysqli_query($connection,"Delete from `users` where id='".$id."'");
+   mysqli_query($connection,"Delete from `users` where id='".$id."'");
+    echo 1;
+    exit();
+ }
+ else if($where == 'publicNote' )
+{  
+    $id =$_POST['id'];
+   mysqli_query($connection,"Delete from `notes` where id='".$id."'");
+    echo 1;
+    exit();
+ }
+ else if($where == 'privateNote' )
+{  
+    $id =$_POST['id'];
+   mysqli_query($connection,"Delete from `notes` where id='".$id."'");
     echo 1;
     exit();
  }

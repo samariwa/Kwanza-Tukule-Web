@@ -81,4 +81,25 @@ elseif ($where == 'office') {
     $figure = str_replace("Ksh. ","",$salary);
 mysqli_query($connection,"UPDATE `users` SET `number` = '".$contact."',`staffID` = '".$staffId."',`nationalID` = '".$nationalId."',`salary` = '".$figure."' ,`Job_id` = '".$position."' WHERE `id` = '".$id."'")or die($connection->error);
 }
+elseif ($where == 'publicNote') {
+  $id = $_POST['id'];
+    $title = $_POST['title'];
+     $body = $_POST['body'];
+mysqli_query($connection,"UPDATE `notes` SET `Title` = '".$title."',`Note` = '".$body."' WHERE `id` = '".$id."'")or die($connection->error);
+}
+elseif ($where == 'privateNote') {
+  $id = $_POST['id'];
+    $title = $_POST['title'];
+     $body = $_POST['body'];
+mysqli_query($connection,"UPDATE `notes` SET `Title` = '".$title."',`Note` = '".$body."' WHERE `id` = '".$id."'")or die($connection->error);
+}
+elseif ($where == 'purchase') {
+  $id = $_POST['id'];
+    $received = $_POST['received'];
+     $qty = $_POST['qty'];
+     $bp = $_POST['bp'];
+     $sp = $_POST['sp'];
+     $expiry = $_POST['expiry'];
+mysqli_query($connection,"UPDATE `notes` SET `Title` = '".$title."',`Note` = '".$body."' WHERE `id` = '".$id."'")or die($connection->error);
+}
  ?>

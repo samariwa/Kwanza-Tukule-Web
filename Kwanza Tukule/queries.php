@@ -12,6 +12,6 @@ $officeStaffList = mysqli_query($connection,"SELECT users.id as id,firstname,las
 $deliverersStaffList = mysqli_query($connection,"SELECT * FROM users where Job_id = '5'")or die($connection->error);
 $cooksStaffList = mysqli_query($connection,"SELECT * FROM users where Job_id = '6'")or die($connection->error);
 $shelfLife = mysqli_query($connection,"SELECT stock_flow.id as id,Name,stock.Quantity as Qty,stock_flow.Received_date as Received_date,stock_flow.Expiry_date as Expiry_date,max(stock_flow.Created_at) FROM stock_flow inner join stock on stock_flow.Stock_id = stock.id group by Stock_id")or die($connection->error);
-$publicNotes = mysqli_query($connection,"SELECT username,Title,Note, notes.Created_at as Created_at FROM notes inner join users on notes.User_id = users.id where Public = '1' order by notes.id DESC LIMIT 5")or die($connection->error);
-$privateNotes = mysqli_query($connection,"SELECT username,Title,Note, notes.Created_at as Created_at FROM notes inner join users on notes.User_id = users.id where Public = '0' order by notes.id DESC LIMIT 8")or die($connection->error);
+$publicNotes = mysqli_query($connection,"SELECT notes.id as id,username,Title,Note, notes.Created_at as Created_at FROM notes inner join users on notes.User_id = users.id where Public = '1' order by notes.id DESC LIMIT 5")or die($connection->error);
+$privateNotes = mysqli_query($connection,"SELECT notes.id as id,username,Title,Note, notes.Created_at as Created_at FROM notes inner join users on notes.User_id = users.id where Public = '0' order by notes.id DESC LIMIT 8")or die($connection->error);
  ?>
