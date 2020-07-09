@@ -299,7 +299,7 @@ if (isset($_SESSION['logged_in'])) {
               </div>
             </li>
              <div class="topbar-divider d-none d-sm-block"></div>
-             <li class="nav-item dropdown" >
+             <li class="nav-item dropdown open" >
               <a class="nav-link " style="color: grey;" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
 
                 <i class="fa fa-user"></i>&ensp;

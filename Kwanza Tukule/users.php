@@ -67,9 +67,7 @@
               </div>
             </div>
           </div>
-         <div class="row">
-          <a href="dashboard.php" class="btn btn-primary btn-md active" role="button" aria-pressed="true" style="margin-left: 30px;"><i class="fa fa-arrow-left"></i>&ensp;Back</a>
-        </div><br>
+        <br>
          <div class="row" style="margin-left: 50px">
            <h2>Users</h2>
            <?php
@@ -115,7 +113,7 @@
                 echo "<img src='assets/img/offIcon.png' height='15' width='15' style='margin-top:0px;'>&emsp;" . $name . "&emsp;Last Seen: Yesterday $time<br/><br/>";    
                }else if(($activity == 0) && ($day == $today)){
                 echo "<img src='assets/img/offIcon.png' height='15' width='15' style='margin-top:0px;'>&emsp;" . $name . "&emsp;Last Seen: $time<br/><br/>"; 
-               }else{
+               }else if(($activity == 0) && ($day != $yesterday) && ($day != $today)){
                 echo "<img src='assets/img/offIcon.png' height='15' width='15' style='margin-top:0px;'>&emsp;" . $name . "&emsp;Last Seen: $date<br/><br/>"; 
                }
              }
