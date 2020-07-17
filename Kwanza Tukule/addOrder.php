@@ -123,7 +123,7 @@
  </tbody>
     <tfoot>
       <th scope="row" colspan="5"><b>Total:</b></th>
-      <td id="cartTotal"></td>
+      <td id="cartTotal">0.00</td>
     </tfoot>
 </table>
 </div><br>

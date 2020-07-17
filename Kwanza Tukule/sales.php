@@ -1,3 +1,4 @@
+
 <?php
  include "admin_nav.php";
  include('queries.php');
@@ -10,7 +11,7 @@
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Dashboard <span style="font-size: 18px;">/Sales</span></h1>
                         <h6 style="margin-right: -760px;">Time: <span id="time"></span></h6>
-            <a href="categories.php" class="btn btn-light btn-md active" role="button" aria-pressed="true" style="margin-left: 220px;"><i class="fa fa-print"></i>&ensp;Print</a>
+            <button class="btn btn-light btn-md active printSales" role="button" aria-pressed="true" style="margin-left: 220px;"><i class="fa fa-print"></i>&ensp;Print</button>
           </div>
 
           <!-- Content Row -->
@@ -70,13 +71,13 @@
           </div>
       <div class="row">
       <a href="addOrder.php" class="btn btn-success btn-md active" role="button" aria-pressed="true" style="margin-left: 25px;"><i class="fa fa-plus-circle"></i>&ensp;New Order</a>
-      <a href="blacklisted.php" class="btn btn-warning btn-md active" role="button" aria-pressed="true" style="margin-left: 25px;">Goods Distribution</a>
+      <a href="distribution.php" class="btn btn-warning btn-md active" role="button" aria-pressed="true" style="margin-left: 25px;">Goods Distribution</a>
       <?php
         $ordersrowcount = mysqli_num_rows($salesList);
       ?>
       <h6 style="margin-left: 130px;">Total Number: <?php echo $ordersrowcount; ?></h6>
-      <a href="blacklisted.php" class="btn btn-dark btn-md active" role="button" aria-pressed="true" style="margin-left: 130px;">Gate Pass</a>
-      <a href="blacklisted.php" class="btn btn-info btn-md active" role="button" aria-pressed="true" style="margin-left: 25px;">Returned Goods</a>
+      <a href="gatePass.php" class="btn btn-dark btn-md active" role="button" aria-pressed="true" style="margin-left: 130px;">Gate Pass</a>
+      <a href="returned.php" class="btn btn-info btn-md active" role="button" aria-pressed="true" style="margin-left: 25px;">Returned Goods</a>
     </div><br>    
     <table id="salesEditable" class="table table-striped table-hover table-responsive  paginate" style="display:block;overflow-x:scroll;overflow-y:scroll;">
       <caption>Sales Done Today</caption>
@@ -84,10 +85,10 @@
     <tr>
       <th scope="col" width="5%">#</th>
       <th scope="col" width="5%">Name</th>
-      <th scope="col" width="5%">Contact No.</th>
-      <th scope="col" width="5%">Product</th>
+      <th scope="col" width="10%">Contact No.</th>
+      <th scope="col" width="20%">Product</th>
       <th scope="col"width="5%">Quantity</th>
-      <th scope="col"width="5%">Price</th>
+      <th scope="col"width="5%">Cost</th>
       <th scope="col"width="5%">C/F/Debt</th>
       <th scope="col"width="5%">MPesa</th>
       <th scope="col"width="5%">Cash</th>
@@ -98,7 +99,7 @@
       <th scope="col"width="5%">Banked</th>
       <th scope="col"width="5%">Slip No.</th>
       <th scope="col"width="5%">Banked By</th>
-      <th scope="col"width="10%"></th>
+      <th scope="col"width="30%"></th>
     </tr>
   </thead>
   <tbody >
@@ -117,7 +118,7 @@
         $mpesa = $row['MPesa'];
         $cash = $row['Cash'];
         $fine = $row['Fine'];
-        $balance = $row['Balance'];
+        $balance = ($mpesa + $cash) + $debt - $cost + $fine;
         $delivery_date = $row['Late_Order'];
         $returned = $row['Returned'];
         $banked = $row['Banked'];
@@ -141,8 +142,10 @@
       <td class="editable" id="banked<?php echo $count; ?>"><?php echo $banked; ?></td>
       <td class="editable" id="slip<?php echo $count; ?>"><?php echo $slip; ?></td>
       <td class="editable" id="banker<?php echo $count; ?>"><?php echo $banked_by; ?></td>
-       <td><a href="#" class="btn btn-dark btn-sm active" role="button" aria-pressed="true">Fine</a>
-       <a href="#" class="btn btn-danger btn-sm active" role="button" aria-pressed="true" ><i class="fa fa-trash"></i>&ensp;Delete</a></td>
+       <td>
+         <button id="<?php echo $id; ?>" data_id="<?php echo $id; ?>" class="btn btn-dark btn-sm active fineCustomer" role="button" aria-pressed="true" >Fine</button>
+          <button id="<?php echo $id; ?>" data_id="<?php echo $id; ?>" class="btn btn-danger btn-sm active deleteOrder" role="button" aria-pressed="true" ><i class="fa fa-trash"></i>&ensp;Delete</button>
+       </td>
     </tr>
     <?php
     }

@@ -174,14 +174,14 @@ setTime();
            $.post("search.php",{productName:productName,where:where},
             function(result){var data = $.parseJSON(result);
               var Quantity = data[0].Quantity;
-              if (productQty >= Quantity) {
-                alert("Quantity of Product ordered is currently unavailable.");
-              }
-              else{
+               if (productQty < Quantity) {
             var productDetails = "";
             var id = data[0].id;
               var Price = data[0].Price;
                 var Total = Price * productQty;
+                var initial = $('#cartTotal').html();
+                var Cost = +initial + +Total;
+                $('#cartTotal').html(Cost);
                 productDetails += "<tr>";
                 productDetails += `<th id="id${id}" class='uneditable'>${id}</th>`;
                 productDetails += `<td id="productName${id}" class='uneditable'>${productName}</td>`;
@@ -192,6 +192,9 @@ setTime();
                 productDetails += "</tr>";
                 $("#cartData").append(productDetails);
               }
+              else{
+                alert("Quantity of Product ordered is currently unavailable.");
+              }
             });
         });
       });
@@ -199,9 +202,11 @@ setTime();
 
    function deleteCart(){
     var el = $(this);
+    var id = el.attr("id");
+    alert(`#id${id}`);
       bootbox.confirm('Do you really want to remove the seleted item from the cart?',function(result)
         {if(result){
-              $(el).closest('tr').css('background','lime');
+              $(el).closest('tr').css('background','tomato');
               $(el).closest('tr').fadeOut(800,function(){
                 $(this).remove();
 
@@ -209,6 +214,26 @@ setTime();
   }
  });
   }
+
+         $(document).ready(function(){
+        $('.completeOrder').click(function(){
+            alert("Weeb");
+        });
+      });
+
+       $(document).ready(function(){
+        $('.fineCustomer').click(function(){
+          var el = $(this);
+          var id = el.attr("id");
+              var where = 'fine';
+              $.post("save.php",{id:id,where:where},
+              function(result){
+                if (result == 0) {
+                  alert("Customer has positive balance. Action not allowed.");
+                }
+              });
+        });
+      });   
 
 
    $('#cartEditable').editableTableWidget();
@@ -875,6 +900,80 @@ $('#officeEditable').editableTableWidget();
         function(result){
          });
        });
+
+ $(document).on('click','.printCustomers',function(){
+                $.ajax({
+                    url: 'customersPrint.php',
+                    type: 'get',
+                    dataType: 'html',
+                    success:function(data) {
+                        var mywindow = window.open('', 'Kwanza Tukule', 'height=400,width=600');
+                        mywindow.document.write('<html><head><title></title>');
+                        mywindow.document.write('</head><body>');
+                        mywindow.document.write(data);
+                        mywindow.document.write('</body></html>');
+                        mywindow.document.close();
+                        mywindow.focus();
+                        mywindow.print();
+                        mywindow.close();
+
+                    }
+        });
+    });
+
+ $(document).on('click','.printSales',function(){
+                $.ajax({
+                    url: 'salesPrint.php',
+                    type: 'get',
+                    dataType: 'html',
+                    success:function(data) {
+                        var mywindow = window.open('', 'Kwanza Tukule', 'height=400,width=600');
+                        mywindow.document.write('<html><head><title></title>');
+                        mywindow.document.write('</head><body>');
+                        mywindow.document.write(data);
+                        mywindow.document.write('</body></html>');
+                        mywindow.document.close();
+                        mywindow.focus();
+                        mywindow.print();
+                        mywindow.close();
+
+                    }
+        });
+    });
+
+  $(document).on('click','.printGatePass',function(){
+         var deliverer = $(`#deliverer`).val();
+        var time = $(`#gatePassTime`).val();
+        $.post("gatePassPDF.php",{deliverer:deliverer,time:time},
+        function(result){ var mywindow = window.open('', 'Kwanza Tukule', 'height=400,width=600');
+                        mywindow.document.write('<html><head><title></title>');
+                        mywindow.document.write('</head><body>');
+                        mywindow.document.write(result);
+                        mywindow.document.write('</body></html>');
+                        mywindow.document.close();
+                        mywindow.focus();
+                        mywindow.print();
+                        mywindow.close();
+         });
+       });
+
+  $(document).on('click','.printDistribution',function(){
+         var deliverer = $(`#deliverer`).val();
+        var time = $(`#distributionTime`).val();
+        $.post("distributionPDF.php",{deliverer:deliverer,time:time},
+        function(result){
+           var mywindow = window.open('', 'Kwanza Tukule', 'height=400,width=600');
+                        mywindow.document.write('<html><head><title></title>');
+                        mywindow.document.write('</head><body>');
+                        mywindow.document.write(result);
+                        mywindow.document.write('</body></html>');
+                        mywindow.document.close();
+                        mywindow.focus();
+                        mywindow.print();
+                        mywindow.close();
+         });
+       });
+
      </script>             
       </body>
 </html>

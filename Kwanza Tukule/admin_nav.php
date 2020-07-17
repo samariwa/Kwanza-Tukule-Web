@@ -312,7 +312,7 @@ if (isset($_SESSION['logged_in'])) {
                 <div class="dropdown-divider"></div>
 
 
-                <a class="dropdown-item" href="logout.php"><i class="bx bx-exit"></i>&ensp;Logout</a>
+                <a class="dropdown-item" href="logout.php"><i class="fa fa-sign-out"></i>&ensp;Logout</a>
               </div>
             </li>
               <?php

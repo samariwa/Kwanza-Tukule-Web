@@ -131,12 +131,12 @@
       <th scope="col" width="5%">#</th>
       <th scope="col" width="18%">Name</th>
       <th scope="col" width="13%">Contact</th>
-      <th scope="col" width="10%">Gender</th>
+      <th scope="col" width="8%">Gender</th>
       <th scope="col" width="10%">Staff ID</th>
       <th scope="col" width="13%">National ID</th>
        <th scope="col" width="8%">Age</th>
         <th scope="col" width="13%">Salary</th>
-      <th scope="col"width="30%"></th>
+      <th scope="col"width="32%"></th>
     </tr>
   </thead>
   <tbody >
@@ -167,7 +167,7 @@
       <td class="uneditable" id="age<?php echo $count; ?>"><?php echo $age; ?></td>
       <td class="editable" id="salary<?php echo $count; ?>">Ksh. <?php echo $salary; ?></td>
        <td>
-        <button id="<?php echo $id; ?>" data_id="<?php echo $id; ?>" class="btn btn-danger btn-sm active deleteCook" role="button" aria-pressed="true" ><i class="fa fa-trash"></i>&ensp;Delete</button>
+        <button id="<?php echo $id; ?>" data_id="<?php echo $id; ?>" class="btn btn-danger btn-sm active deleteCook" role="button" aria-pressed="true" ><i class="fa fa-user-times"></i>&ensp;Delete</button>
        </td>
     </tr>
     <?php

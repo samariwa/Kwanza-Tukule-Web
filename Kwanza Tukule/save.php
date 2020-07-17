@@ -40,8 +40,36 @@ $date = $_POST['date'];
 $banked = $_POST['banked'];
 $slip = $_POST['slip'];
 $banker = $_POST['banker'];
+$result1 = mysqli_query($connection,"SELECT Quantity FROM orders where `id` = '".$id."'")or die($connection->error);
+    $row = mysqli_fetch_array($result1);
+    $Quantity = $row['Quantity'];
+    if ($qty < $Quantity) {
+      $Returned = $Quantity - $qty;
+      mysqli_query($connection,"UPDATE `orders`  SET `Quantity` = '".$qty."',`MPesa` = '".$mpesa."',`Cash` = '".$cash."',`Late_Order` = '".$date."',`Returned` = '".$Returned."',`Banked` = '".$banked."',`Slip_Number` = '".$slip."',`Banked_By` = '".$banker."' WHERE `id` = '".$id."'")or die($connection->error);
+    }
+    else{
 mysqli_query($connection,"UPDATE `orders`  SET `Quantity` = '".$qty."',`MPesa` = '".$mpesa."',`Cash` = '".$cash."',`Late_Order` = '".$date."',`Banked` = '".$banked."',`Slip_Number` = '".$slip."',`Banked_By` = '".$banker."' WHERE `id` = '".$id."'")or die($connection->error);
-}elseif ($where == 'suppliers') {
+}
+}
+elseif ($where == 'fine') {
+  $id = $_POST['id'];
+$result1 = mysqli_query($connection,"SELECT Balance FROM orders where `id` = '".$id."'")or die($connection->error);
+    $row = mysqli_fetch_array($result1);
+    $Balance = $row['Balance'];
+    if ($Balance <= -500) {
+      $Fine = -100;
+      $new_balance = $Balance + $Fine;
+      mysqli_query($connection,"UPDATE `orders`  SET `Fine` = '".$Fine."',`Balance` = '".$new_balance."' WHERE `id` = '".$id."'")or die($connection->error);
+    }
+    else if ($Balance > -500 && $Balance < 0){
+      $Fine = 0.10 * $Balance;
+      $new_balance = $Balance + $Fine;
+mysqli_query($connection,"UPDATE `orders`  SET `Fine` = '".$Fine."',`Balance` = '".$new_balance."' WHERE `id` = '".$id."'")or die($connection->error);}
+   else if ($Balance >= 0){
+    echo 0;
+   }
+}
+elseif ($where == 'suppliers') {
   $id = $_POST['id'];
     $contact = $_POST['contact'];
 mysqli_query($connection,"UPDATE `suppliers` SET `Supplier_contact` = '".$contact."' WHERE `id` = '".$id."'")or die($connection->error);

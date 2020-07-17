@@ -10,7 +10,7 @@
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Dashboard <span style="font-size: 18px;">/Customers</span></h1>
             <h6 style="margin-right: -500px;">Time: <span id="time"></span></h6>
-             <a href="#" class="btn btn-light btn-md active" role="button" aria-pressed="true" ><i class="fa fa-print"></i>&ensp;Print</a>
+             <button class="btn btn-light btn-md active printCustomers" role="button" aria-pressed="true" ><i class="fa fa-print"></i>&ensp;Print</button>
           </div>
          
           <!-- Content Row -->
@@ -92,7 +92,19 @@
                  <input type="text" name="number" id= "number"class="form-control col-md-9" required style="padding:15px;margin-left: 60px" placeholder="Contact Number...">
                   </div><br>
                  <div class="row">
-                 <input type="text" name="deliverer" id= "deliverer" class="form-control col-md-9" required  style="padding:15px;margin-left: 60px" placeholder="Deliverer...">
+                 <select type="text" name="deliverer" id="deliverer" class="form-control col-md-9" style="padding-right:15px;padding-left:15px;margin-left: 60px" required onfocus='this.size=3;' onblur='this.size=1;' onchange='this.size=1; this.blur();' required>
+                  <option value="" selected="selected" disabled>Deliverer...</option>
+                  <?php
+                    $count = 0;
+                    foreach($deliverersStaffList as $row){
+                     $count++;
+                    $driver = $row['firstname'];
+                  ?>
+                   <option value="<?php echo $driver; ?>"><?php echo $driver; ?></option>
+                  <?php
+                    }
+                  ?>
+                 </select>
                   </div>
             </div>
             <div class="modal-footer">
