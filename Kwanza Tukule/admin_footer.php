@@ -265,13 +265,14 @@ setTime();
 
        function fineCustomer(idx){
            var id = idx;
+           var balance = $(`#balance${id}`).text();
               var where = 'fine';
-              $.post("save.php",{id:id,where:where},
+              $.post("save.php",{id:id,balance:balance,where:where},
               function(result){
-                if (result == 0) {
-                  alert("Customer has positive balance. Action not allowed.");
+                if (result == "positive") {
+                  alert("Customer has no negative balance. Action not allowed.");
                 }
-                if (result == exists) {
+                if (result == "exists") {
                   alert("Customer has already been fined. Action not allowed.");
                 }
               });

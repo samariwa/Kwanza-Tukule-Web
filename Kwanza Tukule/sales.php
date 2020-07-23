@@ -259,7 +259,7 @@
       <td class="editable" id="mpesa<?php echo $count; ?>"><?php echo $mpesa; ?></td>
       <td class="editable" id="cash<?php echo $count; ?>"><?php echo $cash; ?></td>
       <td class="uneditable" id="fine<?php echo $count; ?>"><?php echo $fine; ?></td>
-      <td class="uneditable" id="balance<?php echo $count; ?>"><?php echo $balance; ?></td>
+      <td class="uneditable" id="balance<?php echo $id; ?>"><?php echo $balance; ?></td>
       <td class="editable" id="date<?php echo $count; ?>"><?php echo $delivery_date; ?></td>
       <td class="uneditable" id="returned<?php echo $count; ?>"><?php echo $returned; ?></td>
       <td class="editable" id="banked<?php echo $count; ?>"><?php echo $banked; ?></td>
