@@ -1,5 +1,6 @@
 <?php
  include "admin_nav.php";
+  include('queries.php');
  ?> 
         <!-- Begin Page Content -->
         <div class="container-fluid">
@@ -9,7 +10,10 @@
             <h1 class="h3 mb-0 text-gray-800">Dashboard <span style="font-size: 18px;">/Sales </span><span style="font-size: 15px;">/New Order</span></h1>
          <h6 style="margin-right: 30px;">Time: <span id="time"></span></h6>
           </div>
+           <?php
+       if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO') {
 
+        ?>
           <!-- Content Row -->
           <div class="row">
 
@@ -65,11 +69,181 @@
               </div>
             </div>
           </div>
+            <?php
+              }else{
+           ?>
+             <div class="row">
+
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="col-xl-4 col-md-6 mb-4">
+              <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <a class="text-xs font-weight-bold text-primary text-uppercase mb-1" href="customers.php" style="text-decoration: none;"><i class="fa fa-users fa-2x"></i>&emsp;Customers</a> 
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="col-xl-4 col-md-6 mb-4">
+              <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <a class="text-xs font-weight-bold text-success text-uppercase mb-1" href="stock.php" style="text-decoration: none;"><i class="fa fa-cubes fa-2x"></i>&emsp;Stock</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="col-xl-4 col-md-6 mb-4">
+              <div class="card border-left-info shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <a class="text-xs font-weight-bold text-info text-uppercase mb-1" href="#" style="text-decoration: none;"><i class="fa fa-shopping-cart fa-2x"></i>&emsp;Sales</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+            <?php
+          }
+        ?>
         <div class="row">
           <a href="sales.php" class="btn btn-primary btn-md active" role="button" aria-pressed="true" style="margin-left: 30px;"><i class="fa fa-arrow-left"></i>&ensp;Back</a>
         </div><br>
         <form method="POST">
+
+         <table id="customerOrderSearch" class="table table-striped table-hover" style="display:block;overflow-y:scroll;text-align: center;">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col" width="5%">Select</th>
+      <th scope="col" width="3%">#</th>
+      <th scope="col" width="14%">Name</th>
+      <th scope="col" width="12%">Location</th>
+      <th scope="col" width="17%">Contact Number</th>
+      <th scope="col" width="10%">Deliverer</th>
+      <th scope="col"width="10%">Note</th>
+    </tr>
+  </thead>
+  <tbody >
+    <?php
+        $count = 0;
+        foreach($customersList as $row){
+         $count++;
+         $id = $row['id'];
+         $name = $row['Name'];
+        $location = $row['Location'];
+        $number = $row['Number'];
+        $deliverer = $row['Deliverer'];
+        $note = $row['Note'];
+      ?>
+    <tr>
+      <td ><input type="radio" id='selectedCustomer' name="selectedCustomer" value="<?php echo $id; ?>"></td>
+      <th scope="row" class="uneditable" id="id<?php echo $count; ?>"><?php echo $id; ?></th>
+      <td  class="editable" id="name<?php echo $count; ?>"><?php echo $name; ?></td>
+      <td class="editable" id="location<?php echo $count; ?>"><?php echo $location; ?></td>
+      <td class="editable" id="number<?php echo $count; ?>"><?php echo $number; ?></td>
+      <td class="editable" id="deliverer<?php echo $count; ?>"><?php echo $deliverer; ?></td>
+      <td class="editable"id="note<?php echo $count; ?>"><?php echo $note; ?></td>
+    </tr>
+    <?php
+    }
+    ?>
+  </tbody>
+</table><br>
+
+
+       <table id="productOrderSearch" class="table table-striped table-hover" style="display:block;overflow-y:scroll;text-align: center;">
+  <thead class="thead-dark">
+    <tr >
+      <th scope="col" width="5%">#</th>
+      <th scope="col" width="15%">Category</th>
+      <th scope="col" width="30%">Stock Name</th>
+      <th scope="col"width="15%">Selling Price</th>
+      <th scope="col"width="18%">Quantity Available</th>
+       <th scope="col"width="18%"></th>
+  </thead>
+  <tbody >
+    <?php
+        $count = 0;
+        foreach($stockList as $row){
+         $count++;
+         $id = $row['id'];
+        $category = $row['Category_Name'];
+        $name = $row['Name'];
+        $selling_price = $row['Selling_Price'];
+        $quantity = $row['Quantity'];
+      ?>
+    <tr>
+      <th scope="row" id="id<?php echo $id; ?>"><?php echo $id; ?></th>
+      <td id="category<?php echo $id; ?>"><?php echo $category; ?></td>
+      <td id="name<?php echo $id; ?>"><?php echo $name; ?></td>
+      <td id="sp<?php echo $id; ?>"><?php echo $selling_price; ?></td>
+      <td id="qty<?php echo $id; ?>"><?php echo $quantity; ?></td>
+      <td><button type="button" class="btn btn-warning addToCart" onclick="cartArray(<?php echo $id; ?>)" id="<?php echo $id; ?>" data_id="<?php echo $id; ?>"><i class="fa fa-cart-plus" ></i>&emsp;Add To Cart</button></td>
+   </tr>
+    <?php
+    }
+    ?>
+  </tbody>
+</table><br>
+
+        
+        <h3>Cart</h3>
         <div class="row">
+        <table class="table table-bordered" id="cartEditable">
+  <thead>
+    <tr style="text-align: center;">
+      <th scope="col" width="5%">#</th>
+      <th scope="col" width="40%">Product Description</th>
+      <th scope="col" width="10%">Unit Price</th>
+      <th scope="col" width="10%">Quantity</th>
+      <th scope="col" width="11%"></th>
+      <th scope="col" width="15%">Sub-Total</th>
+    </tr>
+  </thead>
+  <tbody id="cartData">
+    <tr style="text-align: center;">
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td><button onclick="deleteCart()" type='button' class='btn btn-danger btn-sm deleteFromCart' id="deleteFromCart${id}"><i class='fa fa-times-circle'></i>&ensp;Remove</button></td>
+    <td>Ksh.</td>
+  </tr>
+ </tbody>
+    <tfoot>
+      <th scope="row" colspan="5"><b>Total:</b></th>
+      <td id="cartTotal"style="text-align: center;">Ksh.</td>
+    </tfoot>
+</table>
+</div><br>
+<div class="row" id="customerDetails">
+  
+</div><br>
+    <div class="row">
+           <div class="input-group mb-3" style="margin-left: 270px;">
+          <div class="input-group-prepend" >
+           <span class="input-group-text" id="inputGroup-sizing-default">Date of Delivery:</span>
+           </div>
+         <input type="date" class="form-control col-md-5" required aria-label="Default" aria-describedby="inputGroup-sizing-default" style="font-family: FontAwesome, Arial; font-style: normal;"  name="deliveryDate" id="deliveryDate">
+       </div>
+        </div><br>
+
+          <div class="row">
+          <button type="button" class="btn btn-success col-md-4 completeOrder" style="margin-left: 320px"><i class="fa fa-check"></i>&emsp;Complete Order</button>
+        </div><br>
+
+             <div class="row">
           <div class="input-group mb-3" style="margin-left: 250px;">
           <div class="input-group-prepend" >
            <span class="input-group-text" id="inputGroup-sizing-default">Customer #:</span>
@@ -80,15 +254,8 @@
 
        </div>
         </div><br>
-          <div class="row">
-           <div class="input-group mb-3" style="margin-left: 270px;">
-          <div class="input-group-prepend" >
-           <span class="input-group-text" id="inputGroup-sizing-default">Date of Delivery:</span>
-           </div>
-         <input type="date" class="form-control col-md-5" required aria-label="Default" aria-describedby="inputGroup-sizing-default" style="font-family: FontAwesome, Arial; font-style: normal;"  name="deliveryDate" id="deliveryDate">
-       </div>
-        </div><br>
-        <div class="row">
+
+               <div class="row">
           <div class="input-group mb-3" style="margin-left: 160px;">
           <div class="input-group-prepend" >
            <span class="input-group-text" id="inputGroup-sizing-default">Product:</span>
@@ -103,36 +270,12 @@
          
        </div>
         </div><br>
+
         <div class="row">
-          <button type="button" class="btn btn-success col-md-4 addToCart" style="margin-left: 320px"><i class="fa fa-cart-plus" id="addToCart"></i>&emsp;Add to Cart</button>
+          <button type="button" class="btn btn-success col-md-4 " style="margin-left: 320px"><i class="fa fa-cart-plus" id="addToCart"></i>&emsp;Add to Cart</button>
         </div><br>
-        <h3>Cart</h3>
-        <div class="row">
-        <table class="table table-bordered" id="cartEditable">
-  <thead>
-    <tr>
-      <th scope="col" width="5%">#</th>
-      <th scope="col" width="40%">Product Description</th>
-      <th scope="col" width="10%">Unit Price</th>
-      <th scope="col" width="10%">Quantity</th>
-      <th scope="col" width="10%"></th>
-      <th scope="col" width="15%">Sub-Total</th>
-    </tr>
-  </thead>
-  <tbody id="cartData">
- </tbody>
-    <tfoot>
-      <th scope="row" colspan="5"><b>Total:</b></th>
-      <td id="cartTotal">0.00</td>
-    </tfoot>
-</table>
-</div><br>
-<div class="row" id="customerDetails">
-  
-</div><br>
-<div class="row">
-          <button type="button" class="btn btn-success col-md-4 completeOrder" style="margin-left: 320px"><i class="fa fa-check"></i>&emsp;Complete Order</button>
-        </div><br>
+
+ 
         </form>
   <!-- Scroll to Top Button-->
   <?php include "admin_footer.php" ?> 

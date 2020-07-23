@@ -55,6 +55,33 @@ setTime();
          });
 
        });
+
+   $(document).ready(function(){
+         $("#customerOrderSearch").DataTable({
+          "ordering": false,
+          "pageLength": 5,
+          "lengthChange": false,
+          "info": false,
+           "oLanguage": {
+            "sSearch": "<i class='fa fa-search'></i>&ensp;Customer Search:",
+            "sZeroRecords": "Customer Not Found"
+          }
+         });
+       });
+
+    $(document).ready(function(){
+         $("#productOrderSearch").DataTable({
+          "ordering": false,
+          "pageLength": 5,
+          "lengthChange": false,
+          "info": false,
+           "oLanguage": {
+          "sSearch": "<i class='fa fa-search'></i>&ensp;Product Search:",
+          "sZeroRecords": "Product Not Found"
+        }
+         });
+       });
+
        $(document).ready(function(){
             $('#customerSearch').keyup(function(){
             var txt = $('#customerSearch').val();
@@ -164,17 +191,19 @@ setTime();
           }
        });
 
-    
+
 
        $(document).ready(function(){
-        $('.addToCart').click(function(){
+        $('#addToCart').click(function(){
            var productName = $('#productSearch').val();
            var productQty = $('#orderQty').val();
            var where = 'cart';
            $.post("search.php",{productName:productName,where:where},
             function(result){var data = $.parseJSON(result);
               var Quantity = data[0].Quantity;
-               if (productQty < Quantity) {
+              alert(Quantity);
+              alert(productQty);
+               if (productQty > Quantity) {
             var productDetails = "";
             var id = data[0].id;
               var Price = data[0].Price;
@@ -199,6 +228,17 @@ setTime();
         });
       });
 
+       var cartItems = new Array();
+       function cartArray(Id){
+          var id = Id;
+          var productId = $(`#id${id}`).text();
+          var productName = $(`#name${id}`).text();
+          var productPrice = $(`#sp${id}`).text();
+          var quantity = '1';
+           cartItems.push([productId,productName, productPrice,quantity]);
+               alert(cartItems);
+       };
+
 
    function deleteCart(){
     var el = $(this);
@@ -221,19 +261,21 @@ setTime();
         });
       });
 
-       $(document).ready(function(){
-        $('.fineCustomer').click(function(){
-          var el = $(this);
-          var id = el.attr("id");
+
+
+       function fineCustomer(idx){
+           var id = idx;
               var where = 'fine';
               $.post("save.php",{id:id,where:where},
               function(result){
                 if (result == 0) {
                   alert("Customer has positive balance. Action not allowed.");
                 }
+                if (result == exists) {
+                  alert("Customer has already been fined. Action not allowed.");
+                }
               });
-        });
-      });   
+       }
 
 
    $('#cartEditable').editableTableWidget();
@@ -896,7 +938,7 @@ $('#officeEditable').editableTableWidget();
          var bp = $(`#bp${id}`).val();
         var sp = $(`#sp${id}`).val();
         var expiry = $(`#expiry${id}`).val();
-        $.post("save.php",{id:id,received:received,qty:qty,bp:bp,sp:sp,expiry:expiry,where:where},
+        $.post("add.php",{id:id,received:received,qty:qty,bp:bp,sp:sp,expiry:expiry,where:where},
         function(result){
          });
        });
@@ -973,6 +1015,7 @@ $('#officeEditable').editableTableWidget();
                         mywindow.close();
          });
        });
+
 
      </script>             
       </body>

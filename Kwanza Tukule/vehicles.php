@@ -122,7 +122,7 @@
       <h6 style="margin-left: 270px;">Total Number: <?php echo $vehiclesrowcount; ?></h6>
         </div><br>
 
-        <table id="vehiclesEditable" class="table table-striped table-hover paginate" style="display:block;overflow-y:scroll;">
+        <table id="vehiclesEditable" class="table table-striped table-hover paginate" style="display:block;overflow-y:scroll;text-align: center;">
   <thead class="thead-dark">
     <tr>
       <th scope="col" width="10%">#</th>
@@ -148,8 +148,8 @@
       <td class="uneditable" id="reg<?php echo $count; ?>"><?php echo $reg; ?></td>
       <td class="editable" id="route<?php echo $count; ?>"><?php echo $route; ?></td>
        <td>
-        <button data-toggle="modal" data-target="#exampleModalScrollable2" id="<?php echo $id; ?>" data_id="<?php echo $id; ?>" class="btn btn-warning btn-sm active viewVehicle" role="button" aria-pressed="true" ><i class="fa fa-eye"></i>&ensp;View Details</button>
-        <div class="modal fade" id="exampleModalScrollable2" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+        <button data-toggle="modal" data-target="#exampleModalScrollable<?php echo $id?>" id="<?php echo $id; ?>" data_id="<?php echo $id; ?>" class="btn btn-warning btn-sm active viewVehicle" role="button" aria-pressed="true" ><i class="fa fa-eye"></i>&ensp;View Details</button>
+        <div class="modal fade" id="exampleModalScrollable<?php echo $id?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">

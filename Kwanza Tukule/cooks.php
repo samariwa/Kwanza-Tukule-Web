@@ -125,7 +125,7 @@
       <h6 style="margin-left: 270px;">Total Number: <?php echo $cooksrowcount; ?></h6>
         </div><br>
 
-        <table id="cooksEditable" class="table table-striped table-hover paginate" style="display:block;overflow-y:scroll;">
+        <table id="cooksEditable" class="table table-striped table-hover paginate" style="display:block;overflow-y:scroll;text-align: center;">
   <thead class="thead-dark">
     <tr>
       <th scope="col" width="5%">#</th>

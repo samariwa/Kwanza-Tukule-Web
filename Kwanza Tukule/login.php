@@ -108,6 +108,10 @@ if ((isset($_POST["pass"])) && (isset($_POST["user"])) && ($_SESSION['logged_in'
     $user = sanitize($_POST["user"]);
     $pass = sanitize($_POST["pass"]);
     $_SESSION['user'] = $user;
+    $roleSession = mysqli_query($connection,"SELECT jobs.Name as Name FROM `users` inner join jobs on users.Job_id = jobs.id WHERE `username`='$user'");
+        $row5 = mysqli_fetch_array($roleSession);
+        $role = $row5['Name'];      
+         $_SESSION['role'] = $role;
 //validate username
     if (!($fetch = mysqli_fetch_array(mysqli_query($connection,"SELECT `username` FROM `users` WHERE `username`='$user'")))) {
 
@@ -333,6 +337,7 @@ if (($loginattempts_username > 4) && ($registered == TRUE)) {
 
         session_regenerate_id();
 
+       
 //Finally store user unique signature in the session
 //and set logged_in to TRUE as well as start activity time
 

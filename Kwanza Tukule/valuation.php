@@ -70,7 +70,70 @@
 
           <div class="row">
       <a href="stock.php" class="btn btn-primary btn-md active" role="button" aria-pressed="true" style="margin-left: 30px;"><i class="fa fa-arrow-left"></i>&ensp;Back</a>
-    </div>
+    </div><br>
+    <div class="row"> <h6 style="margin-left: 100px;">The default valuation is done from today backwards. Purchase records shown are as at the end of day yesterday.</h6></div><br>
+    <?php
+     $yesterday1 = date('d/m/Y',strtotime('-2 day'));
+     $yesterday2 = date('d/m/Y',strtotime('-3 day'));
+     $yesterday3 = date('d/m/Y',strtotime('-4 day'));
+    ?>
+    <table  class="table table-striped table-hover paginate" style="display:block;overflow-y:scroll;text-align: center;">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col" width="3%">#</th>
+      <th scope="col" width="14%">Brand Name</th>
+      <th scope="col" width="10%"><?php echo $yesterday3; ?></th>
+      <th scope="col" width="10%"><?php echo $yesterday2; ?></th>
+      <th scope="col" width="10%"><?php echo $yesterday1; ?></th>
+      <th scope="col"width="10%">Yesterday</th>
+      <th scope="col"width="10%">Today</th>
+      <th scope="col"width="10%">Opening Stock</th>
+      <th scope="col"width="10%">Purchases</th>
+      <th scope="col"width="10%">Closing Stock</th>
+      <th scope="col"width="10%">Selling Price</th>
+      <th scope="col"width="10%">Buying Price</th>
+      <th scope="col"width="10%">Stock Value</th>
+    </tr>
+  </thead>
+  <tbody >
+    <?php
+        $count = 0;
+        foreach($valuationQuery as $row){
+         $count++;
+         $id = $row['sid'];
+         $name = $row['sname'];
+        $sum1 = $row['sum1'];
+        $sum2 = $row['sum2'];
+        $sum3 = $row['sum3'];
+        $sum4 = $row['sum4'];
+        $sum5 = $row['sum5'];
+        $opening = $row['Opening_stock'];
+        $purchase = $row['purchased'];
+        $closing = $row['Quantity'];
+        $sp = $row['Selling_Price'];
+        $bp = $row['Buying_price'];
+        $value = $bp * $closing;
+      ?>
+    <tr>
+      <th scope="row"><?php echo $id; ?></th>
+      <td ><?php echo $name; ?></td>
+      <td ><?php echo $sum1; ?></td>
+      <td ><?php echo $sum2; ?></td>
+      <td ><?php echo $sum3; ?></td>
+      <td ><?php echo $sum4; ?></td>
+      <td ><?php echo $sum5; ?></td>
+      <td ><?php echo $opening; ?></td>
+      <td ><?php echo $purchase; ?></td>
+      <td ><?php echo $closing; ?></td>
+      <td ><?php echo $sp; ?></td>
+      <td ><?php echo $bp; ?></td>
+      <td ><?php echo $value; ?></td>
+    </tr>
+    <?php
+    }
+    ?>
+  </tbody>
+</table>
         
 
   <!-- Scroll to Top Button-->

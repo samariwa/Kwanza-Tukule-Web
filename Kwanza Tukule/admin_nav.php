@@ -2,6 +2,7 @@
 session_start();
 require('config.php');
 require('functions.php');
+$view = $_SESSION['role'];
 if (isset($_SESSION['logged_in'])) {
   if ($_SESSION['logged_in'] == TRUE) {
 //valid user has logged-in to the website
@@ -108,6 +109,10 @@ if (isset($_SESSION['logged_in'])) {
         Interface
       </div>
       <br>
+      <?php
+       if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO') {
+
+        ?>
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">&emsp;
         <a style="color: black;" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo" >
@@ -122,6 +127,8 @@ if (isset($_SESSION['logged_in'])) {
         </div>
       </li>
        <br>
+       
+         
       <!-- Nav Item - Utilities Collapse Menu -->
       <li class="nav-item">&emsp;
         <a style="color: black;"href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
@@ -138,6 +145,7 @@ if (isset($_SESSION['logged_in'])) {
         </div>
       </li>
       <br>
+      
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">&emsp;
         <a style="color: black;" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
@@ -184,16 +192,9 @@ if (isset($_SESSION['logged_in'])) {
       </li>
 
        <br>
+       
 
-      <li class="nav-item">&emsp;
-        <a style="color: black;" href="users.php">
-           <i class="fa fa-user"></i>
-          <span>Users</span></a>
-      </li>
-
-      <br>
-
-      <li class="nav-item">&emsp;
+        <li class="nav-item">&emsp;
         <a style="color: black;" href="vehicles.php">
           <i class="bx bxs-truck"></i>
           <span>Delivery Trucks</span></a>
@@ -206,7 +207,19 @@ if (isset($_SESSION['logged_in'])) {
           <span>Suppliers</span></a>
       </li>
 
+
       <br>
+      <li class="nav-item">&emsp;
+        <a style="color: black;" href="#">
+           <i class="fa fa-blogger-b"></i>
+          <span>Public Blogs</span></a>
+      </li>     
+ 
+      <br>
+
+      <?php
+       }
+       ?>     
 
       <li class="nav-item">&emsp;
         <a style="color: black;" href="notes.php">
@@ -215,12 +228,12 @@ if (isset($_SESSION['logged_in'])) {
       </li>
      
       <br>
-
       <li class="nav-item">&emsp;
-        <a style="color: black;" href="#">
-           <i class="fa fa-blogger-b"></i>
-          <span>Public Blogs</span></a>
+        <a style="color: black;" href="users.php">
+           <i class="fa fa-user"></i>
+          <span>Users</span></a>
       </li>
+      
     
     </ul>
     <!-- End of Sidebar -->

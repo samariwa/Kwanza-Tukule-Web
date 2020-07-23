@@ -165,4 +165,14 @@ else if ($where == 'note') {
                  $id = $result['id'];
                   mysqli_query($connection,"INSERT INTO `notes` (`User_id`,`Title`,`Note`,`Public`) VALUES ('$id','$title','$message','$access')") or die(mysqli_error($connection));
 }
+elseif ($where == 'purchase') {
+  $id = $_POST['id'];
+    $received = $_POST['received'];
+     $qty = $_POST['qty'];
+     $bp = $_POST['bp'];
+     $sp = $_POST['sp'];
+     $expiry = $_POST['expiry'];
+     mysqli_query($connection,"INSERT INTO `stock_flow` (`Stock_id`,`Buying_price`,`Selling_Price`,`Received_date`,`Purchased`,`Expiry_date`) VALUES ('$id','$bp','$sp','$received','$qty','$expiry')") or die(mysqli_error($connection));
+mysqli_query($connection,"UPDATE `stock` SET `Quantity` = Quantity + '".$qty."' WHERE `id` = '".$id."'")or die($connection->error);
+}
  ?>
