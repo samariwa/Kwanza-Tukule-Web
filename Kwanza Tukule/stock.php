@@ -273,8 +273,8 @@
 
         ?>
        <td>  
-        <button data-toggle="modal" data-target="#exampleModalScrollable2" id="<?php echo $id; ?>" data_id="<?php echo $id; ?>" class="btn btn-light btn-sm active addPurchase" role="button" aria-pressed="true" ><i class="fa fa-plus"></i>&ensp;Add Purchase</button>
-        <div class="modal fade" id="exampleModalScrollable2" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+        <button data-toggle="modal" data-target="#exampleModalScrollable<?php echo $id; ?>" id="<?php echo $id; ?>" data_id="<?php echo $id; ?>" class="btn btn-light btn-sm active addPurchase" role="button" aria-pressed="true" ><i class="fa fa-plus"></i>&ensp;Add Purchase</button>
+        <div class="modal fade" id="exampleModalScrollable<?php echo $id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">

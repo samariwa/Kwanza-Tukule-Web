@@ -167,5 +167,28 @@ elseif ($where == 'privateNote') {
      $body = $_POST['body'];
 mysqli_query($connection,"UPDATE `notes` SET `Title` = '".$title."',`Note` = '".$body."' WHERE `id` = '".$id."'")or die($connection->error);
 }
-
+elseif ($where == 'expenseHeading') {
+  $id = $_POST['id'];
+    $name = $_POST['name'];
+mysqli_query($connection,"UPDATE `expenses` SET `Name` = '".$name."' WHERE `id` = '".$id."'")or die($connection->error);
+}
+elseif ($where == 'expense') {
+  $id = $_POST['id'];
+    $party = $_POST['party'];
+     $total = $_POST['total'];
+     $paid = $_POST['paid'];
+     $due = $_POST['due'];
+     $date = $_POST['date'];
+mysqli_query($connection,"UPDATE `expense_details` SET `Party` = '".$party."',`Total_amount` = '".$total."',`Paid_amount` = '".$paid."',`Due_amount` = '".$due."',`Payment_date` = '".$date."' WHERE `id` = '".$id."'")or die($connection->error);
+}
+elseif ($where == 'calendar') {
+   if(isset($_POST["id"]))
+{
+  $id =$_POST["id"];
+   $title = $_POST["title"];
+  $start_event = $_POST["start"];
+  $end_event = $_POST["end"];
+  mysqli_query($connection,"UPDATE event SET title='$title', start_event='$start_event', end_event='$end_event' WHERE id='$id'")or die($connection->error);
+}
+}
  ?>

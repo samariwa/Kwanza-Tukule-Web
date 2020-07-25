@@ -1,17 +1,16 @@
 <?php
  include "admin_nav.php";
- include('queries.php');
+include('queries.php');
  ?> 
-
-        <!-- Begin Page Content -->
+ <!-- Begin Page Content -->
         <div class="container-fluid">
 
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Dashboard <span style="font-size: 18px;">/Stock</span><span style="font-size: 15px;"> /Stock Shelf Life</span></h1>
+            <h1 class="h3 mb-0 text-gray-800">Dashboard <span style="font-size: 18px;">/Calendar</span></h1>
            <h6 style="margin-right: 30px;">Time: <span id="time"></span></h6>
           </div>
-           <?php
+          <?php
        if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO') {
 
         ?>
@@ -37,7 +36,7 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <a class="text-xs font-weight-bold text-success text-uppercase mb-1" href="#" style="text-decoration: none;"><i class="fa fa-cubes fa-2x"></i>&emsp;Stock</a>
+                      <a class="text-xs font-weight-bold text-success text-uppercase mb-1" href="stock.php" style="text-decoration: none;"><i class="fa fa-cubes fa-2x"></i>&emsp;Stock</a>
                     </div>
                   </div>
                 </div>
@@ -94,7 +93,7 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <a class="text-xs font-weight-bold text-success text-uppercase mb-1" href="#" style="text-decoration: none;"><i class="fa fa-cubes fa-2x"></i>&emsp;Stock</a>
+                      <a class="text-xs font-weight-bold text-success text-uppercase mb-1" href="stock.php" style="text-decoration: none;"><i class="fa fa-cubes fa-2x"></i>&emsp;Stock</a>
                     </div>
                   </div>
                 </div>
@@ -118,50 +117,136 @@
             <?php
           }
         ?>
-          <div class="row">
-      <a href="stock.php" class="btn btn-primary btn-md active" role="button" aria-pressed="true" style="margin-left: 30px;"><i class="fa fa-arrow-left"></i>&ensp;Back</a>
-    </div><br>
-     
-     <table  class="table table-striped table-hover paginate" style="display:block;overflow-y:scroll;text-align: center;">
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col" width="10%">Batch #</th>
-      <th scope="col" width="30%">Stock Name</th>
-      <th scope="col"width="20%">Date Received</th>
-      <th scope="col"width="20%">Quantity Remaining</th>
-      <th scope="col"width="20%">Expiry Date</th>
-    </tr>
-  </thead>
-  <tbody >
-    <?php
-        $count = 0;
-        foreach($shelfLife as $row){
-         $count++;
-         $id = $row['id'];
-        $name = $row['Name'];
-        $received = $row['Received_date'];
-        $expiry = $row['Expiry_date'];
-        $remaining = $row['Qty'];
-        $receivedDate = date("d/m/Y", strtotime($received));
-        $expiryDate = date("d/m/Y", strtotime($expiry));
-     /*    $vehicle = mysqli_fetch_array($vehiclesList);
-                  $Driver = $vehicle['driver'];
-        if (condition) {
-          # code...
-        }*/
-      ?>
-    <tr>
-      <th scope="row"  id="id<?php echo $count; ?>"><?php echo $id; ?></th>
-      <td  id="name<?php echo $count; ?>"><?php echo $name; ?></td>
-      <td  id="received<?php echo $count; ?>"><?php echo $receivedDate; ?></td>
-       <td  id="remaining<?php echo $count; ?>"><?php echo $remaining; ?></td>
-      <td  id="expiry<?php echo $count; ?>"><?php echo $expiryDate; ?></td>
-    </tr>
-    <?php
-    }
-    ?>
-  </tbody>
-</table>   
+  <br />
+  <div class="container">
+   <div id="calendar"></div>
+  </div>
+ <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+          <hr/>
+        <p class="text-center">&copy; 2020 - Kwanza Tukule Foods Ltd. All Rights Reserved.</p>  
+         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+ <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+          <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+           <script type="text/javascript" src="bootbox/bootbox.min.js"></script> 
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+ <script>
+  function setTime() {
+var d = new Date(),
+  el = document.getElementById("time");
 
-  <!-- Scroll to Top Button-->
-  <?php include "admin_footer.php" ?> 
+  el.innerHTML = formatAMPM(d);
+
+setTimeout(setTime, 1000);
+}
+
+function formatAMPM(date) {
+  var hours = date.getHours(),
+    minutes = date.getMinutes(),
+    seconds = date.getSeconds(),
+    ampm = hours >= 12 ? 'pm' : 'am';
+  hours = hours % 12;
+  hours = hours ? hours : 12; // the hour '0' should be '12'
+  minutes = minutes < 10 ? '0'+minutes : minutes;
+  var strTime = hours + ':' + minutes + ':' + seconds + ' ' + ampm;
+  return strTime;
+}
+
+setTime();
+   
+  $(document).ready(function() {
+   var calendar = $('#calendar').fullCalendar({
+    editable:true,
+    timeZone: 'EAT',
+    header:{
+     left:'prev,next today',
+     center:'title',
+     right:'month,agendaWeek,agendaDay'
+    },
+    events: 'load.php',
+    selectable:true,
+    selectHelper:true,
+    select: function(start, end, allDay)
+    {
+     var title = prompt("Enter Event Title");
+     if(title)
+     {
+      var start = $.fullCalendar.formatDate(start, "Y-MM-DD HH:mm:ss");
+      var end = $.fullCalendar.formatDate(end, "Y-MM-DD HH:mm:ss");
+      var where = 'calendar';
+      $.ajax({
+       url:"add.php",
+       type:"POST",
+       data:{title:title, start:start, end:end, where:where},
+       success:function()
+       {
+        calendar.fullCalendar('refetchEvents');
+        alert("Added Successfully");
+       }
+      })
+     }
+    },
+    editable:true,
+    eventResize:function(event)
+    {
+     var start = $.fullCalendar.formatDate(event.start, "Y-MM-DD HH:mm:ss");
+     var end = $.fullCalendar.formatDate(event.end, "Y-MM-DD HH:mm:ss");
+     var title = event.title;
+     var id = event.id;
+     var where = 'calendar';
+     $.ajax({
+      url:"save.php",
+      type:"POST",
+      data:{title:title, start:start, end:end, id:id, where:where},
+      success:function(){
+       calendar.fullCalendar('refetchEvents');
+       alert('Event Updated');
+      }
+     })
+    },
+
+    eventDrop:function(event)
+    {
+     var start = $.fullCalendar.formatDate(event.start, "Y-MM-DD HH:mm:ss");
+     var end = $.fullCalendar.formatDate(event.end, "Y-MM-DD HH:mm:ss");
+     var title = event.title;
+     var id = event.id;
+     var where = 'calendar';
+     $.ajax({
+      url:"save.php",
+      type:"POST",
+      data:{title:title, start:start, end:end, id:id, where:where},
+      success:function()
+      {
+       calendar.fullCalendar('refetchEvents');
+       alert("Event Updated");
+      }
+     });
+    },
+
+    eventClick:function(event)
+    {
+     if(confirm("Are you sure you want to remove it?"))
+     {
+      var id = event.id;
+      var where = 'calendar';
+      $.ajax({
+       url:"delete.php",
+       type:"POST",
+       data:{id:id, where:where},
+       success:function()
+       {
+        calendar.fullCalendar('refetchEvents');
+        alert("Event Removed");
+       }
+      })
+     }
+    },
+
+   });
+  });
+   
+  </script>
+        </body>
+</html>

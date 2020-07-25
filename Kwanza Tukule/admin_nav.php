@@ -68,7 +68,13 @@ if (isset($_SESSION['logged_in'])) {
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <!--Datatables-->
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.21/datatables.min.css"/>
-
+<!--Calendar-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script>
 <!-- MDBootstrap Datatables  -->
 <link href="css/addons/datatables.min.css" rel="stylesheet">
 <!-- MDBootstrap Datatables  -->
@@ -115,34 +121,16 @@ if (isset($_SESSION['logged_in'])) {
         ?>
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">&emsp;
-        <a style="color: black;" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo" >
-          <span>Expenses</span>
-        </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Company Expenses:</h6>
-            <a class="collapse-item" href="#">Automobile Servicing</a>
-            <a class="collapse-item" href="#">Gas Cylinder Purchase</a>
-          </div>
-        </div>
+        <a style="color: black;" href="expenses.php">
+          <span>Expenses</span></a>
       </li>
-       <br>
+      <br>
        
          
       <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item">&emsp;
-        <a style="color: black;"href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-          <span>Liabilities</span>
-        </a>
-        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Company Liabilities:</h6>
-            <a class="collapse-item" href="#">Electricity Bill</a>
-            <a class="collapse-item" href="#">Gas Bill</a>
-            <a class="collapse-item" href="#">Water Bill</a>
-            <a class="collapse-item" href="#">Service Charge</a>
-          </div>
-        </div>
+       <li class="nav-item">&emsp;
+        <a style="color: black;" href="liabilities.php">
+          <span>Liabilities</span></a>
       </li>
       <br>
       
@@ -219,7 +207,15 @@ if (isset($_SESSION['logged_in'])) {
 
       <?php
        }
-       ?>     
+       ?>  
+
+        <li class="nav-item">&emsp;
+        <a style="color: black;" href="calendar.php">
+           <i class="fa fa-calendar"></i>
+          <span>Calendar</span></a>
+      </li>
+     
+      <br>   
 
       <li class="nav-item">&emsp;
         <a style="color: black;" href="notes.php">

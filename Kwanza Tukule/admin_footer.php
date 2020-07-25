@@ -278,6 +278,24 @@ setTime();
               });
        }
 
+       function deleteOrder(idx){
+        var id = idx;
+        var cost = $(`#cost${id}`).text();
+        var where = 'order';
+            bootbox.confirm('Do you really want to delete the selected order?',function(result)
+        {if(result){
+          $.post("delete.php",{id:id,cost:cost,where:where},
+        function(result){  
+            if(result == 1){
+              $(el).closest('tr').css('background','tomato');
+              $(el).closest('tr').fadeOut(800,function(){
+                $(this).remove();
+              });
+            }
+        });
+      }});
+       }
+
 
    $('#cartEditable').editableTableWidget();
   $('#cartEditable td.uneditable').on('change', function(evt, newValue) {
@@ -451,6 +469,36 @@ $('#officeEditable').editableTableWidget();
   function(result){});
 }); 
 
+   $('#expenseHeadingEditable').editableTableWidget();
+  $('#expenseHeadingEditable td.uneditable').on('change', function(evt, newValue) {
+  return false;
+});
+  $('#expenseHeadingEditable td').on('change', function(evt, newValue) {
+   var rowx = parseInt(evt.target._DT_CellIndex.row)+1;
+  var id = $(`#id${rowx}`).text();
+  var name = $(`#name${rowx}`).text();
+  var where = 'expenseHeading';
+  $.post("save.php",{id:id,name:name,where:where},
+  function(result){});
+}); 
+
+  $('#expensesEditable').editableTableWidget();
+  $('#expensesEditable td.uneditable').on('change', function(evt, newValue) {
+  return false;
+});
+  $('#expensesEditable td').on('change', function(evt, newValue) {
+   var rowx = parseInt(evt.target._DT_CellIndex.row)+1;
+  var id = $(`#id${rowx}`).text();
+  var party = $(`#party${rowx}`).text();
+   var total = $(`#total${rowx}`).text();
+    var paid = $(`#paid${rowx}`).text();
+     var due = total - paid;
+     var date = $(`#date${rowx}`).text();
+  var where = 'expense';
+  $.post("save.php",{id:id,party:party,total:total,paid:paid,due:due,date:date,where:where},
+  function(result){});
+}); 
+
   $(document).on('click','#addCustomer',function(){
         var name = $('#name').val();
         var number = $('#number').val();
@@ -564,6 +612,40 @@ $('#officeEditable').editableTableWidget();
          }
           else if (result == 'exists') {
           alert('Vehicle Already Exists');
+         }
+          else{
+          alert("Something went wrong");
+         }
+         });
+       });
+
+  $(document).on('click','#addExpense',function(){
+        var heading = $('#heading').val();
+         var party = $('#party').val();
+         var total = $('#total').val();
+         var paid = $('#paid').val();
+         var due = total - paid;
+         var date = $('#date').val();
+        var where = 'expense';
+        $.post("add.php",{heading:heading,party:party,total:total,paid:paid,due:due,date:date,where:where},
+        function(result){
+         if (result == 'success') {
+          alert('Expense Added Successfully');
+         }
+          else{
+          alert("Something went wrong");
+         }
+         });
+       });
+
+  $(document).on('click','#addExpenseHeading',function(){
+        var heading = $('#heading').val();
+        var where = 'expenseHeading';
+        $.post("add.php",{heading:heading,where:where},
+        function(result){
+          alert(result);
+         if (result == 'success') {
+          alert('Expense Heading Added Successfully');
          }
           else{
           alert("Something went wrong");
@@ -703,6 +785,47 @@ $('#officeEditable').editableTableWidget();
       }});
     });
   });
+
+  $(document).ready(function(){
+    $('.deleteExpenseHeading').click(function(){
+      var el = $(this);
+      var where = 'expenseHeading';
+      var id = el.attr("id");
+      bootbox.confirm('Do you really want to delete the selected expense heading?',function(result)
+        {if(result){
+          $.post("delete.php",{id:id,where:where},
+        function(result){  
+            if(result == 1){
+              $(el).closest('tr').css('background','tomato');
+              $(el).closest('tr').fadeOut(800,function(){
+                $(this).remove();
+              });
+            }
+        });
+      }});
+    });
+  });
+
+  $(document).ready(function(){
+    $('.deleteExpense').click(function(){
+      var el = $(this);
+      var where = 'expense';
+      var id = el.attr("id");
+      bootbox.confirm('Do you really want to delete the selected expense?',function(result)
+        {if(result){
+          $.post("delete.php",{id:id,where:where},
+        function(result){  
+            if(result == 1){
+              $(el).closest('tr').css('background','tomato');
+              $(el).closest('tr').fadeOut(800,function(){
+                $(this).remove();
+              });
+            }
+        });
+      }});
+    });
+  });
+
 
   $(document).ready(function(){
     $('.deleteCategory').click(function(){
@@ -934,6 +1057,7 @@ $('#officeEditable').editableTableWidget();
         var where = 'purchase';
         var el = $(this);
         var id = el.attr("id");
+        alert(id);
         var received = $(`#received${id}`).val();
         var qty = $(`#qty${id}`).val();
          var bp = $(`#bp${id}`).val();
@@ -941,6 +1065,7 @@ $('#officeEditable').editableTableWidget();
         var expiry = $(`#expiry${id}`).val();
         $.post("add.php",{id:id,received:received,qty:qty,bp:bp,sp:sp,expiry:expiry,where:where},
         function(result){
+
          });
        });
 
@@ -1017,6 +1142,7 @@ $('#officeEditable').editableTableWidget();
          });
        });
 
+  
 
      </script>             
       </body>

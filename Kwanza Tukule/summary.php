@@ -115,7 +115,13 @@
         else{
           $bankedYesterday = "0.00";
         }
-        $fixedExpenditure = "1242.00"
+         $row7 = mysqli_fetch_array($expenditureYesterday);
+        if ( $row6['Banked_yesterday'] > "0") {
+        $expenditureYesterday = $row7['paid'];
+        }
+        else{
+          $expenditureYesterday = "0.00";
+        }
         ?>
         <div class="row" style="margin-left: 50px;"><h5>Summary for <?php echo $yesterday; ?></h5> </div><br>
         <div class="row" style="margin-left: 50px;">
@@ -140,7 +146,7 @@
             <h6>Total Banked: Ksh. <?php echo $bankedYesterday; ?></h6>
         </div><br>
         <div class="row" style="margin-left: 50px;">
-            <h6>Average Fixed Expenditure: Ksh. <?php echo $fixedExpenditure; ?></h6>
+            <h6>Expenditure: Ksh. <?php echo $expenditureYesterday; ?></h6>
         </div><br>
         
         

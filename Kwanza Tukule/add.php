@@ -175,4 +175,35 @@ elseif ($where == 'purchase') {
      mysqli_query($connection,"INSERT INTO `stock_flow` (`Stock_id`,`Buying_price`,`Selling_Price`,`Received_date`,`Purchased`,`Expiry_date`) VALUES ('$id','$bp','$sp','$received','$qty','$expiry')") or die(mysqli_error($connection));
 mysqli_query($connection,"UPDATE `stock` SET `Quantity` = Quantity + '".$qty."' WHERE `id` = '".$id."'")or die($connection->error);
 }
+elseif ($where == 'calendar') {
+  if(isset($_POST["title"]))
+{
+  $title = $_POST["title"];
+  $start_event = $_POST["start"];
+  $end_event = $_POST["end"];
+  $user = $_SESSION['user'];
+   $userId = mysqli_query($connection,"SELECT id  FROM `users` WHERE username = '$user'")or die($connection->error);
+   $value = mysqli_fetch_array($userId);
+   $userID = $value['id'];
+  mysqli_query($connection,"INSERT INTO event (title,User_id, start_event, end_event) VALUES ('$title','$userID', '$start_event', '$end_event')") or die(mysqli_error($connection));
+}
+}
+elseif ($where == 'expense') {
+  $name = $_POST['heading'];
+    $party = $_POST['party'];
+     $total = $_POST['total'];
+     $paid = $_POST['paid'];
+     $due = $_POST['due'];
+     $date = $_POST['date'];
+     $expenseId = mysqli_query($connection,"SELECT id  FROM `expenses` WHERE Name = '$name'")or die($connection->error);
+   $value = mysqli_fetch_array($expenseId);
+   $id = $value['id'];
+   echo "success";
+     mysqli_query($connection,"INSERT INTO `expense_details` (`Expense_id`,`Party`,`Total_amount`,`Paid_amount`,`Due_amount`,`Payment_date`) VALUES ('$id','$party','$total','$paid','$due','$date')") or die(mysqli_error($connection));     
+}
+elseif ($where == 'expenseHeading') {
+  $name = $_POST['heading'];
+  echo "success";
+     mysqli_query($connection,"INSERT INTO `expenses` (`Name`) VALUES ('$name')") or die(mysqli_error($connection));      
+}
  ?>

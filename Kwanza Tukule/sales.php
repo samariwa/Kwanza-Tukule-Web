@@ -250,7 +250,7 @@
       <td class="uneditable" id="number<?php echo $count; ?>"><?php echo $contact; ?></td>
       <td class="uneditable" id="product<?php echo $count; ?>"><?php echo $product; ?></td>
       <td class="editable" id="qty<?php echo $count; ?>"><?php echo $qty; ?></td>
-      <td class="uneditable" id="cost<?php echo $count; ?>"><?php echo $cost; ?></td>
+      <td class="uneditable" id="cost<?php echo $id; ?>"><?php echo $cost; ?></td>
       <td class="uneditable" id="debt<?php echo $count; ?>"><?php echo $debt; ?></td>
        <?php
        if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO') {
@@ -271,7 +271,7 @@
        if ($view == 'Software'  || $view == 'CEO') {
 
         ?>
-          <button id="<?php echo $id; ?>" data_id="<?php echo $id; ?>" class="btn btn-danger btn-sm active deleteOrder" role="button" aria-pressed="true" ><i class="fa fa-trash"></i>&ensp;Delete</button>
+          <button id="<?php echo $id; ?>" data_id="<?php echo $id; ?>" class="btn btn-danger btn-sm active deleteOrder" role="button" aria-pressed="true" onclick="deleteOrder(<?php echo $id; ?>)"><i class="fa fa-trash"></i>&ensp;Delete</button>
           <?php
           }
           ?>

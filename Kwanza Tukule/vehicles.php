@@ -90,9 +90,8 @@
                  <select type="text" name="driver" id="driver" class="form-control col-md-9" style="padding-right:15px;padding-left:15px;margin-left: 60px" required onfocus='this.size=3;' onblur='this.size=1;' onchange='this.size=1; this.blur();' required>
                   <option value="" selected="selected" disabled>Vehicle Driver...</option>
                   <?php
-                  $query = mysqli_query($connection,"SELECT * FROM users where Job_id = '5'")or die($connection->error);
                     $count = 0;
-                    foreach($query as $row){
+                    foreach($deliverersStaffList as $row){
                      $count++;
                     $driver = $row['firstname'];
                   ?>
