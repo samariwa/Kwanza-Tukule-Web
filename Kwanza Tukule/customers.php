@@ -177,16 +177,16 @@
     <tr>
       <th scope="col" width="3%">#</th>
       <th scope="col" width="14%">Name</th>
-      <th scope="col" width="12%">Location</th>
+      <th scope="col" width="10%">Location</th>
       <th scope="col" width="17%">Contact Number</th>
-      <th scope="col" width="10%">Deliverer</th>
+      <th scope="col" width="8%">Deliverer</th>
       <th scope="col"width="10%">Status</th>
       <th scope="col"width="10%">Note</th>
        <?php
        if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO') {
 
         ?>
-      <th scope="col"width="20%"></th>
+      <th scope="col"width="22%"></th>
       <?php
         }
         ?>
