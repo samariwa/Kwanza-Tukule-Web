@@ -83,7 +83,6 @@ if (isset($_SESSION['logged_in'])) {
  <link rel="stylesheet" href="admin.css"/>
 </head>    
 <body id="page-top">
-
   <!-- Page Wrapper -->
   <div id="wrapper">
 
@@ -157,7 +156,7 @@ if (isset($_SESSION['logged_in'])) {
           <span>Charts</span></a>
       </li>
        <br>
-      
+<!--       
       <li class="nav-item">&emsp;
         <a style="color: black;" href="#">
           <i class="fa fa-fw fa-table"></i>
@@ -172,7 +171,7 @@ if (isset($_SESSION['logged_in'])) {
       </li>
 
        <br>
-      
+     
       <li class="nav-item">&emsp;
         <a style="color: black;" href="#">
           <i class="fa fa-flag-checkered"></i>
@@ -181,7 +180,7 @@ if (isset($_SESSION['logged_in'])) {
 
        <br>
        
-
+-->
         <li class="nav-item">&emsp;
         <a style="color: black;" href="vehicles.php">
           <i class="bx bxs-truck"></i>
@@ -192,17 +191,11 @@ if (isset($_SESSION['logged_in'])) {
 
       <li class="nav-item">&emsp;
         <a style="color: black;" href="suppliers.php">
+           <i class="fa fa-dolly-flatbed"></i>
           <span>Suppliers</span></a>
       </li>
 
 
-      <br>
-      <li class="nav-item">&emsp;
-        <a style="color: black;" href="#">
-           <i class="fa fa-blogger-b"></i>
-          <span>Public Blogs</span></a>
-      </li>     
- 
       <br>
 
       <?php

@@ -147,13 +147,13 @@
         $note = $row['Note'];
       ?>
     <tr>
-      <td ><input type="radio" id='selectedCustomer' name="selectedCustomer" value="<?php echo $id; ?>"></td>
-      <th scope="row" class="uneditable" id="id<?php echo $count; ?>"><?php echo $id; ?></th>
-      <td  class="editable" id="name<?php echo $count; ?>"><?php echo $name; ?></td>
-      <td class="editable" id="location<?php echo $count; ?>"><?php echo $location; ?></td>
-      <td class="editable" id="number<?php echo $count; ?>"><?php echo $number; ?></td>
-      <td class="editable" id="deliverer<?php echo $count; ?>"><?php echo $deliverer; ?></td>
-      <td class="editable"id="note<?php echo $count; ?>"><?php echo $note; ?></td>
+      <td ><input type="radio" id='selectedCustomer' onclick="selectCustomer(this);" name="selectedCustomer" value="<?php echo $id; ?>"></td>
+      <th scope="row" id="id<?php echo $id; ?>"><?php echo $id; ?></th>
+      <td id="customerName<?php echo $id; ?>"><?php echo $name; ?></td>
+      <td id="customerLocation<?php echo $id; ?>"><?php echo $location; ?></td>
+      <td id="customerNumber<?php echo $id; ?>"><?php echo $number; ?></td>
+      <td id="customerDeliverer<?php echo $id; ?>"><?php echo $deliverer; ?></td>
+      <td id="customerNote<?php echo $id; ?>"><?php echo $note; ?></td>
     </tr>
     <?php
     }
@@ -244,7 +244,7 @@
         </div><br>
 
              <div class="row">
-          <div class="input-group mb-3" style="margin-left: 250px;">
+          <div class="input-group mb-5" style="margin-left: 250px;">
           <div class="input-group-prepend" >
            <span class="input-group-text" id="inputGroup-sizing-default">Customer #:</span>
            </div>
