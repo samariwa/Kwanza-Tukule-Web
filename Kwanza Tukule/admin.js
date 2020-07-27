@@ -3,7 +3,7 @@ $(function() {
     $(function() {
         $(".preloader").fadeOut();
     });
-    
+
 function setTime() {
 var d = new Date(),
   el = document.getElementById("time");
@@ -111,6 +111,7 @@ setTime();
         }
          });
        });
+});      
 
        $(document).ready(function(){
             $('#customerSearch').keyup(function(){
@@ -1193,4 +1194,4 @@ $('#officeEditable').editableTableWidget();
          });
        });
 
-});  
+
