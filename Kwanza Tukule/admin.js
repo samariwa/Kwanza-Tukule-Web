@@ -1,3 +1,9 @@
+$(function() {
+    "use strict";
+    $(function() {
+        $(".preloader").fadeOut();
+    });
+    
 function setTime() {
 var d = new Date(),
   el = document.getElementById("time");
@@ -1187,4 +1193,4 @@ $('#officeEditable').editableTableWidget();
          });
        });
 
-  
+});  

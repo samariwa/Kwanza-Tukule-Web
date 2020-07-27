@@ -132,6 +132,11 @@ include('queries.php');
            <script type="text/javascript" src="bootbox/bootbox.min.js"></script> 
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
  <script>
+  $(function() {
+    "use strict";
+    $(function() {
+        $(".preloader").fadeOut();
+    });
   function setTime() {
 var d = new Date(),
   el = document.getElementById("time");
@@ -246,7 +251,7 @@ setTime();
 
    });
   });
-   
+});   
   </script>
         </body>
 </html>
