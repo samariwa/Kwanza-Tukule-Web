@@ -112,7 +112,7 @@ setTime();
          });
        });
 });      
-
+/*
        $(document).ready(function(){
             $('#customerSearch').keyup(function(){
             var txt = $('#customerSearch').val();
@@ -170,26 +170,7 @@ setTime();
        });
         });
 
-       function selectCustomer(selection) {
-        var id = selection.value;
-        var name = $(`#customerName${id}`).text();
-        var location = $(`#customerLocation${id}`).text();
-        var number = $(`#customerNumber${id}`).text();
-        var deliverer = $(`#customerDeliverer${id}`).text();
-        var customerDetails = "";
-        customerDetails += "<h5>Confirm Customer Details</h5>&emsp;&emsp;-";
-            customerDetails += "&emsp;&emsp;Name: ";
-            customerDetails += name;
-             customerDetails += "<br>&emsp;&emsp;&emsp;&emsp;&ensp;Location: ";
-            customerDetails += location;
-            customerDetails += "<br>&emsp;&emsp;&emsp;&emsp;&ensp;Contact: ";
-            customerDetails += number;
-             customerDetails += "<br>&emsp;&emsp;&emsp;&emsp;&ensp;Deliverer: ";
-            customerDetails += deliverer;
-            if ($('#customerDetails').html('')){
-            $("#customerDetails").append(customerDetails);
-          }
-}
+       
 
        $(document).ready(function(){
         var txt2 = $('#customerSearch').val();
@@ -279,6 +260,28 @@ setTime();
             });
         });
       });
+*/
+
+function selectCustomer(selection) {
+        var id = selection.value;
+        var name = $(`#customerName${id}`).text();
+        var location = $(`#customerLocation${id}`).text();
+        var number = $(`#customerNumber${id}`).text();
+        var deliverer = $(`#customerDeliverer${id}`).text();
+        var customerDetails = "";
+        customerDetails += "<h5>Confirm Customer Details</h5>&emsp;&emsp;-";
+            customerDetails += "&emsp;&emsp;Name: ";
+            customerDetails += name;
+             customerDetails += "<br>&emsp;&emsp;&emsp;&emsp;&ensp;Location: ";
+            customerDetails += location;
+            customerDetails += "<br>&emsp;&emsp;&emsp;&emsp;&ensp;Contact: ";
+            customerDetails += number;
+             customerDetails += "<br>&emsp;&emsp;&emsp;&emsp;&ensp;Deliverer: ";
+            customerDetails += deliverer;
+            if ($('#customerDetails').html('')){
+            $("#customerDetails").append(customerDetails);
+          }
+}
 
        var cartItems = new Array();
        function cartArray(Id){
@@ -287,25 +290,87 @@ setTime();
           var productName = $(`#name${id}`).text();
           var productPrice = $(`#sp${id}`).text();
           var quantity = '1';
+          var button = document.getElementById(id);
+          button.disabled = true;
            cartItems.push([productId,productName, productPrice,quantity]);
-               alert(cartItems);
+               populateCart();
        };
 
 
-   function deleteCart(){
-    var el = $(this);
-    var id = el.attr("id");
-    alert(`#id${id}`);
+       function populateCart(){
+        productDetails = "";
+        var initial = $('#cartTotal').html();
+        for (var i = 0; i < cartItems.length; i++) {
+          var id =cartItems[i][0];
+          var price = cartItems[i][2];
+          var name = cartItems[i][1];
+          var qty = cartItems[i][3];
+          var subTotal = price * qty;
+          var Total = +initial + +subTotal;
+          $('#cartTotal').html(Total);
+          productDetails += `<tr style="text-align: center;">
+           <td class="uneditable">${id}</td>
+            <td class="uneditable">${cartItems[i][1]}</td>
+             <td class="uneditable" id="price${id}">${price}</td>
+              <td class="editable" id="qty${id}">${qty}</td>
+               <td><button onclick="deleteCart(${id},this,${price},${qty})"  type='button' class='btn btn-danger btn-sm deleteFromCart' ><i class='fa fa-times-circle'></i>&ensp;Remove</button></td>
+              <td class="uneditable" id="subTotal${id}">${subTotal}</td>
+                 </tr>`;   
+                 $('#cartData').html(productDetails);
+         $('#cartEditable').editableTableWidget();
+          $('#cartEditable td.uneditable').on('change', function(evt, newValue) {
+          return false;
+        });
+          $('#cartEditable td').on('change', function(evt, newValue) {    
+           var Price = $(`#price${id}`).text();
+          var Quantity = $(`#qty${id}`).text();
+          var Subtotal = $(`#subTotal${id}`).text();
+          cost = Price * Quantity;
+          $('#SubTotal').html(cost);
+        });
+        }    
+       }
+
+   /* function sumCart(){
+      var table = document.getElementById("cartEditable");
+      var sum = 0;
+      for(var i =1; i < table.rows.length; i++){
+        sum = sum + parseInt(table.rows[i].cells[5].innerHTML);
+      }
+      $('#cartTotal').html(sum);
+    }
+*/
+
+
+   function deleteCart(id,item,price,qty){
+    var el = item;
+    var id = id;
+    var subTotal = price * qty;
+     var initial = $('#cartTotal').html();
+     var Total = +initial - +subTotal;
       bootbox.confirm('Do you really want to remove the seleted item from the cart?',function(result)
         {if(result){
               $(el).closest('tr').css('background','tomato');
               $(el).closest('tr').fadeOut(800,function(){
                 $(this).remove();
+     });
+        $('#cartTotal').html(Total);
+        var button = document.getElementById(id);
+        button.disabled = false;
+        var position = cartItems.indexOf(id);
+        cartItems.splice([0]);
+    }
+  });
+}
 
-    });
+function getIndexOfProduct(arr, k) {
+  for (var i = 0; i < arr.length; i++) {
+    var index = arr[i].indexOf(k);
+    if (index > -1) {
+      return [i, index];
+    }
   }
- });
-  }
+}
 
          $(document).ready(function(){
         $('.completeOrder').click(function(){
@@ -330,8 +395,9 @@ setTime();
               });
        }
 
-       function deleteOrder(idx){
+       function deleteOrder(order,idx){
         var id = idx;
+        var el = order;
         var cost = $(`#cost${id}`).text();
         var where = 'order';
             bootbox.confirm('Do you really want to delete the selected order?',function(result)
@@ -349,13 +415,6 @@ setTime();
        }
 
 
-   $('#cartEditable').editableTableWidget();
-  $('#cartEditable td.uneditable').on('change', function(evt, newValue) {
-  return false;
-});
-  $('#cartEditable td').on('change', function(evt, newValue) {    
-    return true;
-});
 
   $('#customersEditable').editableTableWidget();
   $('#customersEditable td.uneditable').on('change', function(evt, newValue) {

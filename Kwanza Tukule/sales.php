@@ -271,7 +271,7 @@
        if ($view == 'Software'  || $view == 'CEO') {
 
         ?>
-          <button id="<?php echo $id; ?>" data_id="<?php echo $id; ?>" class="btn btn-danger btn-sm active deleteOrder" role="button" aria-pressed="true" onclick="deleteOrder(<?php echo $id; ?>)"><i class="fa fa-trash"></i>&ensp;Delete</button>
+          <button id="<?php echo $id; ?>" data_id="<?php echo $id; ?>" class="btn btn-danger btn-sm active deleteOrder" role="button" aria-pressed="true" onclick="deleteOrder(this,<?php echo $id; ?>)"><i class="fa fa-trash"></i>&ensp;Delete</button>
           <?php
           }
           ?>

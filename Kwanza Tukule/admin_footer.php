@@ -23,9 +23,9 @@
               <!--incase you want to add javascript-->
               <!-- MDBootstrap Datatables  -->
     <script src="assets/js/main.js"></script>
-    <script type="text/javascript" src="admin.js"></script>
      <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.21/datatables.min.js"></script>  
       <script src="https://raw.githubusercontent.com/TriadSyndicate/FKF-Editable-Table-Premier-League/master/mindmup-editabletable.js"></script>
-        <script src="assets/js/mindmup-editabletable.js"></script>            
+        <script src="assets/js/mindmup-editabletable.js"></script>    
+        <script type="text/javascript" src="admin.js"></script>        
       </body>
 </html>

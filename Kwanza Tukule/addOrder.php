@@ -212,18 +212,11 @@
     </tr>
   </thead>
   <tbody id="cartData">
-    <tr style="text-align: center;">
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td><button onclick="deleteCart()" type='button' class='btn btn-danger btn-sm deleteFromCart' id="deleteFromCart${id}"><i class='fa fa-times-circle'></i>&ensp;Remove</button></td>
-    <td>Ksh.</td>
-  </tr>
+
  </tbody>
     <tfoot>
       <th scope="row" colspan="5"><b>Total:</b></th>
-      <td id="cartTotal"style="text-align: center;">Ksh.</td>
+      <td id="cartTotal"style="text-align: center;">0</td>
     </tfoot>
 </table>
 </div><br>
@@ -242,7 +235,7 @@
           <div class="row">
           <button type="button" class="btn btn-success col-md-4 completeOrder" style="margin-left: 320px"><i class="fa fa-check"></i>&emsp;Complete Order</button>
         </div><br>
-
+<!--
              <div class="row">
           <div class="input-group mb-5" style="margin-left: 250px;">
           <div class="input-group-prepend" >
@@ -274,7 +267,7 @@
         <div class="row">
           <button type="button" class="btn btn-success col-md-4 " style="margin-left: 320px"><i class="fa fa-cart-plus" id="addToCart"></i>&emsp;Add to Cart</button>
         </div><br>
-
+-->
  
         </form>
   <!-- Scroll to Top Button-->
