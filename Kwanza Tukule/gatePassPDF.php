@@ -32,8 +32,9 @@
 <p align="center">Products:'.$varietyNumber1.' </p>
 <?php
 ?>
+<p> For: '.$deliverer.'</p>
 <hr>
-<p> <?php  '.$today.' ?></p>
+<p>   '.$today.' </p>
 <hr>
 <table class="table table-striped" style="display:block;"">
   <thead class="thead-dark">
@@ -58,6 +59,7 @@
   </tbody>
 </table>
 <br>
+<p>Security Signature: ....................................................</p>
 <p>Prepared by: '.$_SESSION["user"].' 
 </body></html>';
 
@@ -75,8 +77,9 @@ echo $pdf;
 <p align="center"><strong><img src="assets/img/Kwanza Tukule.png" height="60" width="155"></strong></p>
 <p align="center">Gate Pass</p>
 <p align="center">Products:'.$varietyNumber2.' </p>
+<p> For: '.$deliverer.'</p>
 <hr>
-<p> <?php  '.$today.' ?></p>
+<p> '.$today.' </p>
 <hr>
 <table class="table table-striped" style="display:block;"">
   <thead class="thead-dark">
@@ -101,6 +104,7 @@ echo $pdf;
   </tbody>
 </table>
 <br>
+<p>Security Signature: ....................................................</p>
 <p>Prepared by: '.$_SESSION["user"].' 
 </body></html>';
 

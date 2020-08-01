@@ -35,8 +35,9 @@
 <p align="center">No. of Customers who ordered:'.$varietyNumber1.' </p>
 <?php
 ?>
+<p> For: '.$deliverer.'</p>
 <hr>
-<p> <?php  '.$today.' ?></p>
+<p> '.$today.'</p>
 <hr>
 <table class="table table-striped" style="display:block;"">
   <thead class="thead-dark">
@@ -86,8 +87,9 @@ echo $pdf;
 <?php
 ?>
 <p align="center">No. of Customers who ordered:'.$varietyNumber2.' </p>
+<p> For: '.$deliverer.'</p>
 <hr>
-<p> <?php  '.$today.' ?></p>
+<p> '.$today.' </p>
 <hr>
 <table class="table table-striped" style="display:block;"">
   <thead class="thead-dark">

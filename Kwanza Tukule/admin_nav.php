@@ -33,10 +33,13 @@ if (isset($_SESSION['logged_in'])) {
         header("Location: $dashboard_url");
         exit;
     }
-
+    $logged_in_user = $_SESSION['user'];
+       $result1 = mysqli_query($connection,"SELECT `active` FROM `users` WHERE `username`='$logged_in_user'");
+        $row = mysqli_fetch_array($result1);
+        $active = $row['active'];
 //Session Lifetime control for inactivity
 
-    if ((isset($_SESSION['LAST_ACTIVITY'])) && (time() - $_SESSION['LAST_ACTIVITY'] > $sessiontimeout)) {
+    if ((isset($_SESSION['LAST_ACTIVITY'])) && (time() - $_SESSION['LAST_ACTIVITY'] > $sessiontimeout) || (isset($_SESSION['LAST_ACTIVITY'])) && ($active == 2)) {
 //redirect the user back to login page for re-authentication
          header("Location: $logout_url");
         exit;
@@ -371,10 +374,16 @@ Preloader
       <br>
       <li class="nav-item">&emsp;
         <a style="color: black;" href="users.php">
-           <i class="fa fa-user"></i>
+           <i class="fa fa-users"></i>
           <span>Users</span></a>
       </li>
       
+      <br>
+      <li class="nav-item">&emsp;
+        <a style="color: black;" href="help.php">
+           <i class="fa fa-question-circle"></i>
+          <span>Help</span></a>
+      </li>
     
     </ul>
     <!-- End of Sidebar -->
@@ -459,13 +468,12 @@ Preloader
                 <i class="fa fa-user"></i>&ensp;
                     <?php
                     if (isset($_SESSION['logged_in'])) 
-                    {echo $_SESSION['user'];}
+                    {echo $logged_in_user;}
                     ?>
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="profile.php"><i class="fa fa-user"></i>&ensp;Profile</a>
                 <div class="dropdown-divider"></div>
-
-
                 <a class="dropdown-item" href="logout.php"><i class="fa fa-sign-out"></i>&ensp;Logout</a>
               </div>
             </li>

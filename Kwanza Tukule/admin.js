@@ -262,6 +262,19 @@ setTime();
       });
 */
 
+
+
+function updateProfile(){
+  var username = $(`#username`).val();
+  var email = $(`#email`).val();
+  var number = $(`#number`).val();
+  var nationalid = $(`#nationalid`).val();
+  var staffid = $(`#staffid`).text();
+   var where = 'profile';
+  $.post("save.php",{staffid:staffid,username:username,email:email,number:number,nationalid:nationalid,where:where},
+  function(result){if (result == 'saved') {alert("Profile Updated");}});
+}
+
 function selectCustomer(selection) {
         var id = selection.value;
         var name = $(`#customerName${id}`).text();

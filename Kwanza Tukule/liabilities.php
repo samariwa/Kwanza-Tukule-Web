@@ -9,7 +9,7 @@
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Dashboard <span style="font-size: 18px;">/Liabilities</span></h1>
-           <h6 style="margin-right: 30px;">Time: <span id="time"></span></h6>
+           <h6 class="h6 mb-0 text-gray-600 mr-3">Time: <span id="time"></span></h6>
           </div>
 
           <!-- Content Row -->
@@ -69,11 +69,13 @@
           </div>
 
   <div class="row">
+    <div class="col-md-2 offset-5">
            <?php
         $liabilitiesrowcount = mysqli_num_rows($liabilitiesList);
       ?>
-      <h6 style="margin-left: 430px;">Total Number: <?php echo $liabilitiesrowcount; ?></h6>
-        </div><br>
+      <h6 >Total Number: <?php echo $liabilitiesrowcount; ?></h6>
+    </div>
+ </div><br>
 
         <table  class="table table-striped table-hover paginate" style="display:block;overflow-y:scroll;text-align: center;">
   <thead class="thead-dark">

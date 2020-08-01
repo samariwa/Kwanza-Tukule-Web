@@ -8,7 +8,7 @@
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Dashboard <span style="font-size: 18px;">/Sales </span><span style="font-size: 15px;">/New Order</span></h1>
-         <h6 style="margin-right: 30px;">Time: <span id="time"></span></h6>
+         <h6 class="h6 mb-0 text-gray-600 mr-3">Time: <span id="time"></span></h6>
           </div>
            <?php
        if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO') {
@@ -118,7 +118,7 @@
           }
         ?>
         <div class="row">
-          <a href="sales.php" class="btn btn-primary btn-md active" role="button" aria-pressed="true" style="margin-left: 30px;"><i class="fa fa-arrow-left"></i>&ensp;Back</a>
+          <a href="sales.php" class="btn btn-primary btn-md active float-left ml-3" role="button" aria-pressed="true"><i class="fa fa-arrow-left"></i>&ensp;Back</a>
         </div><br>
         <form method="POST">
 

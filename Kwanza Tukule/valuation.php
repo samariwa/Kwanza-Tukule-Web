@@ -9,7 +9,7 @@
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Dashboard <span style="font-size: 18px;">/Stock</span><span style="font-size: 15px;"> /Stock Valuation</span></h1>
-           <h6 style="margin-right: 30px;">Time: <span id="time"></span></h6>
+           <h6 class="h6 mb-0 text-gray-600 mr-3">Time: <span id="time"></span></h6>
           </div>
 
           <!-- Content Row -->
@@ -69,9 +69,9 @@
           </div>
 
           <div class="row">
-      <a href="stock.php" class="btn btn-primary btn-md active" role="button" aria-pressed="true" style="margin-left: 30px;"><i class="fa fa-arrow-left"></i>&ensp;Back</a>
+      <a href="stock.php" class="btn btn-primary btn-md active float-left ml-3" role="button" aria-pressed="true"><i class="fa fa-arrow-left"></i>&ensp;Back</a>
     </div><br>
-    <div class="row"> <h6 style="margin-left: 100px;">The default valuation is done from today backwards. Purchase records shown are as at the end of day yesterday.</h6></div><br>
+    <div class="row offset-1"> <h6 class="ml-3">The default valuation is done from today backwards. Purchase records shown are as at the end of day yesterday.</h6></div><br>
     <?php
      $yesterday1 = date('d/m/Y',strtotime('-2 day'));
      $yesterday2 = date('d/m/Y',strtotime('-3 day'));

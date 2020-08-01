@@ -9,8 +9,8 @@
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Dashboard <span style="font-size: 18px;">/Customers</span></h1>
-            <h6 style="margin-right: -500px;">Time: <span id="time"></span></h6>
-             <button class="btn btn-light btn-md active printCustomers" role="button" aria-pressed="true" ><i class="fa fa-print"></i>&ensp;Print</button>
+            <h6 class="text-gray-600" style="margin-left: 500px;">Time: <span id="time"></span></h6>
+             <button class="btn btn-light btn-md active printCustomers mr-3" role="button" aria-pressed="true" ><i class="fa fa-print"></i>&ensp;Print</button>
           </div>
          <?php
        if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO') {
@@ -120,7 +120,8 @@
           }
         ?>
     <div class="row">
-      <a data-toggle="modal" data-target="#exampleModalScrollable" class="btn btn-success btn-md active" role="button" aria-pressed="true" style="margin-left: 30px;"><i class="fa fa-plus-circle"></i>&ensp;New Customer</a>
+      <div class="col-md-2">
+      <a data-toggle="modal" data-target="#exampleModalScrollable" class="btn btn-success btn-md active" role="button" aria-pressed="true"><i class="fa fa-plus-circle"></i>&ensp;New Customer</a>
       <!-- Modal -->
       <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
@@ -165,12 +166,16 @@
           </div>
         </div>
       </div>
-
+       </div>
+       <div class="col-md-8">
       <?php
         $customersrowcount = mysqli_num_rows($customersList);
       ?>
-      <h6 style="margin-left: 200px;">Total Number: <?php echo $customersrowcount; ?></h6>
+      <h6 class="offset-5">Total Number: <?php echo $customersrowcount; ?></h6>
+      </div>
+      <div class="col-md-2">
       <a href="blacklisted.php" class="btn btn-dark btn-md active" role="button" aria-pressed="true" style="margin-left: 300px;">Blacklisted Customers</a>
+      </div>
     </div><br>
     <table id="customersEditable" class="table table-striped table-hover paginate" style="display:block;overflow-y:scroll;text-align: center;">
   <thead class="thead-dark">

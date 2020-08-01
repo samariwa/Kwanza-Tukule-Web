@@ -9,7 +9,7 @@
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Dashboard <span style="font-size: 18px;">/Staff</span><span style="font-size: 15px;"> /Office</span></h1>
-           <h6 style="margin-right: 30px;">Time: <span id="time"></span></h6>
+           <h6 class="h6 mb-0 text-gray-600 mr-3">Time: <span id="time"></span></h6>
           </div>
 
           <!-- Content Row -->
@@ -69,7 +69,8 @@
           </div>
 
   <div class="row">
-             <a data-toggle="modal" data-target="#exampleModalScrollable" class="btn btn-success btn-md active" role="button" aria-pressed="true" style="margin-left: 20px;"><i class="fa fa-plus-circle"></i>&ensp;New Office Staff</a>
+    <div class="col-md-4">
+             <a data-toggle="modal" data-target="#exampleModalScrollable" class="btn btn-success btn-md active" role="button" aria-pressed="true" ><i class="fa fa-plus-circle"></i>&ensp;New Office Staff</a>
        <!-- Modal -->
       <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
@@ -125,12 +126,14 @@
           </div>
         </div>
       </div>
+      </div>
+      <div class="col-md-8">
            <?php
         $officerowcount = mysqli_num_rows($officeStaffList);
       ?>
-      <h6 style="margin-left: 270px;">Total Number: <?php echo $officerowcount; ?></h6>
-        </div><br>
-
+      <h6 class="offset-2">Total Number: <?php echo $officerowcount; ?></h6>
+        </div>
+      </div><br>
         <table id="officeEditable" class="table table-striped table-hover paginate" style="display:block;overflow-y:scroll;text-align: center;">
   <thead class="thead-dark">
     <tr>

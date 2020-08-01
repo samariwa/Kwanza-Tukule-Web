@@ -1,5 +1,6 @@
 <?php 
 require('config.php');
+session_start();
 $where =$_POST['where'];
 if ($where == 'customer' ) {
 	$id = $_POST['id'];
@@ -191,4 +192,16 @@ elseif ($where == 'calendar') {
   mysqli_query($connection,"UPDATE event SET title='$title', start_event='$start_event', end_event='$end_event' WHERE id='$id'")or die($connection->error);
 }
 }
+elseif ($where == 'profile') {
+  $staffid = $_POST['staffid'];
+    $username = $_POST['username'];
+     $email = $_POST['email'];
+     $number = $_POST['number'];
+     $nationalid = $_POST['nationalid'];
+mysqli_query($connection,"UPDATE `users` SET `username` = '".$username."',`email` = '".$email."',`number` = '".$number."',`nationalID` = '".$nationalid."' WHERE `staffID` = '".$staffid."'")or die($connection->error);
+unset($_SESSION['user']);
+$_SESSION['user'] = $username;
+echo "saved";
+}
+
  ?>

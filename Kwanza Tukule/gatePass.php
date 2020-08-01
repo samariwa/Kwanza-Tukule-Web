@@ -2,10 +2,12 @@
  include "admin_nav.php";
  include('queries.php');
  ?> 
+ <!-- Begin Page Content -->
+        <div class="container-fluid">
   <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Dashboard <span style="font-size: 18px;">/Gate Pass</span></h1>
-           <h6 style="margin-right: 30px;">Time: <span id="time"></span></h6>
+           <h6 class="h6 mb-0 text-gray-600 mr-3">Time: <span id="time"></span></h6>
           </div>
 
           <!-- Content Row -->
@@ -64,14 +66,17 @@
             </div>
           </div>
 
-          <div class="row">
-      <a href="sales.php" class="btn btn-primary btn-md active" role="button" aria-pressed="true" style="margin-left: 30px;"><i class="fa fa-arrow-left"></i>&ensp;Back</a>
+          <div class="row">         
+      <a href="sales.php" class="btn btn-primary btn-md active float-left ml-3" role="button" aria-pressed="true"><i class="fa fa-arrow-left"></i>&ensp;Back</a>
     </div><br><br>
-
-        <h6 style="margin-left: 50px;margin-right: 50px;">To print tomorrow's gate pass, enter deliverer's name and click the 'Print button'. Otherwise include point in time from which the gate pass should be printed.</h6><br>
-
+       <div class="row">
+      <div class="col-md-10 offset-1">
+        <h6 >To print tomorrow's gate pass, enter deliverer's name and click the 'Print button'. Otherwise include point in time from which the gate pass should be printed.</h6><br>
+     </div>
+   </div>
         <div class="row">
-                 <select type="text" name="deliverer" id="deliverer" class="form-control col-md-5" style="padding-right:15px;padding-left:15px;margin-left: 275px" required onfocus='this.size=3;' onblur='this.size=1;' onchange='this.size=1; this.blur();' required>
+          <div class="col-md-7 offset-2">
+                 <select type="text" name="deliverer" id="deliverer" class="form-control col-md-12" style="padding-right:15px;padding-left:15px;" required onfocus='this.size=3;' onblur='this.size=1;' onchange='this.size=1; this.blur();' required>
                   <option value="" selected="selected" disabled>Deliverer...</option>
                   <?php
                     $count = 0;
@@ -84,19 +89,24 @@
                     }
                   ?>
                  </select>
+               </div>
                   </div><br><br>
 
         <div class="row">
-           <div class="input-group mb-3" style="margin-left: 270px;">
+          <div class="col-md-7 offset-2">
+           <div class="input-group mb-3">
           <div class="input-group-prepend" >
            <span class="input-group-text" id="inputGroup-sizing-default">Point in Time:</span>
            </div>
-         <input type="text" class="form-control col-md-5" aria-label="Default" aria-describedby="inputGroup-sizing-default" style="font-family: FontAwesome, Arial; font-style: normal;"  name="time" id="gatePassTime">
+         <input type="text" class="form-control col-md-12" aria-label="Default" aria-describedby="inputGroup-sizing-default" style="font-family: FontAwesome, Arial; font-style: normal;"  name="time" id="gatePassTime">
        </div>
+     </div>
         </div><br>
 
         <div class="row">
-           <button class="btn btn-light btn-md active printGatePass" role="button" aria-pressed="true" style="margin-left: 450px;"><i class="fa fa-print"></i>&ensp;Print</button>
+          <div class="col-md-2 offset-5">
+           <button class="btn btn-light btn-md active printGatePass" role="button" aria-pressed="true"><i class="fa fa-print"></i>&ensp;Print</button>
+         </div>
         </div><br><br>
        
   <!-- Scroll to Top Button-->

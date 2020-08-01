@@ -59,6 +59,7 @@ $registered = TRUE;
 $recaptchavalidation = TRUE;
 $illegalattempts = FALSE;
 $activate = TRUE;
+$deactivated = FALSE;
 //Trapped brute force attackers and give them more hard work by providing a captcha-protected page
 
 $iptocheck = $_SERVER['REMOTE_ADDR'];
@@ -114,58 +115,15 @@ if ((isset($_POST["pass"])) && (isset($_POST["user"])) && ($_SESSION['logged_in'
          $_SESSION['role'] = $role;
 //validate username
     if (!($fetch = mysqli_fetch_array(mysqli_query($connection,"SELECT `username` FROM `users` WHERE `username`='$user'")))) {
-
 //no records of username in database
 //user is not yet registered
         $registered = FALSE;
-        if ($registered == FALSE) {
-         $result1 = mysqli_query($connection,"SELECT `loginattempt` FROM `users` WHERE `username`='$user'");
-        $row = mysqli_fetch_array($result1);
-        $loginattempts_username = $row['loginattempt'];
-         $loginattempts_username = $loginattempts_username + 1;
-            $loginattempts_username = intval($loginattempts_username);
-
-//update login attempt records
-      mysqli_query($connection,"UPDATE `users` SET `loginattempt` = '$loginattempts_username' WHERE `username` = '$user'");
-            if (($loginattempts_username == 5) && ($registered == FALSE)) {
-//Require those user with login attempts failed records to
-//send an email to inform admin of unusual login attempt.
-       require_once "PHPMailer/PHPMailer.php";
-        require_once "PHPMailer/Exception.php";
-        require_once "PHPMailer/SMTP.php";
-         $mail = new PHPMailer(true);
-        $mail -> addAddress('kwanzatukuleauthenticator@gmail.com','Kwanza Tukule');
-        $mail -> setFrom("kwanzatukuleauthenticator@gmail.com", "Kwanza Tukule");
-        $mail->IsSMTP();
-        $mail->Host = "smtp.gmail.com";
-        // optional
-        // used only when SMTP requires authentication  
-        $mail->SMTPAuth = true;
-        $mail->Username = 'kwanzatukuleauthenticator@gmail.com';
-        $mail->Password = 'Kenya.2030';
-        $mail -> Subject = "Unusual Login Attempt";
-        $mail -> isHTML(true);
-        $mail -> Body = "
-              Hi Sam,<br><br>
-                An unusual login attempt using $user's account has been detected.<br> Please ensure that it is an authorized attempt. If it isn't kindly notify Mariwa for necessary security measures to be taken.<br> Thank you for your co-operation.<br><br>
-                Kind Regards,
-                ";
-        $mail -> send();
-        
     }
-    if (($loginattempts_username > 4) && ($registered == FALSE)) {
-        $illegalattempts = TRUE;
-    }
-    }
-    }
-
-    if ($registered == TRUE) {
 
 //Grab login attempts from MySQL database for a corresponding username
         $result1 = mysqli_query($connection,"SELECT `loginattempt` FROM `users` WHERE `username`='$user'");
         $row = mysqli_fetch_array($result1);
         $loginattempts_username = $row['loginattempt'];
-    }
 
     if (($loginattempts_username == 5) && ($registered == TRUE)) {
 //Require those user with login attempts failed records to
@@ -186,7 +144,7 @@ if ((isset($_POST["pass"])) && (isset($_POST["user"])) && ($_SESSION['logged_in'
         $mail -> Subject = "Unusual Login Attempt";
         $mail -> isHTML(true);
         $mail -> Body = "
-              Hi Sam,<br><br>
+              Hi,<br><br>
                 An unusual login attempt using $user's account has been detected.<br> Please ensure that it is an authorized attempt. If it isn't kindly notify Mariwa for necessary security measures to be taken.<br> Thank you for your co-operation.<br><br>
                 Kind Regards,
                 ";
@@ -194,51 +152,70 @@ if ((isset($_POST["pass"])) && (isset($_POST["user"])) && ($_SESSION['logged_in'
         
     }
     //display warning message
-if (($loginattempts_username > 4) && ($registered == TRUE)) {
-        $illegalattempts = TRUE;
+if (($loginattempts_username == 5) && ($registered == TRUE)) {
+        $illegalattempts = TRUE; 
     }
-
+if (($loginattempts_username > 5) && ($registered == TRUE)) {
+      mysqli_query($connection,"UPDATE `users` SET `active` = '2' WHERE `username` = '$user'"); 
+      $deactivated = TRUE; 
+    }
 //Get correct hashed password based on given username stored in MySQL database
 
   //check if account is activated
       $result1 = mysqli_query($connection,"SELECT `active` FROM `users` WHERE `username`='$user'");
         $row = mysqli_fetch_array($result1);
         $active = $row['active'];
-        if($active > 0){
+        if($active == 1){
           $activate = TRUE;
         }
-       else{
+        if($active == 0){
           $activate = FALSE;
+        }
+        if($active == 2){
+          $deactivated = TRUE; 
         }
 //username is registered in database, now get the hashed password    
     $result = mysqli_query($connection,"SELECT `password` FROM `users` WHERE `username`='$user'");
         $row = mysqli_fetch_array($result);
         $correctpassword = $row['password'];
-    if (!password_verify($pass, $correctpassword) || ($registered == FALSE) || ($activate == FALSE)) {
+    if (!password_verify($pass, $correctpassword) || ($registered == FALSE) || ($activate == FALSE) || ($deactivated == TRUE)) {
     	$result1 = mysqli_query($connection,"SELECT `active` FROM `users` WHERE `username`='$user'");
         $row = mysqli_fetch_array($result1);
         $active = $row['active'];
-       if(($active == 0) && ($registered == FALSE) || !password_verify($pass, $correctpassword)){
+        if(($active == 0) && ($registered == FALSE) || ($active == 0) && !password_verify($pass, $correctpassword)){
           $activate = TRUE;
-          $validationresults = FALSE;
+          $validationresults = FALSE;  
+        }
+        else if (($active == 2) && ($registered == FALSE) || ($active == 2) && !password_verify($pass, $correctpassword)) {
+           $deactivated = FALSE;
+           $validationresults = FALSE;
+        }
+        elseif (($active == 2) && ($registered == TRUE) && password_verify($pass, $correctpassword)) {
+           $deactivated = TRUE;
+           $validationresults = TRUE;
         }
         else if(($active == 0) && ($registered == TRUE) && password_verify($pass, $correctpassword)){
             $activate = FALSE;
           $validationresults = TRUE;
         }
-        else{
+        else if(($active == 0) && ($registered == FALSE) || ($active == 0) && !password_verify($pass, $correctpassword)){
+            $activate = TRUE;
+          $validationresults = TRUE;
+        }
+        else if (($active == 1) && ($registered == TRUE) && !password_verify($pass, $correctpassword)){
 //log login failed attempts to database
-
-        if (($registered == TRUE)) {
         	//user login validation fails
         	 $validationresults = FALSE;
         	 $activate = TRUE;
+             $deactivated = FALSE;
+              $result1 = mysqli_query($connection,"SELECT `loginattempt` FROM `users` WHERE `username`='$user'");
+              $row = mysqli_fetch_array($result1);
+              $loginattempts_username = $row['loginattempt'];
             $loginattempts_username = $loginattempts_username + 1;
             $loginattempts_username = intval($loginattempts_username);
 //update login attempt records
          
             mysqli_query($connection,"UPDATE `users` SET `loginattempt` = '$loginattempts_username' WHERE `username` = '$user'");
-            mysqli_query($connection,"UPDATE `users` SET `on` = '1' WHERE `username` = '$user'");
 //Possible brute force attacker is targeting registered usernames
 //check if has some IP address records
 
@@ -257,7 +234,6 @@ if (($loginattempts_username > 4) && ($registered == TRUE)) {
                 $loginattempts_total = $loginattempts_total + 1;
                 mysqli_query($connection,"UPDATE `ipcheck` SET `failedattempts` = '$loginattempts_total' WHERE `loggedip` = '$iptocheck'");
             }*/
-        }
         }
 //Possible brute force attacker is targeting randomly
 
@@ -424,8 +400,10 @@ if (!$_SESSION['logged_in']):
                         echo '&emsp;&emsp;<font color="red"><i class="bx bxs-lock bx-flashing"></i>&ensp;Please enter valid username, password (if required).</font>'; ?>
                         <?php if ($activate == FALSE) { $_SESSION['activation'] = $user;
                         echo '&emsp;&emsp;<font color="red"><i class="bx bxs-lock bx-flashing"></i>&ensp;Your account is still inactive. Kindly <a href = "activation.php" style="color: inherit;">(click here)</a> to<br> &emsp;&emsp;&emsp;&emsp;activate the account and try again.</font>';} ?>
+                        <?php if ($deactivated == TRUE) 
+                        echo '&emsp;&emsp;<font color="red"><i class="bx bxs-lock bx-flashing"></i>&ensp;Your account has been deactivated. Kindly contact <br>&emsp;&emsp;your administrator to reactivate the account and try again.</font>'; ?>
                         <?php if ($illegalattempts == TRUE)
-                        echo '&emsp;&emsp;<font color="red"><i class="bx bxs-error-alt bx-flashing"></i>&ensp;<b><i>Warning!</i></b> Approaching attempt limit and this account will be &emsp;&emsp;blocked. Kindly reset your password using the link below &emsp;&ensp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;(if required).</font>'; ?>
+                        echo '&emsp;&emsp;<font color="red"><i class="bx bxs-error-alt bx-flashing"></i>&ensp;<b><i>Warning!</i></b> Approaching attempt limit and this account will be &emsp;&emsp;deactivated. Kindly reset your password using the link below &emsp;&ensp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;(if required).</font>'; ?>
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-5"><br>
                                 <button type="submit" class="btn btn-primary">

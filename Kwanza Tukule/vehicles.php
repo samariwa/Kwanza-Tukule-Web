@@ -9,7 +9,7 @@
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Dashboard <span style="font-size: 18px;">/Delivery Trucks</span></h1>
-           <h6 style="margin-right: 30px;">Time: <span id="time"></span></h6>
+           <h6 class="h6 mb-0 text-gray-600 mr-3">Time: <span id="time"></span></h6>
           </div>
 
           <!-- Content Row -->
@@ -70,7 +70,8 @@
  
 
         <div class="row">
-             <a data-toggle="modal" data-target="#exampleModalScrollable" class="btn btn-success btn-md active" role="button" aria-pressed="true" style="margin-left: 20px;"><i class="fa fa-plus-circle"></i>&ensp;New Vehicle</a>
+          <div class="col-md-4">
+             <a data-toggle="modal" data-target="#exampleModalScrollable" class="btn btn-success btn-md active" role="button" aria-pressed="true"><i class="fa fa-plus-circle"></i>&ensp;New Vehicle</a>
        <!-- Modal -->
       <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
@@ -115,20 +116,23 @@
           </div>
         </div>
       </div>
+      </div>
+      <div class="col-md-8">
            <?php
         $vehiclesrowcount = mysqli_num_rows($vehicleList);
       ?>
-      <h6 style="margin-left: 270px;">Total Number: <?php echo $vehiclesrowcount; ?></h6>
+      <h6 class="offset-2">Total Number: <?php echo $vehiclesrowcount; ?></h6>
+      </div>
         </div><br>
 
         <table id="vehiclesEditable" class="table table-striped table-hover paginate" style="display:block;overflow-y:scroll;text-align: center;">
   <thead class="thead-dark">
     <tr>
-      <th scope="col" width="10%">#</th>
-      <th scope="col" width="20%">Vehicle Type</th>
+      <th scope="col" width="5%">#</th>
+      <th scope="col" width="25%">Vehicle Type</th>
       <th scope="col" width="20%">Registration Number</th>
       <th scope="col" width="25%">Route</th>
-      <th scope="col"width="30%"></th>
+      <th scope="col"width="40%"></th>
     </tr>
   </thead>
   <tbody >

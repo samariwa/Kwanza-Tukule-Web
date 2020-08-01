@@ -1,13 +1,14 @@
 <?php
  include "admin_nav.php";
-include('queries.php');
+  include('queries.php');
  ?> 
- <!-- Begin Page Content -->
+
+        <!-- Begin Page Content -->
         <div class="container-fluid">
 
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Dashboard <span style="font-size: 18px;">/Calendar</span></h1>
+            <h1 class="h3 mb-0 text-gray-800">Dashboard <span style="font-size: 18px;">/Profile</span></h1>
            <h6 class="h6 mb-0 text-gray-600 mr-3">Time: <span id="time"></span></h6>
           </div>
           <?php
@@ -117,141 +118,81 @@ include('queries.php');
             <?php
           }
         ?>
-  <br />
-  <div class="container">
-   <div id="calendar"></div>
-  </div>
- <a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-  </a>
-          <hr/>
-        <p class="text-center">&copy; 2020 - Kwanza Tukule Foods Ltd. All Rights Reserved.</p>  
-         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-          <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-           <script type="text/javascript" src="bootbox/bootbox.min.js"></script> 
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
- <script>
-  $(function() {
-    "use strict";
-    $(function() {
-        $(".preloader").fadeOut();
-    });
-  function setTime() {
-var d = new Date(),
-  el = document.getElementById("time");
+         <br>
+        <?php
+         $user = $_SESSION['user'];
+         $profileQuery = mysqli_query($connection,"SELECT firstname,lastname,number,email,jobs.Name as job,nationalID,staffID,yob,gender,username FROM users INNER JOIN jobs WHERE username = '$user'")or die($connection->error);
+          $result = mysqli_fetch_array($profileQuery);
+          $firstname = $result['firstname'];
+          $lastname = $result['lastname'];
+          $number = $result['number'];
+          $email = $result['email'];
+          $job = $result['job'];
+          $nationalid = $result['nationalID'];
+          $staffid = $result['staffID'];
+          $yob = $result['yob'];
+          $gender = $result['gender'];
+          $username = $result['username'];
+          $currentYear = date("Y");
+          $age = $currentYear - $yob;
+        ?>
+                        <div class="row">
+                    <!-- Column -->
+                    <div class="col-lg-4 col-xlg-3 col-md-5">
+                        <div class="card">
+                            <div class="card-body">
+                                <center class="m-t-30"> <img src="assets/img/avatar.jpg" class="rounded-circle" width="150" />
+                                    <h4 class="card-title m-t-10"><?php echo $firstname." ".$lastname; ?></h4>
+                                    <h6 class="card-subtitle"><?php echo $view; ?></h6><br>
+                                    <h6 class="card-subtitle" >Staff ID: <span id="staffid"><?php echo $staffid; ?></span></h6><br>
+                                    <h6 class="card-subtitle">Age: <?php echo $age; ?></h6><br>
+                                    <h6 class="card-subtitle">Gender: <?php echo $gender; ?></h6>
+                                </center>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Column -->
+                    <!-- Column -->
+                    <div class="col-lg-8 col-xlg-9 col-md-7">
+                        <div class="card">
+                            <!-- Tab panes -->
+                            <div class="card-body">
+                                <form class="form-horizontal form-material">
+                                    <div class="form-group">
+                                        <label class="col-md-12">Username</label>
+                                        <div class="col-md-12">
+                                            <input type="text" value="<?php echo $user; ?>" class="form-control form-control-line" name="username" id="username" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="example-email" class="col-md-12">Email</label>
+                                        <div class="col-md-12">
+                                            <input type="email" value="<?php echo $email; ?>" class="form-control form-control-line" name="email" id="email" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-12">Phone No</label>
+                                        <div class="col-md-12">
+                                            <input type="text" value="<?php echo $number; ?>" class="form-control form-control-line" name="number" id="number" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-12">National Id</label>
+                                        <div class="col-md-12">
+                                           <input type="text" value="<?php echo $nationalid; ?>" class="form-control form-control-line" name="nationalid" id="nationalid" required>
+                                         </div>
+                                    </div><br>
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <button class="btn btn-success" onclick="updateProfile()">Update Profile</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Column -->
+                </div>
 
-  el.innerHTML = formatAMPM(d);
-
-setTimeout(setTime, 1000);
-}
-
-function formatAMPM(date) {
-  var hours = date.getHours(),
-    minutes = date.getMinutes(),
-    seconds = date.getSeconds(),
-    ampm = hours >= 12 ? 'pm' : 'am';
-  hours = hours % 12;
-  hours = hours ? hours : 12; // the hour '0' should be '12'
-  minutes = minutes < 10 ? '0'+minutes : minutes;
-  var strTime = hours + ':' + minutes + ':' + seconds + ' ' + ampm;
-  return strTime;
-}
-
-setTime();
-   
-  $(document).ready(function() {
-   var calendar = $('#calendar').fullCalendar({
-    editable:true,
-    timeZone: 'EAT',
-    header:{
-     left:'prev,next today',
-     center:'title',
-     right:'month,agendaWeek,agendaDay'
-    },
-    events: 'load.php',
-    selectable:true,
-    selectHelper:true,
-    select: function(start, end, allDay)
-    {
-     var title = prompt("Enter Event Title");
-     if(title)
-     {
-      var start = $.fullCalendar.formatDate(start, "Y-MM-DD HH:mm:ss");
-      var end = $.fullCalendar.formatDate(end, "Y-MM-DD HH:mm:ss");
-      var where = 'calendar';
-      $.ajax({
-       url:"add.php",
-       type:"POST",
-       data:{title:title, start:start, end:end, where:where},
-       success:function()
-       {
-        calendar.fullCalendar('refetchEvents');
-        alert("Added Successfully");
-       }
-      })
-     }
-    },
-    editable:true,
-    eventResize:function(event)
-    {
-     var start = $.fullCalendar.formatDate(event.start, "Y-MM-DD HH:mm:ss");
-     var end = $.fullCalendar.formatDate(event.end, "Y-MM-DD HH:mm:ss");
-     var title = event.title;
-     var id = event.id;
-     var where = 'calendar';
-     $.ajax({
-      url:"save.php",
-      type:"POST",
-      data:{title:title, start:start, end:end, id:id, where:where},
-      success:function(){
-       calendar.fullCalendar('refetchEvents');
-       alert('Event Updated');
-      }
-     })
-    },
-
-    eventDrop:function(event)
-    {
-     var start = $.fullCalendar.formatDate(event.start, "Y-MM-DD HH:mm:ss");
-     var end = $.fullCalendar.formatDate(event.end, "Y-MM-DD HH:mm:ss");
-     var title = event.title;
-     var id = event.id;
-     var where = 'calendar';
-     $.ajax({
-      url:"save.php",
-      type:"POST",
-      data:{title:title, start:start, end:end, id:id, where:where},
-      success:function()
-      {
-       calendar.fullCalendar('refetchEvents');
-       alert("Event Updated");
-      }
-     });
-    },
-
-    eventClick:function(event)
-    {
-     if(confirm("Are you sure you want to remove it?"))
-     {
-      var id = event.id;
-      var where = 'calendar';
-      $.ajax({
-       url:"delete.php",
-       type:"POST",
-       data:{id:id, where:where},
-       success:function()
-       {
-        calendar.fullCalendar('refetchEvents');
-        alert("Event Removed");
-       }
-      })
-     }
-    },
-
-   });
-  });
-});   
-  </script>
-        </body>
-</html>
+  <!-- Scroll to Top Button-->
+  <?php include "admin_footer.php" ?> 

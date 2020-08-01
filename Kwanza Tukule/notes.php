@@ -9,7 +9,7 @@
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Dashboard <span style="font-size: 18px;">/NoteBook</span></h1>
-           <h6 style="margin-right: 30px;">Time: <span id="time"></span></h6>
+           <h6 class="h6 mb-0 text-gray-600 mr-3">Time: <span id="time"></span></h6>
           </div>
           <?php
        if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO') {
@@ -119,7 +119,9 @@
           }
         ?>
          <br>
-         <button data-toggle="modal" data-target="#exampleModalScrollable" type="button" class="btn btn-success" style="margin-left: 850px"><i class="fa fa-plus"></i>&ensp;Place Note</button>
+         <div class="row">
+          <div class="col-md-2 offset-10">
+         <button data-toggle="modal" data-target="#exampleModalScrollable" type="button" class="btn btn-success"><i class="fa fa-plus"></i>&ensp;Place Note</button>
          <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
           <div class="modal-content">
@@ -159,6 +161,8 @@
             </div>
           </div>
         </div>
+      </div>
+      </div>
       </div>
          <hr>
         <h2 style="margin-left: 20px;">Public Notes</h2>

@@ -9,7 +9,7 @@ include('queries.php');
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Dashboard <span style="font-size: 18px;">/Customers</span> <span style="font-size: 15px;">/Blacklisted</span></h1>
-            <h6 style="margin-right: 30px;">Time: <span id="time"></span></h6>
+            <h6 class="h6 mb-0 text-gray-600 mr-3">Time: <span id="time"></span></h6>
           </div>
            <?php
        if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO') {
@@ -119,11 +119,15 @@ include('queries.php');
           }
         ?>
     <div class="row">
-      <a href="customers.php" class="btn btn-primary btn-md active" role="button" aria-pressed="true" style="margin-left: 30px;"><i class="fa fa-arrow-left"></i>&ensp;Back</a>
+      <div class="col-md-4">
+      <a href="customers.php" class="btn btn-primary btn-md active" role="button" aria-pressed="true" ><i class="fa fa-arrow-left"></i>&ensp;Back</a>
+      </div>
       <?php
         $blacklistedrowcount = mysqli_num_rows($blacklistedList);
       ?>
-      <h6 style="margin-left: 300px;">Total Number: <?php echo $blacklistedrowcount; ?></h6>
+      <div class="col-md-8">
+      <h6 class="offset-2">Total Number: <?php echo $blacklistedrowcount; ?></h6>
+    </div>
     </div><br>
     <table id="blacklistEditable" class="table table-striped table-hover paginate" style="display:block;overflow-y:scroll;text-align: center;">
   <thead class="thead-dark">
