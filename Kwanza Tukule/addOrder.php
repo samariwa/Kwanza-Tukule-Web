@@ -224,13 +224,13 @@
   
 </div><br>
     <div class="row">
-           <div class="input-group mb-3" style="margin-left: 270px;">
-          <div class="input-group-prepend" >
+      <div class="input-group-prepend" style="margin-left: 310px;" >
            <span class="input-group-text" id="inputGroup-sizing-default">Date of Delivery:</span>
            </div>
-         <input type="date" class="form-control col-md-5" required aria-label="Default" aria-describedby="inputGroup-sizing-default" style="font-family: FontAwesome, Arial; font-style: normal;"  name="deliveryDate" id="deliveryDate">
-       </div>
-        </div><br>
+       <div class="col-md-5">
+       <input type="date"  class="form-control col-md-6" name="deliveryDate" id="deliveryDate" value="" aria-describedby="inputGroup-sizing-default" required autocomplete="date" autofocus style="font-family: FontAwesome, Arial; font-style: normal;">
+        </div>
+        </div><br><br>
 
           <div class="row">
           <button type="button" class="btn btn-success col-md-4 completeOrder" style="margin-left: 320px"><i class="fa fa-check"></i>&emsp;Complete Order</button>

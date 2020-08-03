@@ -339,7 +339,7 @@ function selectCustomer(selection) {
           $('#cartEditable td').on('change', function(evt, newValue) {
             for (var i = 0; i < cartItems.length; i++) {
               if (parseInt($(`#quantity${cartItems[i][0]}`).html()) == newValue) {
-                if (newValue < parseInt($(`#qty${cartItems[i][0]}`).html())) {
+                if (newValue <= parseInt($(`#qty${cartItems[i][0]}`).html())) {
                   newSub = newValue * parseInt($(`#price${cartItems[i][0]}`).html());
                   cartItems[i][3] = newValue;
                   $(`#subTotal${cartItems[i][0]}`).html(newSub);
@@ -366,7 +366,7 @@ function selectCustomer(selection) {
            if (cartItems[i][0]==a) {
              currentQ = cartItems[i][3];
              newQ = parseInt(currentQ) + 1;
-             if (newQ < parseInt($(`#qty${cartItems[i][0]}`).html())) {
+             if (newQ <= parseInt($(`#qty${cartItems[i][0]}`).html())) {
                cartItems[i][3] = newQ;
              }else {
                alert('Quantity Not Available');
@@ -439,7 +439,7 @@ function getIndexOfProduct(arr, k) {
             alert("Weeb");
             alert(JSON.stringify(cartItems));
             alert(customerArr[0]);
-            alert($(`#deliveryDate`).html());
+            alert($(`#deliveryDate`).val());
         });
       });
 
