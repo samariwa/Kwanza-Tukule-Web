@@ -306,9 +306,9 @@ Preloader
        <br>
       <!-- Nav Item - Charts -->
       <li class="nav-item">&emsp;
-        <a style="color: black;" href="#">
+        <a style="color: black;" href="analytics.php">
          <i class="fa fa-pie-chart" ></i>
-          <span>Charts</span></a>
+          <span>Analytics</span></a>
       </li>
        <br>
 <!--       

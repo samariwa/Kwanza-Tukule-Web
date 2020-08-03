@@ -1,7 +1,7 @@
 <?php  
 require('config.php');
 $customersList = mysqli_query($connection,"SELECT id,Name,Location,Number,Deliverer,Status,Note FROM customers WHERE Status != 'blacklisted'ORDER BY id DESC")or die($connection->error);
-$customersPrintList = mysqli_query($connection,"SELECT customers.id as id,Name,Location,Number,Deliverer,Status,Note FROM customers inner join orders on customers.id=orders.Customer_id WHERE Status != 'blacklisted' and DATE(orders.Late_order) >= current_date()-10 group by customers.id")or die($connection->error);
+$customersPrintList = mysqli_query($connection,"SELECT customers.id as id,Name,Location,Number,Deliverer,Status,Note FROM customers inner join orders on customers.id=orders.Customer_id WHERE Status != 'blacklisted' and DATE(orders.Late_order) >= DATE_ADD(CURRENT_DATE(), INTERVAL -10 DAY) group by customers.id")or die($connection->error);
 $blacklistedList =  mysqli_query($connection,"SELECT customers.id as id,customers.Name, MAX(orders.created_at),customers.Location,customers.Number,customers.Deliverer,orders.Balance FROM orders INNER JOIN customers ON orders.Customer_id=customers.id where customers.Status='blacklisted' GROUP BY customers.id;")or die($connection->error);
 $categoriesList = mysqli_query($connection,"SELECT * FROM category ORDER BY id ASC")or die($connection->error);
 $stockList = mysqli_query($connection,"SELECT stock.id,category.Category_Name,stock.Name,stock_flow.Buying_price as Buying_price,stock_flow.Selling_price as Selling_Price,stock.Quantity as Quantity,max(stock_flow.Created_at) FROM stock INNER JOIN category ON stock.Category_id=category.id INNER JOIN stock_flow ON stock.id=stock_flow.Stock_id  group by stock.id")or die($connection->error);
