@@ -111,7 +111,7 @@ setTime();
         }
          });
        });
-});      
+});
 /*
        $(document).ready(function(){
             $('#customerSearch').keyup(function(){
@@ -170,7 +170,7 @@ setTime();
        });
         });
 
-       
+
 
        $(document).ready(function(){
         var txt2 = $('#customerSearch').val();
@@ -212,7 +212,7 @@ setTime();
        });
         });
 
-       
+
          $(document).ready(function(){
         var txt = $('#productSearch').val();
         var button = document.getElementById('addToCart');
@@ -275,8 +275,10 @@ function updateProfile(){
   function(result){if (result == 'saved') {alert("Profile Updated");}});
 }
 
+var customerArr = new Array();
 function selectCustomer(selection) {
         var id = selection.value;
+        customerArr.push(id);
         var name = $(`#customerName${id}`).text();
         var location = $(`#customerLocation${id}`).text();
         var number = $(`#customerNumber${id}`).text();
@@ -325,23 +327,70 @@ function selectCustomer(selection) {
            <td class="uneditable">${id}</td>
             <td class="uneditable">${cartItems[i][1]}</td>
              <td class="uneditable" id="price${id}">${price}</td>
-              <td class="editable" id="qty${id}">${qty}</td>
-               <td><button onclick="deleteCart(${id},this,${price},${qty})"  type='button' class='btn btn-danger btn-sm deleteFromCart' ><i class='fa fa-times-circle'></i>&ensp;Remove</button></td>
+              <td class="editable" id="quantity${id}">${qty}</td>
+               <td> <button class="btn"><i onclick="upQuantity(${id},${price},${qty})" class='fa fa-plus'></i></button><button class="btn"><i onclick="downQuantity(${id},${price},${qty})" class='fa fa-minus'></i></button><button onclick="deleteCart(${id},this,${price},${qty})"  type='button' class='btn btn-danger btn-sm deleteFromCart' ><i class='fa fa-times-circle'></i>&ensp;Remove</button></td>
               <td class="uneditable" id="subTotal${id}">${subTotal}</td>
-                 </tr>`;   
+                 </tr>`;
                  $('#cartData').html(productDetails);
          $('#cartEditable').editableTableWidget();
           $('#cartEditable td.uneditable').on('change', function(evt, newValue) {
           return false;
         });
-          $('#cartEditable td').on('change', function(evt, newValue) {    
-           var Price = $(`#price${id}`).text();
-          var Quantity = $(`#qty${id}`).text();
-          var Subtotal = $(`#subTotal${id}`).text();
-          cost = Price * Quantity;
-          $('#SubTotal').html(cost);
+          $('#cartEditable td').on('change', function(evt, newValue) {
+            for (var i = 0; i < cartItems.length; i++) {
+              if (parseInt($(`#quantity${cartItems[i][0]}`).html()) == newValue) {
+                if (newValue < parseInt($(`#qty${cartItems[i][0]}`).html())) {
+                  newSub = newValue * parseInt($(`#price${cartItems[i][0]}`).html());
+                  cartItems[i][3] = newValue;
+                  $(`#subTotal${cartItems[i][0]}`).html(newSub);
+                } else {
+                  alert('Quantity Not Available');
+                  return false;
+                }
+              }
+            }
+            calculateTotal();
         });
-        }    
+        }
+       }
+
+       function calculateTotal(){
+         var total=0;
+         for (var i = 0; i < cartItems.length; i++) {
+           total = total + parseInt($(`#subTotal${cartItems[i][0]}`).html());
+         }
+         $(`#cartTotal`).html(total)
+       }
+       function upQuantity(a,b,c){
+         for (var i = 0; i < cartItems.length; i++) {
+           if (cartItems[i][0]==a) {
+             currentQ = cartItems[i][3];
+             newQ = parseInt(currentQ) + 1;
+             if (newQ < parseInt($(`#qty${cartItems[i][0]}`).html())) {
+               cartItems[i][3] = newQ;
+             }else {
+               alert('Quantity Not Available');
+             }
+
+           }
+         }
+         populateCart();
+         calculateTotal();
+       }
+       function downQuantity(a,b,c){
+         for (var i = 0; i < cartItems.length; i++) {
+           if (cartItems[i][0]==a) {
+             currentQ = cartItems[i][3];
+             if (currentQ > 1) {
+               newQ = parseInt(currentQ) - 1;
+               cartItems[i][3] = newQ;
+             }else {
+               alert('Quantity cannot be below 1');
+             }
+           }
+         }
+         populateCart();
+         calculateTotal();
        }
 
    /* function sumCart(){
@@ -388,6 +437,9 @@ function getIndexOfProduct(arr, k) {
          $(document).ready(function(){
         $('.completeOrder').click(function(){
             alert("Weeb");
+            alert(JSON.stringify(cartItems));
+            alert(customerArr[0]);
+            alert($(`#deliveryDate`).html());
         });
       });
 
@@ -416,7 +468,7 @@ function getIndexOfProduct(arr, k) {
             bootbox.confirm('Do you really want to delete the selected order?',function(result)
         {if(result){
           $.post("delete.php",{id:id,cost:cost,where:where},
-        function(result){  
+        function(result){
             if(result == 1){
               $(el).closest('tr').css('background','tomato');
               $(el).closest('tr').fadeOut(800,function(){
@@ -478,7 +530,7 @@ $('#blacklistEditable').editableTableWidget();
   var where = 'blacklist';
   $.post("save.php",{id:id,location:location,number:number,balance:balance,where:where},
   function(result){});
-});  
+});
 
 
 $('#categoriesEditable').editableTableWidget();
@@ -492,7 +544,7 @@ $('#categoriesEditable').editableTableWidget();
   var where = 'categories';
   $.post("save.php",{id:id,name:name,where:where},
   function(result){});
-}); 
+});
 
 $('#suppliersEditable').editableTableWidget();
   $('#suppliersEditable td.uneditable').on('change', function(evt, newValue) {
@@ -505,7 +557,7 @@ $('#suppliersEditable').editableTableWidget();
   var where = 'suppliers';
   $.post("save.php",{id:id,contact:contact,where:where},
   function(result){});
-});  
+});
 
 $('#vehiclesEditable').editableTableWidget();
   $('#vehiclesEditable td.uneditable').on('change', function(evt, newValue) {
@@ -518,7 +570,7 @@ $('#vehiclesEditable').editableTableWidget();
   var where = 'vehicles';
   $.post("save.php",{id:id,route:route,where:where},
   function(result){});
-});  
+});
 
   $('#deliverersEditable').editableTableWidget();
   $('#deliverersEditable td.uneditable').on('change', function(evt, newValue) {
@@ -534,7 +586,7 @@ $('#vehiclesEditable').editableTableWidget();
   var where = 'deliverer';
   $.post("save.php",{id:id,contact:contact,staffId:staffId,nationalId:nationalId,salary:salary,where:where},
   function(result){});
-});  
+});
 
    $('#cooksEditable').editableTableWidget();
   $('#cooksEditable td.uneditable').on('change', function(evt, newValue) {
@@ -567,12 +619,12 @@ $('#officeEditable').editableTableWidget();
   var where = 'office';
   $.post("save.php",{id:id,contact:contact,staffId:staffId,nationalId:nationalId,salary:salary,role:role,where:where},
   function(result){});
-});  
+});
 
   $('#salesEditable').editableTableWidget();
   $('#salesEditable td.uneditable').on('change', function(evt, newValue) {
   return false;
-});  
+});
 
   $('#salesEditable').editableTableWidget();
   $('#salesEditable td.uneditable').on('change', function(evt, newValue) {
@@ -591,7 +643,7 @@ $('#officeEditable').editableTableWidget();
   var where = 'orders';
   $.post("save.php",{id:id,qty:qty,mpesa:mpesa,cash:cash,date:date,banked:banked,slip:slip,banker:banker,where:where},
   function(result){});
-}); 
+});
 
    $('#expenseHeadingEditable').editableTableWidget();
   $('#expenseHeadingEditable td.uneditable').on('change', function(evt, newValue) {
@@ -604,7 +656,7 @@ $('#officeEditable').editableTableWidget();
   var where = 'expenseHeading';
   $.post("save.php",{id:id,name:name,where:where},
   function(result){});
-}); 
+});
 
   $('#expensesEditable').editableTableWidget();
   $('#expensesEditable td.uneditable').on('change', function(evt, newValue) {
@@ -621,7 +673,7 @@ $('#officeEditable').editableTableWidget();
   var where = 'expense';
   $.post("save.php",{id:id,party:party,total:total,paid:paid,due:due,date:date,where:where},
   function(result){});
-}); 
+});
 
   $(document).on('click','#addCustomer',function(){
         var name = $('#name').val();
@@ -858,7 +910,7 @@ $('#officeEditable').editableTableWidget();
       bootbox.confirm('Do you really want to delete the selected customer?',function(result)
         {if(result){
           $.post("delete.php",{id:id,where:where},
-        function(result){  
+        function(result){
             if(result == 1){
               $(el).closest('tr').css('background','tomato');
               $(el).closest('tr').fadeOut(800,function(){
@@ -878,7 +930,7 @@ $('#officeEditable').editableTableWidget();
       bootbox.confirm('Do you really want to delete the selected stock?',function(result)
         {if(result){
           $.post("delete.php",{id:id,where:where},
-        function(result){  
+        function(result){
             if(result == 1){
               $(el).closest('tr').css('background','tomato');
               $(el).closest('tr').fadeOut(800,function(){
@@ -898,7 +950,7 @@ $('#officeEditable').editableTableWidget();
       bootbox.confirm('Do you really want to delete the selected blacklisted customer?',function(result)
         {if(result){
           $.post("delete.php",{id:id,where:where},
-        function(result){  
+        function(result){
             if(result == 1){
               $(el).closest('tr').css('background','tomato');
               $(el).closest('tr').fadeOut(800,function(){
@@ -918,7 +970,7 @@ $('#officeEditable').editableTableWidget();
       bootbox.confirm('Do you really want to delete the selected expense heading?',function(result)
         {if(result){
           $.post("delete.php",{id:id,where:where},
-        function(result){  
+        function(result){
             if(result == 1){
               $(el).closest('tr').css('background','tomato');
               $(el).closest('tr').fadeOut(800,function(){
@@ -938,7 +990,7 @@ $('#officeEditable').editableTableWidget();
       bootbox.confirm('Do you really want to delete the selected expense?',function(result)
         {if(result){
           $.post("delete.php",{id:id,where:where},
-        function(result){  
+        function(result){
             if(result == 1){
               $(el).closest('tr').css('background','tomato');
               $(el).closest('tr').fadeOut(800,function(){
@@ -959,7 +1011,7 @@ $('#officeEditable').editableTableWidget();
       bootbox.confirm('Do you really want to delete the selected category?',function(result)
         {if(result){
           $.post("delete.php",{id:id,where:where},
-        function(result){  
+        function(result){
             if(result == 1){
               $(el).closest('tr').css('background','tomato');
               $(el).closest('tr').fadeOut(800,function(){
@@ -979,7 +1031,7 @@ $('#officeEditable').editableTableWidget();
       bootbox.confirm('Do you really want to delete the selected supplier?',function(result)
         {if(result){
           $.post("delete.php",{id:id,where:where},
-        function(result){  
+        function(result){
             if(result == 1){
               $(el).closest('tr').css('background','tomato');
               $(el).closest('tr').fadeOut(800,function(){
@@ -999,7 +1051,7 @@ $('#officeEditable').editableTableWidget();
       bootbox.confirm('Do you really want to delete the selected vehicle?',function(result)
         {if(result){
           $.post("delete.php",{id:id,where:where},
-        function(result){  
+        function(result){
             if(result == 1){
               $(el).closest('tr').css('background','tomato');
               $(el).closest('tr').fadeOut(800,function(){
@@ -1019,7 +1071,7 @@ $('#officeEditable').editableTableWidget();
       bootbox.confirm('Do you really want to delete the selected deliverer?',function(result)
         {if(result){
           $.post("delete.php",{id:id,where:where},
-        function(result){  
+        function(result){
             if(result == 1){
               $(el).closest('tr').css('background','tomato');
               $(el).closest('tr').fadeOut(800,function(){
@@ -1039,7 +1091,7 @@ $('#officeEditable').editableTableWidget();
       bootbox.confirm('Do you really want to delete the selected cook?',function(result)
         {if(result){
           $.post("delete.php",{id:id,where:where},
-        function(result){  
+        function(result){
             if(result == 1){
               $(el).closest('tr').css('background','tomato');
               $(el).closest('tr').fadeOut(800,function(){
@@ -1059,7 +1111,7 @@ $('#officeEditable').editableTableWidget();
       bootbox.confirm('Do you really want to delete the selected office staff?',function(result)
         {if(result){
           $.post("delete.php",{id:id,where:where},
-        function(result){  
+        function(result){
             if(result == 1){
               $(el).closest('tr').css('background','tomato');
               $(el).closest('tr').fadeOut(800,function(){
@@ -1079,7 +1131,7 @@ $('#officeEditable').editableTableWidget();
       bootbox.confirm('Do you really want to delete the selected note?',function(result)
         {if(result){
           $.post("delete.php",{id:id,where:where},
-        function(result){  
+        function(result){
             if(result == 1){
               $(el).closest(`#card${id}`).css('background','silver');
               $(el).closest(`#card${id}`).fadeOut(800,function(){
@@ -1099,7 +1151,7 @@ $('#officeEditable').editableTableWidget();
       bootbox.confirm('Do you really want to delete the selected note?',function(result)
         {if(result){
           $.post("delete.php",{id:id,where:where},
-        function(result){  
+        function(result){
           alert(result);
             if(result == 1){
               $(el).closest(`#card${id}`).css('background','silver');
@@ -1120,7 +1172,7 @@ $('#officeEditable').editableTableWidget();
       bootbox.confirm('Do you really want to blacklist the selected customer?',function(result)
         {if(result){
           $.post("blacklist_restore.php",{id:id,where:where},
-        function(result){  
+        function(result){
             if(result == 1){
               $(el).closest('tr').css('background','gray');
               $(el).closest('tr').fadeOut(800,function(){
@@ -1143,7 +1195,7 @@ $('#officeEditable').editableTableWidget();
       bootbox.confirm('Do you really want to restore the selected blacklisted customer?',function(result)
         {if(result){
           $.post("blacklist_restore.php",{id:id,where:where},
-        function(result){  
+        function(result){
             if(result == 1){
               $(el).closest('tr').css('background','lime');
               $(el).closest('tr').fadeOut(800,function(){
@@ -1265,5 +1317,3 @@ $('#officeEditable').editableTableWidget();
                         mywindow.close();
          });
        });
-
-
