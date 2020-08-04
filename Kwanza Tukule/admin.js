@@ -30,6 +30,10 @@ setTime();
       google.charts.load("current", {packages:["corechart"]});
       google.charts.setOnLoadCallback(drawChart);
       function drawChart() {
+         var where = 'fastmoving';
+       $.post("charts.php",{where:where},
+        function(result){
+          alert(result);
         var data = google.visualization.arrayToDataTable([
           ['Products', 'Number of products sold'],
          ['Jahazi Flour', 132],
@@ -37,7 +41,7 @@ setTime();
           ['Yellow Beans', 50],
           ['Salit Oil', 70],
           ['Cosmo Flour', 70],
-          ['Others', 90]
+          ['Others', 90],
         ]);
         var options = {
           title: 'Fast moving products',
@@ -52,20 +56,23 @@ setTime();
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
         chart.draw(data, options);
+        });
       }
 
       google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawVisualization);
 
       function drawVisualization() {
-        // Some raw data (not necessarily accurate)
-        var data = google.visualization.arrayToDataTable([
+        var where = 'salescomparison';
+       $.get("charts.php",{where:where},
+        function(result){
+                   var data = google.visualization.arrayToDataTable([
           ['Month', 'Royson', 'Ken', 'Reuben', 'Damaris', 'George', 'Average'],
           ['2004/06/05',  165,      938,         522,             998,           450,      614.6],
           ['2005/06/06',  135,      1120,        599,             1268,          288,      682],
           ['2006/06/07',  157,      1167,        587,             807,           397,      623],
           ['2007/06/08',  139,      1110,        615,             968,           215,      609.4],
-          ['2008/06/09',  136,      691,         629,             1026,          366,      569.6]
+          ['2008/06/09',  136,      691,         629,             1026,          366,      569.6],
         ]);
 
         var options = {
@@ -77,7 +84,8 @@ setTime();
 
         var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
         chart.draw(data, options);
-      }
+        });
+      }            
 
  $(document).ready(function(){
          $(".paginate").DataTable({

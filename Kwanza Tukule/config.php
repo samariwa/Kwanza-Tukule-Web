@@ -10,27 +10,27 @@ $password = "Yu4kPkB8fpb5ZqBD";
 $hostname = "mariwa.ddns.net";
 $database = "tukule_kwanza";
 
-//Define your canonical domain including trailing slash!, example:
-$domain = "http://www.example.com/";
+//Definition of canonical domain including trailing slash!:
+$domain = "http://www.xyz.com/";
 
-//Define sending email notification to webmaster
+//Defining sending email notification to webmaster
 
-$email = 'samuelmariwa@gmail.com';
+$email = 'kwanzatukuleauthenticator@gmail.com';
 $subject = 'New user registration notification';
-$from = 'samuelmariwa@gmail.com';
+$from = 'kwanzatukuleauthenticator@gmail.com';
 
-//Define Recaptcha parameters
-$privatekey = "Your Recaptcha private key";
-$publickey = "Your Recaptcha public key";
+//Defining Recaptcha parameters
+$privatekey = "Recaptcha private key";
+$publickey = "Recaptcha public key";
 
-//Define length of salt,minimum=10, maximum=35
+//Defining length of salt,minimum=10, maximum=35
 $length_salt = 15;
 
-//Define the maximum number of failed attempts to ban brute force attackers
+//Defining the maximum number of failed attempts to ban brute force attackers
 //minimum is 5
 $maxfailedattempt = 5;
 
-//Define session timeout in seconds
+//Defining session timeout in seconds
 //minimum 60 (for one minute)
 $sessiontimeout = 60*20;
 
