@@ -1,9 +1,9 @@
-<?php
+<?php 
 require('config.php');
 $where =$_POST['where'];
 session_start();
 if($where == 'customer' )
-{
+{              
                  $name = $_POST['name'];
                  $location = $_POST['location'];
                  $number = $_POST['number'];
@@ -16,7 +16,7 @@ if($where == 'customer' )
                  else{
                    echo "success";
                   mysqli_query($connection,"INSERT INTO `customers` (`Name`,`Location`,`Number`,`Deliverer`) VALUES ('$name','$location','$number','$deliverer')") or die(mysqli_error($connection));
-                 }
+                 }             
 }
 else if ($where == 'stock') {
                  $name = $_POST['name'];
@@ -46,7 +46,7 @@ else if ($where == 'stock') {
                  $Stock_id = $row3['id'];
                   mysqli_query($connection,"INSERT INTO `stock_flow` (`Stock_id`,`Expiry_date`,`Buying_price`,`Selling_Price`,`Received_date`,`Purchased`) VALUES ('$Stock_id','$expiry','$bp','$sp','$received','$qty')") or die(mysqli_error($connection));
                  }
-
+               
 }
 else if ($where == 'categories') {
                  $category = $_POST['category'];
@@ -199,38 +199,11 @@ elseif ($where == 'expense') {
    $value = mysqli_fetch_array($expenseId);
    $id = $value['id'];
    echo "success";
-     mysqli_query($connection,"INSERT INTO `expense_details` (`Expense_id`,`Party`,`Total_amount`,`Paid_amount`,`Due_amount`,`Payment_date`) VALUES ('$id','$party','$total','$paid','$due','$date')") or die(mysqli_error($connection));
+     mysqli_query($connection,"INSERT INTO `expense_details` (`Expense_id`,`Party`,`Total_amount`,`Paid_amount`,`Due_amount`,`Payment_date`) VALUES ('$id','$party','$total','$paid','$due','$date')") or die(mysqli_error($connection));     
 }
 elseif ($where == 'expenseHeading') {
   $name = $_POST['heading'];
   echo "success";
-     mysqli_query($connection,"INSERT INTO `expenses` (`Name`) VALUES ('$name')") or die(mysqli_error($connection));
-}
-elseif ($where=='order') {
-  $balance = "";
-  $category="";
-  $price = $_POST['price'];
-  $quantity = $_POST['quantity'];
-  $customer = $_POST['customer'];
-  $stockIDx = $_POST['stockid'];
-  $lateOrder = $_POST['lateOrder'];
-  $resx = mysqli_query($connection, "SELECT Category_id FROM `stock` WHERE id='$stockIDx'");
-  while ($rowx = mysqli_fetch_array($resx)) {
-    $category = $rowx['Category_id'];
-  }
-  $result  = mysqli_query($connection, "SELECT Balance FROM `orders` WHERE Customer_id='$customer' ORDER BY id DESC");
-  $count = 0;
-  while($row = mysqli_fetch_array($result)) {
-    if ($count==0) {
-      $balance = $row['Balance'];
-    }
-      $count++;
-  }
-  $newDebt = $balance;
-  $newBalance = (int)$newDebt - ((int)$price*(int)$quantity);
-  $sql = "INSERT INTO `orders`(`Customer_id`,`Category_id`,`Quantity`,`Debt`,`Balance`,`Stock_id`,`Late_Order`) VALUES('$customer','$category','$quantity','$newDebt','$newBalance','$stockIDx','$lateOrder')";
-  if (mysqli_query($connection, $sql) === TRUE) {
-    echo 'success';
-  }
+     mysqli_query($connection,"INSERT INTO `expenses` (`Name`) VALUES ('$name')") or die(mysqli_error($connection));      
 }
  ?>
