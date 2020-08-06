@@ -129,6 +129,6 @@
        <div id="chart_div" style="width: 1000px; height: 500px;" ></div>   
 <br>
 <h4>Brand Sales Comparison</h4>
- <div id="piechart" style="width: 310px; height: 310px;"></div>               
+ <div id="piechart" style="width: 500px; height: 500px;"></div>               
   <!-- Scroll to Top Button-->
   <?php include "admin_footer.php" ?> 

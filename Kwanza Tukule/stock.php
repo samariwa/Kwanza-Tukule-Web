@@ -261,7 +261,7 @@
         $category = $row['Category_Name'];
         $name = $row['Name'];
         $buying_price = $row['Buying_price'];
-        $selling_price = $row['Selling_Price'];
+        $selling_price = $row['Price'];
         $quantity = $row['Quantity'];
       ?>
     <tr>

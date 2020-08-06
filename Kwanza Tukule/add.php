@@ -40,7 +40,7 @@ else if ($where == 'stock') {
                  $result2 = mysqli_query($connection,"SELECT * FROM suppliers WHERE Name = '".$supplier."'")or die($connection->error);
                  $row2 = mysqli_fetch_array($result2);
                  $supplier = $row2['id'];
-                  mysqli_query($connection,"INSERT INTO `stock` (`Category_id`,`Supplier_id`,`Name`,`Quantity`) VALUES ('$category','$supplier','$name','$qty');") or die(mysqli_error($connection));
+                  mysqli_query($connection,"INSERT INTO `stock` (`Category_id`,`Supplier_id`,`Name`,`Buying_price`,`Price`,`Quantity`) VALUES ('$category','$supplier','$name','$bp','$sp','$qty');") or die(mysqli_error($connection));
                   $result3 = mysqli_query($connection,"SELECT * FROM stock WHERE Name = '".$name."';")or die($connection->error);
                  $row3 = mysqli_fetch_array($result3);
                  $Stock_id = $row3['id'];
@@ -173,7 +173,7 @@ elseif ($where == 'purchase') {
      $sp = $_POST['sp'];
      $expiry = $_POST['expiry'];
      mysqli_query($connection,"INSERT INTO `stock_flow` (`Stock_id`,`Buying_price`,`Selling_Price`,`Received_date`,`Purchased`,`Expiry_date`) VALUES ('$id','$bp','$sp','$received','$qty','$expiry')") or die(mysqli_error($connection));
-mysqli_query($connection,"UPDATE `stock` SET `Quantity` = Quantity + '".$qty."' WHERE `id` = '".$id."'")or die($connection->error);
+mysqli_query($connection,"UPDATE `stock` SET Buying_price = '".$bp."',Price = '".$sp."', `Quantity` = Quantity + '".$qty."' WHERE `id` = '".$id."'")or die($connection->error);
 }
 elseif ($where == 'calendar') {
   if(isset($_POST["title"]))
@@ -229,8 +229,22 @@ elseif ($where=='order') {
   $newDebt = $balance;
   $newBalance = (int)$newDebt - ((int)$price*(int)$quantity);
   $sql = "INSERT INTO `orders`(`Customer_id`,`Category_id`,`Quantity`,`Debt`,`Balance`,`Stock_id`,`Late_Order`) VALUES('$customer','$category','$quantity','$newDebt','$newBalance','$stockIDx','$lateOrder')";
+  mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = Quantity - '".$quantity."' WHERE `id` = '".$stockIDx."'")or die($connection->error);
+   if ($newBalance == 0 ) {
+     mysqli_query($connection,"UPDATE `customers`  SET `Status` = 'clean' WHERE `id` = '".$customer."'")or die($connection->error);
+   }
+   else if ($newBalance < -100) {
+     mysqli_query($connection,"UPDATE `customers`  SET `Status` = 'no delivery' WHERE `id` = '".$customer."'")or die($connection->error);
+   }
+   else if ($newBalance >= -100 && $newBalance < 0) {
+     mysqli_query($connection,"UPDATE `customers`  SET `Status` = 'fined' WHERE `id` = '".$customer."'")or die($connection->error);
+   }
+   else if ($newBalance > 0) {
+     mysqli_query($connection,"UPDATE `customers`  SET `Status` = 'credit' WHERE `id` = '".$customer."'")or die($connection->error);
+   }
   if (mysqli_query($connection, $sql) === TRUE) {
     echo 'success';
   }
+  
 }
  ?>

@@ -33,15 +33,29 @@ setTime();
          var where = 'fastmoving';
        $.post("charts.php",{where:where},
         function(result){
-          alert(result);
+          var data = $.parseJSON(result);
+          var data0 = data[0][0];
+          var data1 = data[0][1];
+          var data2 = data[1][0];
+          var data3 = data[1][1];
+          var data4 = data[2][0];
+          var data5 = data[2][1];
+          var data6 = data[3][0];
+          var data7 = data[3][1];
+          var data8 = data[4][0];
+          var data9 = data[4][1];
+          var data10 = data[5][0];
+          var data11 = data[5][1];
+          var data12 = data[6][0];
+          var data13 = data[6][1];
         var data = google.visualization.arrayToDataTable([
-          ['Products', 'Number of products sold'],
-         ['Jahazi Flour', 132],
-          ['Dola Flour', 67],
-          ['Yellow Beans', 50],
-          ['Salit Oil', 70],
-          ['Cosmo Flour', 70],
-          ['Others', 90],
+          [data0, data1],
+         [data2, parseInt(data3)],
+          [data4, parseInt(data5)],
+          [data6, parseInt(data7)],
+          [data8, parseInt(data9)],
+          [data10, parseInt(data11)],
+          [data12, parseInt(data13)],
         ]);
         var options = {
           title: 'Fast moving products',
@@ -72,7 +86,8 @@ setTime();
           ['2005/06/06',  135,      1120,        599,             1268,          288,      682],
           ['2006/06/07',  157,      1167,        587,             807,           397,      623],
           ['2007/06/08',  139,      1110,        615,             968,           215,      609.4],
-          ['2008/06/09',  136,      691,         629,             1026,          366,      569.6],
+          ['Yesterday',  136,      691,         629,             1026,          366,      569.6],
+          ['Today',  136,      691,         629,             1026,          366,      569.6],
         ]);
 
         var options = {
@@ -444,11 +459,7 @@ function getIndexOfProduct(arr, k) {
 
          $(document).ready(function(){
         $('.completeOrder').click(function(){
-            alert("Weeb");
-            alert(JSON.stringify(cartItems));
-            alert(customerArr[0]);
             completeOrderBalance(customerArr[0],cartItems);
-            alert($(`#deliveryDate`).val());
         });
       });
 
@@ -457,11 +468,11 @@ function getIndexOfProduct(arr, k) {
         for (var i = 0; i < cartArr.length; i++) {
           $.post("add.php",{where:'order',price:cartArr[i][2],quantity:cartArr[i][3], customer:custID, stockid:cartArr[i][0], lateOrder:$(`#deliveryDate`).val()},
           function(result){
-            alert(result);
             if (result=='success') {
                 cartArr.shift();
             }
           });
+          alert("Order Successfully Added");
         }
       }
 
@@ -1253,7 +1264,6 @@ $('#officeEditable').editableTableWidget();
         var where = 'purchase';
         var el = $(this);
         var id = el.attr("id");
-        alert(id);
         var received = $(`#received${id}`).val();
         var qty = $(`#qty${id}`).val();
          var bp = $(`#bp${id}`).val();

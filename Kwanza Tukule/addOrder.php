@@ -180,7 +180,7 @@
          $id = $row['id'];
         $category = $row['Category_Name'];
         $name = $row['Name'];
-        $selling_price = $row['Selling_Price'];
+        $selling_price = $row['Price'];
         $quantity = $row['Quantity'];
       ?>
     <tr>
