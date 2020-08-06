@@ -85,7 +85,7 @@ setTime();
         var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
         chart.draw(data, options);
         });
-      }            
+      }
 
  $(document).ready(function(){
          $(".paginate").DataTable({
@@ -447,11 +447,23 @@ function getIndexOfProduct(arr, k) {
             alert("Weeb");
             alert(JSON.stringify(cartItems));
             alert(customerArr[0]);
+            completeOrderBalance(customerArr[0],cartItems);
             alert($(`#deliveryDate`).val());
         });
       });
 
 
+      function completeOrderBalance(custID,cartArr){
+        for (var i = 0; i < cartArr.length; i++) {
+          $.post("add.php",{where:'order',price:cartArr[i][2],quantity:cartArr[i][3], customer:custID, stockid:cartArr[i][0], lateOrder:$(`#deliveryDate`).val()},
+          function(result){
+            alert(result);
+            if (result=='success') {
+                cartArr.shift();
+            }
+          });
+        }
+      }
 
        function fineCustomer(idx){
            var id = idx;
