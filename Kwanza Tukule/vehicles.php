@@ -129,9 +129,9 @@
   <thead class="thead-dark">
     <tr>
       <th scope="col" width="5%">#</th>
-      <th scope="col" width="25%">Vehicle Type</th>
-      <th scope="col" width="20%">Registration Number</th>
-      <th scope="col" width="25%">Route</th>
+      <th scope="col" width="13%">Vehicle Type</th>
+      <th scope="col" width="13%">Reg. No.</th>
+      <th scope="col" width="15%">Route</th>
       <th scope="col"width="40%"></th>
     </tr>
   </thead>
@@ -166,6 +166,7 @@
               $vehiclesList = mysqli_query($connection,"SELECT users.firstname as driver,vehicles.id as id,Driver_id,Type,Reg_Number,Route,Last_service,notes,Next_service FROM vehicles INNER JOIN vehicle_service ON vehicles.id=vehicle_service.Vehicle_id INNER JOIN users ON vehicles.Driver_id=users.id where vehicles.id = '$id' ")or die($connection->error);
                 $vehicle = mysqli_fetch_array($vehiclesList);
                   $Driver = $vehicle['driver'];
+                  $Driver_id = $vehicle['Driver_id'];
                   $Last = $vehicle['Last_service'];
                   $Next = $vehicle['Next_service'];
                   $Notes = $vehicle['notes'];
@@ -174,31 +175,137 @@
                      <h5><b>Driver:</b></h5>
                  </div>
                  <div class="row"  style="padding:15px;margin-left: 60px;margin-top: -30px">
-                     <?php echo $Driver ?>
+                  <?php echo $Driver ?>
+                     <select type="text" name="driver" id="driver<?php echo $id?>" class="form-control col-md-9" style="padding-right:15px;padding-left:15px;margin-left: 10px" required onfocus='this.size=3;' onblur='this.size=1;' onchange='this.size=1; this.blur();' required>
+                  <option value="<?php echo $Driver_id ?>" selected="selected" disabled>Change Vehicle Driver...</option>
+                  <?php
+                    $count = 0;
+                    foreach($deliverersStaffList as $row){
+                     $count++;
+                     $driver_id = $row['id'];
+                    $driver = $row['firstname'];
+                  ?>
+                   <option value="<?php echo $driver_id; ?>"><?php echo $driver; ?></option>
+                  <?php
+                    }
+                  ?>
+                 </select>
+                 <button type="submit" class="btn btn-primary saveDriver" style="margin-top: 20px;margin-left: 200px" id="<?php echo $id?>">Save</button>
                   </div><br>
-                 <div class="row" style="padding:15px;margin-left: 60px">
-                     <h5><b>Last Inspection Date:</b></h5>
+                 <div class="row" style="padding:15px;margin-top: -20px;margin-left: 60px">
+                     <h5><b>Last Service Date:</b></h5>
                  </div>
                  <div class="row"  style="padding:15px;margin-left: 60px;margin-top: -30px;">
                       <?php echo $Last ?>
                   </div><br>
                    <div class="row" style="padding:15px;margin-left: 60px">
-                     <h5><b>Notes:</b></h5><br><br>
+                     <h5><b>Service Notes:</b></h5><br><br>
                   </div>
                  <div class="row"  style="padding:15px;margin-left: 60px;margin-top: -30px;">
                        <?php echo $Notes ?>
                   </div><br>
                    <div class="row" style="padding:15px;margin-left: 60px">
-                     <h5><b>Next Inspection Date:</b></h5><br>
+                     <h5><b>Next Service Date:</b></h5><br>
                   </div>
                  <div class="row"  style="padding:15px;margin-left: 60px;margin-top: -30px;">
                         <?php echo $Next ?>
+                  </div>
+                  <?php 
+              $vehiclesList = mysqli_query($connection,"SELECT Last_Inspection,notes,Next_Inspection FROM vehicles INNER JOIN vehicle_inspection ON vehicles.id=vehicle_inspection.Vehicle_id INNER JOIN users ON vehicles.Driver_id=users.id where vehicles.id = '$id' ")or die($connection->error);
+                $vehicle = mysqli_fetch_array($vehiclesList);
+                  $last = $vehicle['Last_Inspection'];
+                  $next = $vehicle['Next_Inspection'];
+                  $notes = $vehicle['notes'];
+              ?> 
+              <div class="row" style="padding:15px;margin-left: 60px">
+                     <h5><b>Last Inspection Date:</b></h5>
+                 </div>
+                 <div class="row"  style="padding:15px;margin-left: 60px;margin-top: -30px;">
+                      <?php echo $last ?>
+                  </div><br>
+                   <div class="row" style="padding:15px;margin-left: 60px">
+                     <h5><b>Inspection Notes:</b></h5><br><br>
+                  </div>
+                 <div class="row"  style="padding:15px;margin-left: 60px;margin-top: -30px;">
+                       <?php echo $notes ?>
+                  </div><br>
+                   <div class="row" style="padding:15px;margin-left: 60px">
+                     <h5><b>Next Inspection Date:</b></h5><br>
+                  </div>
+                 <div class="row"  style="padding:15px;margin-left: 60px;margin-top: -30px;">
+                        <?php echo $next ?>
                   </div>
             </div>
             <div class="modal-footer">
             </div>
           </div>
         </div>
+      </div>
+       <button data-toggle="modal" data-target="#exampleModalScrollable2<?php echo $id?>" class="btn btn-light btn-sm active" role="button" aria-pressed="true"><i class="fa fa-wrench"></i>&ensp;Service</button>
+       <!-- Modal -->
+      <div class="modal fade" id="exampleModalScrollable2<?php echo $id?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalScrollableTitle">Add Service Details</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form method="POST">
+                 <div class="row">
+                  <label for="now" style="margin-left: 60px">Service Date...</label>
+                 <input type="date" name="now" id="now<?php echo $id?>" class="form-control col-md-9" style="padding:15px;margin-left: 60px"  required>
+                  </div><br>
+                  <div class="row">
+                 <input type="text" name="note" id="note<?php echo $id?>" class="form-control col-md-9" style="padding:15px;margin-left: 60px" placeholder="Service Notes..." >
+                  </div><br>
+                  <div class="row">
+                     <label for="next" style="margin-left: 60px">Next Service Date...</label>
+                 <input type="date" name="next" id="next<?php echo $id?>" class="form-control col-md-9" style="padding:15px;margin-left: 60px"  required>
+                  </div>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary addService" style="margin-right: 50px" id="<?php echo $id?>">Save Details</button>
+            </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+      <button data-toggle="modal" data-target="#exampleModalScrollable3<?php echo $id?>" class="btn btn-light btn-sm active" role="button" aria-pressed="true"><i class="fa fa-check-square"></i>&ensp;Inspection</button>
+       <!-- Modal -->
+      <div class="modal fade" id="exampleModalScrollable3<?php echo $id?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalScrollableTitle">Add Inspection Details</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form method="POST">
+                 <div class="row">
+                  <label for="now" style="margin-left: 60px">Inspection Date...</label>
+                 <input type="date" name="now" id="Now<?php echo $id?>" class="form-control col-md-9" style="padding:15px;margin-left: 60px"  required>
+                  </div><br>
+                  <div class="row">
+                 <input type="text" name="note" id="Note<?php echo $id?>" class="form-control col-md-9" style="padding:15px;margin-left: 60px" placeholder="Inspection Notes..." >
+                  </div><br>
+                  <div class="row">
+                     <label for="next" style="margin-left: 60px">Next Inspection Date...</label>
+                 <input type="date" name="next" id="Next<?php echo $id?>" class="form-control col-md-9" style="padding:15px;margin-left: 60px"  required>
+                  </div>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary addInspection" style="margin-right: 50px" id="<?php echo $id?>">Save Details</button>
+            </form>
+            </div>
+          </div>
+        </div>
+      </div>
       </div>
         <button id="<?php echo $id; ?>" data_id="<?php echo $id; ?>" class="btn btn-danger btn-sm active deleteVehicle" role="button" aria-pressed="true" ><i class="fa fa-trash"></i>&ensp;Delete</button>
        </td>

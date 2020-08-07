@@ -1275,6 +1275,43 @@ $('#officeEditable').editableTableWidget();
          });
        });
 
+  $(document).on('click','.addService',function(){
+        var where = 'service';
+        var el = $(this);
+        var id = el.attr("id");
+        var now = $(`#now${id}`).val();
+        var note = $(`#note${id}`).val();
+         var next = $(`#next${id}`).val();
+        $.post("save.php",{id:id,now:now,note:note,next:next,where:where},
+        function(result){
+
+         });
+       });
+
+  $(document).on('click','.addInspection',function(){
+        var where = 'inspection';
+        var el = $(this);
+        var id = el.attr("id");
+        var now = $(`#Now${id}`).val();
+        var note = $(`#Note${id}`).val();
+         var next = $(`#Next${id}`).val();
+        $.post("save.php",{id:id,now:now,note:note,next:next,where:where},
+        function(result){
+
+         });
+       });
+
+   $(document).on('click','.saveDriver',function(){
+        var where = 'driver';
+        var el = $(this);
+        var id = el.attr("id");
+        var driver = $(`#driver${id}`).val();
+        $.post("save.php",{id:id,driver:driver,where:where},
+        function(result){
+               alert("Vehicle driver Successfully changed");
+         });
+       });
+
  $(document).on('click','.printCustomers',function(){
                 $.ajax({
                     url: 'customersPrint.php',

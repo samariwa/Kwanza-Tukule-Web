@@ -203,5 +203,37 @@ unset($_SESSION['user']);
 $_SESSION['user'] = $username;
 echo "saved";
 }
-
+elseif ($where == 'service') {
+  $id = $_POST['id'];
+    $now = $_POST['now'];
+     $note = $_POST['note'];
+     $next = $_POST['next'];
+     $row = mysqli_query($connection,"SELECT * FROM vehicle_service WHERE Vehicle_id = '".$id."'")or die($connection->error);
+      $result = mysqli_fetch_array($row);
+         if ( $result == TRUE) {
+mysqli_query($connection,"UPDATE `vehicle_service` SET Last_service = '".$now."', `notes` = '".$note."',Next_service = '".$next."' WHERE `Vehicle_id` = '".$id."'")or die($connection->error);
+         }
+         else{
+      mysqli_query($connection,"INSERT INTO `vehicle_service` (`Vehicle_id`,`Last_service`,`notes`,`Next_service`) VALUES ('$id','$now','$note','$next')") or die(mysqli_error($connection));
+         }
+}
+elseif ($where == 'inspection') {
+  $id = $_POST['id'];
+    $now = $_POST['now'];
+     $note = $_POST['note'];
+     $next = $_POST['next'];
+     $row = mysqli_query($connection,"SELECT * FROM vehicle_inspection WHERE Vehicle_id = '".$id."'")or die($connection->error);
+      $result = mysqli_fetch_array($row);
+         if ( $result == TRUE) {
+mysqli_query($connection,"UPDATE `vehicle_inspection` SET Last_Inspection = '".$now."', `notes` = '".$note."',Next_Inspection = '".$next."' WHERE `Vehicle_id` = '".$id."'")or die($connection->error);
+          }
+          else{
+    mysqli_query($connection,"INSERT INTO `vehicle_inspection` (`Vehicle_id`,`Last_Inspection`,`notes`,`Next_Inspection`) VALUES ('$id','$now','$note','$next')") or die(mysqli_error($connection));
+          }
+}
+elseif ($where == 'driver') {
+  $id = $_POST['id'];
+    $driver = $_POST['driver'];
+mysqli_query($connection,"UPDATE `vehicles` SET Driver_id = '".$driver."' WHERE `id` = '".$id."'")or die($connection->error);
+}
  ?>
