@@ -140,26 +140,42 @@
 
         ?>
       <div class="row">
-      <a href="addOrder.php" class="btn btn-success btn-md active" role="button" aria-pressed="true" style="margin-left: 25px;"><i class="fa fa-plus-circle"></i>&ensp;New Order</a>
-      <a href="distribution.php" class="btn btn-warning btn-md active" role="button" aria-pressed="true" style="margin-left: 25px;">Goods Distribution</a>
+        <div class="col-md-2">
+      <a href="addOrder.php" class="btn btn-success btn-md active" role="button" aria-pressed="true"><i class="fa fa-plus-circle"></i>&ensp;New Order</a>
+      </div>
+      <div class="col-md-2">
+      <a href="distribution.php" class="btn btn-warning btn-md active" role="button" aria-pressed="true" >Goods Distribution</a>
+    </div>
       <?php
         $ordersrowcount = mysqli_num_rows($salesList);
       ?>
-      <h6 style="margin-left: 130px;">Total Number: <?php echo $ordersrowcount; ?></h6>
-      <a href="gatePass.php" class="btn btn-dark btn-md active" role="button" aria-pressed="true" style="margin-left: 130px;">Gate Pass</a>
-      <a href="returned.php" class="btn btn-info btn-md active" role="button" aria-pressed="true" style="margin-left: 25px;">Returned Goods</a>
+      <div class="col-md-4">
+      <h6 class="offset-3">Total Number: <?php echo $ordersrowcount; ?></h6>
+    </div>
+    <div class="col-md-2">
+      <a href="gatePass.php" class="btn btn-dark btn-md active" role="button" aria-pressed="true" >Gate Pass</a>
+    </div>
+    <div class="col-md-2">
+      <a href="returned.php" class="btn btn-info btn-md active" role="button" aria-pressed="true">Returned Goods</a>
+    </div>
     </div><br> 
      <?php
         }
         else{
         ?>
         <div class="row">
-      <a href="addOrder.php" class="btn btn-success btn-md active" role="button" aria-pressed="true" style="margin-left: 25px;"><i class="fa fa-plus-circle"></i>&ensp;New Order</a>
+          <div class="col-md-4">
+      <a href="addOrder.php" class="btn btn-success btn-md active ml-3" role="button" aria-pressed="true" ><i class="fa fa-plus-circle"></i>&ensp;New Order</a>
+    </div>
       <?php
         $ordersrowcount = mysqli_num_rows($salesList);
       ?>
-      <h6 style="margin-left: 280px;">Total Number: <?php echo $ordersrowcount; ?></h6>
-      <a href="returned.php" class="btn btn-info btn-md active" role="button" aria-pressed="true" style="margin-left: 290px;">Returned Goods</a>
+      <div class="col-md-4">
+      <h6 class="offset-4">Total Number: <?php echo $ordersrowcount; ?></h6>
+    </div>
+    <div class="col-md-4">
+      <a href="returned.php" class="btn btn-info btn-md active offset-6" role="button" aria-pressed="true">Returned Goods</a>
+    </div>
     </div><br> 
         <?php
         }

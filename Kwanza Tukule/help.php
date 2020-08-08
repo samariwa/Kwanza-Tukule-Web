@@ -200,6 +200,8 @@
         <h5><b>Business Hours: </b></h5>
         <p>Weekdays -> 8 am - 5 pm</p>
         <p>Saturdays -> 8 am - 12.30 pm</p>
+        <br>
+        <h6><i class="bx bxs-smile"></i>&ensp;<b>We're happy to help</b></h6>
         
   <!-- Scroll to Top Button-->
   <?php include "admin_footer.php" ?> 

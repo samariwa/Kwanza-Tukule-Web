@@ -164,7 +164,7 @@
             <div class="modal-body">
               <?php 
               $vehiclesList = mysqli_query($connection,"SELECT users.firstname as driver,vehicles.id as id,Driver_id,Type,Reg_Number,Route,Last_service,notes,Next_service FROM vehicles INNER JOIN vehicle_service ON vehicles.id=vehicle_service.Vehicle_id INNER JOIN users ON vehicles.Driver_id=users.id where vehicles.id = '$id' ")or die($connection->error);
-                $vehicle = mysqli_fetch_array($vehiclesList);
+                 $vehicle = mysqli_fetch_array($vehiclesList);
                   $Driver = $vehicle['driver'];
                   $Driver_id = $vehicle['Driver_id'];
                   $Last = $vehicle['Last_service'];

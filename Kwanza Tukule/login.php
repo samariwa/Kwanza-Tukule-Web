@@ -6,6 +6,7 @@ use PHPMailer\PHPMailer\SMTP;
 session_start();
 //require user configuration and database connection parameters
 require('config.php');
+require_once "functions.php";
 if (isset($_SESSION['logged_in'])) {
 	if ($_SESSION['logged_in'] == TRUE) {
 //valid user has logged-in to the website
@@ -96,15 +97,6 @@ if ((isset($_POST["pass"])) && (isset($_POST["user"])) && ($_SESSION['logged_in'
 //Username and password has been submitted by the user
 //Receive and sanitize the submitted information
 
-    function sanitize($data) {
-    	require('config.php');
-    	$connection = mysqli_connect($hostname,$username, $password, $database)
-        or die("Unable to connect to Server");
-        $data = trim($data);
-        $data = htmlspecialchars($data);
-        $data = mysqli_real_escape_string($connection,$data);
-        return $data;
-    }
 
     $user = sanitize($_POST["user"]);
     $pass = sanitize($_POST["pass"]);
@@ -287,18 +279,9 @@ if (($loginattempts_username > 5) && ($registered == TRUE)) {
 //This will be used to authenticate the user session
 //To make sure it belongs to an authorized user and not to anyone else.
 //generate random hash
-        function genRandomString() {
-            $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-            $charactersLength = strlen($characters);
-            $string = '';
-            for ($p = 0; $p < $charactersLength; $p++) {
-                $string .= $characters[rand(0, $charactersLength - 1)];
-            }
+        
 
-            return $string;
-        }
-
-        $random = genRandomString();
+        $random = genRandomSaltString();
         $salt_ip = substr($random, 0, $length_salt);
 
 //hash the ip address, user-agent and the salt

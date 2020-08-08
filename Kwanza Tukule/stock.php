@@ -216,12 +216,18 @@
           }else{
             ?>
 <div class="row">
-      <a href="shelf_life.php" class="btn btn-info btn-md active" role="button" aria-pressed="true" style="margin-left: 13px;">Stock Shelf Life</a>
+  <div class="col-md-4">
+      <a href="shelf_life.php" class="btn btn-info btn-md active  ml-3" role="button" aria-pressed="true">Stock Shelf Life</a>
+    </div>
       <?php
         $stockrowcount = mysqli_num_rows($stockList);
       ?>
-      <h6 style="margin-left: 300px;">Total Number: <?php echo $stockrowcount; ?></h6>
-      <a href="categories.php" class="btn btn-primary btn-md active" role="button" aria-pressed="true" style="margin-left: 310px;">Stock Categories</a>
+      <div class="col-md-4">
+      <h6 class="offset-4">Total Number: <?php echo $stockrowcount; ?></h6>
+    </div>
+    <div class="col-md-4">
+      <a href="categories.php" class="btn btn-primary btn-md active offset-6" role="button" aria-pressed="true">Stock Categories</a>
+    </div>
     </div><br> 
             <?php
           }

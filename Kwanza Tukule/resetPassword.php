@@ -13,15 +13,6 @@ $passwordmatch  = TRUE;
       $exists=mysqli_num_rows($check);
       if($exists > 0){
          if ((isset($_POST["pass"])) &&  (isset($_POST["pass2"]))) {
-         function sanitize($data) {
-    	require('config.php');
-    	$connection = mysqli_connect($hostname,$username, $password, $database)
-        or die("Unable to connect to Server");
-        $data = trim($data);
-        $data = htmlspecialchars($data);
-        $data = mysqli_real_escape_string($connection, $data);
-        return $data;
-         }
          $desired_password = sanitize($_POST["pass"]);
          $desired_password1 = sanitize($_POST["pass2"]);
          if (empty($desired_password)) {

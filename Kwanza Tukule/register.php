@@ -1,6 +1,7 @@
 <?php 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
+require_once "functions.php";
 require('config.php');
 session_start();
 $connection = mysqli_connect($hostname,$username, $password, $database)
@@ -17,16 +18,6 @@ if ((isset($_POST["pass"])) && (isset($_POST["user"])) && (isset($_POST["pass2"]
 //Username and Password has been submitted by the user
 //Receive and validate the submitted information
 //sanitize user inputs
-
-    function sanitize($data) {
-    	require('config.php');
-    	$connection = mysqli_connect($hostname,$username, $password, $database)
-        or die("Unable to connect to Server");
-        $data = trim($data);
-        $data = htmlspecialchars($data);
-        $data = mysqli_real_escape_string($connection, $data);
-        return $data;
-    }
     $first_name = sanitize($_POST["first"]);
     $last_name = sanitize($_POST["last"]);
     $phone_no = sanitize($_POST["number"]);
