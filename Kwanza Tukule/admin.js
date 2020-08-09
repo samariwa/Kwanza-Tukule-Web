@@ -78,10 +78,11 @@ setTime();
 
       function drawVisualization() {
         var where = 'salescomparison';
-       $.get("charts.php",{where:where},
+       $.post("charts.php",{where:where},
         function(result){
+          //alert(result);
                    var data = google.visualization.arrayToDataTable([
-          ['Month', 'Royson', 'Ken', 'Reuben', 'Damaris', 'George', 'Average'],
+          ['Day', 'Royson', 'Ken', 'Reuben', 'Damaris', 'George', 'Average'],
           ['2004/06/05',  165,      938,         522,             998,           450,      614.6],
           ['2005/06/06',  135,      1120,        599,             1268,          288,      682],
           ['2006/06/07',  157,      1167,        587,             807,           397,      623],

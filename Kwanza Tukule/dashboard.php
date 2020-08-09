@@ -1,5 +1,6 @@
 <?php
  include "admin_nav.php";
+ include('queries.php');
  ?> 
 
         <!-- Begin Page Content -->
@@ -239,7 +240,6 @@
       <i class="fa fa-address-book fa-4x" style="margin-left: 70px;"></i>
       <br><br>
       <?php 
-      include('queries.php');
         $customersrowcount = mysqli_num_rows($customersList);
       ?>
       <p style="text-align: center;font-size: 35px"><?php echo $customersrowcount; ?></p>
@@ -255,7 +255,23 @@
                   <br>
                   <i class="fa fa-clipboard fa-4x" style="margin-left: 70px"></i>
                   <br><br>
-                  <p style="text-align: center;font-size: 35px">100</p>
+                  <?php 
+                      $row1 = mysqli_fetch_array($distributionTotalFiveDaysAgo);
+                      $fiveDaysAgoSum = $row1['count'];
+                      $row2 = mysqli_fetch_array($distributionTotalFourDaysAgo);
+                      $fourDaysAgoSum = $row2['count'];
+                      $row3 = mysqli_fetch_array($distributionTotalThreeDaysAgo);
+                      $threeDaysAgoSum = $row3['count'];
+                      $row4 = mysqli_fetch_array($distributionTotalTwoDaysAgo);
+                      $twoDaysAgoSum = $row4['count'];
+                      $row5 = mysqli_fetch_array($distributionTotalYesterday);
+                      $YesterdaySum = $row5['count'];
+                      $row6 = mysqli_fetch_array($distributionTotalToday);
+                      $TodaySum = $row6['count'];
+                      $total = $fiveDaysAgoSum + $fourDaysAgoSum + $threeDaysAgoSum + $twoDaysAgoSum + $YesterdaySum + $TodaySum;
+                      $average = $total / 6;
+                  ?>
+                  <p style="text-align: center;font-size: 35px"><?php echo intval($average) ?></p>
                 </div>
               </div>
             </div>
