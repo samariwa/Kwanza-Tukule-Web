@@ -482,12 +482,9 @@ function getIndexOfProduct(arr, k) {
               var where = 'fine';
               $.post("save.php",{id:id,balance:balance,where:where},
               function(result){
-                if (result == "positive") {
-                  alert("Customer has no negative balance. Action not allowed.");
-                }
-                if (result == "exists") {
-                  alert("Customer has already been fined. Action not allowed.");
-                }
+                alert(result);
+                var obj = parseJSON(result);
+              //  alert(`Message: ${obj.msg}`);
               });
        }
 
