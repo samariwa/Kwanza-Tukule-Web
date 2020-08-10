@@ -256,9 +256,29 @@ Preloader
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
-        <a class="nav-link" href="dashboard.php" style="color: black ;margin-left: 20px">
-          <i class="fa fa-fw fa-tachometer-alt"></i>
-          <span>Administrator</span></a>
+        <a class="nav-link" href="dashboard.php" style="color: black;">
+           <?php
+               if ($view == 'Admin') {
+            ?>          
+            <span style="margin-left: 20px">Administrator</span></a>
+              <?php
+               }
+               else if ($view == 'Software'){
+               ?> 
+            <span style="margin-left: 30px">Software Developer</span></a>
+              <?php
+               }
+               else if ($view == 'General Operations Manager'){
+               ?> 
+            <span style="margin-left: 5px">General Operations Manager</span></a>
+              <?php
+               }
+               else if ($view == 'CEO'){
+               ?> 
+            <span style="margin-left: 20px">Chief Executive Officer</span></a>
+              <?php
+               }
+               ?>          
       </li>
 
       <!-- Divider -->

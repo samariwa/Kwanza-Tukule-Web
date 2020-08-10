@@ -9,7 +9,7 @@ function sanitize($data) {
 }
 if (isset($_SESSION['logged_in'])) {
 	$user = $_SESSION['user'];
-   mysqli_query($connection,"UPDATE `users` SET `on` = '0', `lastActivity` = NOW() WHERE `username` = '$user'");
+   mysqli_query($connection,"UPDATE `users` SET `on` = '0', `lastActivity` = NOW(), ipAddress = '0' WHERE `username` = '$user'");
     $_SESSION['logged_in'] = False;
     session_destroy();
     session_unset();

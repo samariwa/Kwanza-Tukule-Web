@@ -13,7 +13,7 @@
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
             <h6 style="margin-left: 550px;">Time: <span id="time"></span></h6>
-            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm mr-2"><i class="fa fa-download fa-sm text-white-50"></i> Download Report</a>
+            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm mr-2"><i class="fa fa-download fa-sm text-white-50"></i> Export Report</a>
           </div>
           <?php
        }

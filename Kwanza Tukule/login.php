@@ -61,6 +61,7 @@ $recaptchavalidation = TRUE;
 $illegalattempts = FALSE;
 $activate = TRUE;
 $deactivated = FALSE;
+$loggedIn = FALSE;
 //Trapped brute force attackers and give them more hard work by providing a captcha-protected page
 
 $iptocheck = $_SERVER['REMOTE_ADDR'];
@@ -154,9 +155,9 @@ if (($loginattempts_username > 5) && ($registered == TRUE)) {
 //Get correct hashed password based on given username stored in MySQL database
 
   //check if account is activated
-      $result1 = mysqli_query($connection,"SELECT `active` FROM `users` WHERE `username`='$user'");
-        $row = mysqli_fetch_array($result1);
-        $active = $row['active'];
+      $result3 = mysqli_query($connection,"SELECT `active` FROM `users` WHERE `username`='$user'");
+        $row3 = mysqli_fetch_array($result3);
+        $active = $row3['active'];
         if($active == 1){
           $activate = TRUE;
         }
@@ -166,40 +167,69 @@ if (($loginattempts_username > 5) && ($registered == TRUE)) {
         if($active == 2){
           $deactivated = TRUE; 
         }
+  //check if the account is logged in using another device
+  $result2 = mysqli_query($connection,"SELECT `ipAddress` FROM `users` WHERE `username`='$user'");
+  $row2 = mysqli_fetch_array($result2);
+  $ipValue = $row2['ipAddress'];
+  if ($ipValue == 0) {
+        $loggedIn = FALSE;
+        }
+    elseif ($ipValue == $iptocheck) {
+           $loggedIn = FALSE;
+          }      
+    else{
+       $loggedIn = TRUE; 
+    }        
 //username is registered in database, now get the hashed password    
     $result = mysqli_query($connection,"SELECT `password` FROM `users` WHERE `username`='$user'");
         $row = mysqli_fetch_array($result);
         $correctpassword = $row['password'];
-    if (!password_verify($pass, $correctpassword) || ($registered == FALSE) || ($activate == FALSE) || ($deactivated == TRUE)) {
+    if (!password_verify($pass, $correctpassword) || ($registered == FALSE) || ($activate == FALSE) || ($deactivated == TRUE) || ($loggedIn == TRUE)) {
     	$result1 = mysqli_query($connection,"SELECT `active` FROM `users` WHERE `username`='$user'");
         $row = mysqli_fetch_array($result1);
         $active = $row['active'];
-        if(($active == 0) && ($registered == FALSE) || ($active == 0) && !password_verify($pass, $correctpassword)){
+        if(($active == 0) && ($registered == FALSE) && ($loggedIn = FALSE) || ($active == 0) && !password_verify($pass, $correctpassword) && ($loggedIn = FALSE)){
           $activate = TRUE;
-          $validationresults = FALSE;  
+          $validationresults = FALSE; 
+          $loggedIn = FALSE;
         }
-        else if (($active == 2) && ($registered == FALSE) || ($active == 2) && !password_verify($pass, $correctpassword)) {
+        else if (($active == 2) && ($registered == FALSE) && ($loggedIn = FALSE) || ($active == 2) && !password_verify($pass, $correctpassword) && ($loggedIn = FALSE)) {
            $deactivated = FALSE;
            $validationresults = FALSE;
+           $loggedIn = FALSE;
         }
-        elseif (($active == 2) && ($registered == TRUE) && password_verify($pass, $correctpassword)) {
+        elseif (($active == 2) && ($registered == TRUE) && password_verify($pass, $correctpassword) && ($loggedIn = FALSE)) {
            $deactivated = TRUE;
            $validationresults = TRUE;
+           $loggedIn = FALSE;
         }
-        else if(($active == 0) && ($registered == TRUE) && password_verify($pass, $correctpassword)){
+        else if (($active == 2) && ($registered == TRUE) && password_verify($pass, $correctpassword) && ($loggedIn = TRUE)) {
+           $deactivated = TRUE;
+           $validationresults = TRUE;
+           $loggedIn = FALSE;
+        }
+        else if(($active == 0) && ($registered == TRUE) && password_verify($pass, $correctpassword) && ($loggedIn = FALSE)){
             $activate = FALSE;
           $validationresults = TRUE;
+          $loggedIn = FALSE;
         }
-        else if(($active == 0) && ($registered == FALSE) || ($active == 0) && !password_verify($pass, $correctpassword)){
+        else if(($active == 0) && ($registered == FALSE) && ($loggedIn = FALSE) || ($active == 0) && !password_verify($pass, $correctpassword) && ($loggedIn = FALSE)){
+            $activate = TRUE;
+          $validationresults = FALSE;
+          $loggedIn = FALSE;
+        }
+        else if(($active == 1) && ($registered == TRUE) && password_verify($pass, $correctpassword) && ($loggedIn = TRUE)){
             $activate = TRUE;
           $validationresults = TRUE;
+          $loggedIn = TRUE;
         }
-        else if (($active == 1) && ($registered == TRUE) && !password_verify($pass, $correctpassword)){
+        else if (($active == 1) && ($registered == TRUE) && !password_verify($pass, $correctpassword) && ($loggedIn = FALSE)){
 //log login failed attempts to database
         	//user login validation fails
         	 $validationresults = FALSE;
         	 $activate = TRUE;
              $deactivated = FALSE;
+             $loggedIn = FALSE;
               $result1 = mysqli_query($connection,"SELECT `loginattempt` FROM `users` WHERE `username`='$user'");
               $row = mysqli_fetch_array($result1);
               $loginattempts_username = $row['loginattempt'];
@@ -226,6 +256,20 @@ if (($loginattempts_username > 5) && ($registered == TRUE)) {
                 $loginattempts_total = $loginattempts_total + 1;
                 mysqli_query($connection,"UPDATE `ipcheck` SET `failedattempts` = '$loginattempts_total' WHERE `loggedip` = '$iptocheck'");
             }*/
+        }
+        else{
+           $validationresults = FALSE;
+             $activate = TRUE;
+             $deactivated = FALSE;
+             $loggedIn = FALSE;
+              $result1 = mysqli_query($connection,"SELECT `loginattempt` FROM `users` WHERE `username`='$user'");
+              $row = mysqli_fetch_array($result1);
+              $loginattempts_username = $row['loginattempt'];
+            $loginattempts_username = $loginattempts_username + 1;
+            $loginattempts_username = intval($loginattempts_username);
+//update login attempt records
+         
+            mysqli_query($connection,"UPDATE `users` SET `loginattempt` = '$loginattempts_username' WHERE `username` = '$user'"); 
         }
 //Possible brute force attacker is targeting randomly
 
@@ -304,7 +348,7 @@ if (($loginattempts_username > 5) && ($registered == TRUE)) {
         $_SESSION['logged_in'] = TRUE;
         $_SESSION['LAST_ACTIVITY'] = time();
         if (isset($_SESSION['logged_in'])) {
-            mysqli_query($connection,"UPDATE `users` SET `on` = '1' WHERE `username` = '$user'");
+            mysqli_query($connection,"UPDATE `users` SET `on` = '1', ipAddress = '$iptocheck' WHERE `username` = '$user'");
         }
         
     }
@@ -385,6 +429,8 @@ if (!$_SESSION['logged_in']):
                         echo '&emsp;&emsp;<font color="red"><i class="bx bxs-lock bx-flashing"></i>&ensp;Your account is still inactive. Kindly <a href = "activation.php" style="color: inherit;">(click here)</a> to<br> &emsp;&emsp;&emsp;&emsp;activate the account and try again.</font>';} ?>
                         <?php if ($deactivated == TRUE) 
                         echo '&emsp;&emsp;<font color="red"><i class="bx bxs-lock bx-flashing"></i>&ensp;Your account has been deactivated. Kindly contact <br>&emsp;&emsp;your administrator to reactivate the account and try again.</font>'; ?>
+                        <?php if ($loggedIn == TRUE) 
+                        echo '&emsp;&emsp;&ensp;<font color="red"><i class="bx bxs-error-alt bx-flashing"></i>&ensp;Your account is logged in using another device.<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Kindly log out first and try again.</font>'; ?>
                         <?php if ($illegalattempts == TRUE)
                         echo '&emsp;&emsp;<font color="red"><i class="bx bxs-error-alt bx-flashing"></i>&ensp;<b><i>Warning!</i></b> Approaching attempt limit and this account will be &emsp;&emsp;deactivated. Kindly reset your password using the link below &emsp;&ensp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;(if required).</font>'; ?>
                         <div class="form-group row mb-0">
