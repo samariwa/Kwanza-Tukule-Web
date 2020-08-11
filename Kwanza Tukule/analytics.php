@@ -126,9 +126,41 @@
 </table>
 <br>
 <h4>Sales Per Deliverer</h4>
-       <div id="chart_div" style="width: 1000px; height: 500px;" ></div>   
+  <div id="chart_div" style="width: 1000px; height: 500px;" ></div>   
 <br>
-<h4>Brand Sales Comparison</h4>
- <div id="piechart" style="width: 500px; height: 500px;"></div>               
+<div class="row">
+  <div class="col-md-6">
+    <h4>Brand Sales Comparison</h4>
+  </div>
+  <div class="col-md-6">
+    <h4>Expenditure</h4>
+  </div>
+</div>
+<div class="row">
+  <div id="piechart" style="width: 420px; height: 400px;"></div>   
+<div id="barchart_values" style="width: 500px; height: 400px;"></div>
+</div>
+<br>
+<div class="row">
+  <div class="col-md-6">
+    <h4>Key Customers</h4>
+  </div>
+  <div class="col-md-6">
+    <h4>Company Performance</h4>
+  </div>
+</div>
+<div class="row">
+    <div id="donutchart" style="width: 430px; height: 400px;"></div>
+    <div id="chart_divide" style="width: 600px; height: 400px;"></div>    
+</div>  
+<br>
+<div class="row">
+  <div class="col-md-6">
+    <h4>Profit</h4>
+  </div>
+</div>
+<div class="row">
+    <div id="profitchart" style="width: 1200px; height: 600px;"></div>   
+</div>  
   <!-- Scroll to Top Button-->
   <?php include "admin_footer.php" ?> 

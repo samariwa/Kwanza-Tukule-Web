@@ -60,6 +60,7 @@ setTime();
         var options = {
           title: 'Fast moving products',
           legend: 'none',
+           is3D:true,
           pieSliceText: 'label',
           slices: {  1: {offset: 0.2},
                     4: {offset: 0.1},
@@ -83,10 +84,10 @@ setTime();
           //alert(result);
                    var data = google.visualization.arrayToDataTable([
           ['Day', 'Royson', 'Ken', 'Reuben', 'Damaris', 'George', 'Average'],
-          ['2004/06/05',  165,      938,         522,             998,           450,      614.6],
-          ['2005/06/06',  135,      1120,        599,             1268,          288,      682],
-          ['2006/06/07',  157,      1167,        587,             807,           397,      623],
-          ['2007/06/08',  139,      1110,        615,             968,           215,      609.4],
+          ['07/08/2020',  165,      938,         522,             998,           450,      614.6],
+          ['08/08/2020',  135,      1120,        599,             1268,          288,      682],
+          ['09/08/2020',  157,      1167,        587,             807,           397,      623],
+          ['10/08/2020',  139,      1110,        615,             968,           215,      609.4],
           ['Yesterday',  136,      691,         629,             1026,          366,      569.6],
           ['Today',  136,      691,         629,             1026,          366,      569.6],
         ]);
@@ -102,6 +103,103 @@ setTime();
         chart.draw(data, options);
         });
       }
+
+      google.charts.load("current", {packages:["corechart"]});
+    google.charts.setOnLoadCallback(drawExpenditureChart);
+    function drawExpenditureChart() {
+      var data = google.visualization.arrayToDataTable([
+        ["Expense", "Amount", { role: "style" } ],
+        ["Electricity", 24000, "#b87333"],
+        ["Rent", 72000, "silver"],
+        ["Premises Service", 20000, "gold"],
+        ["Vehicle Service", 50000, "color: #e5e4e2"]
+      ]);
+
+      var view = new google.visualization.DataView(data);
+      view.setColumns([0, 1,
+                       { calc: "stringify",
+                         sourceColumn: 1,
+                         type: "string",
+                         role: "annotation" },
+                       2]);
+
+      var options = {
+        title: "Expenditure comparison for the month",
+        width: 600,
+        height: 400,
+        bar: {groupWidth: "95%"},
+        legend: { position: "none" },
+      };
+      var chart = new google.visualization.BarChart(document.getElementById("barchart_values"));
+      chart.draw(view, options);
+  }
+
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawKeyCustomersChart);
+      function drawKeyCustomersChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Customer', 'Amount Paid'],
+          ['Customer V', 15000],
+          ['Customer W',  13820],
+          ['Customer X',  12000],
+          ['Customer Y', 9680],
+          ['Customer Z', 7200]
+        ]);
+
+        var options = {
+          title: 'Biggest payers of the month',
+          pieHole: 0.3,
+          width:500,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+        chart.draw(data, options);
+      }
+
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawRevenueExpenseChart);
+
+      function drawRevenueExpenseChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Week', 'Sales', 'Expenses'],
+          ['Week 1',  1800,      300],
+          ['Week 2',  1600,      400],
+          ['Week 3',  1170,      460],
+          ['Week 4',  660,       1120],
+          ['Week 5',  1030,      540]
+        ]);
+
+        var options = {
+          title: 'Sales-Expenses Comparison for the month',
+          hAxis: {title: 'Week',  titleTextStyle: {color: '#333'}},
+          vAxis: {minValue: 0}
+        };
+
+        var chart = new google.visualization.AreaChart(document.getElementById('chart_divide'));
+        chart.draw(data, options);
+      }
+
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawProfitChart);
+
+      function drawProfitChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+          ['Gross Profit',     550000],
+          ['Expenditure',      200000],
+          ['Net Profit',  350000],
+        ]);
+
+        var options = {
+          title: 'Profit for the month'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('profitchart'));
+
+        chart.draw(data, options);
+      }
+
 
  $(document).ready(function(){
          $(".paginate").DataTable({
