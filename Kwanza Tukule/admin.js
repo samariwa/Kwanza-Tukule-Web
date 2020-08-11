@@ -542,7 +542,7 @@ function getIndexOfProduct(arr, k) {
   var qty = $(`#qty${rowx}`).text();
   var where = 'stock';
   $.post("save.php",{id:id,name:name,bp:bp,category:category,qty:qty,sp:sp,where:where},
-  function(result){alert(result);});
+  function(result){});
 });
 
 

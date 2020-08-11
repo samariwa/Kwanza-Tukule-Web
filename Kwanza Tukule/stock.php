@@ -271,20 +271,26 @@
         $quantity = $row['Quantity'];
       ?>
     <tr>
-      <th scope="row" class="uneditable" id="id<?php echo $count; ?>"><?php echo $id; ?></th>
-      <td class="editable" id="category<?php echo $count; ?>"><?php echo $category; ?></td>
-      <td class="editable" id="name<?php echo $count; ?>"><?php echo $name; ?></td>
       <?php
        if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO') {
 
         ?>
-      <td class="editable" id="bp<?php echo $count; ?>"><?php echo $buying_price; ?></td>
-       <?php
-        }
-        ?>
+      <th scope="row" class="uneditable" id="id<?php echo $count; ?>"><?php echo $id; ?></th>
+      <td class="editable" id="category<?php echo $count; ?>"><?php echo $category; ?></td>
+      <td class="editable" id="name<?php echo $count; ?>"><?php echo $name; ?></td>
+      <td class="editable" id="bp<?php echo $count; ?>"><?php echo $buying_price; ?></td> 
       <td class="editable" id="sp<?php echo $count; ?>"><?php echo $selling_price; ?></td>
       <td class="uneditable" id="qty<?php echo $count; ?>"><?php echo $quantity; ?></td>
       <?php
+        }else{
+        ?>
+        <th scope="row" class="uneditable" id="id<?php echo $count; ?>"><?php echo $id; ?></th>
+      <td class="uneditable" id="category<?php echo $count; ?>"><?php echo $category; ?></td>
+      <td class="uneditable" id="name<?php echo $count; ?>"><?php echo $name; ?></td>
+      <td class="uneditable" id="sp<?php echo $count; ?>"><?php echo $selling_price; ?></td>
+      <td class="uneditable" id="qty<?php echo $count; ?>"><?php echo $quantity; ?></td>
+      <?php
+       }
        if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO') {
 
         ?>

@@ -21,7 +21,10 @@ elseif( $where == 'stock'){
    $result1 = mysqli_query($connection,"SELECT id,MAX(Created_at) FROM stock_flow where Stock_id='$id';")or die($connection->error);
         $row = mysqli_fetch_array($result1);
         $flowId = $row['id'];
-mysqli_query($connection,"UPDATE `stock` INNER JOIN `category` ON stock.Category_id = category.id INNER JOIN `stock_flow` ON stock.id = stock_flow.Stock_id SET `Name` = '".$name."',`stock_flow.Buying_price` = '".$bp."',category.Category_Name = '".$category."',`stock_flow.Selling_price` = '".$sp."' WHERE  stock_flow.id = '".$flowId."'")or die($connection->error);
+   $result2 = mysqli_query($connection,"SELECT id FROM category where Category_Name='$category';")or die($connection->error);
+        $row2 = mysqli_fetch_array($result2);
+        $categoryId = $row2['id'];     
+mysqli_query($connection,"UPDATE `stock`  SET `Name` = '".$name."',Category_id = '".$categoryId."',stock.Buying_price= '".$bp."',stock.Price = '".$sp."' WHERE  stock.id = '".$id."'")or die($connection->error);
 }elseif ($where == 'blacklist') {
 	$id = $_POST['id'];
     $location = $_POST['location'];
