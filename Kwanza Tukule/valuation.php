@@ -100,7 +100,7 @@
         $opening = $row['Opening_stock'];
         $purchase = $row['purchased'];
         $closing = $row['Quantity'];
-        $sp = $row['Selling_Price'];
+        $sp = $row['Price'];
         $bp = $row['Buying_price'];
         $value = $bp * $closing;
       ?>

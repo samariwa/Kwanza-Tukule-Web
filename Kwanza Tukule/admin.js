@@ -137,36 +137,60 @@ setTime();
       google.charts.load("current", {packages:["corechart"]});
       google.charts.setOnLoadCallback(drawKeyCustomersChart);
       function drawKeyCustomersChart() {
+        var where = 'biggestPayers';
+       $.post("charts.php",{where:where},
+        function(result){
+          var data = $.parseJSON(result);
+          var data0 = data[0][0];
+          var data1 = data[0][1];
+          var data2 = data[1][0];
+          var data3 = data[1][1];
+          var data4 = data[2][0];
+          var data5 = data[2][1];
+          var data6 = data[3][0];
+          var data7 = data[3][1];
+          var data8 = data[4][0];
+          var data9 = data[4][1];
         var data = google.visualization.arrayToDataTable([
-          ['Customer', 'Amount Paid'],
-          ['Customer V', 15000],
-          ['Customer W',  13820],
-          ['Customer X',  12000],
-          ['Customer Y', 9680],
-          ['Customer Z', 7200]
+          [data0, data1],
+         [data2, parseInt(data3)],
+          [data4, parseInt(data5)],
+          [data6, parseInt(data7)],
+          [data8, parseInt(data9)]
         ]);
 
         var options = {
           title: 'Biggest payers of the month',
-          pieHole: 0.3,
           width:500,
         };
 
-        var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+        var chart = new google.visualization.PieChart(document.getElementById('keyCutomersChart'));
         chart.draw(data, options);
+        });
       }
 
       google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawRevenueExpenseChart);
 
       function drawRevenueExpenseChart() {
+        var where = 'salesExpenses';
+       $.post("charts.php",{where:where},
+        function(result){
+          var data = $.parseJSON(result);
+          var data0 = data[0];
+          var data1 = data[1];
+          var data2 = data[2];
+          var data3 = data[3];
+          var data4 = data[4];
+          var data5 = data[5];
+          var data6 = data[6];
+          var data7 = data[7];
         var data = google.visualization.arrayToDataTable([
           ['Week', 'Sales', 'Expenses'],
-          ['Week 1',  1800,      300],
-          ['Week 2',  1600,      400],
-          ['Week 3',  1170,      460],
-          ['Week 4',  660,       1120],
-          ['Week 5',  1030,      540]
+          ['Week 1',  parseInt(data0),  parseInt(data1)],
+          ['Week 2', parseInt(data2),   parseInt(data3)],
+          ['Week 3', parseInt(data4),    parseInt(data5)],
+          ['Week 4', parseInt(data6),    parseInt(data7)]
         ]);
 
         var options = {
@@ -177,6 +201,7 @@ setTime();
 
         var chart = new google.visualization.AreaChart(document.getElementById('chart_divide'));
         chart.draw(data, options);
+        });
       }
 
       google.charts.load('current', {'packages':['corechart']});
@@ -192,12 +217,46 @@ setTime();
         ]);
 
         var options = {
-          title: 'Profit for the month'
+          title: 'Profit for the month',
+          pieHole: 0.4,
+          pieSliceText:'label',
+          
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('profitchart'));
+        chart.draw(data, options);
+      }
+      
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawSalesChart);
+
+      function drawSalesChart() {
+        var where = 'salesTotal';
+       $.post("charts.php",{where:where},
+        function(result){
+          var data = $.parseJSON(result);
+          var data0 = data[0];
+          var data1 = data[1];
+          var data2 = data[2];
+          var data3 = data[3];
+        var data = google.visualization.arrayToDataTable([
+          ['Week ', 'Sales'],
+          ['Week 1',  parseInt(data0)],
+          ['Week 2',  parseInt(data1)],
+          ['Week 3',  parseInt(data2)],
+          ['Week 4',  parseInt(data3)]
+        ]);
+
+        var options = {
+          title: 'Total sales value for the month',
+          curveType: 'function',
+          legend: { position: 'bottom' }
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
 
         chart.draw(data, options);
+        });
       }
 
 

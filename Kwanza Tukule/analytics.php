@@ -105,7 +105,7 @@
         $sum5 = $row['sum5'];
         $opening = $row['Opening_stock'];
         $closing = $row['Quantity'];
-        $sp = $row['Selling_Price'];
+        $sp = $row['Price'];
       ?>
     <tr>
       <th scope="row"><?php echo $id; ?></th>
@@ -150,9 +150,16 @@
   </div>
 </div>
 <div class="row">
-    <div id="donutchart" style="width: 430px; height: 400px;"></div>
+    <div id="keyCutomersChart" style="width: 430px; height: 400px;"></div>
     <div id="chart_divide" style="width: 600px; height: 400px;"></div>    
 </div>  
+<br>
+<div class="row">
+  <div class="col-md-6">
+    <h4>Sales Performance</h4>
+  </div>
+ <div id="curve_chart" style="width: 1100px; height: 500px"></div>
+</div>
 <br>
 <div class="row">
   <div class="col-md-6">
