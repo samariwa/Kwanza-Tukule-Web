@@ -163,7 +163,7 @@
 <br>
 <div class="row">
   <div class="col-md-6">
-    <h4>Profit</h4>
+    <h4>Profit / Loss</h4>
   </div>
 </div>
 <div class="row">

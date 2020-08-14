@@ -180,7 +180,20 @@
         <?php
         }
         ?>
-    <table id="salesEditable" class="table table-striped table-hover table-responsive  paginate" style="display:block;overflow-x:scroll;overflow-y:scroll;text-align: center;">
+  <ul class="nav nav-tabs">
+    <li class="nav-item"><a data-toggle="tab" class="nav-link" href="#menu1" style="color: inherit;">Yesterday's Orders</a></li>
+    <li class="nav-item active"><a data-toggle="tab" class="nav-link" href="#menu2" style="color: inherit;">Today's Orders</a></li>
+    <li class="nav-item"><a data-toggle="tab" class="nav-link" href="#menu3" style="color: inherit;">Tomorrow's Orders</a></li>
+  </ul>
+
+  <div class="tab-content">
+    <div id="menu1" class="tab-pane fade">
+      <h3>Menu 1</h3>
+      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    </div>
+    <div id="menu2" class="tab-pane fade in active">
+      <br>
+      <table id="salesEditable" class="table table-striped table-hover table-responsive  paginate" style="display:block;overflow-x:scroll;overflow-y:scroll;text-align: center;">
       <caption>Sales Done Today</caption>
   <thead class="thead-dark">
     <tr>
@@ -301,5 +314,12 @@
     ?>
   </tbody>
 </table>
+    </div>
+    <div id="menu3" class="tab-pane fade">
+      <h3>Menu 3</h3>
+      <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+    </div>
+  </div>
+    
   <!-- Scroll to Top Button-->
   <?php include "admin_footer.php" ?> 

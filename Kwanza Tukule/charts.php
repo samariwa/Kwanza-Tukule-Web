@@ -49,6 +49,23 @@ else if($where == 'salesTotal')
        $array = json_encode($salesTotal);
         echo $array;
 }
+else if($where == 'profit/loss')
+{   
+       $values = array();
+        $row1 = mysqli_fetch_array($monthSalesValue);
+        $sales = $row1['sum'];
+        $row2 = mysqli_fetch_array($monthIncomeValue);
+        $income = $row2['sum'];
+        $row3 = mysqli_fetch_array($monthExpenseValue);
+        $expenses = $row3['sum'];
+        $gross = $income - $sales;
+        $net = $gross - $expenses;
+        array_push($values, $gross);
+        array_push($values, $expenses);
+        array_push($values, $net);
+       $array = json_encode($values);
+        echo $array;
+}
 else if($where == 'salesExpenses')
 {   
        $salesExpensesTotal = array();

@@ -208,23 +208,66 @@ setTime();
       google.charts.setOnLoadCallback(drawProfitChart);
 
       function drawProfitChart() {
-
-        var data = google.visualization.arrayToDataTable([
-          ['Task', 'Hours per Day'],
-          ['Gross Profit',     550000],
-          ['Expenditure',      200000],
-          ['Net Profit',  350000],
+        var where = 'profit/loss';
+       $.post("charts.php",{where:where},
+        function(result){
+           var data = $.parseJSON(result);
+          var data0 = data[0];
+          var data1 = data[1];
+          var data2 = data[2];
+          var data3 = 0;
+          var data4 = 0;
+          if (data0 > 0 && data2 > 0) {
+          var data = google.visualization.arrayToDataTable([
+          ['Title', 'Amount'],
+          ['Gross Profit',  parseInt(data0)],
+          ['Expenditure',  parseInt(data1)],
+          ['Net Profit', parseInt(data2)],
         ]);
 
         var options = {
           title: 'Profit for the month',
-          pieHole: 0.4,
-          pieSliceText:'label',
+          pieHole: 0.7,
+          pieSliceText:'none',
           
         };
+          }
+          else if (data0 < 0 && data2 < 0) {
+            data3 = data3 - data0;
+            data4 = parseInt(data1) + parseInt(data3);
+            var data = google.visualization.arrayToDataTable([
+          ['Title', 'Amount'],
+          ['Gross Loss',  parseInt(data3)],
+          ['Expenditure',  parseInt(data1)],
+          ['Net Loss', parseInt(data4)],
+        ]);
 
+        var options = {
+          title: 'Loss for the month',
+          pieHole: 0.7,
+          pieSliceText:'none',
+          
+        };
+          }
+         else if (data0 > 0 && data2 < 0) {
+            data4 = parseInt(data1) - parseInt(data0);
+            var data = google.visualization.arrayToDataTable([
+          ['Title', 'Amount'],
+          ['Gross Profit',  parseInt(data0)],
+          ['Expenditure',  parseInt(data1)],
+          ['Net Loss', parseInt(data4)],
+        ]);
+
+        var options = {
+          title: 'Loss for the month',
+          pieHole: 0.7,
+          pieSliceText:'none',
+          
+        };
+          }
         var chart = new google.visualization.PieChart(document.getElementById('profitchart'));
         chart.draw(data, options);
+        });
       }
       
       google.charts.load('current', {'packages':['corechart']});
