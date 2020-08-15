@@ -260,7 +260,7 @@ Preloader
            <?php
                if ($view == 'Admin') {
             ?>          
-            <span style="margin-left: 20px">Administrator</span></a>
+            <span style="margin-left: 50px">Administrator</span></a>
               <?php
                }
                else if ($view == 'Software'){

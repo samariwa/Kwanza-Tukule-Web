@@ -486,7 +486,12 @@ setTime();
       });
 */
 
-
+$('.salesTab').on('click', function(){
+    $('.salesTab').removeClass('selected');
+    $('.tab-pane fade').removeClass('show active');
+    $(this).addClass('selected');
+    $('.tab-pane fade').addClass('active');
+});
 
 function updateProfile(){
   var username = $(`#username`).val();
