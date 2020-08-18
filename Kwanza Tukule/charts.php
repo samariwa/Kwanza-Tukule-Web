@@ -58,8 +58,11 @@ else if($where == 'profit/loss')
         $income = $row2['sum'];
         $row3 = mysqli_fetch_array($monthExpenseValue);
         $expenses = $row3['sum'];
+        $row4 = mysqli_fetch_array($salariesTotal);
+        $salaries = $row4['salaries'];
+        $expenses = $expenses + $salaries;
         $gross = $income - $sales;
-        $net = $gross - $expenses;
+        $net = $gross - $expenses ;
         array_push($values, $gross);
         array_push($values, $expenses);
         array_push($values, $net);

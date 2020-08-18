@@ -186,7 +186,7 @@ setTime();
           var data6 = data[6];
           var data7 = data[7];
         var data = google.visualization.arrayToDataTable([
-          ['Week', 'Sales', 'Expenses'],
+          ['Week', 'Sales', 'Costs'],
           ['Week 1',  parseInt(data0),  parseInt(data1)],
           ['Week 2', parseInt(data2),   parseInt(data3)],
           ['Week 3', parseInt(data4),    parseInt(data5)],
@@ -194,7 +194,7 @@ setTime();
         ]);
 
         var options = {
-          title: 'Sales-Expenses Comparison for the month',
+          title: 'Sales & Variable-Costs Comparison for the month',
           hAxis: {title: 'Week',  titleTextStyle: {color: '#333'}},
           vAxis: {minValue: 0}
         };
