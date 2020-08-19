@@ -74,5 +74,6 @@ $monthLiability = mysqli_query($connection,"select SUM(Due_amount) as 'sum' from
 $totalLiability = mysqli_query($connection,"select SUM(Due_amount) as 'sum' from expense_details")or die($connection->error);
 $newSuppliersCountMonth = mysqli_query($connection,"select COALESCE(COUNT(id)) as 'count' from suppliers where DATE(Created_at) >= DATE_SUB( CURDATE(), INTERVAL 1 MONTH) and DATE(Created_at) < DATE_SUB( CURDATE(), INTERVAL 0 DAY )")or die($connection->error);
 $newSuppliersDetailsMonth = mysqli_query($connection,"select Name, Supplier_contact as 'contact' from suppliers where DATE(Created_at) >= DATE_SUB( CURDATE(), INTERVAL 1 MONTH) and DATE(Created_at) < DATE_SUB( CURDATE(), INTERVAL 0 DAY )")or die($connection->error);
+$vehicleFullDetails = mysqli_query($connection,"select firstname,lastname,Type,Reg_Number,Route,Last_Inspection,vehicle_inspection.notes as 'inspectionNotes',Next_Inspection,Last_service,vehicle_service.notes as 'serviceNotes',Next_service from vehicles inner join users on vehicles.Driver_id = users.id inner join vehicle_inspection on vehicles.id = vehicle_inspection.Vehicle_id inner join vehicle_service on vehicles.id = vehicle_service.Vehicle_id")or die($connection->error);
  ?>
 
