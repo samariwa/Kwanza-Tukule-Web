@@ -165,6 +165,29 @@ $result11 = mysqli_fetch_array($monthLiability);
   $monthLiability = $result11['sum'];
 $result12 = mysqli_fetch_array($totalLiability);
   $totalLiability = $result12['sum'];  
+  $result13 = mysqli_fetch_array($newSuppliersCountMonth);
+  $newSuppliersCountMonth = $result13['count']; 
+  $newSuppliersStatement = '';
+  if ($newSuppliersCountMonth == 0) {
+    $newSuppliersStatement = 'we had <b>no new supplier</b>. ';
+  }
+  elseif ($newSuppliersCountMonth > 0) {
+    $newSuppliersStatement = 'we have had <b>'.$newSuppliersCountMonth.' new supplier(s)</b>. Below is <b>information on the new supplier(s)</b>.<br><br>
+    <table border="1" cellspacing="1" cellpadding="4" align="center">
+    <tr>
+        <th><b>Supplier Name</b></th>
+        <th><b>Supplier Contact</b></th>
+    </tr>';
+  foreach($newSuppliersDetailsMonth as $row){
+  $name = $row['Name'];
+  $contact = $row['contact'];
+   $newSuppliersStatement .= ' <tr>
+        <td>'.$name.'</td>
+        <td>'.$contact.'</td>
+    </tr>';
+  }  
+$newSuppliersStatement .= '</table>';
+  }
 // writeHTML($html, $ln=true, $fill=false, $reseth=false, $cell=false, $align='')
 // writeHTMLCell($w, $h, $x, $y, $html='', $border=0, $ln=0, $fill=0, $reseth=true, $align='', $autopadding=true)
 
@@ -261,7 +284,10 @@ $deliverer = $row['deliverer'];
 $html .= '</table>
 <p>The table above will be used as the basis to which each and every deliverer will be credited with regards to contribution in company growth.</p>
 <h2>Suppliers</h2>
+<p>This past month, '.$newSuppliersStatement.'</p>
 <h2>Vehicles</h2>
+<h4>Inspection</h4>
+<h4>Service</h4>
 <dl>
     <dt>Coffee</dt>
     <dd>Black hot drink</dd>

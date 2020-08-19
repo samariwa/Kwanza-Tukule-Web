@@ -173,7 +173,7 @@
                   $mail -> isHTML(true);
                   $mail -> Body = "
                         Hi Sam,<br><br>
-                          On of the software users has a query / recommedation for you. Please help them out ASAP.<br><br> 
+                          One of the software users has a query / recommedation for you. Please help them out ASAP.<br><br> 
                           Message: $query
                           <br>
                           Contact User:<br>
