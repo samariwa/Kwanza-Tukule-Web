@@ -61,8 +61,10 @@ $result1 = mysqli_query($connection,"SELECT Customer_id,Quantity,Balance FROM or
       mysqli_query($connection,"UPDATE `orders`  SET `Quantity` = '".$qty."',`Balance` = '".$newBalance."',`MPesa` = '".$mpesa."',`Cash` = '".$cash."',`Late_Order` = '".$date."',`Returned` = '".$Returned."',`Banked` = '".$banked."',`Slip_Number` = '".$slip."',`Banked_By` = '".$banker."' WHERE `id` = '".$id."'")or die($connection->error);
       mysqli_query($connection," update stock set Quantity= Quantity +".$Returned."  `id` = '".$id."'")or die($connection->error);
       $difference = $oldBalance - $newBalance;
+			#TODO: Update & Delete - Update Cash, Fine, MPESA & New Balance aand New Debt :: Delete : return and balance for future orders and add quantity to stock -- cost * qty 
 		//	mysqli_query($connection,"update orders set Debt= Debt-'5000', Balance= Balance-'5000' where Customer_id='392' and id >'2592'")or die($connection->error);
       mysqli_query($connection,"update `orders` set `Debt`= Debt-'".$difference."', `Balance`= Balance-'".$difference."' where `Customer_id`='".$customer."' and id >'".$id."'")or die($connection->error);
+			//newBalance calculate credit score
      $result3 = mysqli_query($connection,"select orders.Balance as newBalance from orders INNER JOIN customers ON orders.Customer_id=customers.id  WHERE orders.id IN (SELECT MAX(orders.id)FROM orders INNER JOIN customers ON orders.Customer_id=customers.id where customers.id='".$customer."' )")or die($connection->error);
     $row3 = mysqli_fetch_array($result3);
     $lastBalance = $row3['newBalance'];
