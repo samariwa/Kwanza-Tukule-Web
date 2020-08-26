@@ -23,7 +23,7 @@ elseif( $where == 'stock'){
         $flowId = $row['id'];
    $result2 = mysqli_query($connection,"SELECT id FROM category where Category_Name='$category';")or die($connection->error);
         $row2 = mysqli_fetch_array($result2);
-        $categoryId = $row2['id'];     
+        $categoryId = $row2['id'];
 mysqli_query($connection,"UPDATE `stock`  SET `Name` = '".$name."',Category_id = '".$categoryId."',stock.Buying_price= '".$bp."',stock.Price = '".$sp."' WHERE  stock.id = '".$id."'")or die($connection->error);
 }elseif ($where == 'blacklist') {
 	$id = $_POST['id'];
@@ -61,8 +61,9 @@ $result1 = mysqli_query($connection,"SELECT Customer_id,Quantity,Balance FROM or
       mysqli_query($connection,"UPDATE `orders`  SET `Quantity` = '".$qty."',`Balance` = '".$newBalance."',`MPesa` = '".$mpesa."',`Cash` = '".$cash."',`Late_Order` = '".$date."',`Returned` = '".$Returned."',`Banked` = '".$banked."',`Slip_Number` = '".$slip."',`Banked_By` = '".$banker."' WHERE `id` = '".$id."'")or die($connection->error);
       mysqli_query($connection," update stock set Quantity= Quantity +".$Returned."  `id` = '".$id."'")or die($connection->error);
       $difference = $oldBalance - $newBalance;
-      mysqli_query($connection," update orders set Debt= Debt-".$difference.", Balance= Balance-".$difference." where Customer_id='".$customer."' and id >'".$id."'")or die($connection->error);
-     $result3 = mysqli_query($connection,"select orders.Balance as newBalance from orders INNER JOIN customers ON orders.Customer_id=customers.id  WHERE orders.id IN (SELECT MAX(orders.id)FROM orders INNER JOIN customers ON orders.Customer_id=customers.id where customers.id='".$customer."' ); ")or die($connection->error);
+		//	mysqli_query($connection,"update orders set Debt= Debt-'5000', Balance= Balance-'5000' where Customer_id='392' and id >'2592'")or die($connection->error);
+      mysqli_query($connection,"update `orders` set `Debt`= Debt-'".$difference."', `Balance`= Balance-'".$difference."' where `Customer_id`='".$customer."' and id >'".$id."'")or die($connection->error);
+     $result3 = mysqli_query($connection,"select orders.Balance as newBalance from orders INNER JOIN customers ON orders.Customer_id=customers.id  WHERE orders.id IN (SELECT MAX(orders.id)FROM orders INNER JOIN customers ON orders.Customer_id=customers.id where customers.id='".$customer."' )")or die($connection->error);
     $row3 = mysqli_fetch_array($result3);
     $lastBalance = $row3['newBalance'];
     if ($lastBalance == 0) {

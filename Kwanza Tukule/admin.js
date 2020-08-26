@@ -229,7 +229,7 @@ setTime();
           title: 'Profit for the month',
           pieHole: 0.7,
           pieSliceText:'none',
-          
+
         };
           }
           else if (data0 < 0 && data2 < 0) {
@@ -246,7 +246,7 @@ setTime();
           title: 'Loss for the month',
           pieHole: 0.7,
           pieSliceText:'none',
-          
+
         };
           }
          else if (data0 > 0 && data2 < 0) {
@@ -262,14 +262,14 @@ setTime();
           title: 'Loss for the month',
           pieHole: 0.7,
           pieSliceText:'none',
-          
+
         };
           }
         var chart = new google.visualization.PieChart(document.getElementById('profitchart'));
         chart.draw(data, options);
         });
       }
-      
+
       google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawSalesChart);
 
@@ -855,16 +855,20 @@ $('#officeEditable').editableTableWidget();
   function(result){});
 });
 
-  $('#salesEditable').editableTableWidget();
-  $('#salesEditable td.uneditable').on('change', function(evt, newValue) {
+  $('#salesEditableYesterday').editableTableWidget();
+  $('#salesEditableYesterday td.uneditable').on('change', function(evt, newValue) {
   return false;
 });
 
-  $('#salesEditable').editableTableWidget();
-  $('#salesEditable td.uneditable').on('change', function(evt, newValue) {
+  $('#salesEditableToday').editableTableWidget();
+  $('#salesEditableToday td.uneditable').on('change', function(evt, newValue) {
   return false;
 });
-  $('#salesEditable td').on('change', function(evt, newValue) {
+  $('#salesEditableTomorrow').editableTableWidget();
+  $('#salesEditableTomorrow td.uneditable').on('change', function(evt, newValue) {
+  return false;
+});
+  $('#salesEditableTomorrow td').on('change', function(evt, newValue) {
    var rowx = parseInt(evt.target._DT_CellIndex.row)+1;
   var id = $(`#id${rowx}`).text();
   var qty = $(`#qty${rowx}`).text();

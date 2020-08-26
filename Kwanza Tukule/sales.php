@@ -2,7 +2,7 @@
 <?php
  include "admin_nav.php";
  include('queries.php');
- ?> 
+ ?>
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
@@ -41,7 +41,7 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <a class="text-xs font-weight-bold text-primary text-uppercase mb-1" href="customers.php" style="text-decoration: none;"><i class="fa fa-users fa-2x"></i>&emsp;Customers</a> 
+                      <a class="text-xs font-weight-bold text-primary text-uppercase mb-1" href="customers.php" style="text-decoration: none;"><i class="fa fa-users fa-2x"></i>&emsp;Customers</a>
                     </div>
                   </div>
                 </div>
@@ -81,7 +81,7 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <a class="text-xs font-weight-bold text-warning text-uppercase mb-1" href="summary.php" style="text-decoration: none;"><i class="fa fa-clipboard fa-2x"></i>&emsp;Summary</a>
-                    </div>   
+                    </div>
                   </div>
                 </div>
               </div>
@@ -98,7 +98,7 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <a class="text-xs font-weight-bold text-primary text-uppercase mb-1" href="customers.php" style="text-decoration: none;"><i class="fa fa-users fa-2x"></i>&emsp;Customers</a> 
+                      <a class="text-xs font-weight-bold text-primary text-uppercase mb-1" href="customers.php" style="text-decoration: none;"><i class="fa fa-users fa-2x"></i>&emsp;Customers</a>
                     </div>
                   </div>
                 </div>
@@ -160,7 +160,7 @@
     <div class="col-md-2">
       <a href="returned.php" class="btn btn-info btn-md active" role="button" aria-pressed="true">Returned Goods</a>
     </div>
-    </div><br> 
+    </div><br>
      <?php
         }
         else{
@@ -178,11 +178,11 @@
     <div class="col-md-4">
       <a href="returned.php" class="btn btn-info btn-md active offset-6" role="button" aria-pressed="true">Returned Goods</a>
     </div>
-    </div><br> 
+    </div><br>
         <?php
         }
         ?>
-      <table id="salesEditable" class="table table-striped table-hover table-responsive  paginate" style="display:block;overflow-x:scroll;overflow-y:scroll;text-align: center;">
+      <table id="salesEditableYesterday" class="table table-striped table-hover table-responsive  paginate" style="display:block;overflow-x:scroll;overflow-y:scroll;text-align: center;">
       <caption>Sales Done Yesterday</caption>
   <thead class="thead-dark">
     <tr>
@@ -328,7 +328,7 @@
     <div class="col-md-2">
       <a href="returned.php" class="btn btn-info btn-md active" role="button" aria-pressed="true">Returned Goods</a>
     </div>
-    </div><br> 
+    </div><br>
      <?php
         }
         else{
@@ -346,11 +346,11 @@
     <div class="col-md-4">
       <a href="returned.php" class="btn btn-info btn-md active offset-6" role="button" aria-pressed="true">Returned Goods</a>
     </div>
-    </div><br> 
+    </div><br>
         <?php
         }
         ?>
-      <table id="salesEditable" class="table table-striped table-hover table-responsive  paginate" style="display:block;overflow-x:scroll;overflow-y:scroll;text-align: center;">
+      <table id="salesEditableToday" class="table table-striped table-hover table-responsive  paginate" style="display:block;overflow-x:scroll;overflow-y:scroll;text-align: center;">
       <caption>Sales Done Today</caption>
   <thead class="thead-dark">
     <tr>
@@ -496,7 +496,7 @@
     <div class="col-md-2">
       <a href="returned.php" class="btn btn-info btn-md active" role="button" aria-pressed="true">Returned Goods</a>
     </div>
-    </div><br> 
+    </div><br>
      <?php
         }
         else{
@@ -514,11 +514,11 @@
     <div class="col-md-4">
       <a href="returned.php" class="btn btn-info btn-md active offset-6" role="button" aria-pressed="true">Returned Goods</a>
     </div>
-    </div><br> 
+    </div><br>
         <?php
         }
         ?>
-      <table id="salesEditable" class="table table-striped table-hover table-responsive  paginate" style="display:block;overflow-x:scroll;overflow-y:scroll;text-align: center;">
+      <table id="salesEditableTomorrow" class="table table-striped table-hover table-responsive  paginate" style="display:block;overflow-x:scroll;overflow-y:scroll;text-align: center;">
       <caption>Sales Done Tomorrow</caption>
   <thead class="thead-dark">
     <tr>
@@ -647,6 +647,7 @@
     <li class="active"><a data-toggle="tab" class="nav-link salesTab active" href="#menu2" style="color: inherit;">Today's Orders</a></li>
     <li><a data-toggle="tab" class="nav-link salesTab" href="#menu3" style="color: inherit;">Tomorrow's Orders</a></li>
   </ul>
-    
+
+
   <!-- Scroll to Top Button-->
-  <?php include "admin_footer.php" ?> 
+  <?php include "admin_footer.php" ?>
