@@ -27,6 +27,7 @@ else if ($where == 'stock') {
                  $bp = $_POST['bp'];
                  $sp = $_POST['sp'];
                  $qty = $_POST['qty'];
+                 $restock = $_POST['restock'];
                  $row = mysqli_query($connection,"SELECT `Name` FROM stock WHERE Name = '".$name."'")or die($connection->error);
                  $result = mysqli_fetch_array($row);
                  if ( $result == TRUE) {
@@ -40,7 +41,7 @@ else if ($where == 'stock') {
                  $result2 = mysqli_query($connection,"SELECT * FROM suppliers WHERE Name = '".$supplier."'")or die($connection->error);
                  $row2 = mysqli_fetch_array($result2);
                  $supplier = $row2['id'];
-                  mysqli_query($connection,"INSERT INTO `stock` (`Category_id`,`Supplier_id`,`Name`,`Buying_price`,`Price`,`Quantity`) VALUES ('$category','$supplier','$name','$bp','$sp','$qty');") or die(mysqli_error($connection));
+                  mysqli_query($connection,"INSERT INTO `stock` (`Category_id`,`Supplier_id`,`Name`,`Restock_Level`,`Buying_price`,`Price`,`Quantity`) VALUES ('$category','$supplier','$name','$restock','$bp','$sp','$qty');") or die(mysqli_error($connection));
                   $result3 = mysqli_query($connection,"SELECT * FROM stock WHERE Name = '".$name."';")or die($connection->error);
                  $row3 = mysqli_fetch_array($result3);
                  $Stock_id = $row3['id'];

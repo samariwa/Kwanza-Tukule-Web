@@ -745,8 +745,9 @@ function getIndexOfProduct(arr, k) {
   var bp = $(`#bp${rowx}`).text();
   var sp = $(`#sp${rowx}`).text();
   var qty = $(`#qty${rowx}`).text();
+  var restock_Level = $(`#restock_Level${rowx}`).text();
   var where = 'stock';
-  $.post("save.php",{id:id,name:name,bp:bp,category:category,qty:qty,sp:sp,where:where},
+  $.post("save.php",{id:id,name:name,bp:bp,restock_Level:restock_Level,category:category,qty:qty,sp:sp,where:where},
   function(result){});
 });
 
@@ -942,8 +943,9 @@ $('#officeEditable').editableTableWidget();
         var bp = $('#bp').val();
         var sp = $('#sp').val();
         var qty = $('#qty').val();
+        var restock = $('#restock').val();
         var where = 'stock';
-        $.post("add.php",{name:name,category:category,supplier:supplier,received:received,expiry:expiry,bp:bp,sp:sp,qty:qty,where:where},
+        $.post("add.php",{name:name,category:category,supplier:supplier,restock:restock,received:received,expiry:expiry,bp:bp,sp:sp,qty:qty,where:where},
         function(result){
          if (result == 'success') {
           alert('Stock Added Successfully');

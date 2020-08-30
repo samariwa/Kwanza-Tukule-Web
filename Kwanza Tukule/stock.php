@@ -186,6 +186,9 @@
                   </div><br>
                  <div class="row">
                  <input type="number" name="qty" id="qty" class="form-control col-md-9" required style="padding:15px;margin-left: 60px" placeholder="Quantity...">
+                  </div><br>
+                  <div class="row">
+                 <input type="number" name="restock" id="restock" class="form-control col-md-9" required style="padding:15px;margin-left: 60px" placeholder="Restock Level...">
                   </div>
             </div>
             <div class="modal-footer">
@@ -235,24 +238,25 @@
       <table id="stockEditable" class="table table-striped table-hover paginate" style="display:block;overflow-y:scroll;text-align: center;">
   <thead class="thead-dark">
     <tr>
-      <th scope="col" width="5%">#</th>
+      <th scope="col" width="4%">#</th>
       <th scope="col" width="15%">Category</th>
-      <th scope="col" width="20%">Stock Name</th>
+      <th scope="col" width="17%">Stock Name</th>
        <?php
        if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO') {
 
         ?>
-      <th scope="col" width="12%">Buying Price</th>
+      <th scope="col" width="11%">Buying Price</th>
        <?php
         }
         ?>
-      <th scope="col"width="12%">Selling Price</th>
+      <th scope="col"width="11%">Selling Price</th>
       <th scope="col"width="12%">Quantity Available</th>
       <?php
        if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO') {
 
         ?>
-      <th scope="col"width="30%"></th>
+        <th scope="col" width="10%">Restock Level</th>
+      <th scope="col"width="28%"></th>
     </tr>
     <?php
         }
@@ -269,6 +273,7 @@
         $buying_price = $row['Buying_price'];
         $selling_price = $row['Price'];
         $quantity = $row['Quantity'];
+        $restock_Level = $row['Restock_Level'];
       ?>
     <tr>
       <?php
@@ -292,15 +297,15 @@
       <?php
        }
        if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO') {
-
         ?>
+        <td class="editable" id="restock_Level<?php echo $count; ?>"><?php echo $restock_Level; ?></td>
        <td>  
-        <button data-toggle="modal" data-target="#exampleModalScrollable<?php echo $id; ?>" id="<?php echo $id; ?>" data_id="<?php echo $id; ?>" class="btn btn-light btn-sm active addPurchase" role="button" aria-pressed="true" ><i class="fa fa-plus"></i>&ensp;Add Purchase</button>
+        <button data-toggle="modal" data-target="#exampleModalScrollable<?php echo $id; ?>" id="<?php echo $id; ?>" data_id="<?php echo $id; ?>" class="btn btn-light btn-sm active addPurchase" role="button" aria-pressed="true" ><i class="fa fa-plus"></i>&ensp;Restock</button>
         <div class="modal fade" id="exampleModalScrollable<?php echo $id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalScrollableTitle">Add Purchase</h5>
+              <h5 class="modal-title" id="exampleModalScrollableTitle">Restock</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>

@@ -438,24 +438,26 @@ Preloader
               <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: grey;">
                 Notifications<i class="fa fa-bell"></i>
                 <!-- Counter - Alerts -->
-                <span class="badge badge-danger badge-counter">3+</span>
+                <?php
+                 include('queries.php');
+                    $restockNumber = mysqli_num_rows($restockExists);
+                    $notesNumber = mysqli_num_rows($notesExists);
+                    $notificationNumber = $restockNumber + $notesNumber - 1;
+                ?>
+                <span class="badge badge-danger badge-counter"><?php echo $notificationNumber ?>+</span>
               </a>
               <!-- Dropdown - Alerts -->
               <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
                 <h6 class="dropdown-header">
                   Alerts Center
                 </h6>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-primary">
-                      <i class="fa fa-file-alt text-white"></i>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500">December 12, 2019</div>
-                    <span class="font-weight-bold">A new monthly report is ready to download!</span>
-                  </div>
-                </a>
+                <?php
+                foreach($newnotes as $row){
+                    $name = $row['name'];
+                    $title = $row['Title'];
+                    $Date = $row['date'];
+                    $date = date( 'l, F d, Y', strtotime($Date) );
+                  ?>
                 <a class="dropdown-item d-flex align-items-center" href="#">
                   <div class="mr-3">
                     <div class="icon-circle bg-success">
@@ -463,10 +465,20 @@ Preloader
                     </div>
                   </div>
                   <div>
-                    <div class="small text-gray-500">December 7, 2019</div>
-                    Ksh.290.29 has been deposited into your account!
+                    <div class="small text-gray-500"><?php echo $date ?></div>
+                    <?php echo $name ?>: <?php echo $title ?>
                   </div>
                 </a>
+                <?php
+                }
+                ?>
+                <?php
+                foreach($restockNeeded as $row){
+                    $Name = $row['Name'];
+                    $Quantity = $row['Quantity'];
+                    $Date = $row['Updated_at'];
+                    $date = date( 'l, F d, Y', strtotime($Date) );
+                  ?>
                 <a class="dropdown-item d-flex align-items-center" href="#">
                   <div class="mr-3">
                     <div class="icon-circle bg-warning">
@@ -474,10 +486,13 @@ Preloader
                     </div>
                   </div>
                   <div>
-                    <div class="small text-gray-500">December 2, 2019</div>
-                    Spending Alert: We've noticed unusually high spending for your account.
+                    <div class="small text-gray-500"><?php echo $date ?></div>
+                    Kindly restock <?php echo $Name ?>. <?php echo $Quantity ?> units left.
                   </div>
                 </a>
+                <?php
+                }
+                ?>
                 <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
               </div>
             </li>
