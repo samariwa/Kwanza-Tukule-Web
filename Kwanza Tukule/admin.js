@@ -676,9 +676,13 @@ function getIndexOfProduct(arr, k) {
           function(result){
             if (result=='success') {
                 cartArr.shift();
+                alert("Order Successfully Added");
             }
-          });
-          alert("Order Successfully Added");
+            else if(result=='unavailable'){
+              //var stockID = cartArr[i][0];
+                alert("Quantity for stock id"+ stockID +"reduced to below ordered quantity in ordering process.");
+            }
+          });   
         }
       }
 

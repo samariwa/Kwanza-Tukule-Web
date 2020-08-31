@@ -215,9 +215,14 @@ elseif ($where=='order') {
   $customer = $_POST['customer'];
   $stockIDx = $_POST['stockid'];
   $lateOrder = $_POST['lateOrder'];
-  $resx = mysqli_query($connection, "SELECT Category_id FROM `stock` WHERE id='$stockIDx'");
+  $resx = mysqli_query($connection, "SELECT Category_id,Quantity FROM `stock` WHERE id='$stockIDx'");
   while ($rowx = mysqli_fetch_array($resx)) {
     $category = $rowx['Category_id'];
+    $qty = $rowx['Quantity'];
+  }
+  if($qty < $quantity){
+     echo 'unavailable';
+     exit();
   }
   $result  = mysqli_query($connection, "SELECT Balance FROM `orders` WHERE Customer_id='$customer' ORDER BY id DESC");
   $count = 0;

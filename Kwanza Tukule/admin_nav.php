@@ -453,7 +453,8 @@ Preloader
                 </h6>
                 <?php
                 foreach($newnotes as $row){
-                    $name = $row['name'];
+                    $firstname = $row['firstname'];
+                    $lastname = $row['lastname'];
                     $title = $row['Title'];
                     $Date = $row['date'];
                     $date = date( 'l, F d, Y', strtotime($Date) );
@@ -466,7 +467,7 @@ Preloader
                   </div>
                   <div>
                     <div class="small text-gray-500"><?php echo $date ?></div>
-                    <?php echo $name ?>: <?php echo $title ?>
+                    <?php echo $firstname.' '.$lastname ?>: <?php echo $title ?>
                   </div>
                 </a>
                 <?php
