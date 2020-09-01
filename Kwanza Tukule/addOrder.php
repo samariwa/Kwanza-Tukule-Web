@@ -189,7 +189,17 @@
       <td id="name<?php echo $id; ?>"><?php echo $name; ?></td>
       <td id="sp<?php echo $id; ?>"><?php echo $selling_price; ?></td>
       <td id="qty<?php echo $id; ?>"><?php echo $quantity; ?></td>
+      <?php
+       if ($quantity > 0) {
+      ?>
       <td><button type="button" class="btn btn-warning addToCart" onclick="cartArray(<?php echo $id; ?>)" id="<?php echo $id; ?>" data_id="<?php echo $id; ?>"><i class="fa fa-cart-plus" ></i>&emsp;Add To Cart</button></td>
+      <?php
+       }else{
+      ?>
+        <td><button type="button" class="btn btn-warning addToCart" disabled onclick="cartArray(<?php echo $id; ?>)" id="<?php echo $id; ?>" data_id="<?php echo $id; ?>"><i class="fa fa-cart-plus" ></i>&emsp;Add To Cart</button></td>
+      <?php
+        }
+      ?>
    </tr>
     <?php
     }

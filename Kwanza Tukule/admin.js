@@ -672,18 +672,18 @@ function getIndexOfProduct(arr, k) {
 
       function completeOrderBalance(custID,cartArr){
         for (var i = 0; i < cartArr.length; i++) {
+          var stockID = cartArr[i][0];
           $.post("add.php",{where:'order',price:cartArr[i][2],quantity:cartArr[i][3], customer:custID, stockid:cartArr[i][0], lateOrder:$(`#deliveryDate`).val()},
           function(result){
             if (result=='success') {
                 cartArr.shift();
-                alert("Order Successfully Added");
             }
             else if(result=='unavailable'){
-              //var stockID = cartArr[i][0];
-                alert("Quantity for stock id"+ stockID +"reduced to below ordered quantity in ordering process.");
+                alert("Quantity for stock id "+ stockID +" reduced below ordered quantity in ordering process. Order for the prodcust could not be completed.");
             }
           });   
         }
+          alert("Order Successfully Added");
       }
 
        function fineCustomer(idx){
