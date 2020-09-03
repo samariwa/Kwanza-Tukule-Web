@@ -83,11 +83,11 @@
       <th scope="col" width="3%">#</th>
       <th scope="col" width="14%">Brand Name</th>
       <th scope="col"width="10%">Opening Stock</th>
-      <th scope="col"width="10%">Purchases</th>
+      <th scope="col"width="10%">Purchased (Batch)</th>
       <th scope="col"width="10%">Closing Stock</th>
       <th scope="col"width="10%">Selling Price</th>
       <th scope="col"width="10%">Buying Price</th>
-      <th scope="col"width="10%">Stock Value</th>
+      <th scope="col"width="10%">Stock Value (Kshs.)</th>
     </tr>
   </thead>
   <tbody >

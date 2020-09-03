@@ -86,15 +86,14 @@
       <th scope="col" width="10%"><?php echo $yesterday1; ?></th>
       <th scope="col"width="10%">Yesterday</th>
       <th scope="col"width="10%">Today</th>
-      <th scope="col"width="10%">Opening Stock</th>
-      <th scope="col"width="10%">Closing Stock</th>
-      <th scope="col"width="10%">Selling Price</th>
+      <th scope="col"width="10%">Opening Stock (Today)</th>
+      <th scope="col"width="10%">Closing Stock (Now)</th>
     </tr>
   </thead>
   <tbody >
     <?php
         $count = 0;
-        foreach($valuationQuery as $row){
+        foreach($stockFlowQuery as $row){
          $count++;
          $id = $row['sid'];
          $name = $row['sname'];
@@ -105,7 +104,6 @@
         $sum5 = $row['sum5'];
         $opening = $row['Opening_stock'];
         $closing = $row['Quantity'];
-        $sp = $row['Price'];
       ?>
     <tr>
       <th scope="row"><?php echo $id; ?></th>
@@ -117,7 +115,6 @@
       <td ><?php echo $sum5; ?></td>
       <td ><?php echo $opening; ?></td>
       <td ><?php echo $closing; ?></td>
-      <td ><?php echo $sp; ?></td>
     </tr>
     <?php
     }

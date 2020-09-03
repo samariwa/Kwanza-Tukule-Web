@@ -19,13 +19,14 @@ elseif( $where == 'stock'){
    $sp = $_POST['sp'];
    $qty = $_POST['qty'];
    $restock = $_POST['restock_Level'];
-   $result1 = mysqli_query($connection,"SELECT id,MAX(Created_at) FROM stock_flow where Stock_id='$id';")or die($connection->error);
+   $result1 = mysqli_query($connection,"
+SELECT sfid as batchId FROM (SELECT s.id as sid, sf.id as sfid ,sf.Created_at,ROW_NUMBER() OVER (PARTITION BY s.id ORDER BY sf.Created_at DESC) as rn FROM stock s JOIN stock_flow sf ON s.id = sf.Stock_id JOIN category c ON s.Category_id=c.id ) q WHERE rn = 1 AND sid='$id'")or die($connection->error);
         $row = mysqli_fetch_array($result1);
-        $flowId = $row['id'];
+        $flowId = $row['batchId'];
    $result2 = mysqli_query($connection,"SELECT id FROM category where Category_Name='$category';")or die($connection->error);
         $row2 = mysqli_fetch_array($result2);
         $categoryId = $row2['id'];
-mysqli_query($connection,"UPDATE `stock`  SET `Name` = '".$name."',Category_id = '".$categoryId."',Restock_Level = '".$restock."',stock.Buying_price= '".$bp."',stock.Price = '".$sp."' WHERE  stock.id = '".$id."'")or die($connection->error);
+mysqli_query($connection,"UPDATE `stock` JOIN stock_flow ON stock.id = stock_flow.Stock_id SET `Name` = '".$name."',Category_id = '".$categoryId."',Restock_Level = '".$restock."',stock_flow.Buying_price= '".$bp."',stock_flow.Selling_price = '".$sp."'  WHERE  stock_flow.id = '".$flowId."'")or die($connection->error);
 }elseif ($where == 'blacklist') {
 	$id = $_POST['id'];
     $location = $_POST['location'];

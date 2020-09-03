@@ -128,6 +128,7 @@
       <th scope="col" width="10%">Batch #</th>
       <th scope="col" width="40%">Stock Name</th>
       <th scope="col"width="20%">Date Received</th>
+      <th scope="col"width="20%">Quantity Purchased</th>
       <th scope="col"width="20%">Quantity Remaining</th>
       <th scope="col"width="40%">Expiry Date</th>
     </tr>
@@ -141,23 +142,22 @@
         $name = $row['Name'];
         $received = $row['Received_date'];
         $expiry = $row['Expiry_date'];
+        $purchased = $row['purchased'];
         $remaining = $row['Qty'];
         $receivedDate = date("d/m/Y", strtotime($received));
         $expiryDate = date("d/m/Y", strtotime($expiry));
-     /*    $vehicle = mysqli_fetch_array($vehiclesList);
-                  $Driver = $vehicle['driver'];
-        if (condition) {
-          # code...
-        }*/
+       if ( $remaining > 0) {
       ?>
     <tr>
       <th scope="row"  id="id<?php echo $count; ?>"><?php echo $id; ?></th>
       <td  id="name<?php echo $count; ?>"><?php echo $name; ?></td>
       <td  id="received<?php echo $count; ?>"><?php echo $receivedDate; ?></td>
+      <td  id="purchased<?php echo $count; ?>"><?php echo $purchased; ?></td>
        <td  id="remaining<?php echo $count; ?>"><?php echo $remaining; ?></td>
       <td  id="expiry<?php echo $count; ?>"><?php echo $expiryDate; ?></td>
     </tr>
     <?php
+     }
     }
     ?>
   </tbody>

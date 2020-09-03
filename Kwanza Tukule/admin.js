@@ -534,9 +534,10 @@ function selectCustomer(selection) {
           var productName = $(`#name${id}`).text();
           var productPrice = $(`#sp${id}`).text();
           var quantity = '1';
+          var discount = '0';
           var button = document.getElementById(id);
           button.disabled = true;
-           cartItems.push([productId,productName, productPrice,quantity]);
+           cartItems.push([productId,productName, productPrice,quantity, discount]);
                populateCart();
        };
 
@@ -549,6 +550,7 @@ function selectCustomer(selection) {
           var price = cartItems[i][2];
           var name = cartItems[i][1];
           var qty = cartItems[i][3];
+          var discount = cartItems[i][4];
           var subTotal = price * qty;
           var Total = +initial + +subTotal;
           $('#cartTotal').html(Total);
@@ -557,6 +559,7 @@ function selectCustomer(selection) {
             <td class="uneditable">${cartItems[i][1]}</td>
              <td class="uneditable" id="price${id}">${price}</td>
               <td class="editable" id="quantity${id}">${qty}</td>
+              <td class="editable" id="discount${id}">${discount}</td>
                <td> <button class="btn"><i onclick="upQuantity(${id},${price},${qty})" class='fa fa-plus'></i></button><button class="btn"><i onclick="downQuantity(${id},${price},${qty})" class='fa fa-minus'></i></button><button onclick="deleteCart(${id},this,${price},${qty})"  type='button' class='btn btn-danger btn-sm deleteFromCart' ><i class='fa fa-times-circle'></i>&ensp;Remove</button></td>
               <td class="uneditable" id="subTotal${id}">${subTotal}</td>
                  </tr>`;
@@ -675,6 +678,7 @@ function getIndexOfProduct(arr, k) {
           var stockID = cartArr[i][0];
           $.post("add.php",{where:'order',price:cartArr[i][2],quantity:cartArr[i][3], customer:custID, stockid:cartArr[i][0], lateOrder:$(`#deliveryDate`).val()},
           function(result){
+            alert(result);
             if (result=='success') {
                 cartArr.shift();
             }
@@ -1484,7 +1488,6 @@ $('#officeEditable').editableTableWidget();
         var expiry = $(`#expiry${id}`).val();
         $.post("add.php",{id:id,received:received,qty:qty,bp:bp,sp:sp,expiry:expiry,where:where},
         function(result){
-
          });
        });
 

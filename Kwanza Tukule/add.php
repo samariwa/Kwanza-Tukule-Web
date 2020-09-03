@@ -174,7 +174,7 @@ elseif ($where == 'purchase') {
      $sp = $_POST['sp'];
      $expiry = $_POST['expiry'];
      mysqli_query($connection,"INSERT INTO `stock_flow` (`Stock_id`,`Buying_price`,`Selling_Price`,`Received_date`,`Purchased`,`Expiry_date`) VALUES ('$id','$bp','$sp','$received','$qty','$expiry')") or die(mysqli_error($connection));
-mysqli_query($connection,"UPDATE `stock` SET Buying_price = '".$bp."',Price = '".$sp."', `Quantity` = Quantity + '".$qty."' WHERE `id` = '".$id."'")or die($connection->error);
+mysqli_query($connection,"UPDATE `stock` SET `Quantity` = Quantity + '".$qty."' WHERE `id` = '".$id."'")or die($connection->error);
 }
 elseif ($where == 'calendar') {
   if(isset($_POST["title"]))
@@ -236,6 +236,51 @@ elseif ($where=='order') {
   $newBalance = (int)$newDebt - ((int)$price*(int)$quantity);
   $sql = "INSERT INTO `orders`(`Customer_id`,`Category_id`,`Quantity`,`Debt`,`Balance`,`Stock_id`,`Late_Order`) VALUES('$customer','$category','$quantity','$newDebt','$newBalance','$stockIDx','$lateOrder')";
   mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = Quantity - '".$quantity."' WHERE `id` = '".$stockIDx."'")or die($connection->error);
+  $Category = mysqli_query($connection,"SELECT Category_Name,Name,Quantity,Restock_Level  FROM `stock` inner join category on stock.Category_id = category.id WHERE stock.id = '".$stockIDx."'")or die($connection->error);
+   $Name = mysqli_fetch_array($Category);
+   $Category_Name = $Name['Category_Name'];
+   $Stock_Name = $Name['Name'];
+   $Restock_Level = $Name['Restock_Level'];
+   if($Category_Name == 'Maize Flour' && strpos($Stock_Name, 'Pieces') !== false || $Category_Name == 'All Purpose Flour' && strpos($Stock_Name, 'Pieces') !== false){
+   $Qty = $Name['Quantity'];
+   if ($Qty < $Restock_Level) {
+     $Bundle_Name = str_replace("Pieces","Bundles",$Stock_Name);
+     $Bundle_Qty = mysqli_query($connection,"SELECT Quantity  FROM `stock` WHERE stock.Name = '".$Bundle_Name."'")or die($connection->error);
+   $bundle_qty = mysqli_fetch_array($Bundle_Qty);
+   $bundleQuantity = $bundle_qty['Quantity'];
+   if ($bundleQuantity <= 5) {
+     $newBundleQty = 0;
+     $newPiecesIncreament = $bundleQuantity * 12;
+     mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = '0' WHERE `Name` = '".$Bundle_Name."'")or die($connection->error);
+     mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = Quantity + '".$newPiecesIncreament."' WHERE `id` = '".$stockIDx."'")or die($connection->error);
+   }else{
+      $newBundleQty = $bundleQuantity - 5;
+      $newPiecesIncreament = 60;
+      mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = '$newBundleQty' WHERE `Name` = '".$Bundle_Name."'")or die($connection->error);
+     mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = Quantity + '60' WHERE `id` = '".$stockIDx."'")or die($connection->error);
+   }
+   }
+   }
+    if($Category_Name == 'Sugar' && strpos($Stock_Name, 'Packets') !== false){
+       $Qty = $Name['Quantity'];
+   if ($Qty < $Restock_Level) {
+     $Bag_Name = str_replace("Packets","Bag",$Stock_Name);
+     $Bag_Qty = mysqli_query($connection,"SELECT Quantity  FROM `stock` WHERE stock.Name = '".$Bag_Name."'")or die($connection->error);
+   $bag_qty = mysqli_fetch_array($Bag_Qty);
+   $bagQuantity = $bag_qty['Quantity'];
+   if ($bagQuantity <= 5) {
+     $newBagQty = 0;
+     $newPacketsIncreament = $bagQuantity * 12;
+     mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = '0' WHERE `Name` = '".$Bag_Name."'")or die($connection->error);
+     mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = Quantity + '".$newPacketsIncreament."' WHERE `id` = '".$stockIDx."'")or die($connection->error);
+   }else{
+      $newBagQty = $bagQuantity - 5;
+      $newPacketsIncreament = 60;
+      mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = '$newBagQty' WHERE `Name` = '".$Bag_Name."'")or die($connection->error);
+     mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = Quantity + '60' WHERE `id` = '".$stockIDx."'")or die($connection->error);
+   }
+   }
+    }
    if ($newBalance == 0 ) {
      mysqli_query($connection,"UPDATE `customers`  SET `Status` = 'clean' WHERE `id` = '".$customer."'")or die($connection->error);
    }

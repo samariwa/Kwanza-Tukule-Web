@@ -217,6 +217,7 @@
       <th scope="col" width="40%">Product Description</th>
       <th scope="col" width="10%">Unit Price</th>
       <th scope="col" width="10%">Quantity</th>
+      <th scope="col" width="10%">Discount</th>
       <th scope="col" width="11%"></th>
       <th scope="col" width="15%">Sub-Total</th>
     </tr>
@@ -225,7 +226,7 @@
 
  </tbody>
     <tfoot>
-      <th scope="row" colspan="5"><b>Total:</b></th>
+      <th scope="row" colspan="6"><b>Total:</b></th>
       <td id="cartTotal"style="text-align: center;">0</td>
     </tfoot>
 </table>
