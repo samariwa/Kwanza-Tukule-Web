@@ -192,6 +192,7 @@
       <th scope="col" width="20%">Product</th>
       <th scope="col"width="5%">Quantity</th>
       <th scope="col"width="5%">Cost</th>
+      <th scope="col"width="5%">Discount</th>
       <th scope="col"width="5%">C/F/Debt</th>
       <?php
        if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO') {
@@ -221,9 +222,13 @@
         $name = $row['Name'];
         $contact = $row['Number'];
         $product = $row['name'];
+        $selling_price = mysqli_query($connection,"SELECT Selling_price FROM (SELECT s.Name as sname,sf.Selling_price as Selling_Price, sf.Created_at,ROW_NUMBER() OVER (PARTITION BY s.id ORDER BY sf.Created_at DESC) as rn FROM stock s JOIN stock_flow sf ON s.id = sf.Stock_id join orders o on s.id = o.Stock_id ) q WHERE rn = 1 AND sname = '$product'")or die($connection->error);
+         $row2 = mysqli_fetch_array($selling_price);
+        $price = $row2['Selling_price'];
         $qty = $row['Quantity'];
-        $price = $row['Price'];
-        $cost = $qty * $price;
+        $discount = $row['Discount'];
+        $newCost = $price - $discount;
+        $cost = $qty * $newCost; 
         $debt = $row['Debt'];
         $mpesa = $row['MPesa'];
         $cash = $row['Cash'];
@@ -269,6 +274,7 @@
       <td class="uneditable" id="product<?php echo $count; ?>"><?php echo $product; ?></td>
       <td class="editable" id="qty<?php echo $count; ?>"><?php echo $qty; ?></td>
       <td class="uneditable" id="cost<?php echo $id; ?>"><?php echo $cost; ?></td>
+      <td class="uneditable" id="discount<?php echo $count; ?>"><?php echo $discount; ?></td>
       <td class="uneditable" id="debt<?php echo $count; ?>"><?php echo $debt; ?></td>
        <?php
        if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO') {
@@ -360,6 +366,7 @@
       <th scope="col" width="20%">Product</th>
       <th scope="col"width="5%">Quantity</th>
       <th scope="col"width="5%">Cost</th>
+      <th scope="col"width="5%">Discount</th>
       <th scope="col"width="5%">C/F/Debt</th>
       <?php
        if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO') {
@@ -390,8 +397,12 @@
         $contact = $row['Number'];
         $product = $row['name'];
         $qty = $row['Quantity'];
-        $price = $row['Price'];
-        $cost = $qty * $price;
+        $selling_price = mysqli_query($connection,"SELECT Selling_price FROM (SELECT s.Name as sname,sf.Selling_price as Selling_Price, sf.Created_at,ROW_NUMBER() OVER (PARTITION BY s.id ORDER BY sf.Created_at DESC) as rn FROM stock s JOIN stock_flow sf ON s.id = sf.Stock_id join orders o on s.id = o.Stock_id ) q WHERE rn = 1 AND sname = '$product'")or die($connection->error);
+         $row2 = mysqli_fetch_array($selling_price);
+        $price = $row2['Selling_price'];
+        $discount = $row['Discount'];
+        $newCost = $price - $discount;
+        $cost = $qty * $newCost; 
         $debt = $row['Debt'];
         $mpesa = $row['MPesa'];
         $cash = $row['Cash'];
@@ -437,6 +448,7 @@
       <td class="uneditable" id="product<?php echo $count; ?>"><?php echo $product; ?></td>
       <td class="editable" id="qty<?php echo $count; ?>"><?php echo $qty; ?></td>
       <td class="uneditable" id="cost<?php echo $id; ?>"><?php echo $cost; ?></td>
+      <td class="uneditable" id="discount<?php echo $count; ?>"><?php echo $discount; ?></td>
       <td class="uneditable" id="debt<?php echo $count; ?>"><?php echo $debt; ?></td>
        <?php
        if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO') {
@@ -528,6 +540,7 @@
       <th scope="col" width="20%">Product</th>
       <th scope="col"width="5%">Quantity</th>
       <th scope="col"width="5%">Cost</th>
+      <th scope="col"width="5%">Discount</th>
       <th scope="col"width="5%">C/F/Debt</th>
       <?php
        if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO') {
@@ -558,8 +571,12 @@
         $contact = $row['Number'];
         $product = $row['name'];
         $qty = $row['Quantity'];
-        $price = $row['Price'];
-        $cost = $qty * $price;
+        $discount = $row['Discount'];
+        $selling_price = mysqli_query($connection,"SELECT Selling_price FROM (SELECT s.Name as sname,sf.Selling_price as Selling_Price, sf.Created_at,ROW_NUMBER() OVER (PARTITION BY s.id ORDER BY sf.Created_at DESC) as rn FROM stock s JOIN stock_flow sf ON s.id = sf.Stock_id join orders o on s.id = o.Stock_id ) q WHERE rn = 1 AND sname = '$product'")or die($connection->error);
+         $row2 = mysqli_fetch_array($selling_price);
+        $price = $row2['Selling_price'];
+        $newCost = $price - $discount;
+        $cost = $qty * $newCost; 
         $debt = $row['Debt'];
         $mpesa = $row['MPesa'];
         $cash = $row['Cash'];
@@ -605,6 +622,7 @@
       <td class="uneditable" id="product<?php echo $count; ?>"><?php echo $product; ?></td>
       <td class="editable" id="qty<?php echo $count; ?>"><?php echo $qty; ?></td>
       <td class="uneditable" id="cost<?php echo $id; ?>"><?php echo $cost; ?></td>
+      <td class="uneditable" id="discount<?php echo $count; ?>"><?php echo $discount; ?></td>
       <td class="uneditable" id="debt<?php echo $count; ?>"><?php echo $debt; ?></td>
        <?php
        if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO') {

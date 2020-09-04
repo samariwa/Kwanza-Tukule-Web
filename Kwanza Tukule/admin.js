@@ -551,7 +551,8 @@ function selectCustomer(selection) {
           var name = cartItems[i][1];
           var qty = cartItems[i][3];
           var discount = cartItems[i][4];
-          var subTotal = price * qty;
+          var cost = price - discount;
+          var subTotal = cost  * qty;
           var Total = +initial + +subTotal;
           $('#cartTotal').html(Total);
           productDetails += `<tr style="text-align: center;">
@@ -572,11 +573,23 @@ function selectCustomer(selection) {
             for (var i = 0; i < cartItems.length; i++) {
               if (parseInt($(`#quantity${cartItems[i][0]}`).html()) == newValue) {
                 if (newValue <= parseInt($(`#qty${cartItems[i][0]}`).html())) {
-                  newSub = newValue * parseInt($(`#price${cartItems[i][0]}`).html());
+                  var cost = parseInt($(`#price${cartItems[i][0]}`).html()) - parseInt($(`#discount${cartItems[i][0]}`).html());
+                  newSub = newValue * cost;
                   cartItems[i][3] = newValue;
                   $(`#subTotal${cartItems[i][0]}`).html(newSub);
                 } else {
                   alert('Quantity Not Available');
+                  return false;
+                }
+              }
+              if (parseInt($(`#discount${cartItems[i][0]}`).html()) == newValue) {
+                if (newValue <= parseInt($(`#price${cartItems[i][0]}`).html())) {
+                  var cost = parseInt($(`#price${cartItems[i][0]}`).html()) - newValue;
+                  newSub2 = parseInt($(`#quantity${cartItems[i][0]}`).html()) * cost;
+                  cartItems[i][4] = newValue;
+                  $(`#subTotal${cartItems[i][0]}`).html(newSub2);
+                } else {
+                  alert('Discount cannot be greater than unit price.');
                   return false;
                 }
               }
@@ -676,7 +689,7 @@ function getIndexOfProduct(arr, k) {
       function completeOrderBalance(custID,cartArr){
         for (var i = 0; i < cartArr.length; i++) {
           var stockID = cartArr[i][0];
-          $.post("add.php",{where:'order',price:cartArr[i][2],quantity:cartArr[i][3], customer:custID, stockid:cartArr[i][0], lateOrder:$(`#deliveryDate`).val()},
+          $.post("add.php",{where:'order',price:cartArr[i][2],quantity:cartArr[i][3], discount:cartArr[i][4] ,customer:custID, stockid:cartArr[i][0], lateOrder:$(`#deliveryDate`).val()},
           function(result){
             alert(result);
             if (result=='success') {

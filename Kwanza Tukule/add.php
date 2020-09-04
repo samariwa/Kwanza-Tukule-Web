@@ -211,10 +211,12 @@ elseif ($where=='order') {
   $balance = "";
   $category="";
   $price = $_POST['price'];
+  $discount = $_POST['discount'];
   $quantity = $_POST['quantity'];
   $customer = $_POST['customer'];
   $stockIDx = $_POST['stockid'];
   $lateOrder = $_POST['lateOrder'];
+  $cost = $price - $discount;
   $resx = mysqli_query($connection, "SELECT Category_id,Quantity FROM `stock` WHERE id='$stockIDx'");
   while ($rowx = mysqli_fetch_array($resx)) {
     $category = $rowx['Category_id'];
@@ -233,8 +235,8 @@ elseif ($where=='order') {
       $count++;
   }
   $newDebt = $balance;
-  $newBalance = (int)$newDebt - ((int)$price*(int)$quantity);
-  $sql = "INSERT INTO `orders`(`Customer_id`,`Category_id`,`Quantity`,`Debt`,`Balance`,`Stock_id`,`Late_Order`) VALUES('$customer','$category','$quantity','$newDebt','$newBalance','$stockIDx','$lateOrder')";
+  $newBalance = (int)$newDebt - ((int)$cost*(int)$quantity);
+  $sql = "INSERT INTO `orders`(`Customer_id`,`Category_id`,`Quantity`,`Debt`,`Discount`,`Balance`,`Stock_id`,`Late_Order`) VALUES('$customer','$category','$quantity','$newDebt','$discount','$newBalance','$stockIDx','$lateOrder')";
   mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = Quantity - '".$quantity."' WHERE `id` = '".$stockIDx."'")or die($connection->error);
   $Category = mysqli_query($connection,"SELECT Category_Name,Name,Quantity,Restock_Level  FROM `stock` inner join category on stock.Category_id = category.id WHERE stock.id = '".$stockIDx."'")or die($connection->error);
    $Name = mysqli_fetch_array($Category);
