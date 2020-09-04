@@ -70,8 +70,8 @@
 
           <div class="row">
       <a href="stock.php" class="btn btn-primary btn-md active float-left ml-3" role="button" aria-pressed="true"><i class="fa fa-arrow-left"></i>&ensp;Back</a>
+      <div class="offset-3"> <h6 >Valuation based on live stock flow.</h6></div>
     </div><br>
-    <div class="row offset-4"> <h6 >Valuation based on live stock flow.</h6></div><br>
     <?php
      $yesterday1 = date('d/m/Y',strtotime('-2 day'));
      $yesterday2 = date('d/m/Y',strtotime('-3 day'));

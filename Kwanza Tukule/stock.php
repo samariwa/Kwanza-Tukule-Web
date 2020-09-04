@@ -199,17 +199,14 @@
         </div>
       </div>
     </div>
-    <div class="col-md-2">
-      <a href="shelf_life.php" class="btn btn-info btn-md active" role="button" aria-pressed="true">Stock Shelf Life</a>
-      </div>
-      <div class="col-md-4">
-      <?php
-        $stockrowcount = mysqli_num_rows($stockList);
-      ?>
-      <h6 class="offset-4">Total Number: <?php echo $stockrowcount; ?></h6>
+    <div class="col-md-3">
+      <a href="shelf_life.php" class="btn btn-info btn-md offset-2 active" role="button" aria-pressed="true">Stock Shelf Life</a>
       </div>
       <div class="col-md-2">
-      <a href="valuation.php" class="btn btn-warning btn-md active" role="button" aria-pressed="true" >Stock Valuation</a>
+      <a href="damaged.php" class="btn btn-secondary btn-md active" role="button" aria-pressed="true" >Damaged Stock</a>
+      </div>
+      <div class="col-md-3">
+      <a href="valuation.php" class="btn btn-warning btn-md offset-2 active" role="button" aria-pressed="true" >Stock Valuation</a>
       </div>
       <div class="col-md-2">
       <a href="categories.php" class="btn btn-primary btn-md active" role="button" aria-pressed="true">Stock Categories</a>
@@ -219,22 +216,20 @@
           }else{
             ?>
 <div class="row">
-  <div class="col-md-4">
-      <a href="shelf_life.php" class="btn btn-info btn-md active  ml-3" role="button" aria-pressed="true">Stock Shelf Life</a>
+  <div class="col-md-6">
+      <a href="shelf_life.php" class="btn btn-info btn-md active  ml-2" role="button" aria-pressed="true">Stock Shelf Life</a>
     </div>
-      <?php
-        $stockrowcount = mysqli_num_rows($stockList);
-      ?>
-      <div class="col-md-4">
-      <h6 class="offset-4">Total Number: <?php echo $stockrowcount; ?></h6>
-    </div>
-    <div class="col-md-4">
-      <a href="categories.php" class="btn btn-primary btn-md active offset-6" role="button" aria-pressed="true">Stock Categories</a>
+    <div class="col-md-6">
+      <a href="categories.php" class="btn btn-primary btn-md active offset-8" role="button" aria-pressed="true">Stock Categories</a>
     </div>
     </div><br> 
             <?php
           }
        ?>   
+       <?php
+        $stockrowcount = mysqli_num_rows($stockList);
+      ?>
+      <div class="offset-2"><h6 class="offset-4">Total Number: <?php echo $stockrowcount; ?></h6></div>
       <table id="stockEditable" class="table table-striped table-hover paginate" style="display:block;overflow-y:scroll;text-align: center;">
   <thead class="thead-dark">
     <tr>
