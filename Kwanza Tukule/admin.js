@@ -789,6 +789,19 @@ $('#categoriesEditable').editableTableWidget();
   function(result){});
 });
 
+  $('#damagedEditable').editableTableWidget();
+  $('#damagedEditable td.uneditable').on('change', function(evt, newValue) {
+  return false;
+});
+  $('#damagedEditable td').on('change', function(evt, newValue) {
+   var rowx = parseInt(evt.target._DT_CellIndex.row)+1;
+  var id = $(`#id${rowx}`).text();
+  var qty = $(`#newDamaged${rowx}`).text();
+  var where = 'damaged';
+  $.post("save.php",{id:id,qty:qty,where:where},
+  function(result){});
+});
+
 $('#suppliersEditable').editableTableWidget();
   $('#suppliersEditable td.uneditable').on('change', function(evt, newValue) {
   return false;

@@ -260,4 +260,9 @@ elseif ($where == 'driver') {
     $driver = $_POST['driver'];
 mysqli_query($connection,"UPDATE `vehicles` SET Driver_id = '".$driver."' WHERE `id` = '".$id."'")or die($connection->error);
 }
+elseif ($where == 'damaged') {
+  $id = $_POST['id'];
+    $qty = $_POST['qty'];
+mysqli_query($connection,"UPDATE `stock_flow` JOIN stock ON stock_flow.Stock_id = stock.id SET Damaged = Damaged + '".$qty."',Quantity = Quantity - '".$qty."' WHERE stock_flow.id = '".$id."'")or die($connection->error);
+}
  ?>

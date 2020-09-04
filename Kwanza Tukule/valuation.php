@@ -85,7 +85,7 @@
       <th scope="col"width="10%">Opening Stock</th>
       <th scope="col"width="10%">Purchased (Batch)</th>
       <th scope="col"width="10%">Closing Stock</th>
-      <th scope="col"width="10%">Selling Price</th>
+      <th scope="col"width="10%">Damaged (Batch)</th>
       <th scope="col"width="10%">Buying Price</th>
       <th scope="col"width="10%">Stock Value (Kshs.)</th>
     </tr>
@@ -100,7 +100,7 @@
         $opening = $row['Opening_stock'];
         $purchase = $row['purchased'];
         $closing = $row['Quantity'];
-        $sp = $row['Price'];
+        $damaged = $row['damaged'];
         $bp = $row['Buying_price'];
         $value = $bp * $closing;
       ?>
@@ -110,7 +110,7 @@
       <td ><?php echo $opening; ?></td>
       <td ><?php echo $purchase; ?></td>
       <td ><?php echo $closing; ?></td>
-      <td ><?php echo $sp; ?></td>
+      <td ><?php echo $damaged; ?></td>
       <td ><?php echo $bp; ?></td>
       <td ><?php echo $value; ?></td>
     </tr>

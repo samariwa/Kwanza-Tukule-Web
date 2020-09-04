@@ -122,15 +122,16 @@
       <a href="stock.php" class="btn btn-primary btn-md active float-left ml-3" role="button" aria-pressed="true"><i class="fa fa-arrow-left"></i>&ensp;Back</a>
     </div><br>
      
-     <table  class="table table-striped table-hover paginate" style="display:block;overflow-y:scroll;text-align: center;">
+     <table id="damagedEditable" class="table table-striped table-hover paginate" style="display:block;overflow-y:scroll;text-align: center;">
   <thead class="thead-dark">
     <tr>
-      <th scope="col" width="10%">Batch #</th>
-      <th scope="col" width="30%">Stock Name</th>
+      <th scope="col" width="5%">Batch #</th>
+      <th scope="col" width="20%">Stock Name</th>
       <th scope="col"width="15%">Quantity Purchased</th>
       <th scope="col"width="15%">Undamaged Quantity</th>
       <th scope="col"width="15%">New Quantity Damaged</th>
       <th scope="col"width="15%">Total Quantity Damaged</th>
+      <th scope="col"width="15%">Damaged Value (Kshs.)</th>
     </tr>
   </thead>
   <tbody >
@@ -143,14 +144,17 @@
         $purchased = $row['purchased'];
         $Quantity = $row['Quantity'];
         $damaged = $row['damaged'];
+        $unitValue = $row['unitValue'];
+        $value = $unitValue * $damaged;
       ?>
     <tr>
-      <th scope="row"  id="id<?php echo $count; ?>"><?php echo $id; ?></th>
-      <td  id="name<?php echo $count; ?>"><?php echo $name; ?></td>
-      <td  id="purchased<?php echo $count; ?>"><?php echo $purchased; ?></td>
-      <td  id="undamaged<?php echo $count; ?>"><?php echo $Quantity; ?></td>
-      <td  id="newDamaged<?php echo $count; ?>">0</td>
-      <td  id="damaged<?php echo $count; ?>"><?php echo $damaged; ?></td>
+      <th class="uneditable" scope="row"  id="id<?php echo $count; ?>"><?php echo $id; ?></th>
+      <td class="uneditable" id="name<?php echo $count; ?>"><?php echo $name; ?></td>
+      <td class="uneditable" id="purchased<?php echo $count; ?>"><?php echo $purchased; ?></td>
+      <td class="uneditable"id="undamaged<?php echo $count; ?>"><?php echo $Quantity; ?></td>
+      <td  class="editable" id="newDamaged<?php echo $count; ?>">0</td>
+      <td  class="uneditable" id="damaged<?php echo $count; ?>"><?php echo $damaged; ?></td>
+      <td  class="uneditable" id="value<?php echo $count; ?>"><?php echo $value; ?></td>
     </tr>
     <?php
     }
