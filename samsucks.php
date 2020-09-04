@@ -38,7 +38,6 @@ mysqli_query($connection,"UPDATE `customers` INNER JOIN `orders` ON customers.id
     $name = $_POST['name'];
 mysqli_query($connection,"UPDATE `category` SET `Category_Name` = '".$name."' WHERE `id` = '".$id."'")or die($connection->error);
 }elseif ($where == 'orders') {
-	echo ",moewsads";
 	$id = $_POST['id'];
 $qty = $_POST['qty'];
 $mpesa = $_POST['mpesa'];
@@ -62,13 +61,10 @@ $result1 = mysqli_query($connection,"SELECT Customer_id,Quantity,Balance FROM or
     $customer = $row['Customer_id'];
       $Returned = $Quantity - $qty;
       mysqli_query($connection,"UPDATE `orders`  SET `Quantity` = '".$qty."',`Balance` = '".$newBalance."',`MPesa` = '".$mpesa."',`Cash` = '".$cash."',`Late_Order` = '".$date."',`Returned` = '".$Returned."',`Banked` = '".$banked."',`Slip_Number` = '".$slip."',`Banked_By` = '".$banker."' WHERE `id` = '".$id."'")or die($connection->error);
-      mysqli_query($connection,"update stock set Quantity= Quantity +".$Returned." WHERE `id` = '".$id."'")or die($connection->error);
+      mysqli_query($connection," update stock set Quantity= Quantity +".$Returned."  `id` = '".$id."'")or die($connection->error);
       $difference = $oldBalance - $newBalance;
-			echo "Difference: ".$difference;
-			echo "\nOld Balance: ".$oldBalance;
-			echo "\nNew Balance: ".$newBalance;
 
-		mysqli_query($connection,"UPDATE orders set Debt= Debt-'".$difference."', `Balance` = Balance -".$difference." WHERE Customer_id='".$customer."' and id >'".$id."' ;")or die($connection->error);
+			mysqli_query($connection,"UPDATE orders set Debt= Debt-'$difference', Balance= Balance-'$difference' where Customer_id='$customer' and id >'$id')or die($connection->error);
 			//newBalance calculate credit score
      $result3 = mysqli_query($connection,"select orders.Balance as newBalance from orders INNER JOIN customers ON orders.Customer_id=customers.id  WHERE orders.id IN (SELECT MAX(orders.id)FROM orders INNER JOIN customers ON orders.Customer_id=customers.id where customers.id='".$customer."' )")or die($connection->error);
     $row3 = mysqli_fetch_array($result3);

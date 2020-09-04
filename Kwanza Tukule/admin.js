@@ -698,7 +698,7 @@ function getIndexOfProduct(arr, k) {
             else if(result=='unavailable'){
                 alert("Quantity for stock id "+ stockID +" reduced below ordered quantity in ordering process. Order for the prodcust could not be completed.");
             }
-          });   
+          });
         }
           alert("Order Successfully Added");
       }
@@ -915,7 +915,9 @@ $('#officeEditable').editableTableWidget();
   var banker = $(`#banker${rowx}`).text();
   var where = 'orders';
   $.post("save.php",{id:id,qty:qty,mpesa:mpesa,cash:cash,date:date,banked:banked,slip:slip,banker:banker,where:where},
-  function(result){});
+  function(result){
+    alert(result);
+  });
 });
 
    $('#expenseHeadingEditable').editableTableWidget();
