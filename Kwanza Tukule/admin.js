@@ -703,9 +703,45 @@ function getIndexOfProduct(arr, k) {
           alert("Order Successfully Added");
       }
 
-       function fineCustomer(idx){
+      function fineCustomerMonth(idx){
            var id = idx;
-           var balance = $(`#balance${id}`).text();
+           var balance = $(`#balanceMonth${id}`).text();
+              var where = 'fine';
+              $.post("save.php",{id:id,balance:balance,where:where},
+              function(result){
+                alert(result);
+                var obj = parseJSON(result);
+              //  alert(`Message: ${obj.msg}`);
+              });
+       }
+
+       function fineCustomerYesterday(idx){
+           var id = idx;
+           var balance = $(`#balanceYesterday${id}`).text();
+              var where = 'fine';
+              $.post("save.php",{id:id,balance:balance,where:where},
+              function(result){
+                alert(result);
+                var obj = parseJSON(result);
+              //  alert(`Message: ${obj.msg}`);
+              });
+       }
+
+       function fineCustomerToday(idx){
+           var id = idx;
+           var balance = $(`#balanceToday${id}`).text();
+              var where = 'fine';
+              $.post("save.php",{id:id,balance:balance,where:where},
+              function(result){
+                alert(result);
+                var obj = parseJSON(result);
+              //  alert(`Message: ${obj.msg}`);
+              });
+       }
+
+       function fineCustomerTomorrow(idx){
+           var id = idx;
+           var balance = $(`#balanceTomorrow${id}`).text();
               var where = 'fine';
               $.post("save.php",{id:id,balance:balance,where:where},
               function(result){
@@ -890,6 +926,11 @@ $('#officeEditable').editableTableWidget();
   function(result){});
 });
 
+  $('#salesEditableMonth').editableTableWidget();
+  $('#salesEditableMonth td.uneditable').on('change', function(evt, newValue) {
+  return false;
+});
+
   $('#salesEditableYesterday').editableTableWidget();
   $('#salesEditableYesterday td.uneditable').on('change', function(evt, newValue) {
   return false;
@@ -905,14 +946,14 @@ $('#officeEditable').editableTableWidget();
 });
   $('#salesEditableTomorrow td').on('change', function(evt, newValue) {
    var rowx = parseInt(evt.target._DT_CellIndex.row)+1;
-  var id = $(`#id${rowx}`).text();
-  var qty = $(`#qty${rowx}`).text();
-  var mpesa = $(`#mpesa${rowx}`).text();
-  var cash = $(`#cash${rowx}`).text();
-  var date = $(`#date${rowx}`).text();
-  var banked = $(`#banked${rowx}`).text();
-  var slip = $(`#slip${rowx}`).text();
-  var banker = $(`#banker${rowx}`).text();
+  var id = $(`#idTomorrow${rowx}`).text();
+  var qty = $(`#qtyTomorrow${rowx}`).text();
+  var mpesa = $(`#mpesaTomorrow${rowx}`).text();
+  var cash = $(`#cashTomorrow${rowx}`).text();
+  var date = $(`#dateTomorrow${rowx}`).text();
+  var banked = $(`#bankedTomorrow${rowx}`).text();
+  var slip = $(`#slipTomorrow${rowx}`).text();
+  var banker = $(`#bankerTomorrow${rowx}`).text();
   var where = 'orders';
   $.post("save.php",{id:id,qty:qty,mpesa:mpesa,cash:cash,date:date,banked:banked,slip:slip,banker:banker,where:where},
   function(result){
