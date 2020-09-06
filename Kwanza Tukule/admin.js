@@ -930,16 +930,65 @@ $('#officeEditable').editableTableWidget();
   $('#salesEditableMonth td.uneditable').on('change', function(evt, newValue) {
   return false;
 });
+  $('#salesEditableMonth td').on('change', function(evt, newValue) {
+   var rowx = parseInt(evt.target._DT_CellIndex.row)+1;
+  var id = $(`#idMonth${rowx}`).text();
+  var qty = $(`#qtyMonth${rowx}`).text();
+  var mpesa = $(`#mpesaMonth${rowx}`).text();
+  var cash = $(`#cashMonth${rowx}`).text();
+  var date = $(`#dateMonth${rowx}`).text();
+  var banked = $(`#bankedMonth${rowx}`).text();
+  var slip = $(`#slipMonth${rowx}`).text();
+  var banker = $(`#bankerMonth${rowx}`).text();
+  var where = 'orders';
+  $.post("save.php",{id:id,qty:qty,mpesa:mpesa,cash:cash,date:date,banked:banked,slip:slip,banker:banker,where:where},
+  function(result){
+    location.reload(true);
+  });
+});
 
   $('#salesEditableYesterday').editableTableWidget();
   $('#salesEditableYesterday td.uneditable').on('change', function(evt, newValue) {
   return false;
+});
+  $('#salesEditableYesterday td').on('change', function(evt, newValue) {
+   var rowx = parseInt(evt.target._DT_CellIndex.row)+1;
+  var id = $(`#idYesterday${rowx}`).text();
+  var qty = $(`#qtyYesterday${rowx}`).text();
+  var mpesa = $(`#mpesaYesterday${rowx}`).text();
+  var cash = $(`#cashYesterday${rowx}`).text();
+  var date = $(`#dateYesterday${rowx}`).text();
+  var banked = $(`#bankedYesterday${rowx}`).text();
+  var slip = $(`#slipYesterday${rowx}`).text();
+  var banker = $(`#bankerYesterday${rowx}`).text();
+  var where = 'orders';
+  $.post("save.php",{id:id,qty:qty,mpesa:mpesa,cash:cash,date:date,banked:banked,slip:slip,banker:banker,where:where},
+  function(result){
+    location.reload(true);
+  });
 });
 
   $('#salesEditableToday').editableTableWidget();
   $('#salesEditableToday td.uneditable').on('change', function(evt, newValue) {
   return false;
 });
+  $('#salesEditableToday td').on('change', function(evt, newValue) {
+   var rowx = parseInt(evt.target._DT_CellIndex.row)+1;
+  var id = $(`#idToday${rowx}`).text();
+  var qty = $(`#qtyToday${rowx}`).text();
+  var mpesa = $(`#mpesaToday${rowx}`).text();
+  var cash = $(`#cashToday${rowx}`).text();
+  var date = $(`#dateToday${rowx}`).text();
+  var banked = $(`#bankedToday${rowx}`).text();
+  var slip = $(`#slipToday${rowx}`).text();
+  var banker = $(`#bankerToday${rowx}`).text();
+  var where = 'orders';
+  $.post("save.php",{id:id,qty:qty,mpesa:mpesa,cash:cash,date:date,banked:banked,slip:slip,banker:banker,where:where},
+  function(result){
+    location.reload(true);
+  });
+});
+
   $('#salesEditableTomorrow').editableTableWidget();
   $('#salesEditableTomorrow td.uneditable').on('change', function(evt, newValue) {
   return false;
@@ -957,7 +1006,7 @@ $('#officeEditable').editableTableWidget();
   var where = 'orders';
   $.post("save.php",{id:id,qty:qty,mpesa:mpesa,cash:cash,date:date,banked:banked,slip:slip,banker:banker,where:where},
   function(result){
-    alert(result);
+    location.reload(true);
   });
 });
 
@@ -971,7 +1020,8 @@ $('#officeEditable').editableTableWidget();
   var name = $(`#name${rowx}`).text();
   var where = 'expenseHeading';
   $.post("save.php",{id:id,name:name,where:where},
-  function(result){});
+  function(result){
+  });
 });
 
   $('#expensesEditable').editableTableWidget();
@@ -988,7 +1038,8 @@ $('#officeEditable').editableTableWidget();
      var date = $(`#date${rowx}`).text();
   var where = 'expense';
   $.post("save.php",{id:id,party:party,total:total,paid:paid,due:due,date:date,where:where},
-  function(result){});
+  function(result){
+  });
 });
 
   $(document).on('click','#addCustomer',function(){
@@ -1000,6 +1051,7 @@ $('#officeEditable').editableTableWidget();
         $.post("add.php",{name:name,number:number,location:location,deliverer:deliverer,where:where},
         function(result){
          if (result == 'success') {
+          location.reload(true);
           alert('Customer Added Successfully');
          }
           else if (result == 'exists') {
@@ -1025,6 +1077,7 @@ $('#officeEditable').editableTableWidget();
         $.post("add.php",{name:name,category:category,supplier:supplier,restock:restock,received:received,expiry:expiry,bp:bp,sp:sp,qty:qty,where:where},
         function(result){
          if (result == 'success') {
+          location.reload(true);
           alert('Stock Added Successfully');
          }
           else if (result == 'exists') {
@@ -1042,6 +1095,7 @@ $('#officeEditable').editableTableWidget();
         $.post("add.php",{category:category,where:where},
         function(result){
          if (result == 'success') {
+          location.reload(true);
           alert('Category Added Successfully');
          }
           else if (result == 'exists') {
@@ -1060,6 +1114,7 @@ $('#officeEditable').editableTableWidget();
         $.post("add.php",{name:name,contact:contact,where:where},
         function(result){
          if (result == 'success') {
+          location.reload(true);
           alert('Supplier Added Successfully');
          }
           else if (result == 'exists') {
@@ -1084,6 +1139,7 @@ $('#officeEditable').editableTableWidget();
         $.post("add.php",{title:title,message:message,access:access,where:where},
         function(result){
          if (result == 'success') {
+          location.reload(true);
           alert('Note Added Successfully');
          }
            else{
@@ -1101,6 +1157,7 @@ $('#officeEditable').editableTableWidget();
         $.post("add.php",{type:type,driver:driver,reg:reg,route:route,where:where},
         function(result){
          if (result == 'success') {
+          location.reload(true);
           alert('Vehicle Added Successfully');
          }
           else if (result == 'exists') {
@@ -1123,6 +1180,7 @@ $('#officeEditable').editableTableWidget();
         $.post("add.php",{heading:heading,party:party,total:total,paid:paid,due:due,date:date,where:where},
         function(result){
          if (result == 'success') {
+          location.reload(true);
           alert('Expense Added Successfully');
          }
           else{
@@ -1138,6 +1196,7 @@ $('#officeEditable').editableTableWidget();
         function(result){
           alert(result);
          if (result == 'success') {
+          location.reload(true);
           alert('Expense Heading Added Successfully');
          }
           else{
@@ -1159,6 +1218,7 @@ $('#officeEditable').editableTableWidget();
         $.post("add.php",{fname:fname,lname:lname,contact:contact,staffId:staffId,nationalId:nationalId,yob:yob,gender:gender,salary:salary,where:where},
         function(result){
          if (result == 'success') {
+          location.reload(true);
           alert('Deliverer Added Successfully');
          }
           else if (result == 'exists') {
@@ -1183,6 +1243,7 @@ $('#officeEditable').editableTableWidget();
         $.post("add.php",{fname:fname,lname:lname,contact:contact,staffId:staffId,nationalId:nationalId,yob:yob,gender:gender,salary:salary,where:where},
         function(result){
          if (result == 'success') {
+          location.reload(true);
           alert('Cook Added Successfully');
          }
           else if (result == 'exists') {
@@ -1208,6 +1269,7 @@ $('#officeEditable').editableTableWidget();
         $.post("add.php",{fname:fname,lname:lname,contact:contact,staffId:staffId,nationalId:nationalId,yob:yob,role:role,gender:gender,salary:salary,where:where},
         function(result){
          if (result == 'success') {
+          location.reload(true);
           alert('Office Staff Added Successfully');
          }
           else if (result == 'exists') {
@@ -1532,6 +1594,7 @@ $('#officeEditable').editableTableWidget();
         var body = $(`#body${id}`).val();
         $.post("save.php",{id:id,title:title,body:body,where:where},
         function(result){
+          location.reload(true);
          });
        });
 
@@ -1543,6 +1606,7 @@ $('#officeEditable').editableTableWidget();
         var body = $(`#body${id}`).val();
         $.post("save.php",{id:id,title:title,body:body,where:where},
         function(result){
+          location.reload(true);
          });
        });
 
@@ -1557,6 +1621,7 @@ $('#officeEditable').editableTableWidget();
         var expiry = $(`#expiry${id}`).val();
         $.post("add.php",{id:id,received:received,qty:qty,bp:bp,sp:sp,expiry:expiry,where:where},
         function(result){
+          location.reload(true);
          });
        });
 
@@ -1569,7 +1634,7 @@ $('#officeEditable').editableTableWidget();
          var next = $(`#next${id}`).val();
         $.post("save.php",{id:id,now:now,note:note,next:next,where:where},
         function(result){
-
+          location.reload(true);
          });
        });
 
@@ -1582,7 +1647,7 @@ $('#officeEditable').editableTableWidget();
          var next = $(`#Next${id}`).val();
         $.post("save.php",{id:id,now:now,note:note,next:next,where:where},
         function(result){
-
+           location.reload(true);
          });
        });
 
@@ -1593,7 +1658,7 @@ $('#officeEditable').editableTableWidget();
         var driver = $(`#driver${id}`).val();
         $.post("save.php",{id:id,driver:driver,where:where},
         function(result){
-               alert("Vehicle driver Successfully changed");
+           alert("Vehicle driver Successfully changed");
          });
        });
 
