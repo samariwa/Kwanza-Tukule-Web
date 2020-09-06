@@ -128,6 +128,9 @@
       ?>
       <h6 class="offset-2">Total Number: <?php echo $returnedrowcount; ?></h6>
     </div>
+    </div>
+    <div class="row">
+      <div class="offset-5">Goods Returned for Today's Orders</div>
     </div><br>
     <table  class="table table-striped table-hover paginate" style="display:block;overflow-y:scroll;text-align: center;">
   <thead class="thead-dark">

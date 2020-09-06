@@ -64,7 +64,7 @@ $result1 = mysqli_query($connection,"SELECT Customer_id,Quantity,Balance FROM or
     $customer = $row['Customer_id'];
       $Returned = $Quantity - $qty;
       mysqli_query($connection,"UPDATE `orders`  SET `Quantity` = '".$qty."',`Balance` = '".$newBalance."',`MPesa` = '".$mpesa."',`Cash` = '".$cash."',`Late_Order` = '".$date."',`Returned` = '".$Returned."',`Banked` = '".$banked."',`Slip_Number` = '".$slip."',`Banked_By` = '".$banker."' WHERE `id` = '".$id."'")or die($connection->error);
-      mysqli_query($connection,"update stock set Quantity= Quantity +".$Returned." WHERE `id` = '".$id."'")or die($connection->error);
+      mysqli_query($connection,"update stock set Quantity= Quantity +".$Returned." WHERE `id` = '".$stock_id."'")or die($connection->error);
       $difference = $oldBalance - $newBalance;
 		mysqli_query($connection,"UPDATE orders set Debt= Debt-'".$difference."', `Balance` = Balance -".$difference." WHERE Customer_id='".$customer."' and id >'".$id."' ;")or die($connection->error);
 			//newBalance calculate credit score
