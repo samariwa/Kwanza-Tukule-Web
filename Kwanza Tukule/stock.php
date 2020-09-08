@@ -199,14 +199,17 @@
         </div>
       </div>
     </div>
-    <div class="col-md-3">
-      <a href="shelf_life.php" class="btn btn-info btn-md offset-2 active" role="button" aria-pressed="true">Stock Shelf Life</a>
+    <div class="col-md-2">
+      <a href="shelf_life.php" class="btn btn-info btn-md active" role="button" aria-pressed="true">Stock Shelf Life</a>
       </div>
       <div class="col-md-2">
       <a href="damaged.php" class="btn btn-secondary btn-md active" role="button" aria-pressed="true" >Damaged Stock</a>
       </div>
-      <div class="col-md-3">
-      <a href="valuation.php" class="btn btn-warning btn-md offset-2 active" role="button" aria-pressed="true" >Stock Valuation</a>
+      <div class="col-md-2">
+      <a href="leftovers.php" class="btn btn-light btn-md active" role="button" aria-pressed="true" >Leftover Cereals</a>
+      </div>
+      <div class="col-md-2">
+      <a href="valuation.php" class="btn btn-warning btn-md active" role="button" aria-pressed="true" >Stock Valuation</a>
       </div>
       <div class="col-md-2">
       <a href="categories.php" class="btn btn-primary btn-md active" role="button" aria-pressed="true">Stock Categories</a>

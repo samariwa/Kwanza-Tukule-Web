@@ -691,7 +691,6 @@ function getIndexOfProduct(arr, k) {
           var stockID = cartArr[i][0];
           $.post("add.php",{where:'order',price:cartArr[i][2],quantity:cartArr[i][3], discount:cartArr[i][4] ,customer:custID, stockid:cartArr[i][0], lateOrder:$(`#deliveryDate`).val()},
           function(result){
-            alert(result);
             if (result=='success') {
                 cartArr.shift();
             }
@@ -709,7 +708,8 @@ function getIndexOfProduct(arr, k) {
               var where = 'fine';
               $.post("save.php",{id:id,balance:balance,where:where},
               function(result){
-                alert(result);
+                //alert(result);
+                location.reload(true);
                 var obj = parseJSON(result);
               //  alert(`Message: ${obj.msg}`);
               });
@@ -721,7 +721,8 @@ function getIndexOfProduct(arr, k) {
               var where = 'fine';
               $.post("save.php",{id:id,balance:balance,where:where},
               function(result){
-                alert(result);
+                //alert(result);
+                location.reload(true);
                 var obj = parseJSON(result);
               //  alert(`Message: ${obj.msg}`);
               });
@@ -733,7 +734,8 @@ function getIndexOfProduct(arr, k) {
               var where = 'fine';
               $.post("save.php",{id:id,balance:balance,where:where},
               function(result){
-                alert(result);
+                //alert(result);
+                location.reload(true);
                 var obj = parseJSON(result);
               //  alert(`Message: ${obj.msg}`);
               });
@@ -745,16 +747,74 @@ function getIndexOfProduct(arr, k) {
               var where = 'fine';
               $.post("save.php",{id:id,balance:balance,where:where},
               function(result){
-                alert(result);
+                //alert(result);
+                location.reload(true);
                 var obj = parseJSON(result);
               //  alert(`Message: ${obj.msg}`);
               });
        }
 
-       function deleteOrder(order,idx){
+       function deleteOrderMonth(order,idx){
         var id = idx;
         var el = order;
-        var cost = $(`#cost${id}`).text();
+        var cost = $(`#costMonth${id}`).text();
+        var where = 'order';
+            bootbox.confirm('Do you really want to delete the selected order?',function(result)
+        {if(result){
+          $.post("delete.php",{id:id,cost:cost,where:where},
+        function(result){
+            if(result == 1){
+              $(el).closest('tr').css('background','tomato');
+              $(el).closest('tr').fadeOut(800,function(){
+                $(this).remove();
+              });
+            }
+        });
+      }});
+       }
+
+       function deleteOrderYesterday(order,idx){
+        var id = idx;
+        var el = order;
+        var cost = $(`#costYesterday${id}`).text();
+        var where = 'order';
+            bootbox.confirm('Do you really want to delete the selected order?',function(result)
+        {if(result){
+          $.post("delete.php",{id:id,cost:cost,where:where},
+        function(result){
+            if(result == 1){
+              $(el).closest('tr').css('background','tomato');
+              $(el).closest('tr').fadeOut(800,function(){
+                $(this).remove();
+              });
+            }
+        });
+      }});
+       }
+
+       function deleteOrderToday(order,idx){
+        var id = idx;
+        var el = order;
+        var cost = $(`#costToday${id}`).text();
+        var where = 'order';
+            bootbox.confirm('Do you really want to delete the selected order?',function(result)
+        {if(result){
+          $.post("delete.php",{id:id,cost:cost,where:where},
+        function(result){
+            if(result == 1){
+              $(el).closest('tr').css('background','tomato');
+              $(el).closest('tr').fadeOut(800,function(){
+                $(this).remove();
+              });
+            }
+        });
+      }});
+       }
+
+       function deleteOrderTomorrow(order,idx){
+        var id = idx;
+        var el = order;
+        var cost = $(`#costTomorrow${id}`).text();
         var where = 'order';
             bootbox.confirm('Do you really want to delete the selected order?',function(result)
         {if(result){

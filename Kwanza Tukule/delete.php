@@ -33,7 +33,6 @@ else if($where == 'order' )
 {  
     $id =$_POST['id'];
     $cost = $_POST['cost'];
-mysqli_query($connection,"Delete from `orders` where id='".$id."'")or die($connection->error);
 $result = mysqli_query($connection,"select stock.id as stock,orders.Quantity as orderQty,orders.Customer_id as customer,stock.Quantity as stockQty from orders INNER JOIN stock ON orders.Stock_id=stock.id where orders.id='".$id."'")or die($connection->error);
 $row = mysqli_fetch_array($result);
     $stock = $row['stock'];
@@ -41,8 +40,9 @@ $row = mysqli_fetch_array($result);
     $customer = $row['customer'];
     $stockQty = $row['stockQty'];
     $qty = $orderQty + $stockQty;
+    mysqli_query($connection,"Delete from `orders` where id='".$id."'")or die($connection->error);
     mysqli_query($connection,"update stock set Quantity='".$qty."'  where id ='".$stock."'")or die($connection->error);
-    mysqli_query($connection,"update orders set Debt= Debt+".$cost.", Balance=Balance+".$cost."  where Customer_id ='".$customer."' AND id > '".$id."'")or die($connection->error);
+    mysqli_query($connection,"update orders set Debt= Debt+'".$cost."', Balance=Balance+'".$cost."'  where Customer_id ='".$customer."' AND id > '".$id."'")or die($connection->error);
     echo 1;
     exit();
 }

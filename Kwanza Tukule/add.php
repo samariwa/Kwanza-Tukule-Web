@@ -237,11 +237,37 @@ elseif ($where=='order') {
   $newDebt = $balance;
   $newBalance = (int)$newDebt - ((int)$cost*(int)$quantity);
   $sql = "INSERT INTO `orders`(`Customer_id`,`Category_id`,`Quantity`,`Debt`,`Discount`,`Balance`,`Stock_id`,`Late_Order`) VALUES('$customer','$category','$quantity','$newDebt','$discount','$newBalance','$stockIDx','$lateOrder')";
+  $product = mysqli_query($connection,"SELECT Name,Category_Name  FROM `stock` inner join category on stock.Category_id = category.id WHERE stock.id = '".$stockIDx."'")or die($connection->error);
+   $Product = mysqli_fetch_array($product);
+  $Category_Name = $Product['Category_Name'];
+  $Stock_Name = $Product['Name'];
+  if( $Category_Name != 'Cereals'){
   mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = Quantity - '".$quantity."' WHERE `id` = '".$stockIDx."'")or die($connection->error);
-  $Category = mysqli_query($connection,"SELECT Category_Name,Name,Quantity,Restock_Level  FROM `stock` inner join category on stock.Category_id = category.id WHERE stock.id = '".$stockIDx."'")or die($connection->error);
+  }
+  if( $Category_Name == 'Cereals'){
+  $cereal_qty = '';
+  if( strpos($Stock_Name, 'Yellow Beans') !== false ){
+  $cereal_qty = $quantity - 0.23;
+  }
+  if( strpos($Stock_Name, 'Njahe') !== false ){
+  $cereal_qty = $quantity - 0.23;
+  }
+  if( strpos($Stock_Name, 'Mbaazi') !== false ){
+  $cereal_qty = $quantity - 0.35;
+  }
+  if( strpos($Stock_Name, 'Githeri') !== false ){
+  $cereal_qty = $quantity - 0.42;
+  }
+  if( strpos($Stock_Name, 'Dengu') !== false ){
+   $cereal_qty = $quantity - 0.23;
+  }
+  if( strpos($Stock_Name, 'Minji') !== false ){
+  $cereal_qty = $quantity - 0.25;
+  }
+  
+  }
+  $Category = mysqli_query($connection,"SELECT Quantity,Restock_Level  FROM `stock` inner join category on stock.Category_id = category.id WHERE stock.id = '".$stockIDx."'")or die($connection->error);
    $Name = mysqli_fetch_array($Category);
-   $Category_Name = $Name['Category_Name'];
-   $Stock_Name = $Name['Name'];
    $Restock_Level = $Name['Restock_Level'];
    if($Category_Name == 'Maize Flour' && strpos($Stock_Name, 'Pieces') !== false || $Category_Name == 'All Purpose Flour' && strpos($Stock_Name, 'Pieces') !== false){
    $Qty = $Name['Quantity'];

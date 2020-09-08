@@ -201,7 +201,7 @@
       <th scope="col"width="5%">Cash</th>
       <th scope="col"width="5%">Fine</th>
       <th scope="col"width="5%">Balance</th>
-      <th scope="col"width="9%">Delivery Date</th>
+      <th scope="col"width="10%">Delivery Date</th>
       <th scope="col"width="5%">Returned</th>
       <th scope="col"width="5%">Banked</th>
       <th scope="col"width="5%">Slip No.</th>
@@ -266,7 +266,7 @@
       <td class="uneditable" id="numberMonth<?php echo $count; ?>"><?php echo $contact; ?></td>
       <td class="uneditable" id="productMonth<?php echo $count; ?>"><?php echo $product; ?></td>
       <td class="editable" id="qtyMonth<?php echo $count; ?>"><?php echo $qty; ?></td>
-      <td class="uneditable" id="costMonth<?php echo $count; ?>"><?php echo $cost; ?></td>
+      <td class="uneditable" id="costMonth<?php echo $id; ?>"><?php echo $cost; ?></td>
       <td class="uneditable" id="discountMonth<?php echo $count; ?>"><?php echo $discount; ?></td>
       <td class="uneditable" id="debtMonth<?php echo $count; ?>"><?php echo $debt; ?></td>
        <?php
@@ -276,7 +276,7 @@
       <td class="editable" id="mpesaMonth<?php echo $count; ?>"><?php echo $mpesa; ?></td>
       <td class="editable" id="cashMonth<?php echo $count; ?>"><?php echo $cash; ?></td>
       <td class="uneditable" id="fineMonth<?php echo $count; ?>"><?php echo $fine; ?></td>
-      <td class="uneditable" id="balanceMonth<?php echo $count; ?>"><?php echo $balance; ?></td>
+      <td class="uneditable" id="balanceMonth<?php echo $id; ?>"><?php echo $balance; ?></td>
       <td class="editable" id="dateMonth<?php echo $count; ?>"><?php echo $delivery_date; ?></td>
       <td class="uneditable" id="returnedMonth<?php echo $count; ?>"><?php echo $returned; ?></td>
       <td class="editable" id="bankedMonth<?php echo $count; ?>"><?php echo $banked; ?></td>
@@ -434,7 +434,7 @@
       <td class="uneditable" id="numberYesterday<?php echo $count; ?>"><?php echo $contact; ?></td>
       <td class="uneditable" id="productYesterday<?php echo $count; ?>"><?php echo $product; ?></td>
       <td class="editable" id="qtyYesterday<?php echo $count; ?>"><?php echo $qty; ?></td>
-      <td class="uneditable" id="costYesterday<?php echo $count; ?>"><?php echo $cost; ?></td>
+      <td class="uneditable" id="costYesterday<?php echo $id; ?>"><?php echo $cost; ?></td>
       <td class="uneditable" id="discountYesterday<?php echo $count; ?>"><?php echo $discount; ?></td>
       <td class="uneditable" id="debtYesterday<?php echo $count; ?>"><?php echo $debt; ?></td>
        <?php
@@ -602,7 +602,7 @@
       <td class="uneditable" id="numberToday<?php echo $count; ?>"><?php echo $contact; ?></td>
       <td class="uneditable" id="productToday<?php echo $count; ?>"><?php echo $product; ?></td>
       <td class="editable" id="qtyToday<?php echo $count; ?>"><?php echo $qty; ?></td>
-      <td class="uneditable" id="costToday<?php echo $count; ?>"><?php echo $cost; ?></td>
+      <td class="uneditable" id="costToday<?php echo $id; ?>"><?php echo $cost; ?></td>
       <td class="uneditable" id="discountToday<?php echo $count; ?>"><?php echo $discount; ?></td>
       <td class="uneditable" id="debtToday<?php echo $count; ?>"><?php echo $debt; ?></td>
        <?php
@@ -612,7 +612,7 @@
       <td class="editable" id="mpesaToday<?php echo $count; ?>"><?php echo $mpesa; ?></td>
       <td class="editable" id="cashToday<?php echo $count; ?>"><?php echo $cash; ?></td>
       <td class="uneditable" id="fineToday<?php echo $count; ?>"><?php echo $fine; ?></td>
-      <td class="uneditable" id="balanceToday<?php echo $count; ?>"><?php echo $balance; ?></td>
+      <td class="uneditable" id="balanceToday<?php echo $id; ?>"><?php echo $balance; ?></td>
       <td class="editable" id="dateToday<?php echo $count; ?>"><?php echo $delivery_date; ?></td>
       <td class="uneditable" id="returnedToday<?php echo $count; ?>"><?php echo $returned; ?></td>
       <td class="editable" id="bankedToday<?php echo $count; ?>"><?php echo $banked; ?></td>
@@ -770,7 +770,7 @@
       <td class="uneditable" id="numberTomorrow<?php echo $count; ?>"><?php echo $contact; ?></td>
       <td class="uneditable" id="productTomorrow<?php echo $count; ?>"><?php echo $product; ?></td>
       <td class="editable" id="qtyTomorrow<?php echo $count; ?>"><?php echo $qty; ?></td>
-      <td class="uneditable" id="costTomorrow<?php echo $count; ?>"><?php echo $cost; ?></td>
+      <td class="uneditable" id="costTomorrow<?php echo $id; ?>"><?php echo $cost; ?></td>
       <td class="uneditable" id="discountTomorrow<?php echo $count; ?>"><?php echo $discount; ?></td>
       <td class="uneditable" id="debtTomorrow<?php echo $count; ?>"><?php echo $debt; ?></td>
        <?php
@@ -780,7 +780,7 @@
       <td class="editable" id="mpesaTomorrow<?php echo $count; ?>"><?php echo $mpesa; ?></td>
       <td class="editable" id="cashTomorrow<?php echo $count; ?>"><?php echo $cash; ?></td>
       <td class="uneditable" id="fineTomorrow<?php echo $count; ?>"><?php echo $fine; ?></td>
-      <td class="uneditable" id="balanceTomorrow<?php echo $count; ?>"><?php echo $balance; ?></td>
+      <td class="uneditable" id="balanceTomorrow<?php echo $id; ?>"><?php echo $balance; ?></td>
       <td class="editable" id="dateTomorrow<?php echo $count; ?>"><?php echo $delivery_date; ?></td>
       <td class="uneditable" id="returnedTomorrow<?php echo $count; ?>"><?php echo $returned; ?></td>
       <td class="editable" id="bankedTomorrow<?php echo $count; ?>"><?php echo $banked; ?></td>
