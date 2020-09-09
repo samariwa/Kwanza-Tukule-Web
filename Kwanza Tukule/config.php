@@ -41,7 +41,7 @@ $sessiontimeout = 60*20;
 
 $connection = mysqli_connect($hostname,$username, $password, $database)
 or die("Unable to connect to Server");
-$login_url = 'login.php';
-$logout_url = 'logout.php';
-$dashboard_url = 'dashboard.php';
+$login_url = 'login';
+$logout_url = 'logout';
+$dashboard_url = 'dashboard';
 ?>

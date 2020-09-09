@@ -426,7 +426,7 @@ if (!$_SESSION['logged_in']):
                         <?php if ($validationresults == FALSE || $registered == FALSE)
                         echo '&emsp;&emsp;<font color="red"><i class="bx bxs-lock bx-flashing"></i>&ensp;Please enter valid username, password (if required).</font>'; ?>
                         <?php if ($activate == FALSE) { $_SESSION['activation'] = $user;
-                        echo '&emsp;&emsp;<font color="red"><i class="bx bxs-lock bx-flashing"></i>&ensp;Your account is still inactive. Kindly <a href = "activation.php" style="color: inherit;">(click here)</a> to<br> &emsp;&emsp;&emsp;&emsp;activate the account and try again.</font>';} ?>
+                        echo '&emsp;&emsp;<font color="red"><i class="bx bxs-lock bx-flashing"></i>&ensp;Your account is still inactive. Kindly <a href = "activation" style="color: inherit;">(click here)</a> to<br> &emsp;&emsp;&emsp;&emsp;activate the account and try again.</font>';} ?>
                         <?php if ($deactivated == TRUE) 
                         echo '&emsp;&emsp;<font color="red"><i class="bx bxs-lock bx-flashing"></i>&ensp;Your account has been deactivated. Kindly contact <br>&emsp;&emsp;your administrator to reactivate the account and try again.</font>'; ?>
                         <?php if ($loggedIn == TRUE) 
@@ -442,7 +442,7 @@ if (!$_SESSION['logged_in']):
                         </div>
                         <br>
                         <div class="col-md-8 offset-md-4">
-                         <a href="forgotPassword.php">Forgot Password</a>
+                         <a href="forgotPassword">Forgot Password</a>
                        </div>
                     </form>
                 </div>

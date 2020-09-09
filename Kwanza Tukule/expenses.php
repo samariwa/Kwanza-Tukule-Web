@@ -21,7 +21,7 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <a class="text-xs font-weight-bold text-primary text-uppercase mb-1" href="customers.php" style="text-decoration: none;"><i class="fa fa-users fa-2x"></i>&emsp;Customers</a> 
+                      <a class="text-xs font-weight-bold text-primary text-uppercase mb-1" href="customers" style="text-decoration: none;"><i class="fa fa-users fa-2x"></i>&emsp;Customers</a> 
                     </div>
                   </div>
                 </div>
@@ -34,7 +34,7 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <a class="text-xs font-weight-bold text-success text-uppercase mb-1" href="stock.php" style="text-decoration: none;"><i class="fa fa-cubes fa-2x"></i>&emsp;Stock</a>
+                      <a class="text-xs font-weight-bold text-success text-uppercase mb-1" href="stock" style="text-decoration: none;"><i class="fa fa-cubes fa-2x"></i>&emsp;Stock</a>
                     </div>
                   </div>
                 </div>
@@ -47,7 +47,7 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <a class="text-xs font-weight-bold text-info text-uppercase mb-1" href="sales.php" style="text-decoration: none;"><i class="fa fa-shopping-cart fa-2x"></i>&emsp;Sales</a>
+                      <a class="text-xs font-weight-bold text-info text-uppercase mb-1" href="sales" style="text-decoration: none;"><i class="fa fa-shopping-cart fa-2x"></i>&emsp;Sales</a>
                     </div>
                   </div>
                 </div>
@@ -60,7 +60,7 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <a class="text-xs font-weight-bold text-warning text-uppercase mb-1" href="summary.php" style="text-decoration: none;"><i class="fa fa-clipboard fa-2x"></i>&emsp;Summary</a>
+                      <a class="text-xs font-weight-bold text-warning text-uppercase mb-1" href="summary" style="text-decoration: none;"><i class="fa fa-clipboard fa-2x"></i>&emsp;Summary</a>
                     </div>   
                   </div>
                 </div>
@@ -127,7 +127,7 @@
       <h6 class="offset-4">Total Number: <?php echo $expensesrowcount; ?></h6>
       </div>
       <div class="col-md-4">
-       <a href="expense_heading.php" class="btn btn-primary btn-md active offset-6" role="button" aria-pressed="true" >Expense Heading</a>
+       <a href="expense_heading" class="btn btn-primary btn-md active offset-6" role="button" aria-pressed="true" >Expense Heading</a>
        </div>
         </div><br>
         <table id="expensesEditable" class="table table-striped table-hover paginate" style="display:block;overflow-y:scroll;text-align: center;">

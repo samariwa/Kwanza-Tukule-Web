@@ -24,7 +24,7 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <a class="text-xs font-weight-bold text-primary text-uppercase mb-1" href="customers.php" style="text-decoration: none;"><i class="fa fa-users fa-2x"></i>&emsp;Customers</a> 
+                      <a class="text-xs font-weight-bold text-primary text-uppercase mb-1" href="customers" style="text-decoration: none;"><i class="fa fa-users fa-2x"></i>&emsp;Customers</a> 
                     </div>
                   </div>
                 </div>
@@ -50,7 +50,7 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <a class="text-xs font-weight-bold text-info text-uppercase mb-1" href="sales.php" style="text-decoration: none;"><i class="fa fa-shopping-cart fa-2x"></i>&emsp;Sales</a>
+                      <a class="text-xs font-weight-bold text-info text-uppercase mb-1" href="sales" style="text-decoration: none;"><i class="fa fa-shopping-cart fa-2x"></i>&emsp;Sales</a>
                     </div>
                   </div>
                 </div>
@@ -63,7 +63,7 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <a class="text-xs font-weight-bold text-warning text-uppercase mb-1" href="summary.php" style="text-decoration: none;"><i class="fa fa-clipboard fa-2x"></i>&emsp;Summary</a>
+                      <a class="text-xs font-weight-bold text-warning text-uppercase mb-1" href="summary" style="text-decoration: none;"><i class="fa fa-clipboard fa-2x"></i>&emsp;Summary</a>
                     </div>   
                   </div>
                 </div>
@@ -81,7 +81,7 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <a class="text-xs font-weight-bold text-primary text-uppercase mb-1" href="customers.php" style="text-decoration: none;"><i class="fa fa-users fa-2x"></i>&emsp;Customers</a> 
+                      <a class="text-xs font-weight-bold text-primary text-uppercase mb-1" href="customers" style="text-decoration: none;"><i class="fa fa-users fa-2x"></i>&emsp;Customers</a> 
                     </div>
                   </div>
                 </div>
@@ -107,7 +107,7 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <a class="text-xs font-weight-bold text-info text-uppercase mb-1" href="sales.php" style="text-decoration: none;"><i class="fa fa-shopping-cart fa-2x"></i>&emsp;Sales</a>
+                      <a class="text-xs font-weight-bold text-info text-uppercase mb-1" href="sales" style="text-decoration: none;"><i class="fa fa-shopping-cart fa-2x"></i>&emsp;Sales</a>
                     </div>
                   </div>
                 </div>
@@ -200,19 +200,19 @@
       </div>
     </div>
     <div class="col-md-2">
-      <a href="shelf_life.php" class="btn btn-info btn-md active" role="button" aria-pressed="true">Stock Shelf Life</a>
+      <a href="shelf_life" class="btn btn-info btn-md active" role="button" aria-pressed="true">Stock Shelf Life</a>
       </div>
       <div class="col-md-2">
-      <a href="damaged.php" class="btn btn-secondary btn-md active" role="button" aria-pressed="true" >Damaged Stock</a>
+      <a href="damaged" class="btn btn-secondary btn-md active" role="button" aria-pressed="true" >Damaged Stock</a>
       </div>
       <div class="col-md-2">
-      <a href="leftovers.php" class="btn btn-light btn-md active" role="button" aria-pressed="true" >Leftover Cereals</a>
+      <a href="leftovers" class="btn btn-light btn-md active" role="button" aria-pressed="true" >Leftover Cereals</a>
       </div>
       <div class="col-md-2">
-      <a href="valuation.php" class="btn btn-warning btn-md active" role="button" aria-pressed="true" >Stock Valuation</a>
+      <a href="valuation" class="btn btn-warning btn-md active" role="button" aria-pressed="true" >Stock Valuation</a>
       </div>
       <div class="col-md-2">
-      <a href="categories.php" class="btn btn-primary btn-md active" role="button" aria-pressed="true">Stock Categories</a>
+      <a href="categories" class="btn btn-primary btn-md active" role="button" aria-pressed="true">Stock Categories</a>
     </div>
     </div><br>  
      <?php
@@ -220,10 +220,10 @@
             ?>
 <div class="row">
   <div class="col-md-6">
-      <a href="shelf_life.php" class="btn btn-info btn-md active  ml-2" role="button" aria-pressed="true">Stock Shelf Life</a>
+      <a href="shelf_life" class="btn btn-info btn-md active  ml-2" role="button" aria-pressed="true">Stock Shelf Life</a>
     </div>
     <div class="col-md-6">
-      <a href="categories.php" class="btn btn-primary btn-md active offset-8" role="button" aria-pressed="true">Stock Categories</a>
+      <a href="categories" class="btn btn-primary btn-md active offset-8" role="button" aria-pressed="true">Stock Categories</a>
     </div>
     </div><br> 
             <?php

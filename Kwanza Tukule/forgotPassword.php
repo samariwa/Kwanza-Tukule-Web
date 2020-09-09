@@ -36,7 +36,7 @@ $exists = TRUE;
               Hi $name;<br><br>
                 In order to reset your password, please click on the link below:<br>
                 <a href='
-                http://192.168.64.2/Kwanza%20Tukule%20Web/Kwanza%20Tukule/resetPassword.php?email=$email&token=$random'>http://192.168.64.2/Kwanza%20Tukule%20Web/Kwanza%20Tukule/resetPassword.php?email=$email&token=$random</a><br><br>
+                http://192.168.64.2/Kwanza%20Tukule%20Web/Kwanza%20Tukule/resetPassword?email=$email&token=$random'>http://192.168.64.2/Kwanza%20Tukule%20Web/Kwanza%20Tukule/resetPassword?email=$email&token=$random</a><br><br>
                 Kindly reset your password in the given time limit of 5 minutes.<br><br>
                 Kind Regards,
                 ";
@@ -113,7 +113,7 @@ $exists = TRUE;
                         echo '<br><br>&emsp;&emsp;<font color="red"><i class="bx bx-error-alt bx-flashing"></i>&ensp;Please ensure that the email address entered was <br>&emsp;&emsp;&emsp;&ensp;used in registration.</font>'; ?>
                         <br><br>
                         <div class="col-md-8 offset-md-4">
-                         <a href="login.php" style="margin-left: 10px">Back to Login</a>
+                         <a href="login" style="margin-left: 10px">Back to Login</a>
                        </div>
                        <br>
                         </form>
