@@ -703,9 +703,9 @@ function getIndexOfProduct(arr, k) {
           alert("Order Successfully Added");
       }
 
-      function fineCustomerMonth(idx){
+      function fineCustomerLastMonth(idx){
            var id = idx;
-           var balance = $(`#balanceMonth${id}`).text();
+           var balance = $(`#balanceLastMonth${id}`).text();
               var where = 'fine';
               $.post("save.php",{id:id,balance:balance,where:where},
               function(result){
@@ -715,6 +715,7 @@ function getIndexOfProduct(arr, k) {
               //  alert(`Message: ${obj.msg}`);
               });
        }
+
 
        function fineCustomerYesterday(idx){
            var id = idx;
@@ -755,10 +756,29 @@ function getIndexOfProduct(arr, k) {
               });
        }
 
-       function deleteOrderMonth(order,idx){
+       function deleteOrderLastMonth(order,idx){
         var id = idx;
         var el = order;
-        var cost = $(`#costMonth${id}`).text();
+        var cost = $(`#costLastMonth${id}`).text();
+        var where = 'order';
+            bootbox.confirm('Do you really want to delete the selected order?',function(result)
+        {if(result){
+          $.post("delete.php",{id:id,cost:cost,where:where},
+        function(result){
+            if(result == 1){
+              $(el).closest('tr').css('background','tomato');
+              $(el).closest('tr').fadeOut(800,function(){
+                $(this).remove();
+              });
+            }
+        });
+      }});
+       }
+
+       function deleteOrderNextMonth(order,idx){
+        var id = idx;
+        var el = order;
+        var cost = $(`#costNextMonth${id}`).text();
         var where = 'order';
             bootbox.confirm('Do you really want to delete the selected order?',function(result)
         {if(result){
@@ -1004,20 +1024,41 @@ $('#officeEditable').editableTableWidget();
   function(result){});
 });
 
-  $('#salesEditableMonth').editableTableWidget();
-  $('#salesEditableMonth td.uneditable').on('change', function(evt, newValue) {
+  $('#salesEditableLastMonth').editableTableWidget();
+  $('#salesEditableLastMonth td.uneditable').on('change', function(evt, newValue) {
   return false;
 });
-  $('#salesEditableMonth td').on('change', function(evt, newValue) {
+  $('#salesEditableLastMonth td').on('change', function(evt, newValue) {
    var rowx = parseInt(evt.target._DT_CellIndex.row)+1;
-  var id = $(`#idMonth${rowx}`).text();
-  var qty = $(`#qtyMonth${rowx}`).text();
-  var mpesa = $(`#mpesaMonth${rowx}`).text();
-  var cash = $(`#cashMonth${rowx}`).text();
-  var date = $(`#dateMonth${rowx}`).text();
-  var banked = $(`#bankedMonth${rowx}`).text();
-  var slip = $(`#slipMonth${rowx}`).text();
-  var banker = $(`#bankerMonth${rowx}`).text();
+  var id = $(`#idLastMonth${rowx}`).text();
+  var qty = $(`#qtyLastMonth${rowx}`).text();
+  var mpesa = $(`#mpesaLastMonth${rowx}`).text();
+  var cash = $(`#cashLastMonth${rowx}`).text();
+  var date = $(`#dateLastMonth${rowx}`).text();
+  var banked = $(`#bankedLastMonth${rowx}`).text();
+  var slip = $(`#slipLastMonth${rowx}`).text();
+  var banker = $(`#bankerLastMonth${rowx}`).text();
+  var where = 'orders';
+  $.post("save.php",{id:id,qty:qty,mpesa:mpesa,cash:cash,date:date,banked:banked,slip:slip,banker:banker,where:where},
+  function(result){
+    location.reload(true);
+  });
+});
+
+  $('#salesEditableNextMonth').editableTableWidget();
+  $('#salesEditableNextMonth td.uneditable').on('change', function(evt, newValue) {
+  return false;
+});
+  $('#salesEditableNextMonth td').on('change', function(evt, newValue) {
+   var rowx = parseInt(evt.target._DT_CellIndex.row)+1;
+  var id = $(`#idNextMonth${rowx}`).text();
+  var qty = $(`#qtyNextMonth${rowx}`).text();
+  var mpesa = $(`#mpesaNextMonth${rowx}`).text();
+  var cash = $(`#cashNextMonth${rowx}`).text();
+  var date = $(`#dateNextMonth${rowx}`).text();
+  var banked = $(`#bankedNextMonth${rowx}`).text();
+  var slip = $(`#slipNextMonth${rowx}`).text();
+  var banker = $(`#bankerNextMonth${rowx}`).text();
   var where = 'orders';
   $.post("save.php",{id:id,qty:qty,mpesa:mpesa,cash:cash,date:date,banked:banked,slip:slip,banker:banker,where:where},
   function(result){
