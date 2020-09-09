@@ -691,6 +691,7 @@ function getIndexOfProduct(arr, k) {
           var stockID = cartArr[i][0];
           $.post("add.php",{where:'order',price:cartArr[i][2],quantity:cartArr[i][3], discount:cartArr[i][4] ,customer:custID, stockid:cartArr[i][0], lateOrder:$(`#deliveryDate`).val()},
           function(result){
+            alert(result);
             if (result=='success') {
                 cartArr.shift();
             }
@@ -908,7 +909,24 @@ $('#categoriesEditable').editableTableWidget();
   var qty = $(`#newDamaged${rowx}`).text();
   var where = 'damaged';
   $.post("save.php",{id:id,qty:qty,where:where},
-  function(result){});
+  function(result){
+    location.reload(true);
+  });
+});
+
+  $('#leftoversEditable').editableTableWidget();
+  $('#leftoversEditable td.uneditable').on('change', function(evt, newValue) {
+  return false;
+});
+  $('#leftoversEditable td').on('change', function(evt, newValue) {
+   var rowx = parseInt(evt.target._DT_CellIndex.row)+1;
+  var id = $(`#id${rowx}`).text();
+  var difference = $(`#difference${rowx}`).text();
+  var where = 'leftovers';
+  $.post("save.php",{id:id,difference:difference,where:where},
+  function(result){
+    location.reload(true);
+  });
 });
 
 $('#suppliersEditable').editableTableWidget();

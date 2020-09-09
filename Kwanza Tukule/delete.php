@@ -42,6 +42,12 @@ $row = mysqli_fetch_array($result);
     $qty = $orderQty + $stockQty;
     mysqli_query($connection,"Delete from `orders` where id='".$id."'")or die($connection->error);
     mysqli_query($connection,"update stock set Quantity='".$qty."'  where id ='".$stock."'")or die($connection->error);
+    $result2 = mysqli_query($connection,"SELECT Category_Name FROM category join stock on category.id = stock.Category_id where stock.id = '".$stock."'")or die($connection->error);
+      $row2 = mysqli_fetch_array($result2);
+      $Cat_Name = $row2['Category_Name'];
+      if($Cat_Name == 'Cereals'){
+       mysqli_query($connection,"update cooked_cereals set Returned= Returned +".$orderQty." WHERE `Stock_id` = '".$stock."' AND date(Delivery_date) = CURRENT_DATE()")or die($connection->error);
+      }
     mysqli_query($connection,"update orders set Debt= Debt+'".$cost."', Balance=Balance+'".$cost."'  where Customer_id ='".$customer."' AND id > '".$id."'")or die($connection->error);
     echo 1;
     exit();

@@ -119,42 +119,47 @@
           }
         ?>
           <div class="row">
-      <a href="stock.php" class="btn btn-primary btn-md active float-left ml-3" role="button" aria-pressed="true"><i class="fa fa-arrow-left"></i>&ensp;Back</a>
+            <div class="col-md-2">
+      <a href="stock.php" class="btn btn-primary btn-md active float-left" role="button" aria-pressed="true"><i class="fa fa-arrow-left"></i>&ensp;Back</a>
+      </div>
+      <div class="col-md-10">
+      <p class="offset-3">Cereal Leftovers from today's orders.</p>
+    </div>
     </div><br>
      
-     <table id="damagedEditable" class="table table-striped table-hover paginate" style="display:block;overflow-y:scroll;text-align: center;">
+     <table id="leftoversEditable" class="table table-striped table-hover paginate" style="display:block;overflow-y:scroll;text-align: center;">
   <thead class="thead-dark">
     <tr>
-      <th scope="col" width="5%">Batch #</th>
-      <th scope="col" width="20%">Stock Name</th>
-      <th scope="col"width="15%">Quantity Purchased</th>
-      <th scope="col"width="15%">Undamaged Quantity</th>
-      <th scope="col"width="15%">New Quantity Damaged</th>
-      <th scope="col"width="15%">Total Quantity Damaged</th>
-      <th scope="col"width="15%">Damaged Value (Kshs.)</th>
+      <th scope="col" width="9%">Prep #</th>
+      <th scope="col" width="18%">Stock Name</th>
+      <th scope="col"width="15%">Qty Ordered</th>
+      <th scope="col"width="15%">Qty Prepared</th>
+      <th scope="col"width="15%">Qty Returned</th>
+      <th scope="col"width="20%">Qty Difference (+/-)</th>
+      <th scope="col"width="10%">Shortage/Surplus</th>
     </tr>
   </thead>
   <tbody >
     <?php
         $count = 0;
-        foreach($damaged as $row){
+        foreach($leftovers as $row){
          $count++;
          $id = $row['id'];
         $name = $row['Name'];
-        $purchased = $row['purchased'];
-        $Quantity = $row['Quantity'];
-        $damaged = $row['damaged'];
-        $unitValue = $row['unitValue'];
-        $value = $unitValue * $damaged;
+        $ordered = $row['ordered'];
+        $prepared = $row['prepared'];
+        $difference = $row['difference'];
+        $returned = $row['returned'];
+        $leftover = $prepared - $ordered + $returned + $difference;
       ?>
     <tr>
       <th class="uneditable" scope="row"  id="id<?php echo $count; ?>"><?php echo $id; ?></th>
       <td class="uneditable" id="name<?php echo $count; ?>"><?php echo $name; ?></td>
-      <td class="uneditable" id="purchased<?php echo $count; ?>"><?php echo $purchased; ?></td>
-      <td class="uneditable"id="undamaged<?php echo $count; ?>"><?php echo $Quantity; ?></td>
-      <td  class="editable" id="newDamaged<?php echo $count; ?>">0</td>
-      <td  class="uneditable" id="damaged<?php echo $count; ?>"><?php echo $damaged; ?></td>
-      <td  class="uneditable" id="value<?php echo $count; ?>"><?php echo $value; ?></td>
+      <td class="uneditable" id="ordered<?php echo $count; ?>"><?php echo $ordered; ?></td>
+      <td class="uneditable"id="prepared<?php echo $count; ?>"><?php echo $prepared; ?></td>
+      <td class="uneditable"id="returned<?php echo $count; ?>"><?php echo $returned; ?></td>
+      <td  class="editable" id="difference<?php echo $count; ?>"><?php echo $difference; ?></td>
+      <td  class="uneditable" id="leftover<?php echo $count; ?>"><?php echo $leftover; ?></td>
     </tr>
     <?php
     }

@@ -65,6 +65,12 @@ $result1 = mysqli_query($connection,"SELECT Customer_id,Quantity,Balance FROM or
       $Returned = $Quantity - $qty;
       mysqli_query($connection,"UPDATE `orders`  SET `Quantity` = '".$qty."',`Balance` = '".$newBalance."',`MPesa` = '".$mpesa."',`Cash` = '".$cash."',`Late_Order` = '".$date."',`Returned` = '".$Returned."',`Banked` = '".$banked."',`Slip_Number` = '".$slip."',`Banked_By` = '".$banker."' WHERE `id` = '".$id."'")or die($connection->error);
       mysqli_query($connection,"update stock set Quantity= Quantity +".$Returned." WHERE `id` = '".$stock_id."'")or die($connection->error);
+      $result5 = mysqli_query($connection,"SELECT Category_Name FROM category join stock on category.id = stock.Category_id where stock.id = '".$stock_id."'")or die($connection->error);
+      $row5 = mysqli_fetch_array($result5);
+      $Cat_Name = $row5['Category_Name'];
+      if($Cat_Name == 'Cereals'){
+       mysqli_query($connection,"update cooked_cereals set Returned= Returned +".$Returned." WHERE `Stock_id` = '".$stock_id."' AND date(Delivery_date) = CURRENT_DATE()")or die($connection->error);
+      }
       $difference = $oldBalance - $newBalance;
 		mysqli_query($connection,"UPDATE orders set Debt= Debt-'".$difference."', `Balance` = Balance -".$difference." WHERE Customer_id='".$customer."' and id >'".$id."' ;")or die($connection->error);
 			//newBalance calculate credit score
@@ -265,5 +271,10 @@ elseif ($where == 'damaged') {
   $id = $_POST['id'];
     $qty = $_POST['qty'];
 mysqli_query($connection,"UPDATE `stock_flow` JOIN stock ON stock_flow.Stock_id = stock.id SET Damaged = Damaged + '".$qty."',Quantity = Quantity - '".$qty."' WHERE stock_flow.id = '".$id."'")or die($connection->error);
+}
+elseif ($where == 'leftovers') {
+  $id = $_POST['id'];
+    $difference = $_POST['difference'];
+mysqli_query($connection,"UPDATE `cooked_cereals`  SET `Quantity_Difference` =  '".$difference."' WHERE `id` = '".$id."'") or die(mysqli_error($connection));
 }
  ?>
