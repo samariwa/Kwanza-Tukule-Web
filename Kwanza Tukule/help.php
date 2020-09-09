@@ -202,6 +202,18 @@
         <p>Saturdays -> 8 am - 12.30 pm</p>
         <br>
         <h6><i class="bx bxs-smile"></i>&ensp;<b>We're happy to help</b></h6>
+  <?php
+   if (fsockopen('mariwa.ddns.net', 10080)){
+    ?>
+  <h6 style="text-align: right;">Server Status:&ensp;<img src='assets/img/online.png' height='10' width='10' style='margin-top:0px;'>&ensp; Up</h6>
+   <?php
+} else{
+?>
+<h6 style="text-align: right;">Server Status:&ensp;<img src='assets/img/offline.png' height='10' width='10' style='margin-top:0px;'>&emsp; Down</h6>
+   <?php
+     }
+    ?>
+        <h6></h6>
         
   <!-- Scroll to Top Button-->
   <?php include "admin_footer.php" ?> 

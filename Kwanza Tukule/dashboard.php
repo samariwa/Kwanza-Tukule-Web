@@ -137,9 +137,7 @@
           }
         ?>
           <!-- Content Row -->
-
           <div class="row">
-
             <!-- Area Chart -->
             <div class="col-xl-8 col-lg-7">
               <div class="card shadow mb-4">
