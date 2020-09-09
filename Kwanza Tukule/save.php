@@ -275,6 +275,6 @@ mysqli_query($connection,"UPDATE `stock_flow` JOIN stock ON stock_flow.Stock_id 
 elseif ($where == 'leftovers') {
   $id = $_POST['id'];
     $difference = $_POST['difference'];
-mysqli_query($connection,"UPDATE `cooked_cereals`  SET `Quantity_Difference` =  '".$difference."' WHERE `id` = '".$id."'") or die(mysqli_error($connection));
+mysqli_query($connection,"UPDATE `cooked_cereals`  SET `Quantity_Difference` =  '".$difference."',`Quantity_Prepared` = Quantity_Prepared + '$difference' WHERE `id` = '".$id."'") or die(mysqli_error($connection));
 }
  ?>

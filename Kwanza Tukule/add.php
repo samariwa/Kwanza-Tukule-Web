@@ -250,27 +250,34 @@ elseif ($where=='order') {
   $maize_qty = '';
   $githeri_qty = '';
   if( strpos($Stock_Name, 'Yellow Beans') !== false ){
-  $cereal_qty = $quantity * 0.9682;
+  $yellow_qty = $quantity * 0.9682;
+  $cereal_qty = round($yellow_qty, 2);
   }
   if( strpos($Stock_Name, 'Nyayo Beans') !== false ){
-  $cereal_qty = $quantity * 0.76;
+  $nyayo_qty = $quantity * 0.76;
+  $cereal_qty = round($nyayo_qty, 2);
   }
   if( strpos($Stock_Name, 'Njahe') !== false ){
-  $cereal_qty = $quantity * 0.75;
+  $njahe_qty = $quantity * 0.75;
+  $cereal_qty = round($njahe_qty, 2);
   }
   if( strpos($Stock_Name, 'Mbaazi') !== false ){
-  $cereal_qty = $quantity * 0.92;
+  $mbaazi_qty = $quantity * 0.92;
+  $cereal_qty = round($mbaazi_qty, 2);
   }
   if( strpos($Stock_Name, 'Githeri') !== false ){
   $wairimu_qty = $quantity * 0.55;
   $maize_qty = $quantity * 0.3;
-  $githeri_qty = $wairimu_qty + $maize_qty;
+  $wairimu_maize_qty = $wairimu_qty + $maize_qty;
+  $githeri_qty = round($wairimu_maize_qty, 2);
   }
   if( strpos($Stock_Name, 'Dengu') !== false ){
-   $cereal_qty = $quantity * 0.6667;
+   $dengu_qty = $quantity * 0.6667;
+   $cereal_qty = round($dengu_qty, 2);
   }
   if( strpos($Stock_Name, 'Minji') !== false ){
-  $cereal_qty = $quantity * 0.8155;
+  $minji_qty = $quantity * 0.8155;
+  $cereal_qty = round($minji_qty, 2);
   }
   $cereals_check = mysqli_query($connection,"SELECT *  FROM `cooked_cereals` WHERE Stock_id = '".$stockIDx."' AND DATE(Delivery_date) = CURRENT_DATE() ")or die($connection->error);
   $check_result = mysqli_fetch_array($cereals_check);

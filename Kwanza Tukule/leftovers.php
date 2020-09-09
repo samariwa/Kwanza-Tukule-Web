@@ -132,11 +132,12 @@
     <tr>
       <th scope="col" width="9%">Prep #</th>
       <th scope="col" width="18%">Stock Name</th>
-      <th scope="col"width="15%">Qty Ordered</th>
-      <th scope="col"width="15%">Qty Prepared</th>
-      <th scope="col"width="15%">Qty Returned</th>
+      <th scope="col"width="15%">Qty Ordered (Kgs)</th>
+      <th scope="col"width="15%">Qty Prepared (Kgs)</th>
+      <th scope="col"width="15%">Qty Returned (Kgs)</th>
       <th scope="col"width="20%">Qty Difference (+/-)</th>
-      <th scope="col"width="10%">Shortage/Surplus</th>
+      <th scope="col"width="10%">Shortage/Surplus (Kgs)</th>
+       <th scope="col"width="10%">Value Lost (Kshs.)</th>
     </tr>
   </thead>
   <tbody >
@@ -145,12 +146,23 @@
         foreach($leftovers as $row){
          $count++;
          $id = $row['id'];
+         $stockID = $row['stockID'];
         $name = $row['Name'];
         $ordered = $row['ordered'];
         $prepared = $row['prepared'];
         $difference = $row['difference'];
         $returned = $row['returned'];
-        $leftover = $prepared - $ordered + $returned + $difference;
+        $leftover = $prepared - $ordered + $returned;
+        $selling_price = mysqli_query($connection,"SELECT  Selling_price FROM (SELECT s.id as sid,sf.Selling_price as Selling_Price, sf.Created_at,ROW_NUMBER() OVER (PARTITION BY s.id ORDER BY sf.Created_at DESC) as rn FROM stock s JOIN stock_flow sf ON s.id = sf.Stock_id join orders o on s.id = o.Stock_id ) q WHERE rn = 1 AND sid = '$stockID'")or die($connection->error);
+        $row2 = mysqli_fetch_array($selling_price);
+        $price = $row2['Selling_price'];
+        $value = '';
+        if ($leftover < 0) {
+          $value = $price * $leftover * -1;
+        }
+        else{
+          $value = $price * $leftover;
+        }
       ?>
     <tr>
       <th class="uneditable" scope="row"  id="id<?php echo $count; ?>"><?php echo $id; ?></th>
@@ -160,6 +172,7 @@
       <td class="uneditable"id="returned<?php echo $count; ?>"><?php echo $returned; ?></td>
       <td  class="editable" id="difference<?php echo $count; ?>"><?php echo $difference; ?></td>
       <td  class="uneditable" id="leftover<?php echo $count; ?>"><?php echo $leftover; ?></td>
+      <td  class="uneditable" id="value<?php echo $count; ?>"><?php echo $value; ?></td>
     </tr>
     <?php
     }
