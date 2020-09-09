@@ -4,9 +4,7 @@ use PHPMailer\PHPMailer\SMTP;
 require_once "functions.php";
 require('config.php');
 session_start();
-$connection = mysqli_connect($hostname,$username, $password, $database)
-        or die("Unable to connect to Server");
-        //Pre-define validation
+ //Pre-define validation
 $usernamenotempty = TRUE;
 $usernamevalidate = TRUE;
 $usernotduplicate = TRUE;

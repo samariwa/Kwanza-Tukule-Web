@@ -691,7 +691,6 @@ function getIndexOfProduct(arr, k) {
           var stockID = cartArr[i][0];
           $.post("add.php",{where:'order',price:cartArr[i][2],quantity:cartArr[i][3], discount:cartArr[i][4] ,customer:custID, stockid:cartArr[i][0], lateOrder:$(`#deliveryDate`).val()},
           function(result){
-            alert(result);
             if (result=='success') {
                 cartArr.shift();
             }

@@ -5,13 +5,7 @@
  $time = $_POST['time'];
   $gatePassFull = mysqli_query($connection,"SELECT stock.Name as 'name',SUM(orders.Quantity) AS 'sum' FROM orders inner join stock on Stock_id = stock.id inner join customers on Customer_id = customers.id where DATE(orders.Late_Order) = CURRENT_DATE()+1 and customers.deliverer LIKE '%".$deliverer."%'GROUP BY stock.ID")or die($connection->error);
 
- $gatePassPartial = mysqli_query($connection,"SELECT stock.Name as 'name',SUM(orders.Quantity) AS 'sum' FROM orders inner join stock on Stock_id = stock.id inner join customers on Customer_id = customers.id where DATE(orders.Late_Order) =CURRENT_DATE()and orders.Created_at >'".$time."%' and customers.deliverer LIKE '%".$deliverer."%'GROUP BY stock.ID")or die($connection->error);
-  $row1 = mysqli_fetch_array($gatePassFull);
-    $product1 = $row1[`name`];
-    $quantity1 = $row1[`sum`];
-     $row2 = mysqli_fetch_array($gatePassPartial);
-    $product2 = $row2[`name`];
-    $quantity2 = $row2[`sum`];
+ $gatePassPartial = mysqli_query($connection,"SELECT stock.Name as 'name',SUM(orders.Quantity) AS 'sum' FROM orders inner join stock on Stock_id = stock.id inner join customers on Customer_id = customers.id where DATE(orders.Late_Order) =CURRENT_DATE()and orders.Created_at >'%".$time."%' and customers.deliverer LIKE '%".$deliverer."%' and DATE(orders.Late_Order) < DATE_ADD( CURDATE(), INTERVAL 1 DAY) GROUP BY stock.ID")or die($connection->error);
  $varietyNumber1 = mysqli_num_rows($gatePassFull);
  $varietyNumber2 = mysqli_num_rows($gatePassPartial);
  $today = date("l, F d, Y h:i A", time());
@@ -43,20 +37,18 @@
       <th scope="col" width="30%"">Quantity</th>
     </tr>
   </thead>
-  <tbody >
-  <?php
+  <tbody >';
         $count = 0;
         foreach($gatePassFull as $row){
          $count++;
-  ?>      
-    <tr>
-      <th scope="row">  '.$product1.' </th>
-      <td >  '.$quantity1.' </td>
-    </tr>
-    <?php
+         $product = $row['name'];
+         $quantity = $row['sum']; 
+   $pdf .= '<tr>
+      <th scope="row">  '.$product.' </th>
+      <td >  '.$quantity.' </td>
+    </tr>';
     }
-    ?>
-  </tbody>
+ $pdf .=  '</tbody>
 </table>
 <br>
 <p>Security Signature: ....................................................</p>
@@ -88,20 +80,19 @@ echo $pdf;
       <th scope="col" width="30%"">Quantity</th>
     </tr>
   </thead>
-  <tbody >
-  <?php
+  <tbody >';
         $count = 0;
         foreach($gatePassPartial as $row){
          $count++;
-  ?>      
-    <tr>
-      <th scope="row">  '.$product2.' </th>
-      <td >  '.$quantity2.' </td>
-    </tr>
-    <?php
+         $product = $row['name'];
+         $quantity = $row['sum'];
+      
+   $pdf .= ' <tr>
+      <th scope="row">  '.$product.' </th>
+      <td >  '.$quantity.' </td>
+    </tr>';
     }
-    ?>
-  </tbody>
+ $pdf .= ' </tbody>
 </table>
 <br>
 <p>Security Signature: ....................................................</p>

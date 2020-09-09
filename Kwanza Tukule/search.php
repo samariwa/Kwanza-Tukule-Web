@@ -1,5 +1,5 @@
 <?php  
-require('config');
+require('config.php');
 $where =$_POST['where'];
 if($where == 'customer' )
 {
