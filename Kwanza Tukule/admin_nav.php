@@ -245,7 +245,7 @@ Preloader
     <ul class="navbar-nav bg-gradient-light sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard.php">
         <div class="sidebar-brand-icon ">
         <img src="assets/img/Kwanza Tukule.png" height="60" width="155">
         </div>
@@ -256,7 +256,7 @@ Preloader
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
-        <a class="nav-link" href="dashboard" style="color: black;">
+        <a class="nav-link" href="dashboard.php" style="color: black;">
            <?php
                if ($view == 'Admin') {
             ?>          
@@ -295,7 +295,7 @@ Preloader
         ?>
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">&emsp;
-        <a style="color: black;" href="expenses">
+        <a style="color: black;" href="expenses.php">
           <span>Expenses</span></a>
       </li>
       <br>
@@ -303,7 +303,7 @@ Preloader
          
       <!-- Nav Item - Utilities Collapse Menu -->
        <li class="nav-item">&emsp;
-        <a style="color: black;" href="liabilities">
+        <a style="color: black;" href="liabilities.php">
           <span>Liabilities</span></a>
       </li>
       <br>
@@ -317,16 +317,16 @@ Preloader
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Categories:</h6>
-            <a class="collapse-item" href="deliverers">Deliverers</a>
-            <a class="collapse-item" href="office">Office</a>
-            <a class="collapse-item" href="cooks">Cooks</a>
+            <a class="collapse-item" href="deliverers.php">Deliverers</a>
+            <a class="collapse-item" href="office.php">Office</a>
+            <a class="collapse-item" href="cooks.php">Cooks</a>
           </div>
         </div>
       </li>
        <br>
       <!-- Nav Item - Charts -->
       <li class="nav-item">&emsp;
-        <a style="color: black;" href="analytics">
+        <a style="color: black;" href="analytics.php">
          <i class="fa fa-pie-chart" ></i>
           <span>Analytics</span></a>
       </li>
@@ -357,7 +357,7 @@ Preloader
        
 -->
         <li class="nav-item">&emsp;
-        <a style="color: black;" href="vehicles">
+        <a style="color: black;" href="vehicles.php">
           <i class="bx bxs-truck"></i>
           <span>Delivery Trucks</span></a>
       </li>
@@ -365,7 +365,7 @@ Preloader
       <br>
 
       <li class="nav-item">&emsp;
-        <a style="color: black;" href="suppliers">
+        <a style="color: black;" href="suppliers.php">
            <i class="fa fa-dolly-flatbed"></i>
           <span>Suppliers</span></a>
       </li>
@@ -378,7 +378,7 @@ Preloader
        ?>  
 
         <li class="nav-item">&emsp;
-        <a style="color: black;" href="calendar">
+        <a style="color: black;" href="calendar.php">
            <i class="fa fa-calendar"></i>
           <span>Calendar</span></a>
       </li>
@@ -386,21 +386,21 @@ Preloader
       <br>   
 
       <li class="nav-item">&emsp;
-        <a style="color: black;" href="notes">
+        <a style="color: black;" href="notes.php">
            <i class="bx bx-notepad"></i>
           <span>NoteBook</span></a>
       </li>
      
       <br>
       <li class="nav-item">&emsp;
-        <a style="color: black;" href="users">
+        <a style="color: black;" href="users.php">
            <i class="fa fa-users"></i>
           <span>Users</span></a>
       </li>
       
       <br>
       <li class="nav-item">&emsp;
-        <a style="color: black;" href="help">
+        <a style="color: black;" href="help.php">
            <i class="fa fa-question-circle"></i>
           <span>Help</span></a>
       </li>
@@ -508,9 +508,9 @@ Preloader
                     ?>
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="profile"><i class="fa fa-user"></i>&ensp;Profile</a>
+                <a class="dropdown-item" href="profile.php"><i class="fa fa-user"></i>&ensp;Profile</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="logout"><i class="fa fa-sign-out"></i>&ensp;Logout</a>
+                <a class="dropdown-item" href="logout.php"><i class="fa fa-sign-out"></i>&ensp;Logout</a>
               </div>
             </li>
               <?php
