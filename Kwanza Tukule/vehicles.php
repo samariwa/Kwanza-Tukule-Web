@@ -91,9 +91,7 @@
                  <select type="text" name="driver" id="driver" class="form-control col-md-9" style="padding-right:15px;padding-left:15px;margin-left: 60px" required onfocus='this.size=3;' onblur='this.size=1;' onchange='this.size=1; this.blur();' required>
                   <option value="" selected="selected" disabled>Vehicle Driver...</option>
                   <?php
-                    $count = 0;
-                    foreach($deliverersStaffList as $row){
-                     $count++;
+                    foreach($deliverersStaffList as $row){           
                     $driver = $row['firstname'];
                   ?>
                    <option value="<?php echo $driver; ?>"><?php echo $driver; ?></option>
@@ -129,9 +127,10 @@
   <thead class="thead-dark">
     <tr>
       <th scope="col" width="5%">#</th>
-      <th scope="col" width="13%">Vehicle Type</th>
-      <th scope="col" width="13%">Reg. No.</th>
-      <th scope="col" width="15%">Route</th>
+      <th scope="col" width="12%">Vehicle Type</th>
+      <th scope="col" width="12%">Reg. No.</th>
+      <th scope="col" width="12%">Route</th>
+      <th scope="col" width="12%">Mileage</th>
       <th scope="col"width="40%"></th>
     </tr>
   </thead>
@@ -144,12 +143,14 @@
         $type = $row['Type'];
         $reg = $row['Reg_Number'];
         $route = $row['Route'];
+        $mileage = $row['Mileage'];
       ?>
     <tr>
       <th scope="row" class="uneditable" id="id<?php echo $count; ?>"><?php echo $id; ?></th>
       <td class="uneditable" id="type<?php echo $count; ?>"><?php echo $type; ?></td>
       <td class="uneditable" id="reg<?php echo $count; ?>"><?php echo $reg; ?></td>
       <td class="editable" id="route<?php echo $count; ?>"><?php echo $route; ?></td>
+      <td class="editable" id="mileage<?php echo $count; ?>"><?php echo $mileage; ?> Kms.</td>
        <td>
         <button data-toggle="modal" data-target="#exampleModalScrollable<?php echo $id?>" id="<?php echo $id; ?>" data_id="<?php echo $id; ?>" class="btn btn-warning btn-sm active viewVehicle" role="button" aria-pressed="true" ><i class="fa fa-eye"></i>&ensp;View Details</button>
         <div class="modal fade" id="exampleModalScrollable<?php echo $id?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
@@ -179,9 +180,7 @@
                      <select type="text" name="driver" id="driver<?php echo $id?>" class="form-control col-md-9" style="padding-right:15px;padding-left:15px;margin-left: 10px" required onfocus='this.size=3;' onblur='this.size=1;' onchange='this.size=1; this.blur();' required>
                   <option value="<?php echo $Driver_id ?>" selected="selected" disabled>Change Vehicle Driver...</option>
                   <?php
-                    $count = 0;
                     foreach($deliverersStaffList as $row){
-                     $count++;
                      $driver_id = $row['id'];
                     $driver = $row['firstname'];
                   ?>

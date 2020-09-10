@@ -154,7 +154,9 @@ mysqli_query($connection,"UPDATE `suppliers` SET `Supplier_contact` = '".$contac
 }elseif ($where == 'vehicles') {
   $id = $_POST['id'];
     $route = $_POST['route'];
-mysqli_query($connection,"UPDATE `vehicles` SET `Route` = '".$route."' WHERE `id` = '".$id."'")or die($connection->error);
+    $mileage = $_POST['mileage'];
+    $miles = str_replace(" Kms.", "", $mileage);
+mysqli_query($connection,"UPDATE `vehicles` SET `Route` = '".$route."',`Mileage` = '".$miles."' WHERE `id` = '".$id."'")or die($connection->error);
 }
 elseif ($where == 'deliverer') {
   $id = $_POST['id'];
@@ -207,11 +209,12 @@ mysqli_query($connection,"UPDATE `expenses` SET `Name` = '".$name."' WHERE `id` 
 elseif ($where == 'expense') {
   $id = $_POST['id'];
     $party = $_POST['party'];
+    $particular = $_POST['particular'];
      $total = $_POST['total'];
      $paid = $_POST['paid'];
      $due = $_POST['due'];
      $date = $_POST['date'];
-mysqli_query($connection,"UPDATE `expense_details` SET `Party` = '".$party."',`Total_amount` = '".$total."',`Paid_amount` = '".$paid."',`Due_amount` = '".$due."',`Payment_date` = '".$date."' WHERE `id` = '".$id."'")or die($connection->error);
+mysqli_query($connection,"UPDATE `expense_details` SET `Party` = '".$party."',`Expense_particular` = '".$particular."',`Total_amount` = '".$total."',`Paid_amount` = '".$paid."',`Due_amount` = '".$due."',`Payment_date` = '".$date."' WHERE `id` = '".$id."'")or die($connection->error);
 }
 elseif ($where == 'calendar') {
    if(isset($_POST["id"]))

@@ -969,8 +969,9 @@ $('#vehiclesEditable').editableTableWidget();
    var rowx = parseInt(evt.target._DT_CellIndex.row)+1;
   var id = $(`#id${rowx}`).text();
   var route = $(`#route${rowx}`).text();
+  var mileage = $(`#mileage${rowx}`).text();
   var where = 'vehicles';
-  $.post("save.php",{id:id,route:route,where:where},
+  $.post("save.php",{id:id,route:route,mileage:mileage,where:where},
   function(result){});
 });
 
@@ -1150,12 +1151,13 @@ $('#officeEditable').editableTableWidget();
    var rowx = parseInt(evt.target._DT_CellIndex.row)+1;
   var id = $(`#id${rowx}`).text();
   var party = $(`#party${rowx}`).text();
+  var particular = $(`#particular${rowx}`).text();
    var total = $(`#total${rowx}`).text();
     var paid = $(`#paid${rowx}`).text();
      var due = total - paid;
      var date = $(`#date${rowx}`).text();
   var where = 'expense';
-  $.post("save.php",{id:id,party:party,total:total,paid:paid,due:due,date:date,where:where},
+  $.post("save.php",{id:id,party:party,particular:particular,total:total,paid:paid,due:due,date:date,where:where},
   function(result){
   });
 });

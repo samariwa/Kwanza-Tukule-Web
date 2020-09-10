@@ -134,12 +134,13 @@
   <thead class="thead-dark">
     <tr>
       <th scope="col" width="3%">#</th>
-      <th scope="col" width="25%">Expense Name</th>
+      <th scope="col" width="20%">Expense Heading</th>
+      <th scope="col" width="20%">Expense Particular</th>
       <th scope="col" width="20%">Party Name</th>
       <th scope="col" width="6%">Total Amount</th>
       <th scope="col" width="8%">Paid Amount</th>
       <th scope="col" width="11%">Due Amount</th>
-      <th scope="col" width="13%">Payment Date</th>
+      <th scope="col" width="15%">Payment Date</th>
       <th scope="col"width="23%"></th>
     </tr>
   </thead>
@@ -150,6 +151,7 @@
          $count++;
          $id = $row['id'];
         $name = $row['Name'];
+        $particular = $row['Expense_particular'];
         $party = $row['Party'];
         $total = $row['Total_amount'];
         $paid = $row['Paid_amount'];
@@ -159,6 +161,7 @@
     <tr>
       <th scope="row" class="uneditable" id="id<?php echo $count; ?>"><?php echo $id; ?></th>
       <td class="uneditable" id="name<?php echo $count; ?>"><?php echo $name; ?></td>
+      <td class="editable" id="particular<?php echo $count; ?>"><?php echo $particular; ?></td>
       <td class="editable" id="party<?php echo $count; ?>"><?php echo $party; ?></td>
       <td class="editable" id="total<?php echo $count; ?>"><?php echo $total; ?></td>
       <td class="editable" id="paid<?php echo $count; ?>"><?php echo $paid; ?></td>
