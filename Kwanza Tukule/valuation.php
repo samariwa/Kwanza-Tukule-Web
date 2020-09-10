@@ -103,8 +103,8 @@
         $value = $bp * $closing;
       /*  if ($closing > $purchase) {
       $row3 = mysqli_fetch_array($previousValuation);
-      $purchase3 = $row3['purchased'];
-       $closing = $closing - $purchase3;
+       $closing2 = $closing - $purchase;
+       $closing3 = $closng
        }*/
       ?>
     <tr>
