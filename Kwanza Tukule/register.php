@@ -277,7 +277,7 @@ if ((isset($_POST["pass"])) && (isset($_POST["user"])) && (isset($_POST["pass2"]
                         <!-- Display validation errors -->
                          <?php 
 					         if ($active == FALSE) {  $_SESSION['activation'] = $desired_username;
-					        echo '<br><br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;<font color="green"><i class="bx bx-check-circle bx-flashing"></i>&ensp;Registration Complete. Kindly <a href="activation" style="color: inherit;">(click here)</a> to activate your account.</font>'; } ?>
+					        echo '<br><br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;<font color="green"><i class="bx bx-check-circle bx-flashing"></i>&ensp;Registration Complete. Kindly <a href="activation.php" style="color: inherit;">(click here)</a> to activate your account.</font>'; } ?>
 					        <?php 
 					         if ($passwordmatch == FALSE)
 					        echo '<br><br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;<font color="red"><i class="bx bxs-error bx-flashing"></i>&ensp;Your passwords do not match.</font>'; ?>

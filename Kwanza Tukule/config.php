@@ -7,7 +7,7 @@
 
 $username = "mariwa";
 $password = "Yu4kPkB8fpb5ZqBD";
-$hostname = "mariwa.ddns.net";
+$hostname = "41.80.242.29";
 $database = "tukule_kwanza";
 
 //Definition of canonical domain including trailing slash!:
@@ -41,7 +41,7 @@ $sessiontimeout = 60*20;
 
 $connection = mysqli_connect($hostname,$username, $password, $database)
 or die("Unable to connect to Server");
-$login_url = 'login';
-$logout_url = 'logout';
-$dashboard_url = 'dashboard';
+$login_url = 'login.php';
+$logout_url = 'logout.php';
+$dashboard_url = 'dashboard.php';
 ?>
