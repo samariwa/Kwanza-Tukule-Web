@@ -157,6 +157,28 @@
       <td  class="uneditable" id="value<?php echo $count; ?>"><?php echo $value; ?></td>
     </tr>
     <?php
+    if ($Quantity > $purchased) {
+     $count = $count + 1;
+      $row2 = mysqli_fetch_array($previousDamaged);
+      $id2 = $row2['id'];
+        $name2 = $row2['Name'];
+        $purchased2 = $row2['purchased'];
+        $Quantity2 = $row2['Quantity'];
+        $damaged2 = $row2['damaged'];
+        $unitValue2 = $row2['unitValue'];
+        $value2 = $unitValue2 * $damaged2;
+        ?>
+      <tr>
+        <th class="uneditable" scope="row"  id="id<?php echo $count; ?>"><?php echo $id2; ?></th>
+      <td class="uneditable" id="name<?php echo $count; ?>"><?php echo $name2; ?></td>
+      <td class="uneditable" id="purchased<?php echo $count; ?>"><?php echo $purchased; ?></td>
+      <td class="uneditable"id="undamaged<?php echo $count; ?>"><?php echo $Quantity2; ?></td>
+      <td  class="editable" id="newDamaged<?php echo $count; ?>">0</td>
+      <td  class="uneditable" id="damaged<?php echo $count; ?>"><?php echo $damaged2; ?></td>
+      <td  class="uneditable" id="value<?php echo $count; ?>"><?php echo $value2; ?></td>
+    </tr>
+    <?php
+    }
     }
     ?>
   </tbody>

@@ -80,11 +80,10 @@
     <table  class="table table-striped table-hover paginate" style="display:block;overflow-y:scroll;text-align: center;">
   <thead class="thead-dark">
     <tr>
-      <th scope="col" width="3%">#</th>
+      <th scope="col" width="3%">Batch #</th>
       <th scope="col" width="14%">Brand Name</th>
-      <th scope="col"width="10%">Opening Stock</th>
       <th scope="col"width="10%">Purchased (Batch)</th>
-      <th scope="col"width="10%">Closing Stock</th>
+      <th scope="col"width="10%">Quantity</th>
       <th scope="col"width="10%">Damaged (Batch)</th>
       <th scope="col"width="10%">Buying Price</th>
       <th scope="col"width="10%">Stock Value (Kshs.)</th>
@@ -95,19 +94,22 @@
         $count = 0;
         foreach($valuationQuery as $row){
          $count++;
-         $id = $row['sid'];
+         $id = $row['sfid'];
          $name = $row['sname'];
-        $opening = $row['Opening_stock'];
         $purchase = $row['purchased'];
         $closing = $row['Quantity'];
         $damaged = $row['damaged'];
         $bp = $row['Buying_price'];
         $value = $bp * $closing;
+      /*  if ($closing > $purchase) {
+      $row3 = mysqli_fetch_array($previousValuation);
+      $purchase3 = $row3['purchased'];
+       $closing = $closing - $purchase3;
+       }*/
       ?>
     <tr>
       <th scope="row"><?php echo $id; ?></th>
       <td ><?php echo $name; ?></td>
-      <td ><?php echo $opening; ?></td>
       <td ><?php echo $purchase; ?></td>
       <td ><?php echo $closing; ?></td>
       <td ><?php echo $damaged; ?></td>
@@ -115,6 +117,27 @@
       <td ><?php echo $value; ?></td>
     </tr>
     <?php
+    if ($closing > $purchase) {
+      $row2 = mysqli_fetch_array($previousValuation);
+      $id2 = $row2['sfid'];
+         $name2 = $row2['sname'];
+        $purchase2 = $row2['purchased'];
+        $damaged2 = $row2['damaged'];
+        $bp2 = $row2['Buying_price'];
+        $quantity = $closing - $purchase;
+        $value2 = $bp2 * $quantity;
+        ?>
+      <tr>
+      <th scope="row"><?php echo $id2; ?></th>
+      <td ><?php echo $name2; ?></td>
+      <td ><?php echo $purchase2; ?></td>
+      <td ><?php echo $quantity; ?></td>
+      <td ><?php echo $damaged2; ?></td>
+      <td ><?php echo $bp2; ?></td>
+      <td ><?php echo $value2; ?></td>
+    </tr>
+    <?php
+    }
     }
     ?>
   </tbody>

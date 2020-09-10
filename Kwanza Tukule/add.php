@@ -19,7 +19,10 @@ if($where == 'customer' )
                  }
 }
 else if ($where == 'stock') {
-                 $name = $_POST['name'];
+                 $raw_name = $_POST['name'];
+                 $raw_name2 = str_replace('  ',' ',$raw_name);
+                 $raw_name3 = ltrim($raw_name2,' ');
+                 $name = rtrim($raw_name3,' ');
                  $category = $_POST['category'];
                  $supplier = $_POST['supplier'];
                  $received = $_POST['received'];

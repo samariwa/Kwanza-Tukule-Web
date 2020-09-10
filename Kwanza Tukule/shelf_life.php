@@ -156,6 +156,28 @@
        <td  id="remaining<?php echo $count; ?>"><?php echo $remaining; ?></td>
       <td  id="expiry<?php echo $count; ?>"><?php echo $expiryDate; ?></td>
     </tr>
+       <?php
+     }
+    if ($remaining > $purchased) {
+     $count = $count + 1;
+      $row2 = mysqli_fetch_array($previousShelfLife);
+      $id2 = $row2['id'];
+        $name2 = $row2['Name'];
+        $received2 = $row2['Received_date'];
+        $expiry2 = $row2['Expiry_date'];
+        $purchased2 = $row2['purchased'];
+        $remaining2 = $row2['Qty'];
+        $receivedDate2 = date("d/m/Y", strtotime($received2));
+        $expiryDate2 = date("d/m/Y", strtotime($expiry2));
+        ?>
+      <tr>
+        <th scope="row"  id="id<?php echo $count; ?>"><?php echo $id2; ?></th>
+      <td  id="name<?php echo $count; ?>"><?php echo $name2; ?></td>
+      <td  id="received<?php echo $count; ?>"><?php echo $receivedDate2; ?></td>
+      <td  id="purchased<?php echo $count; ?>"><?php echo $purchased2; ?></td>
+       <td  id="remaining<?php echo $count; ?>"><?php echo $remaining2; ?></td>
+      <td  id="expiry<?php echo $count; ?>"><?php echo $expiryDate2; ?></td>
+    </tr>
     <?php
      }
     }

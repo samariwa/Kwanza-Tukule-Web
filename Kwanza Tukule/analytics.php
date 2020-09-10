@@ -70,7 +70,7 @@
  
 <br>
 <h4>Stock Flow</h4>
-  <div class="row offset-3"> <h6>Purchase records shown are as at the end of day yesterday.</h6></div><br>
+  <div class="row offset-4"> <h6>Stock flow records shown are for as at now.</h6></div><br>
     <?php
      $yesterday1 = date('d/m/Y',strtotime('-2 day'));
      $yesterday2 = date('d/m/Y',strtotime('-3 day'));
@@ -87,7 +87,7 @@
       <th scope="col"width="10%">Yesterday</th>
       <th scope="col"width="10%">Today</th>
       <th scope="col"width="10%">Opening Stock (Today)</th>
-      <th scope="col"width="10%">Closing Stock (Now)</th>
+      <th scope="col"width="10%">Quantity (Now)</th>
     </tr>
   </thead>
   <tbody >
