@@ -1171,8 +1171,8 @@ $('#officeEditable').editableTableWidget();
         $.post("add.php",{name:name,number:number,location:location,deliverer:deliverer,where:where},
         function(result){
          if (result == 'success') {
-          location.reload(true);
           alert('Customer Added Successfully');
+          location.reload(true);
          }
           else if (result == 'exists') {
           alert('Customer Already Exists');
@@ -1197,8 +1197,8 @@ $('#officeEditable').editableTableWidget();
         $.post("add.php",{name:name,category:category,supplier:supplier,restock:restock,received:received,expiry:expiry,bp:bp,sp:sp,qty:qty,where:where},
         function(result){
          if (result == 'success') {
-          location.reload(true);
           alert('Stock Added Successfully');
+          location.reload(true);
          }
           else if (result == 'exists') {
           alert('Stock Already Exists');
@@ -1215,8 +1215,8 @@ $('#officeEditable').editableTableWidget();
         $.post("add.php",{category:category,where:where},
         function(result){
          if (result == 'success') {
-          location.reload(true);
           alert('Category Added Successfully');
+          location.reload(true);
          }
           else if (result == 'exists') {
           alert('Category Already Exists');
@@ -1234,8 +1234,8 @@ $('#officeEditable').editableTableWidget();
         $.post("add.php",{name:name,contact:contact,where:where},
         function(result){
          if (result == 'success') {
-          location.reload(true);
           alert('Supplier Added Successfully');
+          location.reload(true);
          }
           else if (result == 'exists') {
           alert('Supplier Already Exists');
@@ -1259,8 +1259,8 @@ $('#officeEditable').editableTableWidget();
         $.post("add.php",{title:title,message:message,access:access,where:where},
         function(result){
          if (result == 'success') {
-          location.reload(true);
           alert('Note Added Successfully');
+          location.reload(true);
          }
            else{
           alert("Something went wrong");
@@ -1277,8 +1277,8 @@ $('#officeEditable').editableTableWidget();
         $.post("add.php",{type:type,driver:driver,reg:reg,route:route,where:where},
         function(result){
          if (result == 'success') {
-          location.reload(true);
           alert('Vehicle Added Successfully');
+          location.reload(true);
          }
           else if (result == 'exists') {
           alert('Vehicle Already Exists');
@@ -1300,8 +1300,8 @@ $('#officeEditable').editableTableWidget();
         $.post("add.php",{heading:heading,party:party,total:total,paid:paid,due:due,date:date,where:where},
         function(result){
          if (result == 'success') {
-          location.reload(true);
           alert('Expense Added Successfully');
+          location.reload(true);
          }
           else{
           alert("Something went wrong");
@@ -1316,8 +1316,8 @@ $('#officeEditable').editableTableWidget();
         function(result){
           alert(result);
          if (result == 'success') {
-          location.reload(true);
           alert('Expense Heading Added Successfully');
+          location.reload(true);
          }
           else{
           alert("Something went wrong");
@@ -1338,8 +1338,8 @@ $('#officeEditable').editableTableWidget();
         $.post("add.php",{fname:fname,lname:lname,contact:contact,staffId:staffId,nationalId:nationalId,yob:yob,gender:gender,salary:salary,where:where},
         function(result){
          if (result == 'success') {
-          location.reload(true);
           alert('Deliverer Added Successfully');
+          location.reload(true);
          }
           else if (result == 'exists') {
           alert('Deliverer Already Exists');
@@ -1363,8 +1363,8 @@ $('#officeEditable').editableTableWidget();
         $.post("add.php",{fname:fname,lname:lname,contact:contact,staffId:staffId,nationalId:nationalId,yob:yob,gender:gender,salary:salary,where:where},
         function(result){
          if (result == 'success') {
-          location.reload(true);
           alert('Cook Added Successfully');
+          location.reload(true);
          }
           else if (result == 'exists') {
           alert('Cook Already Exists');
@@ -1389,8 +1389,8 @@ $('#officeEditable').editableTableWidget();
         $.post("add.php",{fname:fname,lname:lname,contact:contact,staffId:staffId,nationalId:nationalId,yob:yob,role:role,gender:gender,salary:salary,where:where},
         function(result){
          if (result == 'success') {
-          location.reload(true);
           alert('Office Staff Added Successfully');
+          location.reload(true);
          }
           else if (result == 'exists') {
           alert('Office Staff Already Exists');
