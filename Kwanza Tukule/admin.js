@@ -1176,6 +1176,25 @@ $('#vehiclesEditable').editableTableWidget();
   function(result){});
 });
 
+  $('#cleanersEditable').editableTableWidget();
+  $('#cleanersEditable td.uneditable').on('change', function(evt, newValue) {
+  return false;
+});
+  $('#cleanersEditable td').on('change', function(evt, newValue) {
+   var rowx = parseInt(evt.target._DT_CellIndex.row)+1;
+  var id = $(`#id${rowx}`).text();
+  var contact = $(`#contact${rowx}`).text();
+  var staffId = $(`#staffId${rowx}`).text();
+  var nationalId = $(`#nationalId${rowx}`).text();
+  var kra = $(`#kra${rowx}`).text();
+  var nssf = $(`#nssf${rowx}`).text();
+  var nhif = $(`#nhif${rowx}`).text();
+  var salary = $(`#salary${rowx}`).text();
+  var where = 'cleaner';
+  $.post("save.php",{id:id,contact:contact,staffId:staffId,nationalId:nationalId,kra:kra,nssf:nssf,nhif:nhif,salary:salary,where:where},
+  function(result){});
+});
+
 $('#officeEditable').editableTableWidget();
   $('#officeEditable td.uneditable').on('change', function(evt, newValue) {
   return false;
@@ -1540,6 +1559,31 @@ $('#officeEditable').editableTableWidget();
          }
           else if (result == 'exists') {
           alert('Cook Already Exists');
+         }
+          else{
+          alert("Something went wrong");
+         }
+         });
+       });
+
+  $(document).on('click','#addCleaner',function(){
+        var fname = $('#fname').val();
+         var lname = $('#lname').val();
+         var contact = $('#contact').val();
+         var staffId = $('#staffId').val();
+         var nationalId = $('#nationalId').val();
+         var yob = $('#yob').val();
+         var gender = $('#gender').val();
+         var salary = $('#salary').val();
+        var where = 'cook';
+        $.post("add.php",{fname:fname,lname:lname,contact:contact,staffId:staffId,nationalId:nationalId,yob:yob,gender:gender,salary:salary,where:where},
+        function(result){
+         if (result == 'success') {
+          alert('Cleaner Added Successfully');
+          location.reload(true);
+         }
+          else if (result == 'exists') {
+          alert('Cleaner Already Exists');
          }
           else{
           alert("Something went wrong");

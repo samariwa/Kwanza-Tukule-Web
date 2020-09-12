@@ -182,6 +182,18 @@ elseif ($where == 'cook') {
     $figure = str_replace("Ksh. ","",$salary);
 mysqli_query($connection,"UPDATE `users` SET `number` = '".$contact."',`staffID` = '".$staffId."',`nationalID` = '".$nationalId."',`KRA` = '".$kra."',`NSSF` = '".$nssf."',`NHIF` = '".$nhif."',`salary` = '".$figure."' WHERE `id` = '".$id."'")or die($connection->error);
 }
+elseif ($where == 'cleaner') {
+  $id = $_POST['id'];
+    $contact = $_POST['contact'];
+    $staffId = $_POST['staffId'];
+    $nationalId = $_POST['nationalId'];
+    $salary = $_POST['salary'];
+    $kra = $_POST['kra'];
+    $nssf = $_POST['nssf'];
+    $nhif = $_POST['nhif'];
+    $figure = str_replace("Ksh. ","",$salary);
+mysqli_query($connection,"UPDATE `users` SET `number` = '".$contact."',`staffID` = '".$staffId."',`nationalID` = '".$nationalId."',`KRA` = '".$kra."',`NSSF` = '".$nssf."',`NHIF` = '".$nhif."',`salary` = '".$figure."' WHERE `id` = '".$id."'")or die($connection->error);
+}
 elseif ($where == 'office') {
   $id = $_POST['id'];
     $contact = $_POST['contact'];

@@ -320,6 +320,7 @@ Preloader
             <a class="collapse-item" href="deliverers.php">Deliverers</a>
             <a class="collapse-item" href="office.php">Office</a>
             <a class="collapse-item" href="cooks.php">Cooks</a>
+            <a class="collapse-item" href="cleaners.php">Cleaners</a>
           </div>
         </div>
       </li>
