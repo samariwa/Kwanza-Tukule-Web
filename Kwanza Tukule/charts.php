@@ -120,20 +120,145 @@ else if($where == 'salescomparison' )
       array_push($titleComparison,$name);
       array_push($salesComparisonFiveDaysAgo,$sum);
     }
+    foreach($distributionComparisonFourDaysAgo as $row){
+      $name = $row['deliverer'];
+      $sum = $row['count'];
+      array_push($salesComparisonFourDaysAgo,$sum);
+    }
     foreach($distributionComparisonThreeDaysAgo as $row){
       $name = $row['deliverer'];
       $sum = $row['count'];
       array_push($salesComparisonThreeDaysAgo,$sum);
     }
+    foreach($distributionComparisonTwoDaysAgo as $row){
+      $name = $row['deliverer'];
+      $sum = $row['count'];
+      array_push($salesComparisonTwoDaysAgo,$sum);
+    }
+    foreach($distributionComparisonYesterday as $row){
+      $name = $row['deliverer'];
+      $sum = $row['count'];
+      array_push($salesComparisonYesterday,$sum);
+    }
+    foreach($distributionComparisonToday as $row){
+      $name = $row['deliverer'];
+      $sum = $row['count'];
+      array_push($salesComparisonToday,$sum);
+    }
     array_push($titleComparison,'Average');
     $arrayTitle = json_encode($titleComparison);
-    $row1 = mysqli_fetch_array($distributionTotalThreeDaysAgo);
-    $threeDaysAgoSum = $row1['count'];
+     $row = mysqli_fetch_array($distributionTotalToday);
+    $todaySum = $row['count'];
+    $row1 = mysqli_fetch_array($distributionTotalYesterday);
+    $yesterdaySum = $row1['count'];
+    $row2 = mysqli_fetch_array($distributionTotalTwoDaysAgo);
+    $twoDaysAgoSum = $row2['count'];
+    $row3 = mysqli_fetch_array($distributionTotalThreeDaysAgo);
+    $threeDaysAgoSum = $row3['count'];
+    $row4 = mysqli_fetch_array($distributionTotalFourDaysAgo);
+    $fourDaysAgoSum = $row4['count'];
     array_push($salesComparisonThreeDaysAgo,$threeDaysAgoSum);
-    $row3 = mysqli_fetch_array($distributionTotalFiveDaysAgo);
-    $fiveDaysAgoSum = $row3['count'];
-    array_push($salesComparisonThreeDaysAgo,$fiveDaysAgoSum);
-    $finalArray = array($arrayTitle,$salesComparisonFiveDaysAgo,$salesComparisonThreeDaysAgo);
+    $row5 = mysqli_fetch_array($distributionTotalFiveDaysAgo);
+    $fiveDaysAgoSum = $row5['count'];
+    array_push($salesComparisonToday,$todaySum);
+    array_push($salesComparisonYesterday,$yesterdaySum);
+    array_push($salesComparisonTwoDaysAgo,$twoDaysAgoSum);
+    array_push($salesComparisonThreeDaysAgo,$threeDaysAgoSum);
+    array_push($salesComparisonFourDaysAgo,$fourDaysAgoSum);
+    array_push($salesComparisonFiveDaysAgo,$fiveDaysAgoSum);
+    $finalArray = array($arrayTitle,$salesComparisonFiveDaysAgo,$salesComparisonFourDaysAgo,$salesComparisonThreeDaysAgo,$salesComparisonTwoDaysAgo,$salesComparisonYesterday,$salesComparisonToday);
+    $array = json_encode($finalArray);
+    echo $array;
+}
+else if($where == 'salescomparison1' )
+{  
+    $salesNamesToday = array();
+    $salesFiguresToday = array();
+    foreach($distributionComparisonToday as $row){
+      $name = $row['deliverer'];
+      $sum = $row['count'];
+      array_push($salesNamesToday,$name);
+      array_push($salesFiguresToday,$sum);
+    }
+    $finalArray = array($salesNamesToday,$salesFiguresToday);
+    $array = json_encode($finalArray);
+    echo $array;
+}
+else if($where == 'salescomparison2' )
+{  
+    $salesNamesYesterday = array();
+    $salesFiguresYesterday = array();
+    foreach($distributionComparisonYesterday as $row){
+      $name = $row['deliverer'];
+      $sum = $row['count'];
+      array_push($salesNamesYesterday,$name);
+      array_push($salesFiguresYesterday,$sum);
+    }
+    $finalArray = array($salesNamesYesterday,$salesFiguresYesterday);
+    $array = json_encode($finalArray);
+    echo $array;
+}
+else if($where == 'salescomparison3' )
+{  
+    $twoDaysAgo = date('d/m', strtotime("-2 days"));
+    $salesNames_2 = array();
+    $salesFigures_2 = array();
+    foreach($distributionComparisonTwoDaysAgo as $row){
+      $name = $row['deliverer'];
+      $sum = $row['count'];
+      array_push($salesNames_2,$name);
+      array_push($salesFigures_2,$sum);
+    }
+    $finalArray = array($salesNames_2,$salesFigures_2);
+    $array = json_encode($finalArray);
+    echo $array;
+}
+else if($where == 'salescomparison4' )
+{  
+    $threeDaysAgo = date('d/m', strtotime("-3 days"));
+    $salesNames_3 = array('Deliverer');
+    $salesFigures_3 = array($threeDaysAgo); 
+    foreach($distributionComparisonThreeDaysAgo as $row){
+      $name = $row['deliverer'];
+      $sum = $row['count'];
+      array_push($salesNames_3,$name);
+      array_push($salesFigures_3,$sum);
+
+    }
+    array_push($salesNames_3,"{ role: 'annotation' }");
+    array_push($salesFigures_3,"''");
+    $finalArray = array($salesNames_3,$salesFigures_3);
+    $array = json_encode($finalArray);
+    echo $array;
+}
+else if($where == 'salescomparison5' )
+{  
+    $salesNames_4 = array();
+    $salesFigures_4 = array();
+    $fourDaysAgo = date('d/m', strtotime("-4 days"));
+    foreach($distributionComparisonFourDaysAgo as $row){
+      $name = $row['deliverer'];
+      $sum = $row['count'];
+      array_push($salesNames_4,$name);
+      array_push($salesFigures_4,$sum);
+    }
+    $finalArray = array($fourDaysAgo,$salesNames_4,$salesFigures_4);
+    $array = json_encode($finalArray);
+    echo $array;
+}
+else if($where == 'salescomparison6' )
+{  
+    
+    $salesNames_5 = array();
+    $salesFigures_5 = array();
+    $fiveDaysAgo = date('d/m', strtotime("-5 days"));
+    foreach($distributionComparisonFiveDaysAgo as $row){
+      $name = $row['deliverer'];
+      $sum = $row['count'];
+       array_push($salesNames_5,$name);
+      array_push($salesFigures_5,$sum);
+    }
+    $finalArray = array($fiveDaysAgo,$salesNames_5,$salesFigures_5);
     $array = json_encode($finalArray);
     echo $array;
 }

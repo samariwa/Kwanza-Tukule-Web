@@ -133,6 +133,15 @@
 <h4>Sales Per Deliverer</h4>
   <div id="chart_div" style="width: 1000px; height: 500px;" ></div>   
 <br>
+<div class="row">  
+<div id="salesComparison1" style="width: 440px; height: 100px;"></div>&emsp;&emsp;&emsp;&emsp;&ensp;
+<div id="salesComparison2" style="width: 440px; height: 100px;"></div>
+<div id="salesComparison3" style="width: 440px; height: 100px;"></div>&emsp;&emsp;&emsp;&emsp;&ensp;
+<div id="salesComparison4" style="width: 440px; height: 100px;"></div>
+<div id="salesComparison5" style="width: 440px; height: 200px;"></div>&emsp;&emsp;&emsp;&emsp;&ensp;
+<div id="salesComparison6" style="width: 440px; height: 200px;"></div>
+</div>
+
 <div class="row">
   <div class="col-md-6">
     <h4>Brand Sales Comparison</h4>

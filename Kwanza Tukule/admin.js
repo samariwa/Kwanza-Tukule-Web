@@ -81,7 +81,6 @@ setTime();
         var where = 'salescomparison';
        $.post("charts.php",{where:where},
         function(result){
-          //alert(result);
                    var data = google.visualization.arrayToDataTable([
           ['Day', 'Royson', 'Ken', 'Reuben', 'Damaris', 'George', 'Average'],
           ['07/08/2020',  165,      938,         522,             998,           450,      614.6],
@@ -103,6 +102,170 @@ setTime();
         chart.draw(data, options);
         });
       }
+
+      google.charts.load("current", {packages:["corechart"]});
+    google.charts.setOnLoadCallback(drawComparison1);
+    function drawComparison1() {
+      var where = 'salescomparison1';
+       $.post("charts.php",{where:where},
+        function(result){
+     var data = google.visualization.arrayToDataTable([
+        ['Deliverer', 'Fantasy & Sci Fi', 'Romance', 'Mystery/Crime', 'General',
+         'Western', 'Literature', { role: 'annotation' } ],
+        ['Today', 10, 24, 20, 32, 18, 5, '']
+      ]);
+
+     var view = new google.visualization.DataView(data);
+
+      var options = {
+        width: 550,
+        height: 100,
+        legend: { position: 'top', maxLines: 3 },
+        bar: { groupWidth: '75%' },
+        isStacked: true
+      };
+      var chart = new google.visualization.BarChart(document.getElementById("salesComparison1"));
+      chart.draw(view, options);
+      });
+  }
+
+  google.charts.load("current", {packages:["corechart"]});
+    google.charts.setOnLoadCallback(drawComparison2);
+    function drawComparison2() {
+      var where = 'salescomparison2';
+       $.post("charts.php",{where:where},
+        function(result){
+     var data = google.visualization.arrayToDataTable([
+        ['Deliverer', 'Fantasy & Sci Fi', 'Romance', 'Mystery/Crime', 'General',
+         'Western', 'Literature', { role: 'annotation' } ],
+        ['Yesterday', 10, 24, 20, 32, 18, 5, '']
+      ]);
+
+     var view = new google.visualization.DataView(data);
+
+      var options = {
+        width: 550,
+        height: 100,
+        legend: { position: 'top', maxLines: 3 },
+        bar: { groupWidth: '75%' },
+        isStacked: true
+      };
+      var chart = new google.visualization.BarChart(document.getElementById("salesComparison2"));
+      chart.draw(view, options);
+       });
+  }
+
+  google.charts.load("current", {packages:["corechart"]});
+    google.charts.setOnLoadCallback(drawComparison3);
+    function drawComparison3() {
+      var where = 'salescomparison3';
+       $.post("charts.php",{where:where},
+        function(result){
+     var data = google.visualization.arrayToDataTable([
+        ['Deliverer', 'Fantasy & Sci Fi', 'Romance', 'Mystery/Crime', 'General',
+         'Western', 'Literature', { role: 'annotation' } ],
+        ['Yesterday', 10, 24, 20, 32, 18, 5, '']
+      ]);
+
+     var view = new google.visualization.DataView(data);
+
+      var options = {
+        width: 550,
+        height: 100,
+        legend: { position: 'top', maxLines: 3 },
+        bar: { groupWidth: '75%' },
+        isStacked: true
+      };
+      var chart = new google.visualization.BarChart(document.getElementById("salesComparison3"));
+      chart.draw(view, options);
+        });
+  }
+
+  google.charts.load("current", {packages:["corechart"]});
+    google.charts.setOnLoadCallback(drawComparison4);
+    function drawComparison4() {
+      var where = 'salescomparison4';
+       $.post("charts.php",{where:where},
+        function(result){
+          var data = $.parseJSON(result);
+          // alert(data)
+          var names = data[0];
+          var figures = data[1];
+         // alert(names)
+         // alert(figures)
+     var data = google.visualization.arrayToDataTable([
+        names,
+        figures
+      ]);
+
+     var view = new google.visualization.DataView(data);
+
+      var options = {
+        width: 550,
+        height: 100,
+        legend: { position: 'top', maxLines: 3 },
+        bar: { groupWidth: '75%' },
+        isStacked: true
+      };
+      var chart = new google.visualization.BarChart(document.getElementById("salesComparison4"));
+      chart.draw(view, options);
+       });
+  }
+
+  google.charts.load("current", {packages:["corechart"]});
+    google.charts.setOnLoadCallback(drawComparison5);
+    function drawComparison5() {
+      var where = 'salescomparison5';
+       $.post("charts.php",{where:where},
+        function(result){
+          var data = $.parseJSON(result);
+          var data0 = data[0];
+     var data = google.visualization.arrayToDataTable([
+        ['Deliverer', 'Fantasy & Sci Fi', 'Romance', 'Mystery/Crime', 'General',
+         'Western', 'Literature', { role: 'annotation' } ],
+        [data0, 10, 24, 20, 32, 18, 5, '']
+      ]);
+
+     var view = new google.visualization.DataView(data);
+
+      var options = {
+        width: 550,
+        height: 100,
+        legend: { position: 'top', maxLines: 3 },
+        bar: { groupWidth: '75%' },
+        isStacked: true
+      };
+      var chart = new google.visualization.BarChart(document.getElementById("salesComparison5"));
+      chart.draw(view, options);
+      });
+  }
+
+  google.charts.load("current", {packages:["corechart"]});
+    google.charts.setOnLoadCallback(drawComparison6);
+    function drawComparison6() {
+      var where = 'salescomparison6';
+       $.post("charts.php",{where:where},
+        function(result){
+          var data = $.parseJSON(result);
+          var data0 = data[0];
+     var data = google.visualization.arrayToDataTable([
+        ['Deliverer', 'Fantasy & Sci Fi', 'Romance', 'Mystery/Crime', 'General',
+         'Western',  { role: 'annotation' } ],
+        [data0, 10, 24, 20, 32, 18, '']
+      ]);
+
+     var view = new google.visualization.DataView(data);
+      var options = {
+        width: 550,
+        height: 100,
+        legend: { position: 'top', maxLines: 3 },
+        bar: { groupWidth: '75%' },
+        isStacked: true
+      };
+      var chart = new google.visualization.BarChart(document.getElementById("salesComparison6"));
+      chart.draw(view, options);
+      });
+  }
 
       google.charts.load("current", {packages:["corechart"]});
     google.charts.setOnLoadCallback(drawExpenditureChart);
