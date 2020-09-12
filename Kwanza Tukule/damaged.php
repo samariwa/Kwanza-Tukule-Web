@@ -18,99 +18,114 @@
           <!-- Content Row -->
           <div class="row">
 
-            <!-- Earnings (Monthly) Card Example -->
+           <!-- Customers Card -->
             <div class="col-xl-3 col-md-6 mb-4">
               <div class="card border-left-primary shadow h-100 py-2">
+                <a class="text-xs font-weight-bold text-primary text-uppercase mb-1" href="#" style="text-decoration: none;">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <a class="text-xs font-weight-bold text-primary text-uppercase mb-1" href="customers.php" style="text-decoration: none;"><i class="fa fa-users fa-2x"></i>&emsp;Customers</a> 
+                      <i class="fa fa-users fa-2x"></i>&emsp;Customers
                     </div>
                   </div>
                 </div>
+                </a> 
               </div>
             </div>
 
-            <!-- Earnings (Monthly) Card Example -->
+            <!-- Stock Card -->
             <div class="col-xl-3 col-md-6 mb-4">
               <div class="card border-left-success shadow h-100 py-2">
+                <a class="text-xs font-weight-bold text-success text-uppercase mb-1" href="#" style="text-decoration: none;">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <a class="text-xs font-weight-bold text-success text-uppercase mb-1" href="#" style="text-decoration: none;"><i class="fa fa-cubes fa-2x"></i>&emsp;Stock</a>
+                      <i class="fa fa-cubes fa-2x"></i>&emsp;Stock
                     </div>
                   </div>
                 </div>
+                </a>
               </div>
             </div>
 
-            <!-- Earnings (Monthly) Card Example -->
+            <!-- Sales Card -->
             <div class="col-xl-3 col-md-6 mb-4">
               <div class="card border-left-info shadow h-100 py-2">
+                <a class="text-xs font-weight-bold text-info text-uppercase mb-1" href="sales.php" style="text-decoration: none;">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <a class="text-xs font-weight-bold text-info text-uppercase mb-1" href="sales.php" style="text-decoration: none;"><i class="fa fa-shopping-cart fa-2x"></i>&emsp;Sales</a>
+                      <i class="fa fa-shopping-cart fa-2x"></i>&emsp;Sales
                     </div>
                   </div>
                 </div>
+                </a>
               </div>
             </div>
 
-            <!-- Pending Requests Card Example -->
+            <!-- Summary Card -->
             <div class="col-xl-3 col-md-6 mb-4">
               <div class="card border-left-warning shadow h-100 py-2">
+                <a class="text-xs font-weight-bold text-warning text-uppercase mb-1" href="summary.php" style="text-decoration: none;">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <a class="text-xs font-weight-bold text-warning text-uppercase mb-1" href="summary.php" style="text-decoration: none;"><i class="fa fa-clipboard fa-2x"></i>&emsp;Summary</a>
+                      <i class="fa fa-clipboard fa-2x"></i>&emsp;Summary
                     </div>   
                   </div>
                 </div>
+                </a>
               </div>
             </div>
+            
           </div>
           <?php
               }else{
            ?>
              <div class="row">
 
-            <!-- Earnings (Monthly) Card Example -->
+              <!-- Customers Card -->
             <div class="col-xl-4 col-md-6 mb-4">
               <div class="card border-left-primary shadow h-100 py-2">
+                <a class="text-xs font-weight-bold text-primary text-uppercase mb-1" href="customers.php" style="text-decoration: none;">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <a class="text-xs font-weight-bold text-primary text-uppercase mb-1" href="customers.php" style="text-decoration: none;"><i class="fa fa-users fa-2x"></i>&emsp;Customers</a> 
+                      <i class="fa fa-users fa-2x"></i>&emsp;Customers
                     </div>
                   </div>
                 </div>
+                </a> 
               </div>
             </div>
 
-            <!-- Earnings (Monthly) Card Example -->
+            <!-- Stock Card -->
             <div class="col-xl-4 col-md-6 mb-4">
               <div class="card border-left-success shadow h-100 py-2">
+                <a class="text-xs font-weight-bold text-success text-uppercase mb-1" href="#" style="text-decoration: none;">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <a class="text-xs font-weight-bold text-success text-uppercase mb-1" href="#" style="text-decoration: none;"><i class="fa fa-cubes fa-2x"></i>&emsp;Stock</a>
+                      <i class="fa fa-cubes fa-2x"></i>&emsp;Stock
                     </div>
                   </div>
                 </div>
+                </a>
               </div>
             </div>
 
-            <!-- Earnings (Monthly) Card Example -->
+            <!-- Sales Card -->
             <div class="col-xl-4 col-md-6 mb-4">
               <div class="card border-left-info shadow h-100 py-2">
+                <a class="text-xs font-weight-bold text-info text-uppercase mb-1" href="sales.php" style="text-decoration: none;">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <a class="text-xs font-weight-bold text-info text-uppercase mb-1" href="sales.php" style="text-decoration: none;"><i class="fa fa-shopping-cart fa-2x"></i>&emsp;Sales</a>
+                      <i class="fa fa-shopping-cart fa-2x"></i>&emsp;Sales
                     </div>
                   </div>
                 </div>
+                </a>
               </div>
             </div>
 
@@ -157,7 +172,7 @@
       <td  class="uneditable" id="value<?php echo $count; ?>"><?php echo $value; ?></td>
     </tr>
     <?php
-    if ($Quantity > $purchased) {
+   /* if ($Quantity > $purchased) {
      $count = $count + 1;
       $row2 = mysqli_fetch_array($previousDamaged);
       $id2 = $row2['id'];
@@ -178,9 +193,13 @@
       <td  class="uneditable" id="value<?php echo $count; ?>"><?php echo $value2; ?></td>
     </tr>
     <?php
-    }
+    }*/
     }
     ?>
+    <tr>
+      <th colspan="6">Total Damaged Value</th>
+      <td id="totalDamagedValue">0  </td>
+    </tr>
   </tbody>
 </table>   
 

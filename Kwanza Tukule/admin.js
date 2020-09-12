@@ -985,9 +985,12 @@ $('#vehiclesEditable').editableTableWidget();
   var contact = $(`#contact${rowx}`).text();
   var staffId = $(`#staffId${rowx}`).text();
   var nationalId = $(`#nationalId${rowx}`).text();
+  var kra = $(`#kra${rowx}`).text();
+  var nssf = $(`#nssf${rowx}`).text();
+  var nhif = $(`#nhif${rowx}`).text();
   var salary = $(`#salary${rowx}`).text();
   var where = 'deliverer';
-  $.post("save.php",{id:id,contact:contact,staffId:staffId,nationalId:nationalId,salary:salary,where:where},
+  $.post("save.php",{id:id,contact:contact,staffId:staffId,nationalId:nationalId,kra:kra,nssf:nssf,nhif:nhif,salary:salary,where:where},
   function(result){});
 });
 
@@ -1001,9 +1004,12 @@ $('#vehiclesEditable').editableTableWidget();
   var contact = $(`#contact${rowx}`).text();
   var staffId = $(`#staffId${rowx}`).text();
   var nationalId = $(`#nationalId${rowx}`).text();
+  var kra = $(`#kra${rowx}`).text();
+  var nssf = $(`#nssf${rowx}`).text();
+  var nhif = $(`#nhif${rowx}`).text();
   var salary = $(`#salary${rowx}`).text();
   var where = 'cook';
-  $.post("save.php",{id:id,contact:contact,staffId:staffId,nationalId:nationalId,salary:salary,where:where},
+  $.post("save.php",{id:id,contact:contact,staffId:staffId,nationalId:nationalId,kra:kra,nssf:nssf,nhif:nhif,salary:salary,where:where},
   function(result){});
 });
 
@@ -1017,10 +1023,13 @@ $('#officeEditable').editableTableWidget();
   var contact = $(`#contact${rowx}`).text();
   var staffId = $(`#staffId${rowx}`).text();
   var nationalId = $(`#nationalId${rowx}`).text();
+  var kra = $(`#kra${rowx}`).text();
+  var nssf = $(`#nssf${rowx}`).text();
+  var nhif = $(`#nhif${rowx}`).text();
   var salary = $(`#salary${rowx}`).text();
   var role = $(`#role${rowx}`).text();
   var where = 'office';
-  $.post("save.php",{id:id,contact:contact,staffId:staffId,nationalId:nationalId,salary:salary,role:role,where:where},
+  $.post("save.php",{id:id,contact:contact,staffId:staffId,nationalId:nationalId,kra:kra,nssf:nssf,nhif:nhif,salary:salary,role:role,where:where},
   function(result){});
 });
 
@@ -1854,3 +1863,33 @@ $('#officeEditable').editableTableWidget();
                         mywindow.close();
          });
        });
+
+       $(document).ready(function(){
+       var tableValuation = document.getElementById("valuationTable");
+       var  sumVal = 0;    
+            for(var i = 1; i < tableValuation.rows.length; i++)
+            {
+                sumVal += parseInt(tableValuation.rows[i].cells[6].innerHTML);
+                document.getElementById("totalStockValue").innerHTML = sumVal;
+            }
+      });
+      
+      $(document).ready(function(){
+       var tableLeftovers = document.getElementById("leftoversEditable");
+       var  sumVal = 0; 
+            for(var i = 1; i < tableLeftovers.rows.length; i++)
+            {
+                sumVal += parseInt(tableLeftovers.rows[i].cells[7].innerHTML);
+                document.getElementById("totalLeftoverValue").innerHTML = sumVal;
+            }
+      });
+
+      $(document).ready(function(){
+       var tableDamaged = document.getElementById("damagedEditable");
+       var  sumVal = 0;    
+            for(var i = 1; i < tableDamaged.rows.length; i++)
+            {
+                sumVal += parseInt(tableDamaged.rows[i].cells[6].innerHTML);
+                document.getElementById("totalDamagedValue").innerHTML = sumVal;
+            }
+      });      

@@ -18,52 +18,60 @@
             <!-- Earnings (Monthly) Card Example -->
             <div class="col-xl-3 col-md-6 mb-4">
               <div class="card border-left-primary shadow h-100 py-2">
+                <a class="text-xs font-weight-bold text-primary text-uppercase mb-1" href="customers.php" style="text-decoration: none;">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <a class="text-xs font-weight-bold text-primary text-uppercase mb-1" href="customers.php" style="text-decoration: none;"><i class="fa fa-users fa-2x"></i>&emsp;Customers</a> 
+                      <i class="fa fa-users fa-2x"></i>&emsp;Customers
                     </div>
                   </div>
                 </div>
+                </a> 
               </div>
             </div>
 
             <!-- Earnings (Monthly) Card Example -->
             <div class="col-xl-3 col-md-6 mb-4">
               <div class="card border-left-success shadow h-100 py-2">
+                <a class="text-xs font-weight-bold text-success text-uppercase mb-1" href="stock.php" style="text-decoration: none;">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <a class="text-xs font-weight-bold text-success text-uppercase mb-1" href="stock.php" style="text-decoration: none;"><i class="fa fa-cubes fa-2x"></i>&emsp;Stock</a>
+                      <i class="fa fa-cubes fa-2x"></i>&emsp;Stock
                     </div>
                   </div>
                 </div>
+                </a>
               </div>
             </div>
 
             <!-- Earnings (Monthly) Card Example -->
             <div class="col-xl-3 col-md-6 mb-4">
               <div class="card border-left-info shadow h-100 py-2">
+                <a class="text-xs font-weight-bold text-info text-uppercase mb-1" href="sales.php" style="text-decoration: none;">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <a class="text-xs font-weight-bold text-info text-uppercase mb-1" href="sales.php" style="text-decoration: none;"><i class="fa fa-shopping-cart fa-2x"></i>&emsp;Sales</a>
+                      <i class="fa fa-shopping-cart fa-2x"></i>&emsp;Sales
                     </div>
                   </div>
                 </div>
+                </a>
               </div>
             </div>
 
             <!-- Pending Requests Card Example -->
             <div class="col-xl-3 col-md-6 mb-4">
               <div class="card border-left-warning shadow h-100 py-2">
+                <a class="text-xs font-weight-bold text-warning text-uppercase mb-1" href="summary.php" style="text-decoration: none;">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <a class="text-xs font-weight-bold text-warning text-uppercase mb-1" href="summary.php" style="text-decoration: none;"><i class="fa fa-clipboard fa-2x"></i>&emsp;Summary</a>
+                      <i class="fa fa-clipboard fa-2x"></i>&emsp;Summary
                     </div>   
                   </div>
                 </div>
+                </a>
               </div>
             </div>
           </div>
@@ -146,6 +154,9 @@
       <th scope="col" width="13%">National ID</th>
        <th scope="col" width="2%">Age</th>
         <th scope="col" width="13%">Salary</th>
+        <th scope="col" width="13%">KRA</th>
+        <th scope="col" width="13%">NSSF</th>
+        <th scope="col" width="13%">NHIF</th>
       <th scope="col"width="43%"></th>
     </tr>
   </thead>
@@ -163,6 +174,9 @@
         $nationalId = $row['nationalID'];
         $yob = $row['yob'];
         $salary = $row['salary'];
+        $kra = $row['KRA'];
+        $nssf = $row['NSSF'];
+        $nhif = $row['NHIF'];
         $role = $row['Name'];
         $name = $fname.' '.$lname;
         $current = date("Y");
@@ -178,6 +192,9 @@
       <td class="editable" id="nationalId<?php echo $count; ?>"><?php echo $nationalId; ?></td>
       <td class="uneditable" id="age<?php echo $count; ?>"><?php echo $age; ?></td>
       <td class="editable" id="salary<?php echo $count; ?>">Ksh. <?php echo $salary; ?></td>
+      <td class="editable" id="kra<?php echo $count; ?>"><?php echo $kra; ?></td>
+        <td class="editable" id="nssf<?php echo $count; ?>"><?php echo $nssf; ?></td>
+         <td class="editable" id="nhif<?php echo $count; ?>"><?php echo $nhif; ?></td>
        <td>
         <button id="<?php echo $id; ?>" data_id="<?php echo $id; ?>" class="btn btn-danger btn-sm active deleteOffice" role="button" aria-pressed="true" ><i class="fa fa-user-times"></i>&ensp;Delete</button>
        </td>

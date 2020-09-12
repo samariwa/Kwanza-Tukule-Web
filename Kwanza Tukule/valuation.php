@@ -18,52 +18,60 @@
             <!-- Earnings (Monthly) Card Example -->
             <div class="col-xl-3 col-md-6 mb-4">
               <div class="card border-left-primary shadow h-100 py-2">
+                <a class="text-xs font-weight-bold text-primary text-uppercase mb-1" href="customers.php" style="text-decoration: none;">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <a class="text-xs font-weight-bold text-primary text-uppercase mb-1" href="customers.php" style="text-decoration: none;"><i class="fa fa-users fa-2x"></i>&emsp;Customers</a> 
+                      <i class="fa fa-users fa-2x"></i>&emsp;Customers 
                     </div>
                   </div>
                 </div>
+                </a>
               </div>
             </div>
 
             <!-- Earnings (Monthly) Card Example -->
             <div class="col-xl-3 col-md-6 mb-4">
               <div class="card border-left-success shadow h-100 py-2">
+                <a class="text-xs font-weight-bold text-success text-uppercase mb-1" href="#" style="text-decoration: none;">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <a class="text-xs font-weight-bold text-success text-uppercase mb-1" href="#" style="text-decoration: none;"><i class="fa fa-cubes fa-2x"></i>&emsp;Stock</a>
+                      <i class="fa fa-cubes fa-2x"></i>&emsp;Stock
                     </div>
                   </div>
                 </div>
+                </a>
               </div>
             </div>
 
             <!-- Earnings (Monthly) Card Example -->
             <div class="col-xl-3 col-md-6 mb-4">
               <div class="card border-left-info shadow h-100 py-2">
+                <a class="text-xs font-weight-bold text-info text-uppercase mb-1" href="sales.php" style="text-decoration: none;">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <a class="text-xs font-weight-bold text-info text-uppercase mb-1" href="sales.php" style="text-decoration: none;"><i class="fa fa-shopping-cart fa-2x"></i>&emsp;Sales</a>
+                      <i class="fa fa-shopping-cart fa-2x"></i>&emsp;Sales
                     </div>
                   </div>
                 </div>
+                </a>
               </div>
             </div>
 
             <!-- Pending Requests Card Example -->
             <div class="col-xl-3 col-md-6 mb-4">
               <div class="card border-left-warning shadow h-100 py-2">
+                <a class="text-xs font-weight-bold text-warning text-uppercase mb-1" href="summary.php" style="text-decoration: none;">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <a class="text-xs font-weight-bold text-warning text-uppercase mb-1" href="summary.php" style="text-decoration: none;"><i class="fa fa-clipboard fa-2x"></i>&emsp;Summary</a>
+                      <i class="fa fa-clipboard fa-2x"></i>&emsp;Summary
                     </div>   
                   </div>
                 </div>
+                </a>
               </div>
             </div>
           </div>
@@ -77,7 +85,7 @@
      $yesterday2 = date('d/m/Y',strtotime('-3 day'));
      $yesterday3 = date('d/m/Y',strtotime('-4 day'));
     ?>
-    <table  class="table table-striped table-hover paginate" style="display:block;overflow-y:scroll;text-align: center;">
+    <table  class="table table-striped table-hover paginate" style="display:block;overflow-y:scroll;text-align: center;" id="valuationTable">
   <thead class="thead-dark">
     <tr>
       <th scope="col" width="3%">Batch #</th>
@@ -114,10 +122,10 @@
       <td ><?php echo $closing; ?></td>
       <td ><?php echo $damaged; ?></td>
       <td ><?php echo $bp; ?></td>
-      <td ><?php echo $value; ?></td>
+      <td id="value<?php echo $count; ?>"><?php echo $value; ?></td>
     </tr>
     <?php
-    if ($closing > $purchase) {
+   /* if ($closing > $purchase) {
       $row2 = mysqli_fetch_array($previousValuation);
       $id2 = $row2['sfid'];
          $name2 = $row2['sname'];
@@ -137,9 +145,13 @@
       <td ><?php echo $value2; ?></td>
     </tr>
     <?php
-    }
+    }*/
     }
     ?>
+    <tr>
+      <th colspan="6">Total Stock Value</th>
+      <td id="totalStockValue"></td>
+    </tr>
   </tbody>
 </table>
         

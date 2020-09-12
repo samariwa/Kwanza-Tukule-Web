@@ -164,8 +164,11 @@ elseif ($where == 'deliverer') {
     $staffId = $_POST['staffId'];
     $nationalId = $_POST['nationalId'];
     $salary = $_POST['salary'];
+    $kra = $_POST['kra'];
+    $nssf = $_POST['nssf'];
+    $nhif = $_POST['nhif'];
     $figure = str_replace("Ksh. ","",$salary);
-mysqli_query($connection,"UPDATE `users` SET `number` = '".$contact."',`staffID` = '".$staffId."',`nationalID` = '".$nationalId."',`salary` = '".$figure."' WHERE `id` = '".$id."'")or die($connection->error);
+mysqli_query($connection,"UPDATE `users` SET `number` = '".$contact."',`staffID` = '".$staffId."',`nationalID` = '".$nationalId."',`KRA` = '".$kra."',`NSSF` = '".$nssf."',`NHIF` = '".$nhif."',`salary` = '".$figure."' WHERE `id` = '".$id."'")or die($connection->error);
 }
 elseif ($where == 'cook') {
   $id = $_POST['id'];
@@ -173,8 +176,11 @@ elseif ($where == 'cook') {
     $staffId = $_POST['staffId'];
     $nationalId = $_POST['nationalId'];
     $salary = $_POST['salary'];
+    $kra = $_POST['kra'];
+    $nssf = $_POST['nssf'];
+    $nhif = $_POST['nhif'];
     $figure = str_replace("Ksh. ","",$salary);
-mysqli_query($connection,"UPDATE `users` SET `number` = '".$contact."',`staffID` = '".$staffId."',`nationalID` = '".$nationalId."',`salary` = '".$figure."' WHERE `id` = '".$id."'")or die($connection->error);
+mysqli_query($connection,"UPDATE `users` SET `number` = '".$contact."',`staffID` = '".$staffId."',`nationalID` = '".$nationalId."',`KRA` = '".$kra."',`NSSF` = '".$nssf."',`NHIF` = '".$nhif."',`salary` = '".$figure."' WHERE `id` = '".$id."'")or die($connection->error);
 }
 elseif ($where == 'office') {
   $id = $_POST['id'];
@@ -182,12 +188,15 @@ elseif ($where == 'office') {
     $staffId = $_POST['staffId'];
     $nationalId = $_POST['nationalId'];
     $salary = $_POST['salary'];
+    $kra = $_POST['kra'];
+    $nssf = $_POST['nssf'];
+    $nhif = $_POST['nhif'];
     $role = $_POST['role'];
     $result1 = mysqli_query($connection,"SELECT id FROM jobs where Name like '%$role%';")or die($connection->error);
     $row = mysqli_fetch_array($result1);
     $position = $row['id'];
     $figure = str_replace("Ksh. ","",$salary);
-mysqli_query($connection,"UPDATE `users` SET `number` = '".$contact."',`staffID` = '".$staffId."',`nationalID` = '".$nationalId."',`salary` = '".$figure."' ,`Job_id` = '".$position."' WHERE `id` = '".$id."'")or die($connection->error);
+mysqli_query($connection,"UPDATE `users` SET `number` = '".$contact."',`staffID` = '".$staffId."',`nationalID` = '".$nationalId."',`KRA` = '".$kra."',`NSSF` = '".$nssf."',`NHIF` = '".$nhif."',`salary` = '".$figure."' ,`Job_id` = '".$position."' WHERE `id` = '".$id."'")or die($connection->error);
 }
 elseif ($where == 'publicNote') {
   $id = $_POST['id'];
