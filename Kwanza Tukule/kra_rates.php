@@ -115,7 +115,7 @@
 </table><br>
         <div class="row">
           <div class="col-md-12 offset-3">
-           <p>For more information or queries, <a href="https://www.kra.go.ke/en/individual/filing-paying/types-of-taxes/paye">Visit KRA Website <i class="fa fa-globe"></i></a></p>
+           <p>For more information or queries, <a href="https://www.kra.go.ke/en/individual/filing-paying/types-of-taxes/paye">Visit KRA Page <i class="fa fa-globe"></i></a></p>
          </div>
         </div>
 

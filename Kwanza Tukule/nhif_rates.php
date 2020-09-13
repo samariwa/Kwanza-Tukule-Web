@@ -83,137 +83,85 @@
             </div>
     </div><br>
     
-        <table  class="table table-striped table-hover" style="display:block;overflow-y:scroll;text-align: center;">
+        <table  class="table table-striped table-hover" style="overflow-y:scroll;text-align: center;">
   <thead class="thead-dark">
     <tr>
-      <th scope="col" width="5%">Select</th>
-      <th scope="col" width="3%">Staff #</th>
-      <th scope="col" width="14%">Name</th>
-      <th scope="col" width="12%">Gross Income</th>
-      <th scope="col" width="17%">KRA Deduction</th>
-      <th scope="col" width="10%">NSSF Deduction</th>
-      <th scope="col"width="10%">NHIF Deduction</th>
-      <th scope="col"width="10%">Payable Income</th>
+      <th scope="col" width="60%">Employee Earning Groups</th>  
+      <th scope="col" width="40%">Amount Payable</th>    
     </tr>
   </thead>
   <tbody >
-    <?php
-        $count = 0;
-        foreach($employeesList as $row){
-         $count++;
-         $id = $row['staffID'];
-         $firstname = $row['firstname'];
-        $lastname = $row['lastname'];
-        $salary = $row['salary'];
-        $KRA = $row['KRA'];
-        $NSSF = $row['NSSF'];
-        $NHIF = $row['NHIF'];
-        $kra = 0;
-        if($KRA != ''){
-        if ($salary > 0 && $salary <= 24000) {
-          $kra = 0.1 * $salary;
-        }
-        else if ($salary >= 24001 && $salary <= 40667) {
-          $kra = 0.15 * $salary;
-        }
-        else if ($salary >= 40668 && $salary <= 57333) {
-          $kra = 0.2 * $salary;
-        }
-        else if ($salary >= 57334 ) {
-          $kra = 0.25 * $salary;
-        }
-        }
-        $nssf = 0;
-        if($NSSF != ''){
-        if ($salary > 0 && $salary < 3000) {
-          $nssf = 0;
-        }
-        else if ($salary >= 3000 && $salary < 4500) {
-          $nssf = 180;
-        }
-        else if ($salary >= 4500 && $salary < 6000) {
-          $nssf = 270;
-        }
-        else if ($salary >= 6000 ) {
-          $nssf = 360;
-        }
-        }
-        $nhif = 0;
-        if($NHIF != ''){
-        if ($salary > 0 && $salary <= 5999) {
-          $nhif = 150;
-        }
-        else if ($salary >= 6000 && $salary <= 7999) {
-          $nhif = 300;
-        }
-        else if ($salary >= 8000 && $salary <= 11999) {
-          $nhif = 400;
-        }
-        else if ($salary >= 12000 && $salary <= 14999) {
-          $nhif = 500;
-        }
-        else if ($salary >= 15000 && $salary <= 19999) {
-          $nhif = 600;
-        }
-        else if ($salary >= 20000 && $salary <= 24999) {
-          $nhif = 750;
-        }
-        else if ($salary >= 25000 && $salary <= 29999) {
-          $nhif = 850;
-        }
-        else if ($salary >= 30000 && $salary <= 34999) {
-          $nhif = 900;
-        }
-        else if ($salary >= 35000 && $salary <= 39999) {
-          $nhif = 950;
-        }
-        else if ($salary >= 40000 && $salary <= 44999) {
-          $nhif = 1000;
-        }
-        else if ($salary >= 45000 && $salary <= 49999) {
-          $nhif = 1100;
-        }
-        else if ($salary >= 50000 && $salary <= 59999) {
-          $nhif = 1200;
-        }
-        else if ($salary >= 60000 && $salary <= 69999) {
-          $nhif = 1300;
-        }
-        else if ($salary >= 70000 && $salary <= 79999) {
-          $nhif = 1400;
-        }
-        else if ($salary >= 80000 && $salary <= 89999) {
-          $nhif = 1500;
-        }
-        else if ($salary >= 90000 && $salary <= 99999) {
-          $nhif = 1600;
-        }
-        else if ($salary >= 100000 ) {
-          $nhif = 1700;
-        }
-        }
-        $net = $salary - $kra - $nssf - $nhif;
-      ?>
     <tr>
-      <td ><input type="radio" id='selectedCustomer' onclick="selectCustomer(this);" name="selectedCustomer" value="<?php echo $id; ?>"></td>
-      <th scope="row" id="id<?php echo $id; ?>"><?php echo $id; ?></th>
-      <td id="name<?php echo $id; ?>"><?php echo $firstname .' '. $lastname; ?></td>
-      <td id="gross<?php echo $id; ?>">Kshs. <?php echo $salary ?></td>
-      <td id="kra<?php echo $id; ?>">Kshs. <?php echo $kra; ?></td>
-      <td id="nssf<?php echo $id; ?>">Kshs. <?php echo $nssf; ?></td>
-      <td id="nhif<?php echo $id; ?>">Kshs. <?php echo $nhif; ?></td>
-      <td id="net<?php echo $id; ?>">Kshs. <?php echo $net; ?></td>
+      <td>Ksh. 0 - Ksh. 5,999</td>
+      <td>Ksh. 150</td>
     </tr>
-    <?php
-    }
-    ?>
+    <tr>
+      <td>Ksh. 6,000 - Ksh. 7,999</td>
+      <td>Ksh. 300</td>
+    </tr>
+    <tr>
+      <td>Ksh. 8,000 - Ksh. 11,999</td>
+      <td>Ksh. 400</td>
+    </tr>
+    <tr>
+      <td>Ksh. 12,000 - Ksh. 14,999</td>
+      <td>Ksh. 500</td>
+    </tr>
+   <tr>
+     <td>Ksh. 15,000 - Ksh. 19,999</td>
+      <td>Ksh. 600</td>
+    </tr>
+   <tr>
+      <td>Ksh. 20,000 - Ksh. 24,999</td>
+      <td>Ksh. 750</td>
+    </tr>
+    <tr>
+      <td>Ksh. 25,000 - Ksh. 29,999</td>
+      <td>Ksh. 850</td>
+    </tr>
+    <tr>
+      <td>Ksh. 30,000 - Ksh. 34,999</td>
+      <td>Ksh. 950</td>
+    </tr>
+    <tr>
+      <td>Ksh. 40,000 - Ksh. 44,999</td>
+      <td>Ksh. 1,000</td>
+    </tr>
+    <tr>
+      <td>Ksh. 45,000 - Ksh. 49,999</td>
+      <td>Ksh. 1,100</td>
+    </tr>
+    <tr>
+      <td>Ksh. 50,000 - Ksh. 59,999</td>
+      <td>Ksh. 1,200</td>
+    </tr>
+    <tr>
+      <td>Ksh. 60,000 - Ksh. 69,999</td>
+      <td>Ksh. 1,300</td>
+    </tr>
+    <tr>
+      <td>Ksh. 70,000 - Ksh. 79,999</td>
+      <td>Ksh. 1,400</td>
+    </tr>
+    <tr>
+      <td>Ksh. 80,000 - Ksh. 89,999</td>
+      <td>Ksh. 1,500</td>
+    </tr>
+    <tr>
+      <td>Ksh. 90,000 - Ksh. 99,999</td>
+      <td>Ksh. 1,600</td>
+    </tr>
+    <tr>
+      <td>Ksh. 100,000 and above</td>
+      <td>Ksh. 1,700</td>
+    </tr>
   </tbody>
 </table><br>
         <div class="row">
-          <div class="col-md-2 offset-5">
-           <button class="btn btn-success btn-block active printPayslip" role="button" aria-pressed="true"><i class="fa fa-print"></i>&ensp;Print Pay Slip</button>
+          <div class="col-md-10 offset-1">
+           <p>They above is the payment criteria for employed members only. Self-employed/voluntary members pay Ksh. 500 per month. For more information or queries, <a href="http://www.nhif.or.ke/healthinsurance/">Visit NHIF Page <i class="fa fa-globe"></i></a></p>
          </div>
-        </div><br><br>
+        </div>
 
   <!-- Scroll to Top Button-->
   <?php include "admin_footer.php" ?> 

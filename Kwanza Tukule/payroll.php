@@ -225,9 +225,9 @@
   </tbody>
 </table><br>
         <div class="row">
-          <div class="col-md-2 offset-5">
+      
            <button class="btn btn-success btn-block active printPayslip" role="button" aria-pressed="true"><i class="fa fa-print"></i>&ensp;Print Pay Slip</button>
-         </div>
+        
         </div><br><br>
 
   <!-- Scroll to Top Button-->
