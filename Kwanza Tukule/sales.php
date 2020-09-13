@@ -194,7 +194,7 @@
         <?php
         }
         ?>
-      <table id="salesEditableLastMonth" class="table table-striped table-hover table-responsive  paginate" style="display:block;overflow-x:scroll;overflow-y:scroll;text-align: center;">
+      <table id="salesEditableLastMonth" class="table table-striped table-hover table-responsive  paginate" style="overflow-x:scroll;overflow-y:scroll;text-align: center;">
       <caption>Sales Done This Month</caption>
   <thead class="thead-dark">
     <tr>
@@ -1032,8 +1032,8 @@
         <?php
         }
         ?>
-      <table id="salesEditableLastMonth" class="table table-striped table-hover table-responsive  paginate" style="display:block;overflow-x:scroll;overflow-y:scroll;text-align: center;">
-      <caption>Sales Done This Month</caption>
+      <table id="salesEditableLastMonth" class="table table-striped table-hover table-responsive  paginate" style="overflow-x:scroll;overflow-y:scroll;text-align: center;">
+      <caption>Sales For Coming Month</caption>
   <thead class="thead-dark">
     <tr>
      <th scope="col" width="5%">#</th>

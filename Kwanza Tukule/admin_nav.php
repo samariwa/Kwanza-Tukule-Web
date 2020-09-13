@@ -316,7 +316,7 @@ Preloader
         </a>
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Categories:</h6>
+            <h6 class="collapse-header">Departments:</h6>
             <a class="collapse-item" href="deliverers.php">Deliverers</a>
             <a class="collapse-item" href="office.php">Office</a>
             <a class="collapse-item" href="cooks.php">Cooks</a>

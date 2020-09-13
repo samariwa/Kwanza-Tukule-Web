@@ -486,6 +486,19 @@ setTime();
          });
        });
 
+   $(document).ready(function(){
+         $("#employeePayslipSearch").DataTable({
+          "ordering": false,
+          "pageLength": 5,
+          "lengthChange": false,
+          "info": false,
+           "oLanguage": {
+            "sSearch": "<i class='fa fa-search'></i>&ensp;Employee Search:",
+            "sZeroRecords": "Customer Not Found"
+          }
+         });
+       });
+
     $(document).ready(function(){
          $("#productOrderSearch").DataTable({
           "ordering": false,

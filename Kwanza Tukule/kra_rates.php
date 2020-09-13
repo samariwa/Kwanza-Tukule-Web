@@ -6,7 +6,7 @@
         <div class="container-fluid">
   <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Dashboard <span style="font-size: 18px;">/Sales</span><span style="font-size: 15px;"> /Goods Distribution</span></h1>
+            <h1 class="h3 mb-0 text-gray-800">Dashboard <span style="font-size: 18px;">/Staff</span><span style="font-size: 15px;"> /Employee Payroll</span><span style="font-size: 12px;"> /KRA Tax Rates</span></h1>
            <h6 class="h6 mb-0 text-gray-600 mr-3">Time: <span id="time"></span></h6>
           </div>
 
@@ -46,7 +46,7 @@
             <!-- Earnings (Monthly) Card Example -->
             <div class="col-xl-3 col-md-6 mb-4">
               <div class="card border-left-info shadow h-100 py-2">
-                <a class="text-xs font-weight-bold text-info text-uppercase mb-1" href="#" style="text-decoration: none;">
+                <a class="text-xs font-weight-bold text-info text-uppercase mb-1" href="sales.php" style="text-decoration: none;">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
@@ -75,47 +75,49 @@
           </div>
 
          <div class="row">
-      <a href="sales.php" class="btn btn-primary btn-md active float-left ml-3" role="button" aria-pressed="true"><i class="fa fa-arrow-left"></i>&ensp;Back</a>
-    </div><br><br>
-     <div class="row">
-      <div class="col-md-10 offset-1">
-        <h6 class="col-md-10 offset-1">To print tomorrow's distribution list, enter deliverer's name and click the 'Print button'. Otherwise include point in time from which the distribution list should be printed.</h6><br>
-        </div>
-     </div>
+          <div class="col-md-2">
+            <a href="payroll.php" class="btn btn-primary btn-md active float-left ml-3" role="button" aria-pressed="true"><i class="fa fa-arrow-left"></i>&ensp;Back</a>
+            </div>
+            <div class="col-md-8">
+              <h6 class="offset-4">Latest PAYE Rates Issued.</h6>
+            </div>
+    </div><br>
+     
+        <table  class="table table-striped table-hover" style="overflow-y:scroll;text-align: center;">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col" width="60%">Taxable Income Brackets</th>
+      <th scope="col" width="40%">Tax Rate</th>
+    </tr>
+  </thead>
+  <tbody >  
+    <tr>
+      <td>Ksh. 0 - Ksh. 24,000</td>
+      <td>10%</td>
+    </tr>
+    <tr>
+      <td>Ksh. 24,001 - Ksh. 40,667</td>
+      <td>15%</td>
+    </tr>
+    <tr>
+      <td>Ksh. 40,668 - Ksh. 57,333</td>
+      <td>20%</td>
+    </tr>
+    <tr>
+      <td>Ksh. 35,473 - Ksh. 47,059</td>
+      <td>25%</td>
+    </tr>
+    <tr>
+      <td>Above Ksh. 57,333</td>
+      <td>25%</td>
+    </tr>
+  </tbody>
+</table><br>
         <div class="row">
-          <div class="col-md-7 offset-2">
-                 <select type="text" name="deliverer" id="deliverer" class="form-control col-md-12 " style="padding-right:15px;padding-left:15px;" required onfocus='this.size=3;' onblur='this.size=1;' onchange='this.size=1; this.blur();' required>
-                  <option value="" selected="selected" disabled>Deliverer...</option>
-                  <?php
-                    $count = 0;
-                    foreach($deliverersStaffList as $row){
-                     $count++;
-                    $driver = $row['firstname'];
-                  ?>
-                   <option value="<?php echo $driver; ?>"><?php echo $driver; ?></option>
-                  <?php
-                    }
-                  ?>
-                 </select>
-                 </div>
-                  </div><br><br>
-
-        <div class="row">
-          <div class="col-md-7 offset-2">
-           <div class="input-group mb-3">
-          <div class="input-group-prepend" >
-           <span class="input-group-text" id="inputGroup-sizing-default">Point in Time:</span>
-           </div>
-         <input type="text" class="form-control col-md-12" aria-label="Default" aria-describedby="inputGroup-sizing-default" style="font-family: FontAwesome, Arial; font-style: normal;"  name="time" id="distributionTime">
-       </div>
-       </div>
-        </div><br>
-
-        <div class="row">
-          <div class="col-md-2 offset-5">
-           <button class="btn btn-light btn-md active printDistribution" role="button" aria-pressed="true"><i class="fa fa-print"></i>&ensp;Print</button>
+          <div class="col-md-12 offset-3">
+           <p>For more information or queries, <a href="https://www.kra.go.ke/en/individual/filing-paying/types-of-taxes/paye">Visit KRA Website <i class="fa fa-globe"></i></a></p>
          </div>
-        </div><br><br>
+        </div>
 
   <!-- Scroll to Top Button-->
   <?php include "admin_footer.php" ?> 

@@ -242,8 +242,6 @@
     </div><br> 
             <?php
           }
-       ?>   
-       <?php
         $stockrowcount = mysqli_num_rows($stockList);
       ?>
       <div class="offset-2"><h6 class="offset-4">Total Number: <?php echo $stockrowcount; ?></h6></div>
