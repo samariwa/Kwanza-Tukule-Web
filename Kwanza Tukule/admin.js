@@ -486,6 +486,19 @@ setTime();
          });
        });
 
+    $(document).ready(function(){
+         $("#sellerRequisitionSearch").DataTable({
+          "ordering": false,
+          "pageLength": 5,
+          "lengthChange": false,
+          "info": false,
+           "oLanguage": {
+            "sSearch": "<i class='fa fa-search'></i>&ensp;Seller Search:",
+            "sZeroRecords": "Seller Not Found"
+          }
+         });
+       });
+
    $(document).ready(function(){
          $("#employeePayslipSearch").DataTable({
           "ordering": false,
@@ -494,13 +507,26 @@ setTime();
           "info": false,
            "oLanguage": {
             "sSearch": "<i class='fa fa-search'></i>&ensp;Employee Search:",
-            "sZeroRecords": "Customer Not Found"
+            "sZeroRecords": "Employee Not Found"
           }
          });
        });
 
     $(document).ready(function(){
          $("#productOrderSearch").DataTable({
+          "ordering": false,
+          "pageLength": 5,
+          "lengthChange": false,
+          "info": false,
+           "oLanguage": {
+          "sSearch": "<i class='fa fa-search'></i>&ensp;Product Search:",
+          "sZeroRecords": "Product Not Found"
+        }
+         });
+       });
+
+    $(document).ready(function(){
+         $("#productSalesSearch").DataTable({
           "ordering": false,
           "pageLength": 5,
           "lengthChange": false,
@@ -703,6 +729,29 @@ function selectCustomer(selection) {
           }
 }
 
+var sellerArr = new Array();
+function selectSeller(selection) {
+        var id = selection.value;
+        sellerArr.push(id);
+        var name = $(`#sellerName${id}`).text();
+        var number = $(`#sellerNumber${id}`).text();
+        var vehicle = $(`#sellerVehicle${id}`).text();
+        var route = $(`#sellerRoute${id}`).text();
+        var sellerDetails = "";
+        sellerDetails += "<h5>Confirm Seller Details</h5>&emsp;&emsp;-";
+            sellerDetails += "&emsp;&emsp;Name: ";
+            sellerDetails += name;
+             sellerDetails += "<br>&emsp;&emsp;&emsp;&emsp;&ensp;Contact: ";
+            sellerDetails += number;
+            sellerDetails += "<br>&emsp;&emsp;&emsp;&emsp;&ensp;Vehicle: ";
+            sellerDetails += vehicle;
+             sellerDetails += "<br>&emsp;&emsp;&emsp;&emsp;&ensp;Route: ";
+            sellerDetails += route;
+            if ($('#sellerDetails').html('')){
+            $("#sellerDetails").append(sellerDetails);
+          }
+}
+
        var cartItems = new Array();
        function cartArray(Id){
           var id = Id;
@@ -878,6 +927,28 @@ function getIndexOfProduct(arr, k) {
           alert("Order Successfully Added");
       }
 
+      $(document).ready(function(){
+        $('.completeRequisition').click(function(){
+            completeSalesBalance(sellerArr[0],cartItems);
+        });
+      });
+
+      function completeSalesBalance(sellerID,cartArr){
+        for (var i = 0; i < cartArr.length; i++) {
+          var stockID = cartArr[i][0];
+          $.post("add.php",{where:'sales',price:cartArr[i][2],quantity:cartArr[i][3], discount:cartArr[i][4] ,seller:sellerID, stockid:cartArr[i][0]},
+          function(result){
+            if (result=='success') {
+                cartArr.shift();
+            }
+            else if(result=='unavailable'){
+                alert("Quantity for stock id "+ stockID +" reduced below ordered quantity in ordering process. Order for the prodcust could not be completed.");
+            }
+          });
+        }
+          alert("Requisition Successfully Completed");
+      }
+
       function fineCustomerLastMonth(idx){
            var id = idx;
            var balance = $(`#balanceLastMonth${id}`).text();
@@ -950,6 +1021,25 @@ function getIndexOfProduct(arr, k) {
       }});
        }
 
+       function deleteSalesLastMonth(sale,idx){
+        var id = idx;
+        var el = sale;
+        var cost = $(`#costLastMonth${id}`).text();
+        var where = 'sales';
+            bootbox.confirm('Do you really want to delete the selected product from the sales?',function(result)
+        {if(result){
+          $.post("delete.php",{id:id,cost:cost,where:where},
+        function(result){
+            if(result == 1){
+              $(el).closest('tr').css('background','tomato');
+              $(el).closest('tr').fadeOut(800,function(){
+                $(this).remove();
+              });
+            }
+        });
+      }});
+       }
+
        function deleteOrderNextMonth(order,idx){
         var id = idx;
         var el = order;
@@ -988,12 +1078,50 @@ function getIndexOfProduct(arr, k) {
       }});
        }
 
+       function deleteSalesYesterday(sale,idx){
+        var id = idx;
+        var el = sale;
+        var cost = $(`#costYesterday${id}`).text();
+        var where = 'sales';
+            bootbox.confirm('Do you really want to delete the selected product from the sales?',function(result)
+        {if(result){
+          $.post("delete.php",{id:id,cost:cost,where:where},
+        function(result){
+            if(result == 1){
+              $(el).closest('tr').css('background','tomato');
+              $(el).closest('tr').fadeOut(800,function(){
+                $(this).remove();
+              });
+            }
+        });
+      }});
+       }
+
        function deleteOrderToday(order,idx){
         var id = idx;
         var el = order;
         var cost = $(`#costToday${id}`).text();
         var where = 'order';
             bootbox.confirm('Do you really want to delete the selected order?',function(result)
+        {if(result){
+          $.post("delete.php",{id:id,cost:cost,where:where},
+        function(result){
+            if(result == 1){
+              $(el).closest('tr').css('background','tomato');
+              $(el).closest('tr').fadeOut(800,function(){
+                $(this).remove();
+              });
+            }
+        });
+      }});
+       }
+
+       function deleteSalesToday(sale,idx){
+        var id = idx;
+        var el = sale;
+        var cost = $(`#costToday${id}`).text();
+        var where = 'sales';
+            bootbox.confirm('Do you really want to delete the selected product from the sales?',function(result)
         {if(result){
           $.post("delete.php",{id:id,cost:cost,where:where},
         function(result){
@@ -1249,6 +1377,26 @@ $('#officeEditable').editableTableWidget();
   });
 });
 
+   $('#extraSalesEditableLastMonth').editableTableWidget();
+  $('#extraSalesEditableLastMonth td.uneditable').on('change', function(evt, newValue) {
+  return false;
+});
+  $('#extraSalesEditableLastMonth td').on('change', function(evt, newValue) {
+   var rowx = parseInt(evt.target._DT_CellIndex.row)+1;
+  var id = $(`#idLastMonth${rowx}`).text();
+  var qty = $(`#qtyLastMonth${rowx}`).text();
+  var mpesa = $(`#mpesaLastMonth${rowx}`).text();
+  var cash = $(`#cashLastMonth${rowx}`).text();
+  var banked = $(`#bankedLastMonth${rowx}`).text();
+  var slip = $(`#slipLastMonth${rowx}`).text();
+  var banker = $(`#bankerLastMonth${rowx}`).text();
+  var where = 'sales';
+  $.post("save.php",{id:id,qty:qty,mpesa:mpesa,cash:cash,banked:banked,slip:slip,banker:banker,where:where},
+  function(result){
+    location.reload(true);
+  });
+});
+
   $('#salesEditableNextMonth').editableTableWidget();
   $('#salesEditableNextMonth td.uneditable').on('change', function(evt, newValue) {
   return false;
@@ -1291,6 +1439,26 @@ $('#officeEditable').editableTableWidget();
   });
 });
 
+$('#extraSalesEditableYesterday').editableTableWidget();
+  $('#extraSalesEditableYesterday td.uneditable').on('change', function(evt, newValue) {
+  return false;
+});
+  $('#extraSalesEditableYesterday td').on('change', function(evt, newValue) {
+   var rowx = parseInt(evt.target._DT_CellIndex.row)+1;
+  var id = $(`#idYesterday${rowx}`).text();
+  var qty = $(`#qtyYesterday${rowx}`).text();
+  var mpesa = $(`#mpesaYesterday${rowx}`).text();
+  var cash = $(`#cashYesterday${rowx}`).text();
+  var banked = $(`#bankedYesterday${rowx}`).text();
+  var slip = $(`#slipYesterday${rowx}`).text();
+  var banker = $(`#bankerYesterday${rowx}`).text();
+  var where = 'sales';
+  $.post("save.php",{id:id,qty:qty,mpesa:mpesa,cash:cash,banked:banked,slip:slip,banker:banker,where:where},
+  function(result){
+    location.reload(true);
+  });
+});
+
   $('#salesEditableToday').editableTableWidget();
   $('#salesEditableToday td.uneditable').on('change', function(evt, newValue) {
   return false;
@@ -1307,6 +1475,26 @@ $('#officeEditable').editableTableWidget();
   var banker = $(`#bankerToday${rowx}`).text();
   var where = 'orders';
   $.post("save.php",{id:id,qty:qty,mpesa:mpesa,cash:cash,date:date,banked:banked,slip:slip,banker:banker,where:where},
+  function(result){
+    location.reload(true);
+  });
+});
+
+  $('#extraSalesEditableToday').editableTableWidget();
+  $('#extraSalesEditableToday td.uneditable').on('change', function(evt, newValue) {
+  return false;
+});
+  $('#extraSalesEditableToday td').on('change', function(evt, newValue) {
+   var rowx = parseInt(evt.target._DT_CellIndex.row)+1;
+  var id = $(`#idToday${rowx}`).text();
+  var qty = $(`#qtyToday${rowx}`).text();
+  var mpesa = $(`#mpesaToday${rowx}`).text();
+  var cash = $(`#cashToday${rowx}`).text();
+  var banked = $(`#bankedToday${rowx}`).text();
+  var slip = $(`#slipToday${rowx}`).text();
+  var banker = $(`#bankerToday${rowx}`).text();
+  var where = 'sales';
+  $.post("save.php",{id:id,qty:qty,mpesa:mpesa,cash:cash,banked:banked,slip:slip,banker:banker,where:where},
   function(result){
     location.reload(true);
   });

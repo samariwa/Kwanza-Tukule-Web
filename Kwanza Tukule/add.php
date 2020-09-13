@@ -379,4 +379,140 @@ elseif ($where=='order') {
   }
   
 }
+elseif ($where=='sales') {
+  $balance = "";
+  $category="";
+  $price = $_POST['price'];
+  $discount = $_POST['discount'];
+  $quantity = $_POST['quantity'];
+  $staffID = $_POST['seller'];
+  $stockIDx = $_POST['stockid'];
+  $cost = $price - $discount;
+  $resx = mysqli_query($connection, "SELECT Category_id,Quantity FROM `stock` WHERE id='$stockIDx'");
+  while ($rowx = mysqli_fetch_array($resx)) {
+    $category = $rowx['Category_id'];
+    $qty = $rowx['Quantity'];
+  }
+  if($qty < $quantity){
+     echo 'unavailable';
+     exit();
+  }
+  $result  = mysqli_query($connection, "SELECT Balance FROM `sales` WHERE Staff_id='$staffID' ORDER BY id DESC");
+  $count = 0;
+  while($row = mysqli_fetch_array($result)) {
+    if ($count==0) {
+      $balance = $row['Balance'];
+    }
+      $count++;
+  }
+  $newDebt = $balance;
+  $newBalance = (int)$newDebt - ((int)$cost*(int)$quantity);
+  $sql = "INSERT INTO `sales`(`Staff_id`,`Category_id`,`Quantity`,`Debt`,`Discount`,`Balance`,`Stock_id`) VALUES('$staffID','$category','$quantity','$newDebt','$discount','$newBalance','$stockIDx')";
+  $product = mysqli_query($connection,"SELECT Name,Category_Name  FROM `stock` inner join category on stock.Category_id = category.id WHERE stock.id = '".$stockIDx."'")or die($connection->error);
+   $Product = mysqli_fetch_array($product);
+  $Category_Name = $Product['Category_Name'];
+  $Stock_Name = $Product['Name'];
+  if( $Category_Name != 'Cereals'){
+  mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = Quantity - '".$quantity."' WHERE `id` = '".$stockIDx."'")or die($connection->error);
+  }
+  if( $Category_Name == 'Cereals'){
+  $cereal_qty = '';
+  $wairimu_qty = '';
+  $maize_qty = '';
+  $githeri_qty = '';
+  if( strpos($Stock_Name, 'Yellow Beans') !== false ){
+  $yellow_qty = $quantity * 0.9682;
+  $cereal_qty = round($yellow_qty, 2);
+  }
+  if( strpos($Stock_Name, 'Nyayo Beans') !== false ){
+  $nyayo_qty = $quantity * 0.76;
+  $cereal_qty = round($nyayo_qty, 2);
+  }
+  if( strpos($Stock_Name, 'Njahe') !== false ){
+  $njahe_qty = $quantity * 0.75;
+  $cereal_qty = round($njahe_qty, 2);
+  }
+  if( strpos($Stock_Name, 'Mbaazi') !== false ){
+  $mbaazi_qty = $quantity * 0.92;
+  $cereal_qty = round($mbaazi_qty, 2);
+  }
+  if( strpos($Stock_Name, 'Githeri') !== false ){
+  $wairimu_qty = $quantity * 0.55;
+  $maize_qty = $quantity * 0.3;
+  $wairimu_maize_qty = $wairimu_qty + $maize_qty;
+  $githeri_qty = round($wairimu_maize_qty, 2);
+  }
+  if( strpos($Stock_Name, 'Dengu') !== false ){
+   $dengu_qty = $quantity * 0.6667;
+   $cereal_qty = round($dengu_qty, 2);
+  }
+  if( strpos($Stock_Name, 'Minji') !== false ){
+  $minji_qty = $quantity * 0.8155;
+  $cereal_qty = round($minji_qty, 2);
+  }
+  $cereals_check = mysqli_query($connection,"SELECT *  FROM `cooked_cereals` WHERE Stock_id = '".$stockIDx."' AND DATE(Delivery_date) = CURRENT_DATE() ")or die($connection->error);
+  $check_result = mysqli_fetch_array($cereals_check);
+  if ( $check_result != TRUE) {
+      mysqli_query($connection,"INSERT INTO `cooked_cereals` (`Stock_id`,`Quantity_Ordered`,`Quantity_Prepared`,`Returned`,`Quantity_Difference`,`Delivery_date`) VALUES ('$stockIDx','$quantity','$quantity','0','0','$lateOrder')") or die(mysqli_error($connection));
+   }
+   else{
+       mysqli_query($connection,"UPDATE `cooked_cereals`  SET `Quantity_Ordered` = Quantity_Ordered + '".$quantity."',`Quantity_Prepared` = Quantity_Prepared + '".$quantity."' WHERE `Stock_id` = '".$stockIDx."' AND `Delivery_date` = '$lateOrder'") or die(mysqli_error($connection));
+   }
+   if ($cereal_qty != '') {
+     mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = Quantity - '".$cereal_qty."' WHERE `id` = '".$stockIDx."'")or die($connection->error);
+   }
+   if ($githeri_qty != '' ) {
+    mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = Quantity - '".$githeri_qty."' WHERE `id` = '".$stockIDx."'")or die($connection->error);
+    mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = Quantity - '".$wairimu_qty."' WHERE `Name` LIKE '%Wairimu Beans%'")or die($connection->error);
+    mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = Quantity - '".$maize_qty."' WHERE `Name` LIKE '%Maize%'")or die($connection->error);
+   }
+  }
+  $Category = mysqli_query($connection,"SELECT Quantity,Restock_Level  FROM `stock` inner join category on stock.Category_id = category.id WHERE stock.id = '".$stockIDx."'")or die($connection->error);
+   $Name = mysqli_fetch_array($Category);
+   $Restock_Level = $Name['Restock_Level'];
+   if($Category_Name == 'Maize Flour' && strpos($Stock_Name, 'Pieces') !== false || $Category_Name == 'All Purpose Flour' && strpos($Stock_Name, 'Pieces') !== false){
+   $Qty = $Name['Quantity'];
+   if ($Qty < $Restock_Level) {
+     $Bundle_Name = str_replace("Pieces","Bundles",$Stock_Name);
+     $Bundle_Qty = mysqli_query($connection,"SELECT Quantity  FROM `stock` WHERE stock.Name = '".$Bundle_Name."'")or die($connection->error);
+   $bundle_qty = mysqli_fetch_array($Bundle_Qty);
+   $bundleQuantity = $bundle_qty['Quantity'];
+   if ($bundleQuantity <= 5) {
+     $newBundleQty = 0;
+     $newPiecesIncreament = $bundleQuantity * 12;
+     mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = '0' WHERE `Name` = '".$Bundle_Name."'")or die($connection->error);
+     mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = Quantity + '".$newPiecesIncreament."' WHERE `id` = '".$stockIDx."'")or die($connection->error);
+   }else{
+      $newBundleQty = $bundleQuantity - 5;
+      $newPiecesIncreament = 60;
+      mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = '$newBundleQty' WHERE `Name` = '".$Bundle_Name."'")or die($connection->error);
+     mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = Quantity + '60' WHERE `id` = '".$stockIDx."'")or die($connection->error);
+   }
+   }
+   }
+    if($Category_Name == 'Sugar' && strpos($Stock_Name, 'Packets') !== false){
+       $Qty = $Name['Quantity'];
+   if ($Qty < $Restock_Level) {
+     $Bag_Name = str_replace("Packets","Bag",$Stock_Name);
+     $Bag_Qty = mysqli_query($connection,"SELECT Quantity  FROM `stock` WHERE stock.Name = '".$Bag_Name."'")or die($connection->error);
+   $bag_qty = mysqli_fetch_array($Bag_Qty);
+   $bagQuantity = $bag_qty['Quantity'];
+   if ($bagQuantity <= 5) {
+     $newBagQty = 0;
+     $newPacketsIncreament = $bagQuantity * 12;
+     mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = '0' WHERE `Name` = '".$Bag_Name."'")or die($connection->error);
+     mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = Quantity + '".$newPacketsIncreament."' WHERE `id` = '".$stockIDx."'")or die($connection->error);
+   }else{
+      $newBagQty = $bagQuantity - 5;
+      $newPacketsIncreament = 60;
+      mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = '$newBagQty' WHERE `Name` = '".$Bag_Name."'")or die($connection->error);
+     mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = Quantity + '60' WHERE `id` = '".$stockIDx."'")or die($connection->error);
+   }
+   }
+    }
+  if (mysqli_query($connection, $sql) === TRUE) {
+    echo 'success';
+  }
+  
+}
  ?>

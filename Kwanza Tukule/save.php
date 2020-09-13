@@ -87,6 +87,41 @@ $result1 = mysqli_query($connection,"SELECT Customer_id,Quantity,Balance FROM or
      mysqli_query($connection,"UPDATE `customers`  SET `Status` = 'no delivery' WHERE `id` = '".$customer."'")or die($connection->error);
  }
     }
+    elseif ($where == 'sales') {
+  $id = $_POST['id'];
+$qty = $_POST['qty'];
+$mpesa = $_POST['mpesa'];
+$cash = $_POST['cash'];
+$banked = $_POST['banked'];
+$slip = $_POST['slip'];
+$banker = $_POST['banker'];
+$result2 = mysqli_query($connection,"select Stock_id, Debt, Quantity as Qty from  sales where id='".$id."';")or die($connection->error);
+   $row2 = mysqli_fetch_array($result2);
+    $old_Qty =  $row2['Qty'];
+    $Debt =  $row2['Debt'];
+    $stock_id = $row2['Stock_id'];
+    $result4 = mysqli_query($connection,"SELECT Price FROM (SELECT s.id as id,sf.Selling_price as Price, sf.Created_at,ROW_NUMBER() OVER (PARTITION BY s.id ORDER BY sf.Created_at DESC) as rn FROM stock s JOIN stock_flow sf ON s.id = sf.Stock_id ) q WHERE rn = 1 AND id = '$stock_id'")or die($connection->error);
+    $row4 = mysqli_fetch_array($result4);
+    $Price = $row4['Price'];
+     $cost = $Price * $qty;
+     $newBalance = $Debt-$cost+$mpesa+$cash;
+$result1 = mysqli_query($connection,"SELECT Staff_id,Quantity,Balance FROM sales where `id` = '".$id."'")or die($connection->error);
+    $row = mysqli_fetch_array($result1);
+    $Quantity = $row['Quantity'];
+    $oldBalance = $row['Balance'];
+    $staff = $row['Staff_id'];
+      $Returned = $Quantity - $qty;
+      mysqli_query($connection,"UPDATE `sales`  SET `Quantity` = '".$qty."',`Balance` = '".$newBalance."',`MPesa` = '".$mpesa."',`Cash` = '".$cash."',`Returned` = '".$Returned."',`Banked` = '".$banked."',`Slip_Number` = '".$slip."',`Banked_By` = '".$banker."' WHERE `id` = '".$id."'")or die($connection->error);
+      mysqli_query($connection,"update stock set Quantity= Quantity +".$Returned." WHERE `id` = '".$stock_id."'")or die($connection->error);
+      $result5 = mysqli_query($connection,"SELECT Category_Name FROM category join stock on category.id = stock.Category_id where stock.id = '".$stock_id."'")or die($connection->error);
+      $row5 = mysqli_fetch_array($result5);
+      $Cat_Name = $row5['Category_Name'];
+      if($Cat_Name == 'Cereals'){
+       mysqli_query($connection,"update cooked_cereals set Returned= Returned +".$Returned." WHERE `Stock_id` = '".$stock_id."' AND date(Delivery_date) = CURRENT_DATE()")or die($connection->error);
+      }
+      $difference = $oldBalance - $newBalance;
+    mysqli_query($connection,"UPDATE sales set Debt= Debt-'".$difference."', `Balance` = Balance -".$difference." WHERE Staff_id='".$staff."' and id >'".$id."' ;")or die($connection->error);
+    }
 elseif ($where == 'fine') {
 	$id = $_POST['id'];
 	$balance = $_POST['balance'];
