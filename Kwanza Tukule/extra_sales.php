@@ -385,7 +385,6 @@
         ?>
       <td class="editable" id="mpesaYesterday<?php echo $count; ?>"><?php echo $mpesa; ?></td>
       <td class="editable" id="cashYesterday<?php echo $count; ?>"><?php echo $cash; ?></td>
-      <td class="uneditable" id="fineYesterday<?php echo $count; ?>"><?php echo $fine; ?></td>
       <td class="uneditable" id="balanceYesterday<?php echo $id; ?>"><?php echo $balance; ?></td>
       <td class="uneditable" id="returnedYesterday<?php echo $count; ?>"><?php echo $returned; ?></td>
       <td class="editable" id="bankedYesterday<?php echo $count; ?>"><?php echo $banked; ?></td>
@@ -536,12 +535,138 @@
   </tbody>
 </table>
     </div>  
+    <div id="menu4" class="tab-pane fade">
+        <?php
+        $ordersrowcount = mysqli_num_rows($extraSalesListTomorrow);
+      ?>
+      <div class="row">
+         <div class="col-md-12">
+      <h6 class="offset-5">Total Number: <?php echo $ordersrowcount; ?></h6>
+    </div>
+      </div> 
+      <table id="extraSalesEditableTomorrow" class="table table-striped table-hover table-responsive  paginate" style="display:block;overflow-x:scroll;overflow-y:scroll;text-align: center;">
+      <caption>Goods Requested for tomorrow</caption>
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col" width="5%">#</th>
+      <th scope="col" width="5%">Sales Person</th>
+      <th scope="col" width="10%">Contact No.</th>
+      <th scope="col" width="20%">Product</th>
+      <th scope="col"width="5%">Quantity</th>
+      <th scope="col"width="5%">Cost</th>
+      <th scope="col"width="5%">Discount</th>
+      <th scope="col"width="5%">C/F/Debt</th>
+      <?php
+       if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO') {
+
+        ?>
+      <th scope="col"width="5%">MPesa</th>
+      <th scope="col"width="5%">Cash</th>
+      <th scope="col"width="5%">Balance</th>
+      <th scope="col"width="5%">Returned</th>
+      <th scope="col"width="5%">Banked</th>
+      <th scope="col"width="5%">Slip No.</th>
+      <th scope="col"width="5%">Banked By</th>
+      <th scope="col"width="30%"></th>
+      <?php
+       }
+      ?>
+    </tr>
+  </thead>
+  <tbody >
+    <?php
+        $count = 0;
+        foreach($extraSalesListTomorrow as $row){
+         $count++;
+         $id = $row['id'];
+        $firstname = $row['firstname'];
+        $lastname = $row['lastname'];
+        $contact = $row['Number'];
+        $product = $row['name'];
+        $qty = $row['Quantity'];
+        $selling_price = mysqli_query($connection,"SELECT Selling_price FROM (SELECT s.Name as sname,sf.Selling_price as Selling_Price, sf.Created_at,ROW_NUMBER() OVER (PARTITION BY s.id ORDER BY sf.Created_at DESC) as rn FROM stock s JOIN stock_flow sf ON s.id = sf.Stock_id join sales sl on s.id = sl.Stock_id ) q WHERE rn = 1 AND sname = '$product'")or die($connection->error);
+         $row2 = mysqli_fetch_array($selling_price);
+        $price = $row2['Selling_price'];
+        $discount = $row['Discount'];
+        $newCost = $price - $discount;
+        $cost = $qty * $newCost; 
+        $debt = $row['Debt'];
+        $mpesa = $row['MPesa'];
+        $cash = $row['Cash'];
+        $balance = ($mpesa + $cash) + $debt - $cost;
+        $returned = $row['Returned'];
+        $banked = $row['Banked'];
+        $slip = $row['Slip_Number'];
+        $banked_by = $row['Banked_By'];
+      ?>
+    <tr>
+      <th scope="row" class="uneditable" id="idTomorrow<?php echo $count; ?>"><?php echo $id; ?></th>
+      <?php
+        if ($balance == "0.0" ) {
+       ?>
+      <td style = "background-color: #2ECC71;color: white"class="uneditable" id="nameTomorrow<?php echo $count; ?>"><?php echo $firstname.' '.$lastname; ?></td>
+      <?php
+       }
+        if ($balance  < "0.0" && $balance  >= "-5000.0" ) {
+       ?>
+      <td style = "background-color: grey;color: white"class="uneditable" id="nameTomorrow<?php echo $count; ?>"><?php echo $firstname.' '.$lastname; ?></td>
+      <?php
+       }
+        if ($balance > "0.0" ) {
+       ?>
+      <td style = "background-color: orange;color: white"class="uneditable" id="nameTomorrow<?php echo $count; ?>"><?php echo $firstname.' '.$lastname; ?></td>
+      <?php
+       }
+        if ($balance < "-5000.0" ) {
+       ?>
+      <td style = "background-color: red;color: white"class="uneditable" id="nameTomorrow<?php echo $count; ?>"><?php echo $firstname.' '.$lastname; ?></td>
+      <?php
+       }
+      ?>
+      <td class="uneditable" id="numberTomorrow<?php echo $count; ?>"><?php echo $contact; ?></td>
+      <td class="uneditable" id="productTomorrow<?php echo $count; ?>"><?php echo $product; ?></td>
+      <td class="editable" id="qtyTomorrow<?php echo $count; ?>"><?php echo $qty; ?></td>
+      <td class="uneditable" id="costTomorrow<?php echo $id; ?>"><?php echo $cost; ?></td>
+      <td class="uneditable" id="discountTomorrow<?php echo $count; ?>"><?php echo $discount; ?></td>
+      <td class="uneditable" id="debtTomorrow<?php echo $count; ?>"><?php echo $debt; ?></td>
+       <?php
+       if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO') {
+
+        ?>
+      <td class="uneditable" id="mpesaTomorrow<?php echo $count; ?>"><?php echo $mpesa; ?></td>
+      <td class="uneditable" id="cashTomorrow<?php echo $count; ?>"><?php echo $cash; ?></td>
+      <td class="uneditable" id="balanceTomorrow<?php echo $id; ?>"><?php echo $balance; ?></td>
+      <td class="uneditable" id="returnedTomorrow<?php echo $count; ?>"><?php echo $returned; ?></td>
+      <td class="uneditable" id="bankedTomorrow<?php echo $count; ?>"><?php echo $banked; ?></td>
+      <td class="uneditable" id="slipTomorrow<?php echo $count; ?>"><?php echo $slip; ?></td>
+      <td class="uneditable" id="bankerTomorrow<?php echo $count; ?>"><?php echo $banked_by; ?></td>
+       <td>
+          <?php
+       if ($view == 'Software'  || $view == 'CEO') {
+
+        ?>
+          <button id="<?php echo $id; ?>" data_id="<?php echo $id; ?>" class="btn btn-danger btn-sm active deleteSalesTomorrow" role="button" aria-pressed="true" onclick="deleteSalesTomorrow(this,<?php echo $id; ?>)"><i class="fa fa-trash"></i>&ensp;Delete</button>
+          <?php
+          }
+          ?>
+       </td>
+       <?php
+         }
+       ?>
+    </tr>
+    <?php
+    }
+    ?>
+  </tbody>
+</table>
+    </div> 
   </div>
 
     <ul class="nav nav-tabs">
       <li><a data-toggle="tab" class="nav-link salesTab" href="#menu1" style="color: inherit;">Last 1 Month's Sales</a></li>
     <li><a data-toggle="tab" class="nav-link salesTab" href="#menu2" style="color: inherit;">Yesterday's Sales</a></li>
     <li class="active"><a data-toggle="tab" class="nav-link salesTab active" href="#menu3" style="color: inherit;">Today's Sales</a></li>
+    <li ><a data-toggle="tab" class="nav-link salesTab" href="#menu4" style="color: inherit;">Tomorrow's Requisitions</a></li>
   </ul>
 
 

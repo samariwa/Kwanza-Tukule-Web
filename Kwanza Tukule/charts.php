@@ -262,4 +262,17 @@ else if($where == 'salescomparison6' )
     $array = json_encode($finalArray);
     echo $array;
 }
+else if($where == 'biggestExpenses' )
+{   
+       $biggestExpensesArr = array();
+        foreach($biggestExpenses as $row){
+        $name = $row['name'];
+        $total = $row['sum'];
+        $color = "silver";
+        $resultArray = array($name, $total);
+        array_push($biggestExpensesArr, $resultArray);
+        }
+       $array = json_encode($biggestExpensesArr);
+        echo $array;
+}
 ?>

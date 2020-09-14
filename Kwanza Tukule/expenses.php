@@ -107,6 +107,9 @@
                  </select>
                   </div><br>
                   <div class="row">
+                 <input type="text" name="particular" id="particular" class="form-control col-md-9" style="padding:15px;margin-left: 60px" placeholder="Expense Particular..." required>
+                  </div><br>
+                  <div class="row">
                  <input type="text" name="party" id="party" class="form-control col-md-9" style="padding:15px;margin-left: 60px" placeholder="Party Name..." required>
                   </div><br>
                   <div class="row">

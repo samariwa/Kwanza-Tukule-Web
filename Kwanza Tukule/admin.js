@@ -267,15 +267,39 @@ setTime();
       });
   }
 
+      /*  var data = google.visualization.arrayToDataTable([
+          [data0, data1],
+         [data2, parseInt(data3)],
+          [data4, parseInt(data5)],
+          [data6, parseInt(data7)],
+          [data8, parseInt(data9)],
+          [data10, parseInt(data11)],
+          [data12, parseInt(data13)],
+        ]);*/
       google.charts.load("current", {packages:["corechart"]});
     google.charts.setOnLoadCallback(drawExpenditureChart);
     function drawExpenditureChart() {
+      var where = 'biggestExpenses';
+       $.post("charts.php",{where:where},
+        function(result){
+         var data = $.parseJSON(result);  
+        var data0 = data[0][0];
+          var data1 = data[0][1];
+          var data2 = data[1][0];
+          var data3 = data[1][1];
+          var data4 = data[2][0];
+          var data5 = data[2][1];
+          var data6 = data[3][0];
+          var data7 = data[3][1];
+          var data8 = data[4][0];
+          var data9 = data[4][1];
       var data = google.visualization.arrayToDataTable([
         ["Expense", "Amount", { role: "style" } ],
-        ["Electricity", 24000, "#b87333"],
-        ["Rent", 72000, "silver"],
-        ["Premises Service", 20000, "gold"],
-        ["Vehicle Service", 50000, "color: #e5e4e2"]
+        [data0, parseInt(data1), "#b87333"],
+        [data2, parseInt(data3), "silver"],
+        [data4, parseInt(data5), "gold"],
+        [data6, parseInt(data7), "color: #e5e4e2"],
+        [data8, parseInt(data9), "brown"],
       ]);
 
       var view = new google.visualization.DataView(data);
@@ -295,6 +319,7 @@ setTime();
       };
       var chart = new google.visualization.BarChart(document.getElementById("barchart_values"));
       chart.draw(view, options);
+      });
   }
 
       google.charts.load("current", {packages:["corechart"]});
@@ -936,7 +961,7 @@ function getIndexOfProduct(arr, k) {
       function completeSalesBalance(sellerID,cartArr){
         for (var i = 0; i < cartArr.length; i++) {
           var stockID = cartArr[i][0];
-          $.post("add.php",{where:'sales',price:cartArr[i][2],quantity:cartArr[i][3], discount:cartArr[i][4] ,seller:sellerID, stockid:cartArr[i][0]},
+          $.post("add.php",{where:'sales',price:cartArr[i][2],quantity:cartArr[i][3], discount:cartArr[i][4] ,seller:sellerID, stockid:cartArr[i][0], salesDate:$(`#deliveryDate`).val()},
           function(result){
             if (result=='success') {
                 cartArr.shift();
@@ -1140,7 +1165,7 @@ function getIndexOfProduct(arr, k) {
         var el = order;
         var cost = $(`#costTomorrow${id}`).text();
         var where = 'order';
-            bootbox.confirm('Do you really want to delete the selected order?',function(result)
+            bootbox.confirm('Do you really want to delete the selected product from the requested products?',function(result)
         {if(result){
           $.post("delete.php",{id:id,cost:cost,where:where},
         function(result){
@@ -1153,6 +1178,25 @@ function getIndexOfProduct(arr, k) {
         });
       }});
        }
+
+    function deleteSalesTomorrow(sale,idx){
+        var id = idx;
+        var el = sale;
+        var cost = $(`#costTomorrow${id}`).text();
+        var where = 'sales';
+            bootbox.confirm('Do you really want to delete the selected product from the requested products?',function(result)
+        {if(result){
+          $.post("delete.php",{id:id,cost:cost,where:where},
+        function(result){
+            if(result == 1){
+              $(el).closest('tr').css('background','tomato');
+              $(el).closest('tr').fadeOut(800,function(){
+                $(this).remove();
+              });
+            }
+        });
+      }});
+       }   
 
 
 
@@ -1276,6 +1320,21 @@ $('#vehiclesEditable').editableTableWidget();
   var mileage = $(`#mileage${rowx}`).text();
   var where = 'vehicles';
   $.post("save.php",{id:id,route:route,mileage:mileage,where:where},
+  function(result){});
+});
+
+  $('#sickoffEditable').editableTableWidget();
+  $('#sickoffEditable td.uneditable').on('change', function(evt, newValue) {
+  return false;
+});
+  $('#sickoffEditable td').on('change', function(evt, newValue) {
+   var rowx = parseInt(evt.target._DT_CellIndex.row)+1;
+  var id = $(`#id${rowx}`).text();
+  var reason = $(`#reason${rowx}`).text();
+  var start = $(`#start${rowx}`).text();
+  var days = $(`#days${rowx}`).text();
+  var where = 'sickoff';
+  $.post("save.php",{id:id,reason:reason,start:start,days:days,where:where},
   function(result){});
 });
 
@@ -1500,6 +1559,26 @@ $('#extraSalesEditableYesterday').editableTableWidget();
   });
 });
 
+  $('#extraSalesEditableTomorrow').editableTableWidget();
+  $('#extraSalesEditableTomorrow td.uneditable').on('change', function(evt, newValue) {
+  return false;
+});
+  $('#extraSalesEditableTomorrow td').on('change', function(evt, newValue) {
+   var rowx = parseInt(evt.target._DT_CellIndex.row)+1;
+  var id = $(`#idTomorrow${rowx}`).text();
+  var qty = $(`#qtyTomorrow${rowx}`).text();
+  var mpesa = 0;
+  var cash = 0;
+  var banked = 0;
+  var slip = "N/A";
+  var banker = "N/A";
+  var where = 'sales';
+  $.post("save.php",{id:id,qty:qty,mpesa:mpesa,cash:cash,banked:banked,slip:slip,banker:banker,where:where},
+  function(result){
+    location.reload(true);
+  });
+});
+
   $('#salesEditableTomorrow').editableTableWidget();
   $('#salesEditableTomorrow td.uneditable').on('change', function(evt, newValue) {
   return false;
@@ -1683,19 +1762,39 @@ $('#extraSalesEditableYesterday').editableTableWidget();
 
   $(document).on('click','#addExpense',function(){
         var heading = $('#heading').val();
+        var particular = $('#particular').val();
          var party = $('#party').val();
          var total = $('#total').val();
          var paid = $('#paid').val();
          var due = total - paid;
          var date = $('#date').val();
         var where = 'expense';
-        $.post("add.php",{heading:heading,party:party,total:total,paid:paid,due:due,date:date,where:where},
+        $.post("add.php",{heading:heading,particular:particular,party:party,total:total,paid:paid,due:due,date:date,where:where},
         function(result){
          if (result == 'success') {
           alert('Expense Added Successfully');
           location.reload(true);
          }
           else{
+          alert("Something went wrong");
+         }
+         });
+       });
+
+  $(document).on('click','#addSickoffApplication',function(){
+        var employee = $('#employee').val();
+        var reason = $('#sickoffReason').val();
+         var start = $('#sickOffStart').val();
+         var number = $('#sickoffNumber').val();
+        var where = 'sickoff';
+        $.post("add.php",{employee:employee,reason:reason,start:start,number:number,where:where},
+        function(result){
+         if (result == 'success') {
+          alert('Sick leave application successfull');
+          location.reload(true);
+         }
+          else{
+            alert(result)
           alert("Something went wrong");
          }
          });

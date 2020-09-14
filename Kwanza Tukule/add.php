@@ -215,6 +215,7 @@ elseif ($where == 'calendar') {
 elseif ($where == 'expense') {
   $name = $_POST['heading'];
     $party = $_POST['party'];
+    $particular = $_POST['particular'];
      $total = $_POST['total'];
      $paid = $_POST['paid'];
      $due = $_POST['due'];
@@ -223,7 +224,7 @@ elseif ($where == 'expense') {
    $value = mysqli_fetch_array($expenseId);
    $id = $value['id'];
    echo "success";
-     mysqli_query($connection,"INSERT INTO `expense_details` (`Expense_id`,`Party`,`Total_amount`,`Paid_amount`,`Due_amount`,`Payment_date`) VALUES ('$id','$party','$total','$paid','$due','$date')") or die(mysqli_error($connection));
+     mysqli_query($connection,"INSERT INTO `expense_details` (`Expense_id`,`Expense_particular`,`Party`,`Total_amount`,`Paid_amount`,`Due_amount`,`Payment_date`) VALUES ('$id','$particular','$party','$total','$paid','$due','$date')") or die(mysqli_error($connection));
 }
 elseif ($where == 'expenseHeading') {
   $name = $_POST['heading'];
@@ -385,6 +386,7 @@ elseif ($where=='sales') {
   $price = $_POST['price'];
   $discount = $_POST['discount'];
   $quantity = $_POST['quantity'];
+   $date = $_POST['salesDate'];
   $staffID = $_POST['seller'];
   $stockIDx = $_POST['stockid'];
   $cost = $price - $discount;
@@ -407,7 +409,7 @@ elseif ($where=='sales') {
   }
   $newDebt = $balance;
   $newBalance = (int)$newDebt - ((int)$cost*(int)$quantity);
-  $sql = "INSERT INTO `sales`(`Staff_id`,`Category_id`,`Quantity`,`Debt`,`Discount`,`Balance`,`Stock_id`) VALUES('$staffID','$category','$quantity','$newDebt','$discount','$newBalance','$stockIDx')";
+  $sql="INSERT INTO `sales`(`Staff_id`,`Category_id`,`Quantity`,`Debt`,`Discount`,`Sales_date`,`Balance`,`Stock_id`)VALUES('$staffID','$category','$quantity','$newDebt','$discount','$date','$newBalance','$stockIDx')";
   $product = mysqli_query($connection,"SELECT Name,Category_Name  FROM `stock` inner join category on stock.Category_id = category.id WHERE stock.id = '".$stockIDx."'")or die($connection->error);
    $Product = mysqli_fetch_array($product);
   $Category_Name = $Product['Category_Name'];
@@ -514,5 +516,13 @@ elseif ($where=='sales') {
     echo 'success';
   }
   
+}
+else if ($where == 'sickoff') {
+                 $employee = $_POST['employee'];
+                 $reason = $_POST['reason'];
+                 $start = $_POST['start'];
+                 $number = $_POST['number'];
+                  mysqli_query($connection,"INSERT INTO `employee_sickoff_data` (`Staff_id`,`Reason`,`Start_day`,`sickoff_days_no`,`End_day`) VALUES ('$employee','$reason','$start','$number',DATE_ADD( '".$start."', INTERVAL ".$number." DAY ))") or die(mysqli_error($connection));
+                   echo "success";
 }
  ?>

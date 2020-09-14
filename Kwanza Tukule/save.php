@@ -152,7 +152,7 @@ elseif ($where == 'fine') {
 			if (mysqli_query($connection,"UPDATE orders SET Fine = '$fine', Balance = '$newB' WHERE id='$id'")===TRUE) {
 					mysqli_query($connection,"UPDATE orders set Debt= Debt+'".$fine."', `Balance` = Balance +".$fine." WHERE Customer_id='".$customerID."' and id >'".$id."' ;")or die($connection->error);
 			}
-			#sam's weebshit
+			#update status
 			$result2 = mysqli_query($connection,"SELECT orders.Balance as newBalance from orders INNER JOIN customers ON orders.Customer_id=customers.id  WHERE orders.id IN (SELECT MAX(orders.id)FROM orders INNER JOIN customers ON orders.Customer_id=customers.id where customers.id='".$customerID."' ); ")or die($connection->error);
 			$row2 = mysqli_fetch_array($result2);
 			$newBalance = $row2['newBalance'];
@@ -335,5 +335,15 @@ elseif ($where == 'leftovers') {
   $id = $_POST['id'];
     $difference = $_POST['difference'];
 mysqli_query($connection,"UPDATE `cooked_cereals`  SET `Quantity_Difference` =  '".$difference."',`Quantity_Prepared` = Quantity_Prepared + '$difference' WHERE `id` = '".$id."'") or die(mysqli_error($connection));
+}
+elseif ($where == 'sickoff') {
+  $id = $_POST['id'];
+  $reason = $_POST['reason'];
+  $start = $_POST['start'];
+  $days = $_POST['days'];
+$result2 = mysqli_query($connection,"SELECT id from employee_sickoff_data  WHERE Staff_id = '$id' AND Start_day='$start'")or die($connection->error);
+$row2 = mysqli_fetch_array($result2);
+$ID = $row2['id'];
+mysqli_query($connection,"UPDATE `employee_sickoff_data`  SET `Reason` =  '".$reason."',`Start_day` = '$start', `sickoff_days_no` = '$days',`End_day` = DATE_ADD( '".$start."', INTERVAL ".$days." DAY ) WHERE `id` = '".$ID."'") or die(mysqli_error($connection));
 }
  ?>
