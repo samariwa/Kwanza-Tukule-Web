@@ -13,7 +13,7 @@
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Dashboard <span style="font-size: 18px;">/Sales </span><span style="font-size: 15px;">/Extra Sales</span></h1>
                         <h6 class="text-gray-600" style="margin-left: 490px;">Time: <span id="time"></span></h6>
-            <button class="btn btn-light btn-md active printSales mr-3" role="button" aria-pressed="true" ><i class="fa fa-print"></i>&ensp;Print</button>
+            <button class="btn btn-light btn-md active printExtraSales mr-3" role="button" aria-pressed="true" ><i class="fa fa-print"></i>&ensp;Print</button>
           </div>
           <?php
        }

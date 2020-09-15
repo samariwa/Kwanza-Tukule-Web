@@ -2401,6 +2401,26 @@ $('#extraSalesEditableYesterday').editableTableWidget();
         });
     });
 
+ $(document).on('click','.printExtraSales',function(){
+                $.ajax({
+                    url: 'extraSalesPrint.php',
+                    type: 'get',
+                    dataType: 'html',
+                    success:function(data) {
+                        var mywindow = window.open('', 'Kwanza Tukule', 'height=400,width=600');
+                        mywindow.document.write('<html><head><title></title>');
+                        mywindow.document.write('</head><body>');
+                        mywindow.document.write(data);
+                        mywindow.document.write('</body></html>');
+                        mywindow.document.close();
+                        mywindow.focus();
+                        mywindow.print();
+                        mywindow.close();
+
+                    }
+        });
+    });
+
   $(document).on('click','.printGatePass',function(){
          var deliverer = $(`#deliverer`).val();
         var time = $(`#gatePassTime`).val();
