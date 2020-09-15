@@ -298,7 +298,7 @@
        <td>
          <button id="<?php echo $id; ?>" data_id="<?php echo $id; ?>" class="btn btn-dark btn-sm active fineCustomerLastMonth" onclick="fineCustomerLastMonth(<?php echo $id; ?>)"role="button" aria-pressed="true" >Fine</button>
           <?php
-       if ($view == 'Software'  || $view == 'CEO') {
+       if ($view == 'Software'  || $view == 'CEO' || $view == 'General Operations Manager') {
 
         ?>
           <button id="<?php echo $id; ?>" data_id="<?php echo $id; ?>" class="btn btn-danger btn-sm active deleteOrderLastMonth" role="button" aria-pressed="true" onclick="deleteOrderLastMonth(this,<?php echo $id; ?>)"><i class="fa fa-trash"></i>&ensp;Delete</button>
@@ -429,7 +429,7 @@
        <td>
          <button id="<?php echo $id; ?>" data_id="<?php echo $id; ?>" class="btn btn-dark btn-sm active fineCustomerYesterday" onclick="fineCustomerYesterday(<?php echo $id; ?>)"role="button" aria-pressed="true" >Fine</button>
           <?php
-       if ($view == 'Software'  || $view == 'CEO') {
+       if ($view == 'Software'  || $view == 'CEO' || $view == 'General Operations Manager') {
 
         ?>
           <button id="<?php echo $id; ?>" data_id="<?php echo $id; ?>" class="btn btn-danger btn-sm active deleteOrderYesterday" role="button" aria-pressed="true" onclick="deleteOrderYesterday(this,<?php echo $id; ?>)"><i class="fa fa-trash"></i>&ensp;Delete</button>
@@ -560,7 +560,7 @@
        <td>
          <button id="<?php echo $id; ?>" data_id="<?php echo $id; ?>" class="btn btn-dark btn-sm active fineCustomerToday" onclick="fineCustomerToday(<?php echo $id; ?>)"role="button" aria-pressed="true" >Fine</button>
           <?php
-       if ($view == 'Software'  || $view == 'CEO') {
+       if ($view == 'Software'  || $view == 'CEO' || $view == 'General Operations Manager') {
 
         ?>
           <button id="<?php echo $id; ?>" data_id="<?php echo $id; ?>" class="btn btn-danger btn-sm active deleteOrderToday" role="button" aria-pressed="true" onclick="deleteOrderToday(this,<?php echo $id; ?>)"><i class="fa fa-trash"></i>&ensp;Delete</button>
@@ -691,7 +691,7 @@
        <td>
          <button id="<?php echo $id; ?>" data_id="<?php echo $id; ?>" class="btn btn-dark btn-sm active fineCustomerTomorrow" onclick="fineCustomerTomorrow(<?php echo $id; ?>)"role="button" aria-pressed="true" >Fine</button>
           <?php
-       if ($view == 'Software'  || $view == 'CEO') {
+       if ($view == 'Software'  || $view == 'CEO' || $view == 'General Operations Manager') {
 
         ?>
           <button id="<?php echo $id; ?>" data_id="<?php echo $id; ?>" class="btn btn-danger btn-sm active deleteOrderTomorrow" role="button" aria-pressed="true" onclick="deleteOrderTomorrow(this,<?php echo $id; ?>)"><i class="fa fa-trash"></i>&ensp;Delete</button>
@@ -821,7 +821,7 @@
       <td class="editable" id="bankerNextMonth<?php echo $count; ?>"><?php echo $banked_by; ?></td>
        <td>
           <?php
-       if ($view == 'Software'  || $view == 'CEO') {
+       if ($view == 'Software'  || $view == 'CEO' || $view == 'General Operations Manager') {
 
         ?>
           <button id="<?php echo $id; ?>" data_id="<?php echo $id; ?>" class="btn btn-danger btn-sm active deleteOrderNextMonth" role="button" aria-pressed="true" onclick="deleteOrderNextMonth(this,<?php echo $id; ?>)"><i class="fa fa-trash"></i>&ensp;Delete</button>
