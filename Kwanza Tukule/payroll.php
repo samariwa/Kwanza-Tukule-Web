@@ -104,12 +104,13 @@
     <tr>
       <th scope="col" width="5%">Select</th>
       <th scope="col" width="3%">Staff #</th>
-      <th scope="col" width="14%">Name</th>
+      <th scope="col" width="13%">Name</th>
+      <th scope="col" width="10%">National #</th>
       <th scope="col" width="12%">Gross Income</th>
-      <th scope="col" width="17%">KRA Deduction</th>
+      <th scope="col" width="10%">KRA Deduction</th>
       <th scope="col" width="10%">NSSF Deduction</th>
       <th scope="col"width="10%">NHIF Deduction</th>
-      <th scope="col"width="10%">Payable Income</th>
+      <th scope="col"width="11%">Payable Income</th>
     </tr>
   </thead>
   <tbody >
@@ -121,6 +122,7 @@
          $firstname = $row['firstname'];
         $lastname = $row['lastname'];
         $salary = $row['salary'];
+        $national = $row['nationalID'];
         $KRA = $row['KRA'];
         $NSSF = $row['NSSF'];
         $NHIF = $row['NHIF'];
@@ -214,6 +216,7 @@
       <td ><input type="radio" id='selectedEmployee' onclick="selectEmployee(this);" name="selectedEmployee" required value="<?php echo $id; ?>"></td>
       <th scope="row" id="id<?php echo $id; ?>"><?php echo $id; ?></th>
       <td id="name<?php echo $id; ?>"><?php echo $firstname .' '. $lastname; ?></td>
+       <td id="national<?php echo $id; ?>"><?php echo $national; ?></td>
       <td id="gross<?php echo $id; ?>">Kshs. <?php echo $salary ?></td>
       <td id="kra<?php echo $id; ?>">Kshs. <?php echo $kra; ?></td>
       <td id="nssf<?php echo $id; ?>">Kshs. <?php echo $nssf; ?></td>
