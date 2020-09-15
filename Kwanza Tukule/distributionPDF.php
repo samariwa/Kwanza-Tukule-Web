@@ -16,7 +16,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Gate Pass</title>
+    <title>Products Distribution</title>
 </head><body>
 <p align="center"><strong><img src="assets/img/Kwanza Tukule.png" height="60" width="155"></strong></p>
 <p align="center">Products Distribution (For Tomorrow)</p>
@@ -67,7 +67,7 @@ echo $pdf;
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Gate Pass</title>
+    <title>Products Distribution</title>
 </head><body>
 <p align="center"><strong><img src="assets/img/Kwanza Tukule.png" height="60" width="155"></strong></p>
 <p align="center">Products Distribution</p>

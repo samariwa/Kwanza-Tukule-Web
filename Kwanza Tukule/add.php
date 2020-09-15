@@ -4,190 +4,190 @@ $where =$_POST['where'];
 session_start();
 if($where == 'customer' )
 {
-                 $name = $_POST['name'];
-                 $location = $_POST['location'];
-                 $number = $_POST['number'];
-                 $deliverer = $_POST['deliverer'];
-                 $row = mysqli_query($connection,"SELECT id,Name,Location,Number,Deliverer,Status,Note FROM customers WHERE Name = '".$name."' OR Number = '".$number."'")or die($connection->error);
-                 $result = mysqli_fetch_array($row);
-                 if ( $result == TRUE) {
-                  echo "exists";
-                 }
-                 else{
-                   echo "success";
-                  mysqli_query($connection,"INSERT INTO `customers` (`Name`,`Location`,`Number`,`Deliverer`) VALUES ('$name','$location','$number','$deliverer')") or die(mysqli_error($connection));
-                 }
+   $name = $_POST['name'];
+   $location = $_POST['location'];
+   $number = $_POST['number'];
+   $deliverer = $_POST['deliverer'];
+   $row = mysqli_query($connection,"SELECT id,Name,Location,Number,Deliverer,Status,Note FROM customers WHERE Name = '".$name."' OR Number = '".$number."'")or die($connection->error);
+   $result = mysqli_fetch_array($row);
+   if ( $result == TRUE) {
+    echo "exists";
+   }
+   else{
+     echo "success";
+    mysqli_query($connection,"INSERT INTO `customers` (`Name`,`Location`,`Number`,`Deliverer`) VALUES ('$name','$location','$number','$deliverer')") or die(mysqli_error($connection));
+   }
 }
 else if ($where == 'stock') {
-                 $raw_name = $_POST['name'];
-                 $raw_name2 = str_replace('  ',' ',$raw_name);
-                 $raw_name3 = ltrim($raw_name2,' ');
-                 $name = rtrim($raw_name3,' ');
-                 $category = $_POST['category'];
-                 $supplier = $_POST['supplier'];
-                 $received = $_POST['received'];
-                 $expiry = $_POST['expiry'];
-                 $bp = $_POST['bp'];
-                 $sp = $_POST['sp'];
-                 $qty = $_POST['qty'];
-                 $restock = $_POST['restock'];
-                 $row = mysqli_query($connection,"SELECT `Name` FROM stock WHERE Name = '".$name."'")or die($connection->error);
-                 $result = mysqli_fetch_array($row);
-                 if ( $result == TRUE) {
-                   echo "exists";
-                 }
-                 else{
-                   echo "success";
-                  $result1 = mysqli_query($connection,"SELECT * FROM category WHERE Category_Name = '".$category."'")or die($connection->error);
-                 $row1 = mysqli_fetch_array($result1);
-                 $category = $row1['id'];
-                 $result2 = mysqli_query($connection,"SELECT * FROM suppliers WHERE Name = '".$supplier."'")or die($connection->error);
-                 $row2 = mysqli_fetch_array($result2);
-                 $supplier = $row2['id'];
-                  mysqli_query($connection,"INSERT INTO `stock` (`Category_id`,`Supplier_id`,`Name`,`Restock_Level`,`Buying_price`,`Price`,`Quantity`) VALUES ('$category','$supplier','$name','$restock','$bp','$sp','$qty');") or die(mysqli_error($connection));
-                  $result3 = mysqli_query($connection,"SELECT * FROM stock WHERE Name = '".$name."';")or die($connection->error);
-                 $row3 = mysqli_fetch_array($result3);
-                 $Stock_id = $row3['id'];
-                  mysqli_query($connection,"INSERT INTO `stock_flow` (`Stock_id`,`Expiry_date`,`Buying_price`,`Selling_Price`,`Received_date`,`Purchased`) VALUES ('$Stock_id','$expiry','$bp','$sp','$received','$qty')") or die(mysqli_error($connection));
-                 }
+       $raw_name = $_POST['name'];
+       $raw_name2 = str_replace('  ',' ',$raw_name);
+       $raw_name3 = ltrim($raw_name2,' ');
+       $name = rtrim($raw_name3,' ');
+       $category = $_POST['category'];
+       $supplier = $_POST['supplier'];
+       $received = $_POST['received'];
+       $expiry = $_POST['expiry'];
+       $bp = $_POST['bp'];
+       $sp = $_POST['sp'];
+       $qty = $_POST['qty'];
+       $restock = $_POST['restock'];
+       $row = mysqli_query($connection,"SELECT `Name` FROM stock WHERE Name = '".$name."'")or die($connection->error);
+       $result = mysqli_fetch_array($row);
+       if ( $result == TRUE) {
+         echo "exists";
+       }
+       else{
+         echo "success";
+        $result1 = mysqli_query($connection,"SELECT * FROM category WHERE Category_Name = '".$category."'")or die($connection->error);
+       $row1 = mysqli_fetch_array($result1);
+       $category = $row1['id'];
+       $result2 = mysqli_query($connection,"SELECT * FROM suppliers WHERE Name = '".$supplier."'")or die($connection->error);
+       $row2 = mysqli_fetch_array($result2);
+       $supplier = $row2['id'];
+        mysqli_query($connection,"INSERT INTO `stock` (`Category_id`,`Supplier_id`,`Name`,`Restock_Level`,`Buying_price`,`Price`,`Quantity`) VALUES ('$category','$supplier','$name','$restock','$bp','$sp','$qty');") or die(mysqli_error($connection));
+        $result3 = mysqli_query($connection,"SELECT * FROM stock WHERE Name = '".$name."';")or die($connection->error);
+       $row3 = mysqli_fetch_array($result3);
+       $Stock_id = $row3['id'];
+        mysqli_query($connection,"INSERT INTO `stock_flow` (`Stock_id`,`Expiry_date`,`Buying_price`,`Selling_Price`,`Received_date`,`Purchased`) VALUES ('$Stock_id','$expiry','$bp','$sp','$received','$qty')") or die(mysqli_error($connection));
+       }
 
 }
 else if ($where == 'categories') {
-                 $category = $_POST['category'];
-                 $row = mysqli_query($connection,"SELECT * FROM category WHERE Category_Name = '".$category."'")or die($connection->error);
-                 $result = mysqli_fetch_array($row);
-                 if ( $result == TRUE) {
-                   echo "exists";
-                 }
-                 else{
-                  echo "success";
-                  mysqli_query($connection,"INSERT INTO `category` (`Category_Name`) VALUES ('$category')") or die(mysqli_error($connection));
-                 }
+   $category = $_POST['category'];
+   $row = mysqli_query($connection,"SELECT * FROM category WHERE Category_Name = '".$category."'")or die($connection->error);
+   $result = mysqli_fetch_array($row);
+   if ( $result == TRUE) {
+     echo "exists";
+   }
+   else{
+    echo "success";
+    mysqli_query($connection,"INSERT INTO `category` (`Category_Name`) VALUES ('$category')") or die(mysqli_error($connection));
+   }
 }
 else if ($where == 'supplier') {
-                 $name = $_POST['name'];
-                 $contact = $_POST['contact'];
-                 $row = mysqli_query($connection,"SELECT * FROM suppliers WHERE Name = '".$name."' OR Supplier_contact = '".$contact."'")or die($connection->error);
-                 $result = mysqli_fetch_array($row);
-                 if ( $result == TRUE) {
-                   echo "exists";
-                 }
-                 else{
-                  echo "success";
-                  mysqli_query($connection,"INSERT INTO `suppliers` (`Name`,`Supplier_contact`) VALUES ('$name','$contact')") or die(mysqli_error($connection));
-                 }
+   $name = $_POST['name'];
+   $contact = $_POST['contact'];
+   $row = mysqli_query($connection,"SELECT * FROM suppliers WHERE Name = '".$name."' OR Supplier_contact = '".$contact."'")or die($connection->error);
+   $result = mysqli_fetch_array($row);
+   if ( $result == TRUE) {
+     echo "exists";
+   }
+   else{
+    echo "success";
+    mysqli_query($connection,"INSERT INTO `suppliers` (`Name`,`Supplier_contact`) VALUES ('$name','$contact')") or die(mysqli_error($connection));
+   }
 }
 else if ($where == 'vehicles') {
-                 $type = $_POST['type'];
-                 $driver = $_POST['driver'];
-                 $reg = $_POST['reg'];
-                 $route = $_POST['route'];
-                 $row0 = mysqli_query($connection,"SELECT `id` FROM users WHERE firstname = '".$driver."'")or die($connection->error);
-                 $result0 = mysqli_fetch_array($row0);
-                 $id = $result0['id'];
-                 $row = mysqli_query($connection,"SELECT * FROM vehicles WHERE Reg_Number = '".$reg."'")or die($connection->error);
-                 $result = mysqli_fetch_array($row);
-                 if ( $result == TRUE) {
-                   echo "exists";
-                 }
-                 else{
-                   echo "success";
-                  mysqli_query($connection,"INSERT INTO `vehicles` (`Driver_id`,`Type`,`Reg_Number`,`Route`) VALUES ('$id','$type','$reg','$route')") or die(mysqli_error($connection));
-                 }
+   $type = $_POST['type'];
+   $driver = $_POST['driver'];
+   $reg = $_POST['reg'];
+   $route = $_POST['route'];
+   $row0 = mysqli_query($connection,"SELECT `id` FROM users WHERE firstname = '".$driver."'")or die($connection->error);
+   $result0 = mysqli_fetch_array($row0);
+   $id = $result0['id'];
+   $row = mysqli_query($connection,"SELECT * FROM vehicles WHERE Reg_Number = '".$reg."'")or die($connection->error);
+   $result = mysqli_fetch_array($row);
+   if ( $result == TRUE) {
+     echo "exists";
+   }
+   else{
+     echo "success";
+    mysqli_query($connection,"INSERT INTO `vehicles` (`Driver_id`,`Type`,`Reg_Number`,`Route`) VALUES ('$id','$type','$reg','$route')") or die(mysqli_error($connection));
+   }
 }
 else if ($where == 'deliverer') {
-                 $fname = $_POST['fname'];
-                 $lname = $_POST['lname'];
-                 $contact = $_POST['contact'];
-                 $staffId = $_POST['staffId'];
-                 $nationalId = $_POST['nationalId'];
-                 $yob = $_POST['yob'];
-                 $gender = $_POST['gender'];
-                 $salary = $_POST['salary'];
-                 $role = '5';
-                 $row = mysqli_query($connection,"SELECT * FROM users WHERE nationalID = '".$nationalId."' or staffID = '".$staffId."'")or die($connection->error);
-                 $result = mysqli_fetch_array($row);
-                 if ( $result == TRUE) {
-                   echo "exists";
-                 }
-                 else{
-                  echo "success";
-                  mysqli_query($connection,"INSERT INTO `users` (`firstname`,`lastname`,`number`,`Job_Id`,`staffID`,`nationalID`,`yob`,`gender`,`salary`) VALUES ('$fname','$lname','$contact','$role','$staffId','$nationalId','$yob','$gender','$salary')") or die(mysqli_error($connection));
-                 }
+     $fname = $_POST['fname'];
+     $lname = $_POST['lname'];
+     $contact = $_POST['contact'];
+     $staffId = $_POST['staffId'];
+     $nationalId = $_POST['nationalId'];
+     $yob = $_POST['yob'];
+     $gender = $_POST['gender'];
+     $salary = $_POST['salary'];
+     $role = '5';
+     $row = mysqli_query($connection,"SELECT * FROM users WHERE nationalID = '".$nationalId."' or staffID = '".$staffId."'")or die($connection->error);
+     $result = mysqli_fetch_array($row);
+     if ( $result == TRUE) {
+       echo "exists";
+     }
+     else{
+      echo "success";
+      mysqli_query($connection,"INSERT INTO `users` (`firstname`,`lastname`,`number`,`Job_Id`,`staffID`,`nationalID`,`yob`,`gender`,`salary`) VALUES ('$fname','$lname','$contact','$role','$staffId','$nationalId','$yob','$gender','$salary')") or die(mysqli_error($connection));
+     }
 }
 else if ($where == 'cook') {
-                 $fname = $_POST['fname'];
-                 $lname = $_POST['lname'];
-                 $contact = $_POST['contact'];
-                 $staffId = $_POST['staffId'];
-                 $nationalId = $_POST['nationalId'];
-                 $yob = $_POST['yob'];
-                 $gender = $_POST['gender'];
-                 $salary = $_POST['salary'];
-                 $role = '6';
-                 $row = mysqli_query($connection,"SELECT * FROM users WHERE nationalID = '".$nationalId."' or staffID = '".$staffId."'")or die($connection->error);
-                 $result = mysqli_fetch_array($row);
-                 if ( $result == TRUE) {
-                   echo "exists";
-                 }
-                 else{
-                  echo "success";
-                  mysqli_query($connection,"INSERT INTO `users` (`firstname`,`lastname`,`number`,`Job_Id`,`staffID`,`nationalID`,`yob`,`gender`,`salary`) VALUES ('$fname','$lname','$contact','$role','$staffId','$nationalId','$yob','$gender','$salary')") or die(mysqli_error($connection));
-                 }
+     $fname = $_POST['fname'];
+     $lname = $_POST['lname'];
+     $contact = $_POST['contact'];
+     $staffId = $_POST['staffId'];
+     $nationalId = $_POST['nationalId'];
+     $yob = $_POST['yob'];
+     $gender = $_POST['gender'];
+     $salary = $_POST['salary'];
+     $role = '6';
+     $row = mysqli_query($connection,"SELECT * FROM users WHERE nationalID = '".$nationalId."' or staffID = '".$staffId."'")or die($connection->error);
+     $result = mysqli_fetch_array($row);
+     if ( $result == TRUE) {
+       echo "exists";
+     }
+     else{
+      echo "success";
+      mysqli_query($connection,"INSERT INTO `users` (`firstname`,`lastname`,`number`,`Job_Id`,`staffID`,`nationalID`,`yob`,`gender`,`salary`) VALUES ('$fname','$lname','$contact','$role','$staffId','$nationalId','$yob','$gender','$salary')") or die(mysqli_error($connection));
+     }
 }
 else if ($where == 'cleaner') {
-                 $fname = $_POST['fname'];
-                 $lname = $_POST['lname'];
-                 $contact = $_POST['contact'];
-                 $staffId = $_POST['staffId'];
-                 $nationalId = $_POST['nationalId'];
-                 $yob = $_POST['yob'];
-                 $gender = $_POST['gender'];
-                 $salary = $_POST['salary'];
-                 $role = '8';
-                 $row = mysqli_query($connection,"SELECT * FROM users WHERE nationalID = '".$nationalId."' or staffID = '".$staffId."'")or die($connection->error);
-                 $result = mysqli_fetch_array($row);
-                 if ( $result == TRUE) {
-                   echo "exists";
-                 }
-                 else{
-                  echo "success";
-                  mysqli_query($connection,"INSERT INTO `users` (`firstname`,`lastname`,`number`,`Job_Id`,`staffID`,`nationalID`,`yob`,`gender`,`salary`) VALUES ('$fname','$lname','$contact','$role','$staffId','$nationalId','$yob','$gender','$salary')") or die(mysqli_error($connection));
-                 }
+     $fname = $_POST['fname'];
+     $lname = $_POST['lname'];
+     $contact = $_POST['contact'];
+     $staffId = $_POST['staffId'];
+     $nationalId = $_POST['nationalId'];
+     $yob = $_POST['yob'];
+     $gender = $_POST['gender'];
+     $salary = $_POST['salary'];
+     $role = '8';
+     $row = mysqli_query($connection,"SELECT * FROM users WHERE nationalID = '".$nationalId."' or staffID = '".$staffId."'")or die($connection->error);
+     $result = mysqli_fetch_array($row);
+     if ( $result == TRUE) {
+       echo "exists";
+     }
+     else{
+      echo "success";
+      mysqli_query($connection,"INSERT INTO `users` (`firstname`,`lastname`,`number`,`Job_Id`,`staffID`,`nationalID`,`yob`,`gender`,`salary`) VALUES ('$fname','$lname','$contact','$role','$staffId','$nationalId','$yob','$gender','$salary')") or die(mysqli_error($connection));
+     }
 }
 else if ($where == 'office') {
-                 $fname = $_POST['fname'];
-                 $lname = $_POST['lname'];
-                 $contact = $_POST['contact'];
-                 $staffId = $_POST['staffId'];
-                 $nationalId = $_POST['nationalId'];
-                 $yob = $_POST['yob'];
-                 $gender = $_POST['gender'];
-                 $salary = $_POST['salary'];
-                 $roleNo = $_POST['role'];
-                 $row = mysqli_query($connection,"SELECT * FROM users WHERE nationalID = '".$nationalId."' or staffID = '".$staffId."'")or die($connection->error);
-                 $result = mysqli_fetch_array($row);
-                 if ( $result == TRUE) {
-                   echo "exists";
-                 }
-                 else{
-                  echo "success";
-                  $row0 = mysqli_query($connection,"SELECT `id` FROM jobs WHERE Name = '".$roleNo."'")or die($connection->error);
-                 $result0 = mysqli_fetch_array($row0);
-                 $id = $result0['id'];
-                  mysqli_query($connection,"INSERT INTO `users` (`firstname`,`lastname`,`number`,`Job_Id`,`staffID`,`nationalID`,`yob`,`gender`,`salary`) VALUES ('$fname','$lname','$contact','$id','$staffId','$nationalId','$yob','$gender','$salary')") or die(mysqli_error($connection));
-                 }
+     $fname = $_POST['fname'];
+     $lname = $_POST['lname'];
+     $contact = $_POST['contact'];
+     $staffId = $_POST['staffId'];
+     $nationalId = $_POST['nationalId'];
+     $yob = $_POST['yob'];
+     $gender = $_POST['gender'];
+     $salary = $_POST['salary'];
+     $roleNo = $_POST['role'];
+     $row = mysqli_query($connection,"SELECT * FROM users WHERE nationalID = '".$nationalId."' or staffID = '".$staffId."'")or die($connection->error);
+     $result = mysqli_fetch_array($row);
+     if ( $result == TRUE) {
+       echo "exists";
+     }
+     else{
+      echo "success";
+      $row0 = mysqli_query($connection,"SELECT `id` FROM jobs WHERE Name = '".$roleNo."'")or die($connection->error);
+     $result0 = mysqli_fetch_array($row0);
+     $id = $result0['id'];
+      mysqli_query($connection,"INSERT INTO `users` (`firstname`,`lastname`,`number`,`Job_Id`,`staffID`,`nationalID`,`yob`,`gender`,`salary`) VALUES ('$fname','$lname','$contact','$id','$staffId','$nationalId','$yob','$gender','$salary')") or die(mysqli_error($connection));
+     }
 }
 else if ($where == 'note') {
-                 $title = $_POST['title'];
-                 $message = $_POST['message'];
-                 $access = $_POST['access'];
-                 $user = $_SESSION['user'];
-                  echo "success";
-                 $row = mysqli_query($connection,"SELECT id FROM users WHERE username = '".$user."'")or die($connection->error);
-                 $result = mysqli_fetch_array($row);
-                 $id = $result['id'];
-                  mysqli_query($connection,"INSERT INTO `notes` (`User_id`,`Title`,`Note`,`Public`) VALUES ('$id','$title','$message','$access')") or die(mysqli_error($connection));
+     $title = $_POST['title'];
+     $message = $_POST['message'];
+     $access = $_POST['access'];
+     $user = $_SESSION['user'];
+      echo "success";
+     $row = mysqli_query($connection,"SELECT id FROM users WHERE username = '".$user."'")or die($connection->error);
+     $result = mysqli_fetch_array($row);
+     $id = $result['id'];
+      mysqli_query($connection,"INSERT INTO `notes` (`User_id`,`Title`,`Note`,`Public`) VALUES ('$id','$title','$message','$access')") or die(mysqli_error($connection));
 }
 elseif ($where == 'purchase') {
   $id = $_POST['id'];
@@ -518,11 +518,54 @@ elseif ($where=='sales') {
   
 }
 else if ($where == 'sickoff') {
-                 $employee = $_POST['employee'];
-                 $reason = $_POST['reason'];
-                 $start = $_POST['start'];
-                 $number = $_POST['number'];
-                  mysqli_query($connection,"INSERT INTO `employee_sickoff_data` (`Staff_id`,`Reason`,`Start_day`,`sickoff_days_no`,`End_day`) VALUES ('$employee','$reason','$start','$number',DATE_ADD( '".$start."', INTERVAL ".$number." DAY ))") or die(mysqli_error($connection));
-                   echo "success";
+   $employee = $_POST['employee'];
+   $reason = $_POST['reason'];
+   $start = $_POST['start'];
+   $number = $_POST['number'];
+    mysqli_query($connection,"INSERT INTO `employee_sickoff_data` (`Staff_id`,`Reason`,`Start_day`,`sickoff_days_no`,`End_day`) VALUES ('$employee','$reason','$start','$number',DATE_ADD( '".$start."', INTERVAL ".$number." DAY ))") or die(mysqli_error($connection));
+     echo "success";
+}
+else if ($where == 'leave') {
+   $employee = $_POST['employee'];
+   $standIn = $_POST['standIn'];
+   $start = $_POST['start'];
+   $number = $_POST['number'];
+   $exists = mysqli_query($connection,"SELECT * FROM employee_leave_data WHERE Staff_id = '".$employee."'")or die($connection->error);
+   $result = mysqli_fetch_array($exists);
+   if ( $result == FALSE) {
+    $rem_days = 21 - $number;
+     if($rem_days >= 0){
+      if( $employee != $standIn)
+      {
+    mysqli_query($connection,"INSERT INTO `employee_leave_data` (`Staff_id`,`Stand_in_employee`,`Start_day`,`rem_leave_days`,`leave_days_no`,`End_day`) VALUES ('$employee','$standIn','$start','$rem_days','$number',DATE_ADD( '".$start."', INTERVAL ".$number." DAY ))") or die(mysqli_error($connection));
+     echo "success";
+     }
+     else{
+      echo "failed";
+     }
+     }
+     else{
+      echo "exceeded";
+     }
+   }
+   else{
+    $days_left= mysqli_query($connection,"SELECT rem_leave_days FROM employee_leave_data WHERE Staff_id = '".$employee."' ORDER BY Start_day DESC LIMIT 1")or die($connection->error);
+    $days = mysqli_fetch_array($days_left);
+     $rem = $days['rem_leave_days'];
+     $new_rem = $rem - $number;
+     if($new_rem >= 0){
+      if( $employee != $standIn)
+      {
+    mysqli_query($connection,"INSERT INTO `employee_leave_data` (`Staff_id`,`Stand_in_employee`,`Start_day`,`rem_leave_days`,`leave_days_no`,`End_day`) VALUES ('$employee','$standIn','$start','$new_rem','$number',DATE_ADD( '".$start."', INTERVAL ".$number." DAY ))") or die(mysqli_error($connection));
+       echo "success";
+     }
+     else{
+      echo "failed";
+     }
+     }
+     else{
+      echo "exceeded";
+     }
+   }
 }
  ?>

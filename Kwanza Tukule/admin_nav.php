@@ -258,7 +258,7 @@ Preloader
       <li class="nav-item active">
         <a class="nav-link" href="dashboard.php" style="color: black;">
            <?php
-               if ($view == 'Admin') {
+               if ($view == 'Admin' || $view == 'Admin2') {
             ?>          
             <span style="margin-left: 50px">Administrator</span></a>
               <?php

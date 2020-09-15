@@ -731,6 +731,30 @@ function updateProfile(){
   function(result){if (result == 'saved') {alert("Profile Updated");}});
 }
 
+var payrollArr = new Array();
+function selectEmployee(selection) {
+        var id = selection.value;
+        var name = $(`#name${id}`).text();
+        var gross = $(`#gross${id}`).text();
+        var kra = $(`#kra${id}`).text();
+        var nssf = $(`#nssf${id}`).text();
+        var nhif = $(`#nhif${id}`).text();
+        var net = $(`#net${id}`).text();
+        $.post("payslipPDF.php",{id:id,name:name,gross:gross,kra:kra,nssf:nssf,nhif:nhif,net:net},
+         function(result){
+          var mywindow = window.open('', 'Kwanza Tukule', 'height=400,width=600');
+                        mywindow.document.write('<html><head><title></title>');
+                        mywindow.document.write('</head><body>');
+                        mywindow.document.write(result);
+                        mywindow.document.write('</body></html>');
+                        mywindow.document.close();
+                        mywindow.focus();
+                        mywindow.print();
+                        mywindow.close();
+          }); 
+}
+
+
 var customerArr = new Array();
 function selectCustomer(selection) {
         var id = selection.value;
@@ -1338,6 +1362,21 @@ $('#vehiclesEditable').editableTableWidget();
   function(result){});
 });
 
+  $('#leaveEditable').editableTableWidget();
+  $('#leaveEditable td.uneditable').on('change', function(evt, newValue) {
+  return false;
+});
+  $('#leaveEditable td').on('change', function(evt, newValue) {
+   var rowx = parseInt(evt.target._DT_CellIndex.row)+1;
+  var id = $(`#id${rowx}`).text();
+  var standIn = $(`#standIn${rowx}`).text();
+  var start = $(`#start${rowx}`).text();
+  var days = $(`#days${rowx}`).text();
+  var where = 'leave';
+  $.post("save.php",{id:id,standIn:standIn,start:start,days:days,where:where},
+  function(result){alert(result);});
+});
+
   $('#deliverersEditable').editableTableWidget();
   $('#deliverersEditable td.uneditable').on('change', function(evt, newValue) {
   return false;
@@ -1795,6 +1834,30 @@ $('#extraSalesEditableYesterday').editableTableWidget();
          }
           else{
             alert(result)
+          alert("Something went wrong");
+         }
+         });
+       });
+
+  $(document).on('click','#addLeaveApplication',function(){
+        var employee = $('#employee').val();
+         var start = $('#leaveStart').val();
+         var number = $('#leaveNumber').val();
+         var standIn = $('#standIn').val();
+        var where = 'leave';
+        $.post("add.php",{employee:employee,standIn:standIn,start:start,number:number,where:where},
+        function(result){
+         if (result == 'success') {
+          alert('Leave application successful');
+          location.reload(true);
+         }
+         else if(result == 'exceeded'){
+          alert('Days applied exceeded days remaining. Application failed.');
+         }
+         else if(result == 'failed'){
+          alert('Kindly select another stand in employee. Application failed.');
+         }
+          else{
           alert("Something went wrong");
          }
          });

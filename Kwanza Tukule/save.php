@@ -346,4 +346,24 @@ $row2 = mysqli_fetch_array($result2);
 $ID = $row2['id'];
 mysqli_query($connection,"UPDATE `employee_sickoff_data`  SET `Reason` =  '".$reason."',`Start_day` = '$start', `sickoff_days_no` = '$days',`End_day` = DATE_ADD( '".$start."', INTERVAL ".$days." DAY ) WHERE `id` = '".$ID."'") or die(mysqli_error($connection));
 }
+elseif ($where == 'leave') {
+  $id = $_POST['id'];
+  $standIn = $_POST['standIn'];
+  $start = $_POST['start'];
+  $days = $_POST['days'];
+$result2 = mysqli_query($connection,"SELECT id from employee_leave_data  WHERE Staff_id = '$id' AND Start_day='$start'")or die($connection->error);
+$row2 = mysqli_fetch_array($result2);
+$ID = $row2['id'];
+$arr = explode(' ',trim($standIn));
+$firstname = $arr[0];
+$lastname = $arr[1];
+$result3 = mysqli_query($connection,"SELECT staffID from users  WHERE firstname = '$firstname' AND lastname = '$lastname'")or die($connection->error);
+$row3 = mysqli_fetch_array($result3);
+$standID = $row3['staffID'];
+if ($id == $standID) {
+  echo "Kindly choose another stand in employee. Action Failed";
+  exit();
+}
+mysqli_query($connection,"UPDATE `employee_leave_data`  SET `Stand_in_employee` = '".$standID."',`Start_day` = '$start', `leave_days_no` = '$days',`End_day` = DATE_ADD( '".$start."', INTERVAL ".$days." DAY ) WHERE `id` = '".$ID."'") or die(mysqli_error($connection));
+}
  ?>

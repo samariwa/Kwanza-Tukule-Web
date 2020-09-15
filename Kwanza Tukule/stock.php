@@ -133,7 +133,7 @@
           }
         ?>
           <?php
-       if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO') {
+       if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO' || $view == 'Admin2') {
 
         ?>
          <div class="row">

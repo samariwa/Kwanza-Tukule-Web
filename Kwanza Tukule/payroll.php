@@ -98,6 +98,7 @@
       <h6 class="offset-8">Total Number: <?php echo $employeesrowcount; ?></h6>
       </div>
      </div>
+     <form>
         <table id="employeePayslipSearch" class="table table-striped table-hover" style="display:block;overflow-y:scroll;text-align: center;">
   <thead class="thead-dark">
     <tr>
@@ -210,7 +211,7 @@
         $net = $salary - $kra - $nssf - $nhif;
       ?>
     <tr>
-      <td ><input type="radio" id='selectedEmployee' onclick="selectEmployee(this);" name="selectedEmployee" value="<?php echo $id; ?>"></td>
+      <td ><input type="radio" id='selectedEmployee' onclick="selectEmployee(this);" name="selectedEmployee" required value="<?php echo $id; ?>"></td>
       <th scope="row" id="id<?php echo $id; ?>"><?php echo $id; ?></th>
       <td id="name<?php echo $id; ?>"><?php echo $firstname .' '. $lastname; ?></td>
       <td id="gross<?php echo $id; ?>">Kshs. <?php echo $salary ?></td>
@@ -224,11 +225,6 @@
     ?>
   </tbody>
 </table><br>
-        <div class="row">
-      
-           <button class="btn btn-success btn-block active printPayslip" role="button" aria-pressed="true"><i class="fa fa-print"></i>&ensp;Print Pay Slip</button>
-        
-        </div><br><br>
-
+</form>
   <!-- Scroll to Top Button-->
   <?php include "admin_footer.php" ?> 
