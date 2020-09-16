@@ -49,14 +49,20 @@ $pdf->AddPage();
 $date = date( 'l, F d, Y ', time());
 $result1 = mysqli_fetch_array($monthSalesValue);
 $sales = $result1['sum'];
+$result16 = mysqli_fetch_array($monthExtraSalesValue);
+$extra_sales = $result16['sum'];
+$total_sales = $sales + $extra_sales;
 $result2 = mysqli_fetch_array($monthIncomeValue);
 $income = $result2['sum'];
+$result17 = mysqli_fetch_array($monthExtraIncomeValue);
+$extra_income = $result17['sum'];
+$total_income = $income + $extra_income;
 $result3 = mysqli_fetch_array($monthExpenseValue);
 $expenses = $result3['sum'];
 $result4 = mysqli_fetch_array($salariesTotal);
 $salaries = $result4['salaries'];
 $gross_profit_loss = '';
-$gross = $income - $sales;
+$gross = $total_income - $total_sales;
 if ($gross > 0) {
   $gross_profit_loss = 'profit';
 }
@@ -73,11 +79,15 @@ elseif ($net < 0) {
 }
 $result5 = mysqli_fetch_array($lastmonthSalesValue);
 $last_sales = $result5['sum'];
+$result14 = mysqli_fetch_array($lastmonthExtraSalesValue);
+$last_extra_sales = $result14['sum'];
 $result6 = mysqli_fetch_array($lastmonthIncomeValue);
 $last_income = $result6['sum'];
+$result15 = mysqli_fetch_array($lastmonthExtraIncomeValue);
+$last_extra_income = $result15['sum'];
 $result7 = mysqli_fetch_array($lastmonthExpenseValue);
 $last_expenses = $result7['sum'];
-$last_gross = $last_income - $last_sales;
+$last_gross = ($last_income + $last_extra_income) - ($last_sales + $last_extra_sales);
 $gross_up_down = '';
 if ($last_gross < $gross) {
  $gross_up_down = 'an upward';
@@ -116,12 +126,26 @@ elseif ($last_net < 0) {
   $resultArrayfast = array($name, $total);
   array_push($fastmovingproducts, $resultArrayfast);
   }
+  $fastsellingproducts = array();
+  foreach($fastsellingMonth as $row){
+  $name = $row['name'];
+  $total = $row['sum'];
+  $resultArrayextrafast = array($name, $total);
+  array_push($fastsellingproducts, $resultArrayextrafast);
+  }
   $slowmovingproducts = array();
   foreach($slowmovingMonth as $row){
   $name = $row['name'];
   $total = $row['sum'];
   $resultArrayslow = array($name, $total);
   array_push($slowmovingproducts, $resultArrayslow);
+  }
+  $slowsellingproducts = array();
+  foreach($slowsellingMonth as $row){
+  $name = $row['name'];
+  $total = $row['sum'];
+  $resultArrayextraslow = array($name, $total);
+  array_push($slowsellingproducts, $resultArrayextraslow);
   }
   $payerList = array();
   foreach($biggestPayers as $row){
@@ -208,7 +232,7 @@ $html = '<h1 style="text-align:center"><strong><img src="assets/img/Kwanza Tukul
     </p>
     <h2>Performance Analysis</h2>
 <p>Below is the report that examines the company performance for the last one month.</p>
-<p>This month we managed to <b>sale products worth Ksh. '.$sales.'</b>. This income for sale of different products whose demands depended on the customers preferences. The <b>5 most demanded products</b> this month with the corresponding sales quantities(units) were as follows:</p>
+<p>This month we managed to <b>sale products worth Ksh. '.$total_sales.'</b>. This income for sale of different products whose demands depended on the customers preferences. The <b>5 most demanded products</b> this month  that were <b>ordered from the company</b> with the corresponding sales quantities(units) were as follows:</p>
 <ol>
     <b><li>'.$fastmovingproducts[0][0].' - '.$fastmovingproducts[0][1].'</li>
     <li>'.$fastmovingproducts[1][0].' - '.$fastmovingproducts[1][1].'</li>
@@ -216,7 +240,15 @@ $html = '<h1 style="text-align:center"><strong><img src="assets/img/Kwanza Tukul
     <li>'.$fastmovingproducts[3][0].' - '.$fastmovingproducts[3][1].'</li>
     <li>'.$fastmovingproducts[4][0].' - '.$fastmovingproducts[4][1].'</li></b>
 </ol>
-<p>On the other hand the <b>5 least  demanded</b> products of the month with their corresponding sales quantities(units) were as follows:</p>
+The <b>5 most demanded products</b> this month <b>based on sales made</b> with the corresponding sales quantities(units) were as follows:</p>
+<ol>
+    <b><li>'.$fastsellingproducts[0][0].' - '.$fastsellingproducts[0][1].'</li>
+    <li>'.$fastsellingproducts[1][0].' - '.$fastsellingproducts[1][1].'</li>
+    <li>'.$fastsellingproducts[2][0].' - '.$fastsellingproducts[2][1].'</li>
+    <li>'.$fastsellingproducts[3][0].' - '.$fastsellingproducts[3][1].'</li>
+    <li>'.$fastsellingproducts[4][0].' - '.$fastsellingproducts[4][1].'</li></b>
+</ol>
+<p>On the other hand the <b>5 least  demanded</b> products of the month that were <b>ordered from the company</b> with their corresponding sales quantities(units) were as follows:</p>
 <ol>
     <b><li>'.$slowmovingproducts[0][0].' - '.$slowmovingproducts[0][1].'</li>
     <li>'.$slowmovingproducts[1][0].' - '.$slowmovingproducts[1][1].'</li>
@@ -224,7 +256,15 @@ $html = '<h1 style="text-align:center"><strong><img src="assets/img/Kwanza Tukul
     <li>'.$slowmovingproducts[3][0].' - '.$slowmovingproducts[3][1].'</li>
     <li>'.$slowmovingproducts[4][0].' - '.$slowmovingproducts[4][1].'</li></b>
 </ol>
-<p>All products combined generated a <b>revenue of Ksh. '.$income.'</b>.</p>
+<p>The <b>5 least  demanded</b> products of the month <b>based on sales made</b> with their corresponding sales quantities(units) were as follows:</p>
+<ol>
+    <b><li>'.$slowsellingproducts[0][0].' - '.$slowsellingproducts[0][1].'</li>
+    <li>'.$slowsellingproducts[1][0].' - '.$slowsellingproducts[1][1].'</li>
+    <li>'.$slowsellingproducts[2][0].' - '.$slowsellingproducts[2][1].'</li>
+    <li>'.$slowsellingproducts[3][0].' - '.$slowsellingproducts[3][1].'</li>
+    <li>'.$slowsellingproducts[4][0].' - '.$slowsellingproducts[4][1].'</li></b>
+</ol>
+<p>All products combined generated a <b>revenue of Ksh. '.$total_income.'</b>.</p>
 <p>With that the <b>gross '.$gross_profit_loss.' was Ksh. '.$gross.'</b>.This is '.$gross_up_down.' gross projection by '.intval($gross_pc).'%.Last month there was a '.$last_gross_up_down.' of Ksh. '.$last_gross.'.</p>
 <p>Various <b>expenses</b> were incurred during the month which <b>totaled to Ksh. '.$expenses.'</b>. Below is a breakdown of the various expense details for the past one month with their respective amounts paid and due.</p>
 <table border="1" cellspacing="1" cellpadding="4" align="center">
