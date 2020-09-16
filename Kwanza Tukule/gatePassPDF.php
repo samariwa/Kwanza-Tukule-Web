@@ -75,7 +75,11 @@
  $pdf .=  '</tbody>
 </table>
 <br>
-<p>Security Signature: ....................................................</p>
+<p>Administrator Signature: ....................................................</p>
+<br>
+<p>Store Supervisor Signature: ....................................................</p>
+<br>
+<p>Operations Manager Signature: ....................................................</p>
 <p>Prepared by: '.$_SESSION["user"].' 
 </body></html>';
 
@@ -142,7 +146,11 @@ echo $pdf;
  $pdf .=  '</tbody>
 </table>
 <br>
-<p>Security Signature: ....................................................</p>
+<p>Administrator Signature: ....................................................</p>
+<br>
+<p>Store Supervisor Signature: ....................................................</p>
+<br>
+<p>Operations Manager Signature: ....................................................</p>
 <p>Prepared by: '.$_SESSION["user"].' 
 </body></html>';
 
