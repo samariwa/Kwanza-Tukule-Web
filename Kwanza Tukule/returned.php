@@ -191,7 +191,7 @@
     ?>
   </tbody>
 </table>
-
+<div class="row">
 <div class="col-md-8">
       <?php
         $extrareturnedrowcount = mysqli_num_rows($extraReturnedList);
