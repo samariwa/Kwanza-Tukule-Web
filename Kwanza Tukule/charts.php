@@ -19,6 +19,24 @@ if($where == 'fastmoving' )
        $array = json_encode($fastmovingproducts);
         echo $array;
 }  
+else if($where == 'fastselling' )
+{   
+       $fastsum = 0;
+       $fastmovingproducts = array(['Products', 'Number of products sold']);
+        foreach($fastselling as $row){
+        $name = $row['name'];
+        $total = $row['sum'];
+        $fastsum = $fastsum + $total;
+        $resultArray = array($name, $total);
+        array_push($fastmovingproducts, $resultArray);
+        }
+        $row1 = mysqli_fetch_array($sumSales);
+        $totalsum = $row1['sumtotal'];
+        $other = $totalsum - $fastsum;
+        array_push($fastmovingproducts,['Other',$other]);
+       $array = json_encode($fastmovingproducts);
+        echo $array;
+}  
 else if($where == 'biggestPayers' )
 {   
        $payerList = array(['Customer', 'Amount Paid']);

@@ -74,6 +74,53 @@ setTime();
         });
       }
 
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart2);
+      function drawChart2() {
+         var where = 'fastselling';
+       $.post("charts.php",{where:where},
+        function(result){
+          var data = $.parseJSON(result);
+          var data0 = data[0][0];
+          var data1 = data[0][1];
+          var data2 = data[1][0];
+          var data3 = data[1][1];
+          var data4 = data[2][0];
+          var data5 = data[2][1];
+          var data6 = data[3][0];
+          var data7 = data[3][1];
+          var data8 = data[4][0];
+          var data9 = data[4][1];
+          var data10 = data[5][0];
+          var data11 = data[5][1];
+          var data12 = data[6][0];
+          var data13 = data[6][1];
+        var data = google.visualization.arrayToDataTable([
+          [data0, data1],
+         [data2, parseInt(data3)],
+          [data4, parseInt(data5)],
+          [data6, parseInt(data7)],
+          [data8, parseInt(data9)],
+          [data10, parseInt(data11)],
+          [data12, parseInt(data13)],
+        ]);
+        var options = {
+          title: 'Fast moving products',
+          legend: 'none',
+           is3D:true,
+          pieSliceText: 'label',
+          slices: {  1: {offset: 0.2},
+                    4: {offset: 0.1},
+                    0: {offset: 0.2},
+                    2: {offset: 0.1},
+          },
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart2'));
+        chart.draw(data, options);
+        });
+      }
+
       google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawVisualization);
 
@@ -497,6 +544,7 @@ setTime();
          });
 
        });
+
 
    $(document).ready(function(){
          $("#customerOrderSearch").DataTable({
