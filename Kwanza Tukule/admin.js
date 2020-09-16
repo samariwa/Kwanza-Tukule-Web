@@ -1015,6 +1015,7 @@ function getIndexOfProduct(arr, k) {
           function(result){
             if (result=='success') {
                 cartArr.shift();
+                customerArr.shift();
             }
             else if(result=='unavailable'){
                 alert("Quantity for stock id "+ stockID +" reduced below ordered quantity in ordering process. Order for the prodcust could not be completed.");
@@ -1037,6 +1038,7 @@ function getIndexOfProduct(arr, k) {
           function(result){
             if (result=='success') {
                 cartArr.shift();
+                sellerArr.shift();
             }
             else if(result=='unavailable'){
                 alert("Quantity for stock id "+ stockID +" reduced below ordered quantity in ordering process. Order for the prodcust could not be completed.");
