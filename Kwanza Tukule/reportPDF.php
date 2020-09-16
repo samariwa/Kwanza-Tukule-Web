@@ -304,7 +304,7 @@ $html .= '</table>
     <li>'.$payerList[4][0].' - Ksh.'.$payerList[4][1].'</li></b>
 </ol>
 <p>The above customers are the new key customers for the coming month given that they made the biggest orders and made timely payments.</p>
-<p>During the given period, we had deliverers who made deliveries to the various customers. Each deliverer had their own sub-set of customers that they made deliveries to. The <b>deliverers this month with their corresponding value of sales done and amount of money collected</b> durig the period are as follows:</p>
+<p>During the month, we had deliverers who made deliveries to the various customers. Each deliverer had their own sub-set of customers that they made deliveries to. The <b>deliverers <u>this month</u> with their corresponding value of worth of orders delivered to customers and amount of money collected</b> durig the period are as follows:</p>
 <table border="1" cellspacing="1" cellpadding="4" align="center">
     <tr>
         <th><b>Deliverer</b></th>
@@ -322,7 +322,63 @@ $deliverer = $row['deliverer'];
     </tr>';
   }  
 $html .= '</table>
-<p>The table above will be used as the basis to which each and every deliverer will be credited with regards to contribution in company growth.</p>
+<p>Broken down, The <b>deliverers <u>this past week</u> with their corresponding value of worth of orders delivered to customers and amount of money collected</b> durig the period are as follows:</p>
+<table border="1" cellspacing="1" cellpadding="4" align="center">
+    <tr>
+        <th><b>Deliverer</b></th>
+        <th><b>Worth of Sales</b></th>
+        <th><b>Amount Collected</b></th> 
+    </tr>';
+  foreach($delivererSalesWeek as $row){
+$deliverer = $row['deliverer'];
+  $collected = $row['sum'];
+  $worth = $row['worth'];
+   $html .= ' <tr>
+        <td>'.$deliverer.'</td>
+        <td>'.$worth.'</td>
+        <td>'.$collected.'</td>
+    </tr>';
+  }  
+$html .= '</table>
+<p>During the month, we had sales people who did sales to the various food vendors. The <b>sales people <u>this month</u> with their corresponding value of worth of sales done and amount of money collected</b> durig the period are as follows:</p>
+<table border="1" cellspacing="1" cellpadding="4" align="center">
+    <tr>
+        <th><b>Sales Person</b></th>
+        <th><b>Worth of Sales</b></th>
+        <th><b>Amount Collected</b></th> 
+    </tr>';
+  foreach($delivererExtraSalesMonth as $row){
+$firstname = $row['firstname'];
+$lastname = $row['lastname'];
+  $collected = $row['sum'];
+  $worth = $row['worth'];
+   $html .= ' <tr>
+        <td>'.$firstname.' '.$lastname.'</td>
+        <td>'.$worth.'</td>
+        <td>'.$collected.'</td>
+    </tr>';
+  }  
+$html .= '</table>
+<p>The <b>sales people <u>this past week</u> with their corresponding value of worth of sales done and amount of money collected</b> durig the period are as follows:</p>
+<table border="1" cellspacing="1" cellpadding="4" align="center">
+    <tr>
+        <th><b>Sales Person</b></th>
+        <th><b>Worth of Sales</b></th>
+        <th><b>Amount Collected</b></th> 
+    </tr>';
+  foreach($delivererExtraSalesWeek as $row){
+$firstname = $row['firstname'];
+$lastname = $row['lastname'];
+  $collected = $row['sum'];
+  $worth = $row['worth'];
+   $html .= ' <tr>
+        <td>'.$firstname.' '.$lastname.'</td>
+        <td>'.$worth.'</td>
+        <td>'.$collected.'</td>
+    </tr>';
+  }  
+$html .= '</table>
+<p>The tables above will be used as the basis to which each and every deliverer will be credited with regards to contribution in company growth.</p>
 <h2>Suppliers</h2>
 <p>This past month, '.$newSuppliersStatement.'</p>
 <h2>Vehicles</h2>
