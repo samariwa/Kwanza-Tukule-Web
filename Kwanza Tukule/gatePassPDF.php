@@ -1,8 +1,10 @@
 <?php
  session_start();
  require('config.php');
+ require_once "functions.php";
  $deliverer = $_POST['deliverer'];
  $time = $_POST['time'];
+ $random = generateRandomString();
   $gatePassFull = mysqli_query($connection,"SELECT stock.Name as 'name',SUM(orders.Quantity) AS 'sum' FROM orders inner join stock on Stock_id = stock.id inner join customers on Customer_id = customers.id where DATE(orders.Late_Order) = CURRENT_DATE()+1 and customers.deliverer LIKE '%".$deliverer."%'GROUP BY stock.ID")or die($connection->error);
   $extraGatePassFull = mysqli_query($connection,"SELECT stock.Name as 'name',SUM(sales.Quantity) AS 'sum' FROM sales inner join stock on Stock_id = stock.id inner join users on users.staffID = sales.Staff_id where DATE(sales.Sales_date) = CURRENT_DATE()+1 and users.firstname LIKE '%".$deliverer."%'GROUP BY stock.ID")or die($connection->error);
  $gatePassPartial = mysqli_query($connection,"SELECT stock.Name as 'name',SUM(orders.Quantity) AS 'sum' FROM orders inner join stock on Stock_id = stock.id inner join customers on Customer_id = customers.id where DATE(orders.Late_Order) =CURRENT_DATE()and orders.Created_at >'%".$time."%' and customers.deliverer LIKE '%".$deliverer."%' and DATE(orders.Late_Order) < DATE_ADD( CURDATE(), INTERVAL 1 DAY) GROUP BY stock.ID")or die($connection->error);
@@ -27,16 +29,17 @@
 <p align="center">Products:'.$varietyNumber1.' </p>
 <?php
 ?>
+<p> Serial #: '.$random.'</p>
 <p> For: '.$deliverer.'</p>
 <hr>
 <p>   '.$today.' </p>
 <hr>
-<h3>Orders</h3>
+<h3><u>Orders</u></h3>
 <table class="table table-striped" style="display:block;text-align:center;"">
   <thead class="thead-dark">
     <tr>
-      <th scope="col" width="70%"">Product Name</th>
-      <th scope="col" width="30%"">Quantity</th>
+      <th scope="col" width="70%""><h3>Product Name</h3></th>
+      <th scope="col" width="30%""><h3>Quantity</h3></th>
     </tr>
   </thead>
   <tbody >';
@@ -53,12 +56,12 @@
  $pdf .=  '</tbody>
 </table>
 <br>
-<h3>Sales</h3>
+<h3><u>Sales</u></h3>
 <table class="table table-striped" style="display:block;text-align:center;"">
   <thead class="thead-dark">
     <tr>
-      <th scope="col" width="70%"">Product Name</th>
-      <th scope="col" width="30%"">Quantity</th>
+      <th scope="col" width="70%""><h3>Product Name</h3></th>
+      <th scope="col" width="30%""><h3>Quantity</h3></th>
     </tr>
   </thead>
   <tbody >';
@@ -103,12 +106,12 @@ echo $pdf;
 <hr>
 <p> '.$today.' </p>
 <hr>
-<h3>Orders</h3>
+<h2><u>Orders</u></h2>
 <table class="table table-striped" style="display:block;"">
   <thead class="thead-dark">
     <tr>
-      <th scope="col" width="70%"">Product Name</th>
-      <th scope="col" width="30%"">Quantity</th>
+      <th scope="col" width="70%""><h3>Product Name</h3></th>
+      <th scope="col" width="30%""><h3>Quantity</h3></th>
     </tr>
   </thead>
   <tbody >';
@@ -126,12 +129,12 @@ echo $pdf;
  $pdf .= ' </tbody>
 </table>
 <br>
-<h3>Sales</h3>
+<h3><u>Sales</u></h3>
 <table class="table table-striped" style="display:block;"">
   <thead class="thead-dark">
     <tr>
-      <th scope="col" width="70%"">Product Name</th>
-      <th scope="col" width="30%"">Quantity</th>
+      <th scope="col" width="70%""><h3>Product Name</h3></th>
+      <th scope="col" width="30%""><h3>Quantity</h3></th>
     </tr>
   </thead>
   <tbody >';

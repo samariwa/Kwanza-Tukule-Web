@@ -1,8 +1,10 @@
 <?php
  session_start();
  require('config.php');
+ require_once "functions.php";
  $deliverer = $_POST['deliverer'];
  $time = $_POST['time'];
+ $random = generateRandomString();
   $distributionFull = mysqli_query($connection,"SELECT customers.Name as name,customers.Number as number,customers.Location as location,stock.Name as stock,orders.Quantity as quantity FROM orders INNER JOIN customers ON orders.Customer_id=customers.id INNER JOIN stock ON orders.Stock_id=stock.id where customers.Deliverer LIKE '%".$deliverer."%' AND DATE(orders.Late_Order) = CURRENT_DATE()+1 order by orders.id")or die($connection->error);
  $distributionPartial = mysqli_query($connection,"SELECT customers.Name as name,customers.Number as number,customers.Location as location,stock.Name as stock,orders.Quantity as quantity FROM orders INNER JOIN customers ON orders.Customer_id=customers.id INNER JOIN stock ON orders.Stock_id=stock.id where customers.Deliverer LIKE '%".$deliverer."%' AND DATE(orders.Late_Order) =CURRENT_DATE()and orders.Created_at >'%".$time."%'  and DATE(orders.Late_Order) < DATE_ADD( CURDATE(), INTERVAL 1 DAY) order by orders.id")or die($connection->error);
  $today = date("l, F d, Y h:i A", time());
@@ -21,6 +23,7 @@
 <p align="center"><strong><img src="assets/img/Kwanza Tukule.png" height="60" width="155"></strong></p>
 <p align="center">Products Distribution (For Tomorrow)</p>
 <p align="center">No. of products ordered:'.$varietyNumber1.' </p>
+<p> Serial #: '.$random.'</p>
 <p> For: '.$deliverer.'</p>
 <hr>
 <p> '.$today.'</p>
