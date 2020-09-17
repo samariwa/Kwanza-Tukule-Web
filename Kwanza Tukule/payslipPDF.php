@@ -31,7 +31,7 @@ $start_date = date("l, F d, Y", strtotime($today." -1 month"));
 <hr>
 <p> Date of Payment:'.$today.'</p>
 <hr>
-<table class="table table-striped" style="display:block;text-align:center"">
+<table class="table table-striped" style="display:block;text-align:center;"">
   <thead class="thead-dark">
     <tr>
       <th scope="col" width="60%"">Gross Earnings:</th>
@@ -40,7 +40,7 @@ $start_date = date("l, F d, Y", strtotime($today." -1 month"));
   </thead>
 </table>
 <br>
-<table class="table table-striped" style="display:block;text-align:center"">
+<table class="table table-striped" style="display:block;text-align:center;"">
   <tbody class="thead-dark">
     <tr>
       <td scope="col" width="60%"">KRA Tax Deduction:</td>
@@ -49,7 +49,7 @@ $start_date = date("l, F d, Y", strtotime($today." -1 month"));
   </tbody>
 </table>
 <br>
-<table class="table table-striped" style="display:block;text-align:center"">
+<table class="table table-striped" style="display:block;text-align:center;"">
   <tbody class="thead-dark">
     <tr>
       <td scope="col" width="60%"">NSSF Deduction:</td>
@@ -58,7 +58,7 @@ $start_date = date("l, F d, Y", strtotime($today." -1 month"));
   </tbody>
 </table>
 <br>
-<table class="table table-striped" style="display:block;text-align:center"">
+<table class="table table-striped" style="display:block;text-align:center;"">
   <tbody class="thead-dark">
     <tr>
       <td scope="col" width="60%"">NHIF Deduction:</td>
@@ -67,7 +67,7 @@ $start_date = date("l, F d, Y", strtotime($today." -1 month"));
   </tbody>
 </table>
 <br>
-<table class="table table-striped" style="display:block;text-align:center"">
+<table class="table table-striped" style="display:block;text-align:center;"">
   <thead class="thead-dark">
     <tr>
       <th scope="col" width="60%"">Net Earnings:</th>

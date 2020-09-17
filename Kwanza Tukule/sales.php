@@ -147,7 +147,7 @@
           </div>
             <?php
           }
-       if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO') {
+       if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO' || $view == 'Admin') {
         ?>
       <div class="row">
         <div class="col-md-2">

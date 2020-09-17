@@ -20,12 +20,12 @@
 </head><body>
 <p align="center"><strong><img src="assets/img/Kwanza Tukule.png" height="60" width="155"></strong></p>
 <p align="center">Products Distribution (For Tomorrow)</p>
-<p align="center">No. of Customers who ordered:'.$varietyNumber1.' </p>
+<p align="center">No. of products ordered:'.$varietyNumber1.' </p>
 <p> For: '.$deliverer.'</p>
 <hr>
 <p> '.$today.'</p>
 <hr>
-<table class="table table-striped" style="display:block;"">
+<table class="table table-striped" style="display:block;text-align:center;"">
   <thead class="thead-dark">
     <tr>
       <th scope="col" width="20%"">Customer Name</th>
@@ -45,7 +45,7 @@
          $stock = $row['stock'];
          $quantity = $row['quantity'];    
     $pdf .= '<tr>
-      <th scope="row">  '.$name1.' </th>
+      <th scope="row">  '.$name.' </th>
       <td >  '.$number.' </td>
       <td >  '.$location.' </td>
       <td >  '.$stock.' </td>
@@ -78,7 +78,7 @@ echo $pdf;
 <hr>
 <p> '.$today.' </p>
 <hr>
-<table class="table table-striped" style="display:block;"">
+<table class="table table-striped" style="display:block;text-align:center;"">
   <thead class="thead-dark">
     <tr>
       <th scope="col" width="20%"">Customer Name</th>
@@ -103,8 +103,7 @@ echo $pdf;
       <td >  '.$location.' </td>
       <td >  '.$stock.' </td>
       <td >  '.$quantity.' </td>
-    </tr>;'
-
+    </tr>';
     }
   $pdf .= '</tbody>
 </table>

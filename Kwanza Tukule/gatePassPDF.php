@@ -32,7 +32,7 @@
 <p>   '.$today.' </p>
 <hr>
 <h3>Orders</h3>
-<table class="table table-striped" style="display:block;"">
+<table class="table table-striped" style="display:block;text-align:center;"">
   <thead class="thead-dark">
     <tr>
       <th scope="col" width="70%"">Product Name</th>
@@ -54,7 +54,7 @@
 </table>
 <br>
 <h3>Sales</h3>
-<table class="table table-striped" style="display:block;"">
+<table class="table table-striped" style="display:block;text-align:center;"">
   <thead class="thead-dark">
     <tr>
       <th scope="col" width="70%"">Product Name</th>
@@ -75,11 +75,13 @@
  $pdf .=  '</tbody>
 </table>
 <br>
-<p>Administrator Signature: ....................................................</p>
+<p>Data Clerk Signature: ....................................................</p>
 <br>
 <p>Store Supervisor Signature: ....................................................</p>
 <br>
-<p>Operations Manager Signature: ....................................................</p>
+<p>Sales Representative Signature: ....................................................</p>
+<br>
+<p>Operations / Finance Director Signature: ....................................................</p>
 <p>Prepared by: '.$_SESSION["user"].' 
 </body></html>';
 
