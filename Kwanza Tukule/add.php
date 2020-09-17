@@ -423,11 +423,11 @@ elseif ($where=='sales') {
   $maize_qty = '';
   $githeri_qty = '';
   if( strpos($Stock_Name, 'Yellow Beans') !== false ){
-  $yellow_qty = $quantity * 0.9682;
+  $yellow_qty = $quantity * 0.9461;
   $cereal_qty = round($yellow_qty, 2);
   }
   if( strpos($Stock_Name, 'Nyayo Beans') !== false ){
-  $nyayo_qty = $quantity * 0.76;
+  $nyayo_qty = $quantity * 0.96;
   $cereal_qty = round($nyayo_qty, 2);
   }
   if( strpos($Stock_Name, 'Njahe') !== false ){
@@ -439,13 +439,13 @@ elseif ($where=='sales') {
   $cereal_qty = round($mbaazi_qty, 2);
   }
   if( strpos($Stock_Name, 'Githeri') !== false ){
-  $wairimu_qty = $quantity * 0.55;
-  $maize_qty = $quantity * 0.3;
+  $wairimu_qty = $quantity * 0.627;
+  $maize_qty = $quantity * 0.38;
   $wairimu_maize_qty = $wairimu_qty + $maize_qty;
   $githeri_qty = round($wairimu_maize_qty, 2);
   }
   if( strpos($Stock_Name, 'Dengu') !== false ){
-   $dengu_qty = $quantity * 0.6667;
+   $dengu_qty = $quantity * 0.9667;
    $cereal_qty = round($dengu_qty, 2);
   }
   if( strpos($Stock_Name, 'Minji') !== false ){
