@@ -77,8 +77,9 @@
           </div>
  
 <br>
-<h4>Stock Flow (Orders Made)</h4>
-  <div class="row offset-4"> <h6>Stock flow records shown are for as at now.</h6></div><br>
+<h4>Stock Flow</h4>
+<div class="row offset-4"> <h6>Stock flow records shown are for as at now.</h6></div>
+<h5>(Orders Made)</h5>  
     <?php
      $yesterday1 = date('d/m/Y',strtotime('-2 day'));
      $yesterday2 = date('d/m/Y',strtotime('-3 day'));
@@ -94,8 +95,6 @@
       <th scope="col" width="10%"><?php echo $yesterday1; ?></th>
       <th scope="col"width="10%">Yesterday</th>
       <th scope="col"width="10%">Today</th>
-      <th scope="col"width="10%">Opening Stock (Today)</th>
-      <th scope="col"width="10%">Quantity (Now)</th>
     </tr>
   </thead>
   <tbody >
@@ -110,8 +109,6 @@
         $sum3 = $row['sum3'];
         $sum4 = $row['sum4'];
         $sum5 = $row['sum5'];
-        $opening = $row['Opening_stock'];
-        $closing = $row['Quantity'];
       ?>
     <tr>
       <th scope="row"><?php echo $id; ?></th>
@@ -121,6 +118,81 @@
       <td ><?php echo $sum3; ?></td>
       <td ><?php echo $sum4; ?></td>
       <td ><?php echo $sum5; ?></td>
+    </tr>
+    <?php
+    }
+    ?>
+  </tbody>
+</table>
+<br>
+<h5>(Sales Done)</h5>
+    <?php
+     $yesterday1 = date('d/m/Y',strtotime('-2 day'));
+     $yesterday2 = date('d/m/Y',strtotime('-3 day'));
+     $yesterday3 = date('d/m/Y',strtotime('-4 day'));
+    ?>
+    <table  class="table table-striped table-hover paginate" style="display:block;overflow-y:scroll;text-align: center;">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col" width="3%">#</th>
+      <th scope="col" width="14%">Brand Name</th>
+      <th scope="col" width="10%"><?php echo $yesterday3; ?></th>
+      <th scope="col" width="10%"><?php echo $yesterday2; ?></th>
+      <th scope="col" width="10%"><?php echo $yesterday1; ?></th>
+      <th scope="col"width="10%">Yesterday</th>
+      <th scope="col"width="10%">Today</th>
+    </tr>
+  </thead>
+  <tbody >
+    <?php
+        $count = 0;
+        foreach($extraStockFlowQuery as $row){
+         $count++;
+         $id = $row['sid'];
+         $name = $row['sname'];
+        $sum1 = $row['sum1'];
+        $sum2 = $row['sum2'];
+        $sum3 = $row['sum3'];
+        $sum4 = $row['sum4'];
+        $sum5 = $row['sum5'];
+      ?>
+    <tr>
+      <th scope="row"><?php echo $id; ?></th>
+      <td ><?php echo $name; ?></td>
+      <td ><?php echo $sum1; ?></td>
+      <td ><?php echo $sum2; ?></td>
+      <td ><?php echo $sum3; ?></td>
+      <td ><?php echo $sum4; ?></td>
+      <td ><?php echo $sum5; ?></td>
+    </tr>
+    <?php
+    }
+    ?>
+  </tbody>
+</table>
+<br>
+<table  class="table table-striped table-hover paginate" style="display:block;overflow-y:scroll;text-align: center;">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col" width="3%">#</th>
+      <th scope="col" width="14%">Brand Name</th>
+      <th scope="col"width="10%">Opening Stock (Today)</th>
+      <th scope="col"width="10%">Quantity (Now)</th>
+    </tr>
+  </thead>
+  <tbody >
+    <?php
+        $count = 0;
+        foreach($openingClosingQuery as $row){
+         $count++;
+         $id = $row['sid'];
+         $name = $row['sname'];
+        $opening = $row['Opening_stock'];
+        $closing = $row['Quantity'];
+      ?>
+    <tr>
+      <th scope="row"><?php echo $id; ?></th>
+      <td ><?php echo $name; ?></td>
       <td ><?php echo $opening; ?></td>
       <td ><?php echo $closing; ?></td>
     </tr>
