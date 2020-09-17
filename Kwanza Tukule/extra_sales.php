@@ -183,7 +183,7 @@
 
         ?>
       <th scope="col"width="5%">MPesa</th>
-      <th scope="col"width="5%">Cash</th>
+      <th scope="col"width="5%">Deposit</th>
       <th scope="col"width="5%">Balance</th>
       <th scope="col"width="10%">Delivery Date</th>
       <th scope="col"width="5%">Returned</th>
@@ -311,7 +311,7 @@
 
         ?>
       <th scope="col"width="5%">MPesa</th>
-      <th scope="col"width="5%">Cash</th>
+      <th scope="col"width="5%">Deposit</th>
       <th scope="col"width="5%">Balance</th>
       <th scope="col"width="5%">Returned</th>
       <th scope="col"width="5%">Banked</th>
@@ -436,7 +436,7 @@
 
         ?>
       <th scope="col"width="5%">MPesa</th>
-      <th scope="col"width="5%">Cash</th>
+      <th scope="col"width="5%">Deposit</th>
       <th scope="col"width="5%">Balance</th>
       <th scope="col"width="5%">Returned</th>
       <th scope="col"width="5%">Banked</th>
@@ -561,7 +561,7 @@
 
         ?>
       <th scope="col"width="5%">MPesa</th>
-      <th scope="col"width="5%">Cash</th>
+      <th scope="col"width="5%">Deposit</th>
       <th scope="col"width="5%">Balance</th>
       <th scope="col"width="5%">Returned</th>
       <th scope="col"width="5%">Banked</th>
