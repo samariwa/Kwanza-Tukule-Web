@@ -20,6 +20,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>Gate Pass</title>
 </head><body>
 <p align="center"><strong><img src="assets/img/Kwanza Tukule.png" height="60" width="155"></strong></p>
@@ -34,9 +35,11 @@
 <hr>
 <p>   '.$today.' </p>
 <hr>
+<div class="row">
+<div class="col-md-6">
 <h3><u>Orders</u></h3>
 <table class="table table-striped" style="display:block;text-align:center;"">
-  <thead class="thead-dark">
+  <thead>
     <tr>
       <th scope="col" width="70%""><h3>Product Name</h3></th>
       <th scope="col" width="30%""><h3>Quantity</h3></th>
@@ -55,10 +58,11 @@
     }
  $pdf .=  '</tbody>
 </table>
-<br>
+</div>
+<div class="col-md-6">
 <h3><u>Sales</u></h3>
 <table class="table table-striped" style="display:block;text-align:center;"">
-  <thead class="thead-dark">
+  <thead>
     <tr>
       <th scope="col" width="70%""><h3>Product Name</h3></th>
       <th scope="col" width="30%""><h3>Quantity</h3></th>
@@ -77,6 +81,8 @@
     }
  $pdf .=  '</tbody>
 </table>
+</div>
+</div>
 <br>
 <p>Data Clerk Signature: ....................................................</p>
 <br>
@@ -106,9 +112,11 @@ echo $pdf;
 <hr>
 <p> '.$today.' </p>
 <hr>
+<div class="row">
+<div class="col-md-6">
 <h2><u>Orders</u></h2>
 <table class="table table-striped" style="display:block;"">
-  <thead class="thead-dark">
+  <thead>
     <tr>
       <th scope="col" width="70%""><h3>Product Name</h3></th>
       <th scope="col" width="30%""><h3>Quantity</h3></th>
@@ -128,10 +136,11 @@ echo $pdf;
     }
  $pdf .= ' </tbody>
 </table>
-<br>
+</div>
+<div class="col-md-6">
 <h3><u>Sales</u></h3>
 <table class="table table-striped" style="display:block;"">
-  <thead class="thead-dark">
+  <thead>
     <tr>
       <th scope="col" width="70%""><h3>Product Name</h3></th>
       <th scope="col" width="30%""><h3>Quantity</h3></th>
@@ -150,6 +159,8 @@ echo $pdf;
     }
  $pdf .=  '</tbody>
 </table>
+</div>
+</div>
 <br>
 <p>Administrator Signature: ....................................................</p>
 <br>
@@ -157,6 +168,7 @@ echo $pdf;
 <br>
 <p>Operations Manager Signature: ....................................................</p>
 <p>Prepared by: '.$_SESSION["user"].' 
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body></html>';
 
 echo $pdf;
