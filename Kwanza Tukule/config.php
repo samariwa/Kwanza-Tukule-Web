@@ -7,7 +7,7 @@
 
 $username = "mariwa";
 $password = "Yu4kPkB8fpb5ZqBD";
-$hostname = "105.163.238.140";
+$hostname = "mariwa.ddns.net";
 $database = "tukule_kwanza";
 
 //Definition of canonical domain including trailing slash!:
