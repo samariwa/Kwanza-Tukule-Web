@@ -1,7 +1,7 @@
 <?php
-include "admin_nav.php";
-include('queries.php');
-?> 
+ include "admin_nav.php";
+ include('queries.php');
+ ?> 
 
         <!-- Begin Page Content -->
         <div class="container-fluid">

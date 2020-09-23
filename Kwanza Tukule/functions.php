@@ -1,6 +1,6 @@
 <?php
    function generateRandomString(){
-    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+   	$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
             $charactersLength = 11;
             $string = '';
             for ($p = 0; $p < $charactersLength; $p++) {
@@ -10,8 +10,8 @@
    }
    function redirectToLoginPage(){
    require('config.php');
-  header('Location:$login_url');
-    exit();
+ 	header('Location:$login_url');
+   	exit();
  }
  function genRandomSaltString() {
             $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';

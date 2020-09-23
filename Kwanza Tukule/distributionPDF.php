@@ -113,6 +113,9 @@ echo $pdf;
 <br>
 <p>Prepared by: '.$_SESSION["user"].' 
 </body></html>';
+
 echo $pdf;
+
  }
+
  ?> 

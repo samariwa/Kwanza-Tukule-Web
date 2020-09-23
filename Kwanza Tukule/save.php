@@ -3,13 +3,13 @@ require('config.php');
 session_start();
 $where =$_POST['where'];
 if ($where == 'customer' ) {
-  $id = $_POST['id'];
+	$id = $_POST['id'];
    $name = $_POST['name'];
    $location = $_POST['location'];
    $number = $_POST['number'];
    $deliverer = $_POST['deliverer'];
    $note = $_POST['note'];
-  mysqli_query($connection,"UPDATE `customers` SET `Name` = '".$name."',`Location` = '".$location."',`Number` = '".$number."',`Deliverer` = '".$deliverer."',`Note` = '".$note."' WHERE `id` = '".$id."'")or die($connection->error);
+	mysqli_query($connection,"UPDATE `customers` SET `Name` = '".$name."',`Location` = '".$location."',`Number` = '".$number."',`Deliverer` = '".$deliverer."',`Note` = '".$note."' WHERE `id` = '".$id."'")or die($connection->error);
 }
 elseif( $where == 'stock'){
    $id = $_POST['id'];
@@ -28,17 +28,17 @@ SELECT sfid as batchId FROM (SELECT s.id as sid, sf.id as sfid ,sf.Created_at,RO
         $categoryId = $row2['id'];
 mysqli_query($connection,"UPDATE `stock` JOIN stock_flow ON stock.id = stock_flow.Stock_id SET `Name` = '".$name."',Category_id = '".$categoryId."',Restock_Level = '".$restock."',stock_flow.Buying_price= '".$bp."',stock_flow.Selling_price = '".$sp."'  WHERE  stock_flow.id = '".$flowId."'")or die($connection->error);
 }elseif ($where == 'blacklist') {
-  $id = $_POST['id'];
+	$id = $_POST['id'];
     $location = $_POST['location'];
     $number = $_POST['number'];
     $balance = $_POST['balance'];
 mysqli_query($connection,"UPDATE `customers` INNER JOIN `orders` ON customers.id = orders.Customer_id SET `Location` = '".$location."',`Number` = '".$number."',`Balance` = '".$balance."' WHERE customers.id = '".$id."'")or die($connection->error);
 }elseif ($where == 'categories') {
-  $id = $_POST['id'];
+	$id = $_POST['id'];
     $name = $_POST['name'];
 mysqli_query($connection,"UPDATE `category` SET `Category_Name` = '".$name."' WHERE `id` = '".$id."'")or die($connection->error);
 }elseif ($where == 'orders') {
-  $id = $_POST['id'];
+	$id = $_POST['id'];
 $qty = $_POST['qty'];
 $mpesa = $_POST['mpesa'];
 $cash = $_POST['cash'];
@@ -72,8 +72,8 @@ $result1 = mysqli_query($connection,"SELECT Customer_id,Quantity,Balance FROM or
        mysqli_query($connection,"update cooked_cereals set Returned= Returned +".$Returned." WHERE `Stock_id` = '".$stock_id."' AND date(Delivery_date) = CURRENT_DATE()")or die($connection->error);
       }
       $difference = $oldBalance - $newBalance;
-    mysqli_query($connection,"UPDATE orders set Debt= Debt-'".$difference."', `Balance` = Balance -".$difference." WHERE Customer_id='".$customer."' and id >'".$id."' ;")or die($connection->error);
-      //newBalance calculate credit score
+		mysqli_query($connection,"UPDATE orders set Debt= Debt-'".$difference."', `Balance` = Balance -".$difference." WHERE Customer_id='".$customer."' and id >'".$id."' ;")or die($connection->error);
+			//newBalance calculate credit score
      $result3 = mysqli_query($connection,"select orders.Balance as newBalance from orders INNER JOIN customers ON orders.Customer_id=customers.id  WHERE orders.id IN (SELECT MAX(orders.id)FROM orders INNER JOIN customers ON orders.Customer_id=customers.id where customers.id='".$customer."' )")or die($connection->error);
     $row3 = mysqli_fetch_array($result3);
     $lastBalance = $row3['newBalance'];
@@ -95,8 +95,6 @@ $cash = $_POST['cash'];
 $banked = $_POST['banked'];
 $slip = $_POST['slip'];
 $banker = $_POST['banker'];
-//$product = $_POST['product'];
-//$rtn_pcs = $_POST['returned_pieces'];
 $result2 = mysqli_query($connection,"select Stock_id, Debt, Quantity as Qty from  sales where id='".$id."';")or die($connection->error);
    $row2 = mysqli_fetch_array($result2);
     $old_Qty =  $row2['Qty'];
@@ -123,97 +121,65 @@ $result1 = mysqli_query($connection,"SELECT Staff_id,Quantity,Balance FROM sales
       }
       $difference = $oldBalance - $newBalance;
     mysqli_query($connection,"UPDATE sales set Debt= Debt-'".$difference."', `Balance` = Balance -".$difference." WHERE Staff_id='".$staff."' and id >'".$id."' ;")or die($connection->error);
-    /*if ( strpos($product, 'Bundles') !== false ) {
-      $Piece_Name = str_replace("Bundles","Pieces",$product); 
-      $result6 = mysqli_query($connection,"SELECT Price FROM (SELECT s.id as id,s.name as sname,sf.Selling_price as Price, sf.Created_at,ROW_NUMBER() OVER (PARTITION BY s.id ORDER BY sf.Created_at DESC) as rn FROM stock s JOIN stock_flow sf ON s.id = sf.Stock_id ) q WHERE rn = 1 AND sname = '$Piece_Name'")or die($connection->error);
-      $row6 = mysqli_fetch_array($result6);
-      $Piece_Price = $row6['Price'];
-      echo $Piece_Price;
-      $pieces_cost = $rtn_pcs * $Piece_Price;
-      echo"<br>". $pieces_cost;
-      $result7 = mysqli_query($connection,"SELECT Staff_id,Quantity,Balance FROM sales where `id` = '".$id."'")or die($connection->error);
-       $row7 = mysqli_fetch_array($result7);
-      $oldBalance_2 = $row7['Balance'];
-      $staff_2 = $row7['Staff_id'];
-      $quantity_2 = $row7['Quantity'];
-       $Returned_2 = $rtn_pcs / 12;
-      $rem_qty = $Quantity - $Returned_2;
-      $rem_cost = '';
-      if($rem_qty >= 1){
-        $Qty2 = $quantity_2 - 1;
-        $Qty3 = 12 - $rtn_pcs;
-        $cost_piece = $Qty3 * $Piece_Price;
-        $cost_bundle = $Qty2 * $Price;
-        $rem_cost = $cost_piece + $cost_bundle;
-      }else{
-        $Qty3 = 12 - $rtn_pcs;
-        $rem_cost = $Qty3 * $Piece_Price;
-      }
-      $newBalance_2 = $Debt-$rem_cost+$mpesa+$cash;
-        mysqli_query($connection,"UPDATE `sales`  SET `Quantity` = '".$rem_qty."',`Balance` = '".$newBalance_2."',`MPesa` = '".$mpesa."',`Cash` = '".$cash."',`Returned` = '".$Returned_2."',`Returned_pcs`= '".$rtn_pcs."',`Banked` = '".$banked."',`Slip_Number` = '".$slip."',`Banked_By` = '".$banker."' WHERE `id` = '".$id."'")or die($connection->error);
-        mysqli_query($connection,"update stock set Quantity= Quantity +".$rtn_pcs." WHERE `Name` = '".$Piece_Name."'")or die($connection->error);
-        $difference_2 = $oldBalance_2 - $newBalance_2;
-    mysqli_query($connection,"UPDATE sales set Debt= Debt-'".$difference_2."', `Balance` = Balance -".$difference_2." WHERE Staff_id='".$staff."' and id >'".$id."' ;")or die($connection->error);
-       }*/
-    } 
+    }
 elseif ($where == 'fine') {
-  $id = $_POST['id'];
-  $balance = $_POST['balance'];
-  $customerID = "";
-  $x = new stdClass();
-  $res1 = mysqli_query($connection, "SELECT * FROM orders WHERE id ='$id'");
+	$id = $_POST['id'];
+	$balance = $_POST['balance'];
+	$customerID = "";
+	$x = new stdClass();
+	$res1 = mysqli_query($connection, "SELECT * FROM orders WHERE id ='$id'");
 
-  $rowS = mysqli_fetch_array($res1);
-  $customerID = $rowS['Customer_id'];
+	$rowS = mysqli_fetch_array($res1);
+	$customerID = $rowS['Customer_id'];
 
-  $res2 = mysqli_query($connection,"SELECT EXISTS(SELECT * FROM orders WHERE Customer_id='$customerID' AND id >= '$id' AND Fine < 0)");
-  $rx = mysqli_fetch_array($res2);
-  if ($rx[0]==0) {
-    $x->msg="Positive";
-    $re = mysqli_query($connection, "SELECT * FROM orders WHERE id='$id'");
-    $rowy = mysqli_fetch_array($re);
-    $fine = 0;
-    $balance = $rowy['Balance'];
-    if ($balance <= -500) {
-      $fine = -100;
-    }elseif ($balance>-500 && $balance<0) {
-      $fine = $balance * 0.1;
-    }
-    if ($fine!=0) {
-      $newB = $balance + $fine;
-      $x->newBalance = $newB;
-      $x->Fine=$fine;
-      if (mysqli_query($connection,"UPDATE orders SET Fine = '$fine', Balance = '$newB' WHERE id='$id'")===TRUE) {
-          mysqli_query($connection,"UPDATE orders set Debt= Debt+'".$fine."', `Balance` = Balance +".$fine." WHERE Customer_id='".$customerID."' and id >'".$id."' ;")or die($connection->error);
-      }
-      #update status
-      $result2 = mysqli_query($connection,"SELECT orders.Balance as newBalance from orders INNER JOIN customers ON orders.Customer_id=customers.id  WHERE orders.id IN (SELECT MAX(orders.id)FROM orders INNER JOIN customers ON orders.Customer_id=customers.id where customers.id='".$customerID."' ); ")or die($connection->error);
-      $row2 = mysqli_fetch_array($result2);
-      $newBalance = $row2['newBalance'];
-      if ($newBalance == 0) {
-        mysqli_query($connection,"UPDATE `customers`  SET `Status` = 'clean' WHERE `id` = '".$customerID."'")or die($connection->error);
-      }else if ($newBalance > 0) {
-        mysqli_query($connection,"UPDATE `customers`  SET `Status` = 'credit' WHERE `id` = '".$customerID."'")or die($connection->error);
-      }else if ($newBalance < 0 && $newBalance >= -100) {
-        mysqli_query($connection,"UPDATE `customers`  SET `Status` = 'fined' WHERE `id` = '".$customerID."'")or die($connection->error);
-      }else if ($newBalance < -100) {
-       mysqli_query($connection,"UPDATE `customers`  SET `Status` = 'no delivery' WHERE `id` = '".$customerID."'")or die($connection->error);
-    }
-    #sam's weebshit
-  }else {
-    $x->msg="Negativex";
-  }
-  }else {
-    $res3 = mysqli_query($connection,"SELECT * FROM orders WHERE Customer_id='$customerID' AND id >= '$id' AND Fine < 0");
-    while($rowx = mysqli_fetch_assoc($res3)){
-      if ($rowx['Fine']<0) {
-        $x->fineAmt = $rowx['Fine'];
-        $x->fineOrder = $rowx['id'];
-      }
-    }
-    $x->msg="Negative";
-  }
-  echo json_encode($x);
+	$res2 = mysqli_query($connection,"SELECT EXISTS(SELECT * FROM orders WHERE Customer_id='$customerID' AND id >= '$id' AND Fine < 0)");
+	$rx = mysqli_fetch_array($res2);
+	if ($rx[0]==0) {
+		$x->msg="Positive";
+		$re = mysqli_query($connection, "SELECT * FROM orders WHERE id='$id'");
+		$rowy = mysqli_fetch_array($re);
+		$fine = 0;
+		$balance = $rowy['Balance'];
+		if ($balance <= -500) {
+			$fine = -100;
+		}elseif ($balance>-500 && $balance<0) {
+			$fine = $balance * 0.1;
+		}
+		if ($fine!=0) {
+			$newB = $balance + $fine;
+			$x->newBalance = $newB;
+			$x->Fine=$fine;
+			if (mysqli_query($connection,"UPDATE orders SET Fine = '$fine', Balance = '$newB' WHERE id='$id'")===TRUE) {
+					mysqli_query($connection,"UPDATE orders set Debt= Debt+'".$fine."', `Balance` = Balance +".$fine." WHERE Customer_id='".$customerID."' and id >'".$id."' ;")or die($connection->error);
+			}
+			#update status
+			$result2 = mysqli_query($connection,"SELECT orders.Balance as newBalance from orders INNER JOIN customers ON orders.Customer_id=customers.id  WHERE orders.id IN (SELECT MAX(orders.id)FROM orders INNER JOIN customers ON orders.Customer_id=customers.id where customers.id='".$customerID."' ); ")or die($connection->error);
+			$row2 = mysqli_fetch_array($result2);
+			$newBalance = $row2['newBalance'];
+			if ($newBalance == 0) {
+				mysqli_query($connection,"UPDATE `customers`  SET `Status` = 'clean' WHERE `id` = '".$customerID."'")or die($connection->error);
+			}else if ($newBalance > 0) {
+				mysqli_query($connection,"UPDATE `customers`  SET `Status` = 'credit' WHERE `id` = '".$customerID."'")or die($connection->error);
+			}else if ($newBalance < 0 && $newBalance >= -100) {
+				mysqli_query($connection,"UPDATE `customers`  SET `Status` = 'fined' WHERE `id` = '".$customerID."'")or die($connection->error);
+			}else if ($newBalance < -100) {
+			 mysqli_query($connection,"UPDATE `customers`  SET `Status` = 'no delivery' WHERE `id` = '".$customerID."'")or die($connection->error);
+		}
+		#sam's weebshit
+	}else {
+		$x->msg="Negativex";
+	}
+	}else {
+		$res3 = mysqli_query($connection,"SELECT * FROM orders WHERE Customer_id='$customerID' AND id >= '$id' AND Fine < 0");
+		while($rowx = mysqli_fetch_assoc($res3)){
+			if ($rowx['Fine']<0) {
+				$x->fineAmt = $rowx['Fine'];
+				$x->fineOrder = $rowx['id'];
+			}
+		}
+		$x->msg="Negative";
+	}
+	echo json_encode($x);
 }
 
 elseif ($where == 'suppliers') {

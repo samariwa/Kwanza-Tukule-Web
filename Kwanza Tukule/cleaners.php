@@ -1,257 +1,210 @@
 <?php
-include "admin_nav.php";
-include('queries.php');
-?> 
-<!-- Begin Page Content -->
-<div class="container-fluid">
-  <!-- Page Heading -->
-  <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Dashboard 
-      <span style="font-size: 18px;">/Stock</span>
-      <span style="font-size: 15px;">/Categories</span>
-    </h1>
-    <h6 class="h6 mb-0 text-gray-600 mr-3">Time: 
-      <span id="time"></span>
-    </h6>
-  </div>
-  <?php
- if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO') {
-  ?>
-  <!-- Content Row -->
-  <div class="row">
-    <!-- Customers Card -->
-    <div class="col-xl-3 col-md-6 mb-4">
-      <div class="card border-left-primary shadow h-100 py-2">
-        <a class="text-xs font-weight-bold text-primary text-uppercase mb-1" href="#" style="text-decoration: none;">
-          <div class="card-body">
-            <div class="row no-gutters align-items-center">
-              <div class="col mr-2">
-                <i class="fa fa-users fa-2x"></i>&emsp;Customers
-              </div>
-            </div>
+ include "admin_nav.php";
+  include('queries.php');
+ ?> 
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+
+          <!-- Page Heading -->
+          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Dashboard <span style="font-size: 18px;">/Staff</span><span style="font-size: 15px;"> /Cleaners</span></h1>
+           <h6 class="h6 mb-0 text-gray-600 mr-3">Time: <span id="time"></span></h6>
           </div>
-        </a>
-      </div>
-    </div>
-    <!-- Stock Card -->
-    <div class="col-xl-3 col-md-6 mb-4">
-      <div class="card border-left-success shadow h-100 py-2">
-        <a class="text-xs font-weight-bold text-success text-uppercase mb-1" href="#" style="text-decoration: none;">
-          <div class="card-body">
-            <div class="row no-gutters align-items-center">
-              <div class="col mr-2">
-                <i class="fa fa-cubes fa-2x"></i>&emsp;Stock   
-              </div>
-            </div>
-          </div>
-        </a>
-      </div>
-    </div>
-    <!-- Sales Card -->
-    <div class="col-xl-3 col-md-6 mb-4">
-      <div class="card border-left-info shadow h-100 py-2">
-        <a class="text-xs font-weight-bold text-info text-uppercase mb-1" href="sales.php" style="text-decoration: none;">
-          <div class="card-body">
-            <div class="row no-gutters align-items-center">
-              <div class="col mr-2">
-                <i class="fa fa-shopping-cart fa-2x"></i>&emsp;Sales    
-              </div>
-            </div>
-          </div>
-        </a>
-      </div>
-    </div>
-    <!-- Summary Card -->
-    <div class="col-xl-3 col-md-6 mb-4">
-      <div class="card border-left-warning shadow h-100 py-2">
-        <a class="text-xs font-weight-bold text-warning text-uppercase mb-1" href="summary.php" style="text-decoration: none;">
-          <div class="card-body">
-            <div class="row no-gutters align-items-center">
-              <div class="col mr-2">
-                <i class="fa fa-clipboard fa-2x"></i>&emsp;Summary 
-              </div>
-            </div>
-          </div>
-        </a>
-      </div>
-    </div>
-  </div>
-  <?php
-      }else{
-   ?>
-  <!-- Customers Card -->
-  <div class="col-xl-4 col-md-6 mb-4">
-    <div class="card border-left-primary shadow h-100 py-2">
-      <a class="text-xs font-weight-bold text-primary text-uppercase mb-1" href="customers.php" style="text-decoration: none;">
-        <div class="card-body">
-          <div class="row no-gutters align-items-center">
-            <div class="col mr-2">
-              <i class="fa fa-users fa-2x"></i>&emsp;Customers     
-            </div>
-          </div>
-        </div>
-      </a>
-    </div>
-  </div>
-  <!-- Stock Card -->
-  <div class="col-xl-4 col-md-6 mb-4">
-    <div class="card border-left-success shadow h-100 py-2">
-      <a class="text-xs font-weight-bold text-success text-uppercase mb-1" href="#" style="text-decoration: none;">
-        <div class="card-body">
-          <div class="row no-gutters align-items-center">
-            <div class="col mr-2">
-              <i class="fa fa-cubes fa-2x"></i>&emsp;Stock     
-            </div>
-          </div>
-        </div>
-      </a>
-    </div>
-  </div>
-  <!-- Sales Card -->
-  <div class="col-xl-4 col-md-6 mb-4">
-    <div class="card border-left-info shadow h-100 py-2">
-      <a class="text-xs font-weight-bold text-info text-uppercase mb-1" href="sales.php" style="text-decoration: none;">
-        <div class="card-body">
-          <div class="row no-gutters align-items-center">
-            <div class="col mr-2">
-              <i class="fa fa-shopping-cart fa-2x"></i>&emsp;Sales    
-            </div>
-          </div>
-        </div>
-      </a>
-    </div>
-  </div>
-</div>
-<?php
-  }
-?>
-<div class="row">
-  <div class="col-md-4">
-    <a href="stock.php" class="btn btn-primary btn-md active " role="button" aria-pressed="true">
-      <i class="fa fa-arrow-left"></i>&ensp;Back
-    </a>
-  </div>
-  <?php
-    $categoriesrowcount = mysqli_num_rows($categoriesList);
-  ?>
-  <div class="col-md-4">
-    <h6 class="offset-3">Total Number: 
-      <?php echo $categoriesrowcount; ?>
-    </h6>
-  </div>
-  <?php
-   if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO') {
-    ?>
-  <div class="col-md-4">
-    <a data-toggle="modal" data-target="#exampleModalScrollable" class="btn btn-success btn-md active offset-6" role="button" aria-pressed="true">
-      <i class="fa fa-plus-circle"></i>&ensp;Add Category
-    </a>
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalScrollableTitle">Add Category</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <form method="POST">
-              <div class="row">
-                <input type="text" name="category" id="category" class="form-control col-md-9" style="padding:15px;margin-left: 60px" placeholder="Category Name..." required>
+
+          <!-- Content Row -->
+          <div class="row">
+
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-primary shadow h-100 py-2">
+                <a class="text-xs font-weight-bold text-primary text-uppercase mb-1" href="customers.php" style="text-decoration: none;">
+                  <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <i class="fa fa-users fa-2x"></i>&emsp;Customers
+                    </div>
+                  </div>
                 </div>
+                </a> 
               </div>
-              <div class="modal-footer">
-                <button type="submit" class="btn btn-primary" style="margin-right: 50px" id="addCategory">Add Category</button>
-              </form>
+            </div>
+
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-success shadow h-100 py-2">
+                <a class="text-xs font-weight-bold text-success text-uppercase mb-1" href="stock.php" style="text-decoration: none;">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <i class="fa fa-cubes fa-2x"></i>&emsp;Stock
+                    </div>
+                  </div>
+                </div>
+                </a>
+              </div>
+            </div>
+
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-info shadow h-100 py-2">
+                <a class="text-xs font-weight-bold text-info text-uppercase mb-1" href="sales.php" style="text-decoration: none;">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <i class="fa fa-shopping-cart fa-2x"></i>&emsp;Sales
+                    </div>
+                  </div>
+                </div>
+                </a>
+              </div>
+            </div>
+
+            <!-- Pending Requests Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-warning shadow h-100 py-2">
+                <a class="text-xs font-weight-bold text-warning text-uppercase mb-1" href="summary.php" style="text-decoration: none;">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <i class="fa fa-clipboard fa-2x"></i>&emsp;Summary
+                    </div>   
+                  </div>
+                </div>
+                 </a>
+              </div>
+            </div>
+          </div>
+
+   <div class="row">
+    <div class="col-md-2">
+             <a data-toggle="modal" data-target="#exampleModalScrollable" class="btn btn-success btn-md active" role="button" aria-pressed="true" ><i class="fa fa-plus-circle"></i>&ensp;New Cleaner</a>
+       <!-- Modal -->
+      <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalScrollableTitle">New Cleaner</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form method="POST">
+                 <div class="row">
+                 <input type="text" name="fname" id="fname" class="form-control col-md-9" style="padding:15px;margin-left: 60px" placeholder=" First Name..." required>
+                  </div><br>
+                  <div class="row">
+                 <input type="text" name="lname" id="lname" class="form-control col-md-9" style="padding:15px;margin-left: 60px" placeholder="Last Name..." required>
+                  </div><br>
+                  <div class="row">
+                 <input type="text" name="contact" id="contact" class="form-control col-md-9" style="padding:15px;margin-left: 60px" placeholder="Contact Number..." required>
+                  </div><br>
+                  <div class="row">
+                 <input type="text" name="staffId" id="staffId" class="form-control col-md-9" style="padding:15px;margin-left: 60px" placeholder="Staff Id..." required>
+                  </div><br>
+                  <div class="row">
+                 <input type="text" name="nationalId" id="nationalId" class="form-control col-md-9" style="padding:15px;margin-left: 60px" placeholder="National Id..." required>
+                  </div><br>
+                  <div class="row">
+                 <input type="text" name="yob" id="yob" class="form-control col-md-9" style="padding:15px;margin-left: 60px" placeholder="Year of Birth..." required>
+                  </div><br>
+                  <div class="row">
+                 <select id="gender" name="gender" class="form-control col-md-9" required style="margin-left: 60px">
+                                    <option value="">Gender</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                    <option value="other">Other</option>
+                                    </select>
+                  </div><br>
+                  <div class="row">
+                 <input type="text" name="salary" id="salary" class="form-control col-md-9" style="padding:15px;margin-left: 60px" placeholder="Salary..." required>
+                  </div>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary" style="margin-right: 50px" id="addCleaner">Add Cleaner</button>
+            </form>
             </div>
           </div>
         </div>
       </div>
-      <?php
-      }
+      </div>
+       <div class="col-md-3">
+      <a href="payroll.php" class="btn btn-warning btn-md active offset-1" role="button" aria-pressed="true" >Employee Payroll</a>
+      </div>
+      <div class="col-md-2">
+           <?php
+        $cleanersrowcount = mysqli_num_rows($cleanersStaffList);
       ?>
-    </div>
-  </div>
-  <br>
+      <h6 class="offset-1">Total Number: <?php echo $cleanersrowcount; ?></h6>
+      </div>
+      <div class="col-md-2">
+      <a href="sickoff.php" class="btn btn-light btn-md active offset-4" role="button" aria-pressed="true" >Employee Sick Off</a>
+      </div>
+    <div class="col-md-2">
+      <a href="leave.php" class="btn btn-primary btn-md active offset-7" role="button" aria-pressed="true" >Employee Leave</a>
+      </div>
+        </div><br>
+
+        <table id="cleanersEditable" class="table table-striped table-hover paginate" style="display:block;overflow-y:scroll;text-align: center;">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col" width="5%">#</th>
+      <th scope="col" width="18%">Name</th>
+      <th scope="col" width="13%">Contact</th>
+      <th scope="col" width="8%">Gender</th>
+      <th scope="col" width="10%">Staff ID</th>
+      <th scope="col" width="13%">National ID</th>
+       <th scope="col" width="8%">Age</th>
+      <th scope="col" width="13%">Salary</th>
+      <th scope="col" width="13%">KRA</th>
+        <th scope="col" width="13%">NSSF</th>
+        <th scope="col" width="13%">NHIF</th>
+      <th scope="col"width="32%"></th>
+    </tr>
+  </thead>
+  <tbody >
     <?php
-     if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO') {
-    ?>
-    <table id="categoriesEditable" class="table table-striped table-hover paginate" style="display:block;overflow-y:scroll;text-align: center;">
-      <thead class="thead-dark">
-        <tr>
-          <th scope="col" width="30%" style="text-align: left;">#</th>
-          <th scope="col" width="60%">Category Name</th>
-          <th scope="col"width="80%"></th>
-        </tr>
-      </thead>
-      <tbody >
-        <?php
         $count = 0;
-        foreach($categoriesList as $row){
+        foreach($cleanersStaffList as $row){
          $count++;
-         $id = $row['id'];
-        $category = $row['Category_Name'];
+        $id = $row['id'];
+        $fname = $row['firstname'];
+        $lname = $row['lastname'];
+        $contact = $row['number'];
+        $gender = $row['gender'];
+        $staffId = $row['staffID'];
+        $nationalId = $row['nationalID'];
+        $yob = $row['yob'];
+        $salary = $row['salary'];
+        $kra = $row['KRA'];
+        $nssf = $row['NSSF'];
+        $nhif = $row['NHIF'];
+        $name = $fname.' '.$lname;
+        $current = date("Y");
+        $age = $current - $yob;
       ?>
-        <tr>
-          <th scope="row" class="uneditable" id="id
-            <?php echo $count; ?>" style="text-align: left;">
-            <?php echo $id; ?>
-          </th>
-          <td class="editable" id="category
-            <?php echo $count; ?>">
-            <?php echo $category; ?>
-          </td>
-          <td>
-            <button id="
-              <?php echo $id; ?>" data_id="
-              <?php echo $id; ?>" class="btn btn-danger btn-sm active deleteCategory" role="button" aria-pressed="true" >
-              <i class="fa fa-trash"></i>&ensp;Delete
-            </button>
-          </td>
-        </tr>
-        <?php
-        }
-        ?>
-      </tbody>
-    </table>
-    <?php
-        }
-        else{
-    ?>
-    <table id="categoriesEditable" class="table table-striped table-hover paginate" style="display:block;overflow-y:scroll;width: 100%">
-      <thead class="thead-dark">
-        <tr>
-          <th scope="col" width="40%">#&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</th>
-          <th scope="col" width="60%">Category Name&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</th>
-        </tr>
-      </thead>
-      <tbody >
-        <?php
-        $count = 0;
-        foreach($categoriesList as $row){
-         $count++;
-         $id = $row['id'];
-        $category = $row['Category_Name'];
-        ?>
-        <tr>
-          <th scope="row" class="uneditable" id="id
-            <?php echo $count; ?>">
-            <?php echo $id; ?>
-          </th>
-          <td class="uneditable" id="category
-            <?php echo $count; ?>">
-            <?php echo $category; ?>
-          </td>
-        </tr>
-        <?php
-        }
-        ?>
-      </tbody>
-    </table>
+    <tr>
+      <th scope="row" class="uneditable" id="id<?php echo $count; ?>"><?php echo $id; ?></th>
+      <td class="uneditable" id="name<?php echo $count; ?>"><?php echo $name; ?></td>
+      <td class="editable" id="contact<?php echo $count; ?>"><?php echo $contact; ?></td>
+      <td class="uneditable" id="gender<?php echo $count; ?>"><?php echo $gender; ?></td>
+      <td class="editable" id="staffId<?php echo $count; ?>"><?php echo $staffId; ?></td>
+      <td class="editable" id="nationalId<?php echo $count; ?>"><?php echo $nationalId; ?></td>
+      <td class="uneditable" id="age<?php echo $count; ?>"><?php echo $age; ?></td>
+      <td class="editable" id="salary<?php echo $count; ?>">Ksh. <?php echo $salary; ?></td>
+       <td class="editable" id="kra<?php echo $count; ?>"><?php echo $kra; ?></td>
+        <td class="editable" id="nssf<?php echo $count; ?>"><?php echo $nssf; ?></td>
+         <td class="editable" id="nhif<?php echo $count; ?>"><?php echo $nhif; ?></td>
+       <td>
+        <button id="<?php echo $id; ?>" data_id="<?php echo $id; ?>" class="btn btn-danger btn-sm active deleteCook" role="button" aria-pressed="true" ><i class="fa fa-user-times"></i>&ensp;Delete</button>
+       </td>
+    </tr>
     <?php
     }
     ?>
-    <!-- Scroll to Top Button-->
-    <?php include "admin_footer.php" ?> 
+  </tbody>
+</table>      
+
+  <!-- Scroll to Top Button-->
+  <?php include "admin_footer.php" ?> 
