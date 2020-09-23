@@ -7,7 +7,7 @@ $value = mysqli_fetch_array($userId);
 $userID = $value['id'];
 $calendarQuery = mysqli_query($connection,"SELECT * FROM event where User_id = '$userID' ORDER BY id")or die($connection->error);
 foreach($calendarQuery as $row){
- 	$data[] = array(
+  $data[] = array(
        'id' => $row['id'],
        'title' => $row['title'],
        'start' => $row['start_event'],
@@ -15,7 +15,7 @@ foreach($calendarQuery as $row){
        'textColor'=> 'white',
        'backgroundColor'=>'green',
        'borderColor'=>'yellow'
- 	);	   
+  );     
     }
     echo json_encode($data);
-    ?> 
+?> 

@@ -28,10 +28,7 @@ if ((isset($_POST["pass"])) && (isset($_POST["user"])) && (isset($_POST["pass2"]
     $desired_username = sanitize($_POST["user"]);
     $desired_password = sanitize($_POST["pass"]);
     $desired_password1 = sanitize($_POST["pass2"]);
-
-
 //validate username
-
     if (empty($desired_username)) {
         $usernamenotempty = FALSE;
     } else {
@@ -90,7 +87,6 @@ if ((isset($_POST["pass"])) && (isset($_POST["user"])) && (isset($_POST["pass2"]
     } else {
         $passwordmatch = FALSE;
     }
-
     if (($usernamenotempty == TRUE)
         && ($usernamevalidate == TRUE)
         && ($usernotduplicate == TRUE)
@@ -103,15 +99,12 @@ if ((isset($_POST["pass"])) && (isset($_POST["user"])) && (isset($_POST["pass2"]
 //Hash the password
 //This is very important for security reasons because once the password has been compromised,
 //The attacker cannot still get the plain text password equivalent without brute force.
-
   $hash = password_hash($desired_password, PASSWORD_DEFAULT);
-
   //check the id number of the job      
     $role_query = mysqli_query($connection,"SELECT id FROM `jobs` WHERE `Name`='$role'");
     $role1 = mysqli_fetch_array($role_query);
     $job = $role1['id'];
 //Insert details password to MySQL database
-
         mysqli_query($connection,"INSERT INTO `users` (`Job_id`,`firstname`,`lastname`,`number`,`email`,`nationalID`,`staffID`,`yob`,`gender`,`username`, `password`) VALUES ('$job','$first_name','$last_name','$phone_no','$email','$national_id','$staff_id','$dob','$gender','$desired_username', '$hash')") or die(mysqli_error($connection));
 //Send notification to email
         require_once "PHPMailer/PHPMailer.php";
@@ -140,7 +133,6 @@ if ((isset($_POST["pass"])) && (isset($_POST["user"])) && (isset($_POST["pass2"]
                 Kind Regards,
                 ";
         $mail -> send();
-
     }
 }
 ?>
@@ -277,17 +269,17 @@ if ((isset($_POST["pass"])) && (isset($_POST["user"])) && (isset($_POST["pass2"]
                         </div>
                         <!-- Display validation errors -->
                          <?php 
-					         if ($active == FALSE) {  $_SESSION['activation'] = $desired_username;
-					        echo '<br><br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;<font color="green"><i class="bx bx-check-circle bx-flashing"></i>&ensp;Registration Complete. Kindly <a href="activation.php" style="color: inherit;">(click here)</a> to activate your account.</font>'; } ?>
-					        <?php 
-					         if ($passwordmatch == FALSE)
-					        echo '<br><br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;<font color="red"><i class="bx bxs-error bx-flashing"></i>&ensp;Your passwords do not match.</font>'; ?>
-					<?php  if ($passwordvalidate == FALSE)
-					        echo '<br><br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<font color="red"><i class="bx bx-shield-quarter bx-flashing"></i>&ensp;Your password should be greater than 8 characters.</font>'; ?>
-					   <?php if ($usernamevalidate == FALSE)
-					        echo '<br><br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<font color="red"><i class="bx bx-shield-quarter bx-flashing"></i>&ensp;Your username should be less than 11 characters.</font>'; ?>
-					     <?php if ($usernotduplicate == FALSE)
-					        echo '<br><br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<font color="red"><i class="bx bxs-data bx-flashing"></i>&ensp;User already exists.</font>'; ?>
+                             if ($active == FALSE) {  $_SESSION['activation'] = $desired_username;
+                            echo '<br><br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;<font color="green"><i class="bx bx-check-circle bx-flashing"></i>&ensp;Registration Complete. Kindly <a href="activation.php" style="color: inherit;">(click here)</a> to activate your account.</font>'; } ?>
+                            <?php 
+                             if ($passwordmatch == FALSE)
+                            echo '<br><br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;<font color="red"><i class="bx bxs-error bx-flashing"></i>&ensp;Your passwords do not match.</font>'; ?>
+                    <?php  if ($passwordvalidate == FALSE)
+                            echo '<br><br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<font color="red"><i class="bx bx-shield-quarter bx-flashing"></i>&ensp;Your password should be greater than 8 characters.</font>'; ?>
+                       <?php if ($usernamevalidate == FALSE)
+                            echo '<br><br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<font color="red"><i class="bx bx-shield-quarter bx-flashing"></i>&ensp;Your username should be less than 11 characters.</font>'; ?>
+                         <?php if ($usernotduplicate == FALSE)
+                            echo '<br><br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<font color="red"><i class="bx bxs-data bx-flashing"></i>&ensp;User already exists.</font>'; ?>
                     </form>
                 </div>
                 <br><br>

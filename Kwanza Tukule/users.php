@@ -1,23 +1,19 @@
 <?php
- include "admin_nav.php";
- include('queries.php');
- ?> 
-
-        <!-- Begin Page Content -->
+include "admin_nav.php";
+include('queries.php');
+?> 
+<!-- Begin Page Content -->
         <div class="container-fluid">
-
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Dashboard <span style="font-size: 18px;">/Users</span></h1>
             <h6 class="h6 mb-0 text-gray-600 mr-3">Time: <span id="time"></span></h6>
           </div>
              <?php
-       if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO') {
-
-        ?>
+             if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO') {
+              ?>
           <!-- Content Row -->
           <div class="row">
-
             <!-- Earnings (Monthly) Card Example -->
             <div class="col-xl-3 col-md-6 mb-4">
               <div class="card border-left-primary shadow h-100 py-2">
@@ -400,3 +396,4 @@
         ?>
   <!-- Scroll to Top Button-->
   <?php include "admin_footer.php" ?> 
+        

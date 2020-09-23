@@ -3,28 +3,28 @@ require('config.php');
 $where =$_POST['where'];
 if($where == 'customer' )
 {  
-	$id =$_POST['id'];
+  $id =$_POST['id'];
 mysqli_query($connection,"Delete from `customers` where id='".$id."'")or die($connection->error);
     echo 1;
     exit();
 }
 else if($where == 'stock' )
 {  
-	$id =$_POST['id'];
+  $id =$_POST['id'];
 mysqli_query($connection,"Delete from `stock` where id='".$id."'")or die($connection->error);
     echo 1;
     exit();
 }
 else if($where == 'blacklist' )
 {  
-	$id =$_POST['id'];
+  $id =$_POST['id'];
 mysqli_query($connection,"Delete from `customers` where id='".$id."'")or die($connection->error);
     echo 1;
     exit();
 }
 else if($where == 'category' )
 {  
-	$id =$_POST['id'];
+  $id =$_POST['id'];
 mysqli_query($connection,"Delete from `category` where id='".$id."'")or die($connection->error);
     echo 1;
     exit();
@@ -77,14 +77,14 @@ $row = mysqli_fetch_array($result);
 }
 else if($where == 'supplier' )
 {  
-	$id =$_POST['id'];
+  $id =$_POST['id'];
 mysqli_query($connection,"Delete from `suppliers` where id='".$id."'")or die($connection->error);
     echo 1;
     exit();
 }
 else if($where == 'vehicle' )
 {  
-	$id =$_POST['id'];
+  $id =$_POST['id'];
 mysqli_query($connection,"Delete from `vehicles` where id='".$id."'")or die($connection->error);
     echo 1;
     exit();
@@ -145,6 +145,5 @@ mysqli_query($connection,"Delete from `users` where id='".$id."'")or die($connec
      $id =$_POST['id'];
    mysqli_query($connection,"DELETE from event WHERE id='$id'")or die($connection->error);
 }
-
  }
 ?>

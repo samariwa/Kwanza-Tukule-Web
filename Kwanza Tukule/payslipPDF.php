@@ -77,6 +77,5 @@ $start_date = date("l, F d, Y", strtotime($today." -1 month"));
 </table>
 <p>Prepared by: '.$_SESSION["user"].' 
 </body></html>';
-
 echo $pdf;
  ?> 
