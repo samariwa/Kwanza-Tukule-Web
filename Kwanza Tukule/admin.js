@@ -930,6 +930,7 @@ function selectSeller(selection) {
        }
        function upQuantity(a,b,c){
          for (var i = 0; i < cartItems.length; i++) {
+          alert(cartItems[i][3]);
            if (cartItems[i][0]==a) {
              currentQ = cartItems[i][3];
              newQ = parseInt(currentQ) + 1;

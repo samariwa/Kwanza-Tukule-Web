@@ -367,7 +367,7 @@ Preloader
 
       <li class="nav-item">&emsp;
         <a style="color: black;" href="suppliers.php">
-           <i class="fa fa-dolly-flatbed"></i>
+           <i class="bx bx-archive-in"></i>
           <span>Suppliers</span></a>
       </li>
 
