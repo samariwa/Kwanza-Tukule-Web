@@ -273,19 +273,19 @@ elseif ($where=='order') {
   $wairimu_qty = '';
   $maize_qty = '';
   $githeri_qty = '';
-  if( strpos($Stock_Name, 'Yellow Beans') !== false ){
+  if( strpos($Stock_Name, 'Boiled Yellow Beans') !== false ){
   $yellow_qty = $quantity * 0.9682;
   $cereal_qty = round($yellow_qty, 2);
   }
-  if( strpos($Stock_Name, 'Nyayo Beans') !== false ){
+  if( strpos($Stock_Name, 'Boiled Nyayo Beans') !== false ){
   $nyayo_qty = $quantity * 0.76;
   $cereal_qty = round($nyayo_qty, 2);
   }
-  if( strpos($Stock_Name, 'Njahe') !== false ){
+  if( strpos($Stock_Name, 'Boiled Njahe') !== false ){
   $njahe_qty = $quantity * 0.75;
   $cereal_qty = round($njahe_qty, 2);
   }
-  if( strpos($Stock_Name, 'Mbaazi') !== false ){
+  if( strpos($Stock_Name, 'Boiled Mbaazi') !== false ){
   $mbaazi_qty = $quantity * 0.92;
   $cereal_qty = round($mbaazi_qty, 2);
   }
@@ -295,11 +295,11 @@ elseif ($where=='order') {
   $wairimu_maize_qty = $wairimu_qty + $maize_qty;
   $githeri_qty = round($wairimu_maize_qty, 2);
   }
-  if( strpos($Stock_Name, 'Dengu') !== false ){
+  if( strpos($Stock_Name, 'Boiled Dengu') !== false ){
    $dengu_qty = $quantity * 0.6667;
    $cereal_qty = round($dengu_qty, 2);
   }
-  if( strpos($Stock_Name, 'Minji') !== false ){
+  if( strpos($Stock_Name, 'Boiled Minji') !== false ){
   $minji_qty = $quantity * 0.8155;
   $cereal_qty = round($minji_qty, 2);
   }
@@ -312,12 +312,62 @@ elseif ($where=='order') {
        mysqli_query($connection,"UPDATE `cooked_cereals`  SET `Quantity_Ordered` = Quantity_Ordered + '".$quantity."',`Quantity_Prepared` = Quantity_Prepared + '".$quantity."' WHERE `Stock_id` = '".$stockIDx."' AND `Delivery_date` = '$lateOrder'") or die(mysqli_error($connection));
    }
    if ($cereal_qty != '') {
-     mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = Quantity - '".$cereal_qty."' WHERE `id` = '".$stockIDx."'")or die($connection->error);
+    $Sac_Name = '';
+     if (strpos($Stock_Name, '0.5Kgs') !== false) {
+       $weight = '';
+       if (strpos($Stock_Name, 'Boiled') !== false) {
+        $weight = str_replace("Boiled ","",$Stock_Name);
+       }
+       else if (strpos($Stock_Name, 'Raw') !== false) {
+         $weight = str_replace("Raw ","",$Stock_Name);
+       }
+       $Sac_Name = str_replace("0.5Kgs","50Kgs",$weight);
+     }
+     else if (strpos($Stock_Name, '1Kg') !== false) {
+        $weight = '';
+       if (strpos($Stock_Name, 'Boiled') !== false) {
+        $weight = str_replace("Boiled ","",$Stock_Name);
+       }
+       else if (strpos($Stock_Name, 'Raw') !== false) {
+         $weight = str_replace("Raw ","",$Stock_Name);
+       }
+       $Sac_Name = str_replace("1Kg","50Kgs",$weight);
+     }
+     mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = Quantity - '".$cereal_qty."' WHERE `Name` = '".$Sac_Name."'")or die($connection->error);
+       $sac_qty = mysqli_query($connection,"SELECT Quantity  FROM `stock` WHERE `Name` = '".$Sac_Name."'")or die($connection->error);
+        $sac_qty_Left = mysqli_fetch_array($sac_qty);
+         $sac_available = $sac_qty_Left['Quantity'];
+         $boiled_qty = '';
+         if( strpos($Stock_Name, 'Yellow Beans') !== false ){
+        $yellow_qty = $sac_available / 0.9461;
+        $boiled_qty = round($yellow_qty, 2);
+        }
+        if( strpos($Stock_Name, 'Nyayo Beans') !== false ){
+        $nyayo_qty = $sac_available / 0.96;
+        $boiled_qty = round($nyayo_qty, 2);
+        }
+        if( strpos($Stock_Name, 'Njahe') !== false ){
+        $njahe_qty = $sac_available / 0.75;
+        $boiled_qty = round($njahe_qty, 2);
+        }
+        if( strpos($Stock_Name, 'Mbaazi') !== false ){
+        $mbaazi_qty = $sac_available / 0.92;
+        $boiled_qty = round($mbaazi_qty, 2);
+        }
+        if( strpos($Stock_Name, 'Dengu') !== false ){
+         $dengu_qty = $sac_available / 0.9667;
+         $boiled_qty = round($dengu_qty, 2);
+        }
+        if( strpos($Stock_Name, 'Minji') !== false ){
+        $minji_qty = $sac_available / 0.8155;
+        $boiled_qty = round($minji_qty, 2);
+        }
+     mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = '".$boiled_qty."' WHERE `id` = '".$stockIDx."'")or die($connection->error);
    }
    if ($githeri_qty != '' ) {
     mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = Quantity - '".$githeri_qty."' WHERE `id` = '".$stockIDx."'")or die($connection->error);
-    mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = Quantity - '".$wairimu_qty."' WHERE `Name` LIKE '%Wairimu Beans%'")or die($connection->error);
-    mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = Quantity - '".$maize_qty."' WHERE `Name` LIKE '%Maize%'")or die($connection->error);
+    mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = Quantity - '".$wairimu_qty."' WHERE `Name` = 'Wairimu Beans 50Kgs'")or die($connection->error);
+    mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = Quantity - '".$maize_qty."' WHERE `Name` LIKE 'Maize 50Kgs'")or die($connection->error);
    }
   }
   $Category = mysqli_query($connection,"SELECT Quantity,Restock_Level  FROM `stock` inner join category on stock.Category_id = category.id WHERE stock.id = '".$stockIDx."'")or die($connection->error);
@@ -455,13 +505,63 @@ elseif ($where=='sales') {
   $cereals_check = mysqli_query($connection,"SELECT *  FROM `cooked_cereals` WHERE Stock_id = '".$stockIDx."' AND DATE(Delivery_date) = CURRENT_DATE() ")or die($connection->error);
   $check_result = mysqli_fetch_array($cereals_check);
   if ( $check_result != TRUE) {
-      mysqli_query($connection,"INSERT INTO `cooked_cereals` (`Stock_id`,`Quantity_Ordered`,`Quantity_Prepared`,`Returned`,`Quantity_Difference`,`Delivery_date`) VALUES ('$stockIDx','$quantity','$quantity','0','0','$lateOrder')") or die(mysqli_error($connection));
+      mysqli_query($connection,"INSERT INTO `cooked_cereals` (`Stock_id`,`Quantity_Ordered`,`Quantity_Prepared`,`Returned`,`Quantity_Difference`,`Delivery_date`) VALUES ('$stockIDx','$quantity','$quantity','0','0','$date')") or die(mysqli_error($connection));
    }
    else{
-       mysqli_query($connection,"UPDATE `cooked_cereals`  SET `Quantity_Ordered` = Quantity_Ordered + '".$quantity."',`Quantity_Prepared` = Quantity_Prepared + '".$quantity."' WHERE `Stock_id` = '".$stockIDx."' AND `Delivery_date` = '$lateOrder'") or die(mysqli_error($connection));
+       mysqli_query($connection,"UPDATE `cooked_cereals`  SET `Quantity_Ordered` = Quantity_Ordered + '".$quantity."',`Quantity_Prepared` = Quantity_Prepared + '".$quantity."' WHERE `Stock_id` = '".$stockIDx."' AND `Delivery_date` = '$date'") or die(mysqli_error($connection));
    }
    if ($cereal_qty != '') {
-     mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = Quantity - '".$cereal_qty."' WHERE `id` = '".$stockIDx."'")or die($connection->error);
+    $Sac_Name = '';
+     if (strpos($Stock_Name, '0.5Kgs') !== false) {
+       $weight = '';
+       if (strpos($Stock_Name, 'Boiled') !== false) {
+        $weight = str_replace("Boiled ","",$Stock_Name);
+       }
+       else if (strpos($Stock_Name, 'Raw') !== false) {
+         $weight = str_replace("Raw ","",$Stock_Name);
+       }
+       $Sac_Name = str_replace("0.5Kgs","50Kgs",$weight);
+     }
+     else if (strpos($Stock_Name, '1Kg') !== false) {
+        $weight = '';
+       if (strpos($Stock_Name, 'Boiled') !== false) {
+        $weight = str_replace("Boiled ","",$Stock_Name);
+       }
+       else if (strpos($Stock_Name, 'Raw') !== false) {
+         $weight = str_replace("Raw ","",$Stock_Name);
+       }
+       $Sac_Name = str_replace("1Kg","50Kgs",$weight);
+     }
+     mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = Quantity - '".$cereal_qty."' WHERE `Name` = '".$Sac_Name."'")or die($connection->error);
+       $sac_qty = mysqli_query($connection,"SELECT Quantity  FROM `stock` WHERE `Name` = '".$Sac_Name."'")or die($connection->error);
+        $sac_qty_Left = mysqli_fetch_array($sac_qty);
+         $sac_available = $sac_qty_Left['Quantity'];
+         $boiled_qty = '';
+         if( strpos($Stock_Name, 'Yellow Beans') !== false ){
+        $yellow_qty = $sac_available / 0.9461;
+        $boiled_qty = round($yellow_qty, 2);
+        }
+        if( strpos($Stock_Name, 'Nyayo Beans') !== false ){
+        $nyayo_qty = $sac_available / 0.96;
+        $boiled_qty = round($nyayo_qty, 2);
+        }
+        if( strpos($Stock_Name, 'Njahe') !== false ){
+        $njahe_qty = $sac_available / 0.75;
+        $boiled_qty = round($njahe_qty, 2);
+        }
+        if( strpos($Stock_Name, 'Mbaazi') !== false ){
+        $mbaazi_qty = $sac_available / 0.92;
+        $boiled_qty = round($mbaazi_qty, 2);
+        }
+        if( strpos($Stock_Name, 'Dengu') !== false ){
+         $dengu_qty = $sac_available / 0.9667;
+         $boiled_qty = round($dengu_qty, 2);
+        }
+        if( strpos($Stock_Name, 'Minji') !== false ){
+        $minji_qty = $sac_available / 0.8155;
+        $boiled_qty = round($minji_qty, 2);
+        }
+     mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = '".$boiled_qty."' WHERE `id` = '".$stockIDx."'")or die($connection->error);
    }
    if ($githeri_qty != '' ) {
     mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = Quantity - '".$githeri_qty."' WHERE `id` = '".$stockIDx."'")or die($connection->error);

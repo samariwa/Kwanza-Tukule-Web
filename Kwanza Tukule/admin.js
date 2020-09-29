@@ -855,11 +855,12 @@ function selectSeller(selection) {
           var productId = $(`#id${id}`).text();
           var productName = $(`#name${id}`).text();
           var productPrice = $(`#sp${id}`).text();
+          var available = $(`#qty${id}`).text();
           var quantity = '1';
           var discount = '0';
           var button = document.getElementById(id);
           button.disabled = true;
-           cartItems.push([productId,productName, productPrice,quantity, discount]);
+           cartItems.push([productId,productName, productPrice,quantity, discount,available]);
                populateCart();
        };
 
@@ -883,27 +884,45 @@ function selectSeller(selection) {
              <td class="uneditable" id="price${id}">${price}</td>
               <td class="editable" id="quantity${id}">${qty}</td>
               <td class="editable" id="discount${id}">${discount}</td>
-               <td> <button class="btn"><i onclick="upQuantity(${id},${price},${qty})" class='fa fa-plus'></i></button><button class="btn"><i onclick="downQuantity(${id},${price},${qty})" class='fa fa-minus'></i></button><button onclick="deleteCart(${id},this,${price},${qty})"  type='button' class='btn btn-danger btn-sm deleteFromCart' ><i class='fa fa-times-circle'></i>&ensp;Remove</button></td>
+               <td> <button class="btn">
+               <i id="upQuantity${id}" onclick="upQuantity(${id},${price},${qty})" class='fa fa-plus'></i>
+               </button>
+               <button class="btn">
+               <i id="downQuantity${id}" onclick="downQuantity(${id},${price},${qty})" class='fa fa-minus'></i>
+               </button>
+               <button id="deleteCart${id}" onclick="deleteCart(${id},this,${price},${qty},${discount})" type='button' class='btn btn-danger btn-sm deleteFromCart' >
+               <i class='fa fa-times-circle'></i>&ensp;Remove</button>
+               </td>
               <td class="uneditable" id="subTotal${id}">${subTotal}</td>
                  </tr>`;
                  $('#cartData').html(productDetails);
-         $('#cartEditable').editableTableWidget();
+                 $('#cartEditable').editableTableWidget();
           $('#cartEditable td.uneditable').on('change', function(evt, newValue) {
           return false;
         });
           $('#cartEditable td').on('change', function(evt, newValue) {
             for (var i = 0; i < cartItems.length; i++) {
               if (parseInt($(`#quantity${cartItems[i][0]}`).html()) == newValue) {
-                if (newValue <= parseInt($(`#qty${cartItems[i][0]}`).html())) {
-                  var cost = parseInt($(`#price${cartItems[i][0]}`).html()) - parseInt($(`#discount${cartItems[i][0]}`).html());
+                //alert(newValue)
+                if (newValue >= cartItems[i][5]) {
+                  var id = cartItems[i][0];
+                  var price = parseInt($(`#price${id}`).html());
+                  var discount = parseInt($(`#discount${id}`).html());
+                  var cost = price - discount;
                   newSub = newValue * cost;
+                  //$(`#upQuantity${id}`).setAttribute('onclick',`upQuantity(${id},${price},${newValue})`);
                   cartItems[i][3] = newValue;
-                  $(`#subTotal${cartItems[i][0]}`).html(newSub);
-                } else {
+                  $(`#subTotal${id}`).html(newSub);
+                } else{
                   alert('Quantity Not Available');
                   return false;
                 }
               }
+
+ /*
+              document.getElementById(`upQuantity${id}`).setAttribute('onclick',`upQuantity(${id},${price},${newValue})`);
+                   */
+
               if (parseInt($(`#discount${cartItems[i][0]}`).html()) == newValue) {
                 if (newValue <= parseInt($(`#price${cartItems[i][0]}`).html())) {
                   var cost = parseInt($(`#price${cartItems[i][0]}`).html()) - newValue;
@@ -921,6 +940,7 @@ function selectSeller(selection) {
         }
        }
 
+
        function calculateTotal(){
          var total=0;
          for (var i = 0; i < cartItems.length; i++) {
@@ -928,13 +948,13 @@ function selectSeller(selection) {
          }
          $(`#cartTotal`).html(total)
        }
+
        function upQuantity(a,b,c){
          for (var i = 0; i < cartItems.length; i++) {
-          alert(cartItems[i][3]);
            if (cartItems[i][0]==a) {
              currentQ = cartItems[i][3];
              newQ = parseInt(currentQ) + 1;
-             if (newQ <= parseInt($(`#qty${cartItems[i][0]}`).html())) {
+             if (newQ <= cartItems[i][5]) {
                cartItems[i][3] = newQ;
              }else {
                alert('Quantity Not Available');
@@ -972,23 +992,31 @@ function selectSeller(selection) {
 */
 
 
-   function deleteCart(id,item,price,qty){
+   function deleteCart(id,item,price,qty,discount){
     var el = item;
-    var id = id;
-    var subTotal = price * qty;
+    //var id = id;
+    //alert(discount)
+    var subTotal = (price * qty) - +discount;
      var initial = $('#cartTotal').html();
-     var Total = +initial - +subTotal;
+     var Total = +initial - +subTotal ;
       bootbox.confirm('Do you really want to remove the seleted item from the cart?',function(result)
         {if(result){
               $(el).closest('tr').css('background','tomato');
               $(el).closest('tr').fadeOut(800,function(){
                 $(this).remove();
      });
+             // alert(Total)
         $('#cartTotal').html(Total);
         var button = document.getElementById(id);
-        button.disabled = false;
-        var position = cartItems.indexOf(id);
-        cartItems.splice([0]);
+        //button.disabled = false;
+        var index = getIndexOfProduct(cartItems, id);
+        var index = cartItems.indexOf(id);
+        alert(cartItems)
+        alert(id)
+        alert(index)
+        alert(cartItems[index])
+        cartItems.splice(index, 6);
+        alert(cartItems)
     }
   });
 }
@@ -997,7 +1025,7 @@ function getIndexOfProduct(arr, k) {
   for (var i = 0; i < arr.length; i++) {
     var index = arr[i].indexOf(k);
     if (index > -1) {
-      return [i, index];
+      return index;
     }
   }
 }
@@ -1017,13 +1045,13 @@ function getIndexOfProduct(arr, k) {
             if (result=='success') {
                 cartArr.shift();
                 customerArr.shift();
+                // alert("Order Successfully Added");
             }
             else if(result=='unavailable'){
                 alert("Quantity for stock id "+ stockID +" reduced below ordered quantity in ordering process. Order for the prodcust could not be completed.");
             }
           });
         }
-          alert("Order Successfully Added");
       }
 
       $(document).ready(function(){
@@ -1040,13 +1068,13 @@ function getIndexOfProduct(arr, k) {
             if (result=='success') {
                 cartArr.shift();
                 sellerArr.shift();
+               // alert("Requisition Successfully Completed");
             }
             else if(result=='unavailable'){
                 alert("Quantity for stock id "+ stockID +" reduced below ordered quantity in ordering process. Order for the prodcust could not be completed.");
             }
           });
         }
-          alert("Requisition Successfully Completed");
       }
 
       function fineCustomerLastMonth(idx){
