@@ -125,7 +125,7 @@
       <td id="value<?php echo $count; ?>"><?php echo $value; ?></td>
     </tr>
     <?php
-   /* if ($closing > $purchase) {
+    if ($closing > $purchase) {
       $row2 = mysqli_fetch_array($previousValuation);
       $id2 = $row2['sfid'];
          $name2 = $row2['sname'];
@@ -145,7 +145,7 @@
       <td ><?php echo $value2; ?></td>
     </tr>
     <?php
-    }*/
+    }
     }
     ?>
     <tr>
