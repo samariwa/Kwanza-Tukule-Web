@@ -890,7 +890,7 @@ function selectSeller(selection) {
                <button class="btn">
                <i id="downQuantity${id}" onclick="downQuantity(${id},${price},${qty})" class='fa fa-minus'></i>
                </button>
-               <button id="deleteCart${id}" onclick="deleteCart(${id},this,${price},${qty},${discount})" type='button' class='btn btn-danger btn-sm deleteFromCart' >
+               <button id="deleteCart${id}" onclick="deleteCart(${id},this,${price},${qty})" type='button' class='btn btn-danger btn-sm deleteFromCart' >
                <i class='fa fa-times-circle'></i>&ensp;Remove</button>
                </td>
               <td class="uneditable" id="subTotal${id}">${subTotal}</td>
@@ -904,7 +904,7 @@ function selectSeller(selection) {
             for (var i = 0; i < cartItems.length; i++) {
               if (parseInt($(`#quantity${cartItems[i][0]}`).html()) == newValue) {
                 //alert(newValue)
-                if (newValue <= parseInt($(`#qty${cartItems[i][0]}`).html())) {
+                if (newValue <= cartItems[i][5]) {
                   var id = cartItems[i][0];
                   var price = parseInt($(`#price${id}`).html());
                   var discount = parseInt($(`#discount${id}`).html());
@@ -990,33 +990,35 @@ function selectSeller(selection) {
       $('#cartTotal').html(sum);
     }
 */
+//[productId,productName, productPrice,quantity, discount,available]
 
-
-   function deleteCart(id,item,price,qty,discount){
+   function deleteCart(id,item,price,qty){
     var el = item;
-    //var id = id;
-    //alert(discount)
-    var subTotal = (price * qty) - +discount;
-     var initial = $('#cartTotal').html();
-     var Total = +initial - +subTotal ;
+    var Total = '';
       bootbox.confirm('Do you really want to remove the seleted item from the cart?',function(result)
         {if(result){
               $(el).closest('tr').css('background','tomato');
               $(el).closest('tr').fadeOut(800,function(){
                 $(this).remove();
      });
-             // alert(Total)
+     for (var i = 0; i < cartItems.length; i++) {
+      if (cartItems[i][0]==id) {
+     var discount =  cartItems[i][4];     
+    var subTotal = (price * qty) - +discount;
+     var initial = $('#cartTotal').html();
+     Total = +initial - +subTotal ;
+     var button = document.getElementById(cartItems[i][0]);
+       // button.disabled = false;
+      var index = cartItems.indexOf([cartItems[i][0],cartItems[i][1],cartItems[i][2],cartItems[i][3],cartItems[i][4],cartItems[i][5]]);
+       alert(index);
+        alert(cartItems)
+        //alert(id)
+        //alert(index)
+        cartItems.splice(index, 1);
+        alert(cartItems)
+   }
+   }
         $('#cartTotal').html(Total);
-        var button = document.getElementById(id);
-        //button.disabled = false;
-        var index = getIndexOfProduct(cartItems, id);
-        var index = cartItems.indexOf(id);
-        alert(cartItems)
-        alert(id)
-        alert(index)
-        alert(cartItems[index])
-        cartItems.splice(index, 6);
-        alert(cartItems)
     }
   });
 }
@@ -1029,6 +1031,8 @@ function getIndexOfProduct(arr, k) {
     }
   }
 }
+
+
 
          $(document).ready(function(){
         $('.completeOrder').click(function(){
