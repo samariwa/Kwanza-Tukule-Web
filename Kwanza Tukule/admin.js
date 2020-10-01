@@ -1010,10 +1010,7 @@ function selectSeller(selection) {
      var button = document.getElementById(cartItems[i][0]);
        // button.disabled = false;
       var check = getIndexOfProduct(cartItems,id);
-  alert(check);
-  alert(cartItems[check]);
   cartItems.splice(check, 1);
-  alert(cartItems);
    }
    }
         $('#cartTotal').html(Total);

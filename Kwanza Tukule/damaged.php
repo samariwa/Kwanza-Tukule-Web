@@ -152,6 +152,7 @@
   <tbody >
     <?php
         $count = 0;
+        $closing = '';
         foreach($damaged as $row){
          $count++;
          $id = $row['id'];
@@ -159,41 +160,48 @@
         $purchased = $row['purchased'];
         $Quantity = $row['Quantity'];
         $damaged = $row['damaged'];
+         if ($Quantity <= $purchased) {
+           $closing = $Quantity - $damaged;
+         }    
         $unitValue = $row['unitValue'];
         $value = $unitValue * $damaged;
+        if ($Quantity > $purchased) {
+          $closing = $purchased - $damaged;
+       }
       ?>
     <tr>
       <th class="uneditable" scope="row"  id="id<?php echo $count; ?>"><?php echo $id; ?></th>
       <td class="uneditable" id="name<?php echo $count; ?>"><?php echo $name; ?></td>
       <td class="uneditable" id="purchased<?php echo $count; ?>"><?php echo $purchased; ?></td>
-      <td class="uneditable"id="undamaged<?php echo $count; ?>"><?php echo $Quantity; ?></td>
+      <td class="uneditable"id="undamaged<?php echo $count; ?>"><?php echo $closing; ?></td>
       <td  class="editable" id="newDamaged<?php echo $count; ?>">0</td>
       <td  class="uneditable" id="damaged<?php echo $count; ?>"><?php echo $damaged; ?></td>
       <td  class="uneditable" id="value<?php echo $count; ?>"><?php echo $value; ?></td>
     </tr>
     <?php
-   /* if ($Quantity > $purchased) {
+    if ($Quantity > $purchased) {
+      $previousDamaged = mysqli_query($connection,"SELECT sfid as id,sid as stockid,damaged,Buying_price as unitValue, purchased,Quantity, sname as Name,received as Received_date, expiry as Expiry_date, Created_at FROM (SELECT s.id as sid, sf.id as sfid ,sf.Damaged as damaged, s.Name as sname ,s.Opening_stock as Opening_stock,sf.purchased as purchased,s.Quantity as Quantity,sf.Selling_price as Selling_Price,sf.Buying_price as Buying_price,sf.Received_date as received, sf.Expiry_date as expiry, sf.Created_at,ROW_NUMBER() OVER (PARTITION BY s.id ORDER BY sf.Created_at DESC) as rn FROM stock s JOIN stock_flow sf ON s.id = sf.Stock_id  ) q WHERE rn = 2 AND sname = '$name'")or die($connection->error);
      $count = $count + 1;
       $row2 = mysqli_fetch_array($previousDamaged);
       $id2 = $row2['id'];
         $name2 = $row2['Name'];
         $purchased2 = $row2['purchased'];
-        $Quantity2 = $row2['Quantity'];
         $damaged2 = $row2['damaged'];
+        $Quantity2 = $Quantity - $purchased - $damaged2;
         $unitValue2 = $row2['unitValue'];
         $value2 = $unitValue2 * $damaged2;
         ?>
       <tr>
         <th class="uneditable" scope="row"  id="id<?php echo $count; ?>"><?php echo $id2; ?></th>
       <td class="uneditable" id="name<?php echo $count; ?>"><?php echo $name2; ?></td>
-      <td class="uneditable" id="purchased<?php echo $count; ?>"><?php echo $purchased; ?></td>
+      <td class="uneditable" id="purchased<?php echo $count; ?>"><?php echo $purchased2; ?></td>
       <td class="uneditable"id="undamaged<?php echo $count; ?>"><?php echo $Quantity2; ?></td>
       <td  class="editable" id="newDamaged<?php echo $count; ?>">0</td>
       <td  class="uneditable" id="damaged<?php echo $count; ?>"><?php echo $damaged2; ?></td>
       <td  class="uneditable" id="value<?php echo $count; ?>"><?php echo $value2; ?></td>
     </tr>
     <?php
-    }*/
+    }
     }
     ?>
     <tr>
