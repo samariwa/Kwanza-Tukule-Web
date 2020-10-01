@@ -375,7 +375,7 @@ elseif ($where=='order') {
    $Restock_Level = $Name['Restock_Level'];
    if($Category_Name == 'Maize Flour' && strpos($Stock_Name, 'Pieces') !== false || $Category_Name == 'All Purpose Flour' && strpos($Stock_Name, 'Pieces') !== false){
    $Qty = $Name['Quantity'];
-   if ($Qty < $Restock_Level) {
+   if ($Qty < 11) {
      $Bundle_Name = str_replace("Pieces","Bundles",$Stock_Name);
      $Bundle_Qty = mysqli_query($connection,"SELECT Quantity  FROM `stock` WHERE stock.Name = '".$Bundle_Name."'")or die($connection->error);
    $bundle_qty = mysqli_fetch_array($Bundle_Qty);
@@ -389,7 +389,7 @@ elseif ($where=='order') {
       $newBundleQty = $bundleQuantity - 1;
       $newPiecesIncreament = 12;
       mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = '$newBundleQty' WHERE `Name` = '".$Bundle_Name."'")or die($connection->error);
-     mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = Quantity + '60' WHERE `id` = '".$stockIDx."'")or die($connection->error);
+     mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = Quantity + '12' WHERE `id` = '".$stockIDx."'")or die($connection->error);
    }
    }
    }
@@ -574,7 +574,7 @@ elseif ($where=='sales') {
    $Restock_Level = $Name['Restock_Level'];
    if($Category_Name == 'Maize Flour' && strpos($Stock_Name, 'Pieces') !== false || $Category_Name == 'All Purpose Flour' && strpos($Stock_Name, 'Pieces') !== false){
    $Qty = $Name['Quantity'];
-   if ($Qty < $Restock_Level) {
+   if ($Qty < 11) {
      $Bundle_Name = str_replace("Pieces","Bundles",$Stock_Name);
      $Bundle_Qty = mysqli_query($connection,"SELECT Quantity  FROM `stock` WHERE stock.Name = '".$Bundle_Name."'")or die($connection->error);
    $bundle_qty = mysqli_fetch_array($Bundle_Qty);
@@ -588,7 +588,7 @@ elseif ($where=='sales') {
       $newBundleQty = $bundleQuantity - 1;
       $newPiecesIncreament = 12;
       mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = '$newBundleQty' WHERE `Name` = '".$Bundle_Name."'")or die($connection->error);
-     mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = Quantity + '60' WHERE `id` = '".$stockIDx."'")or die($connection->error);
+     mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = Quantity + '12' WHERE `id` = '".$stockIDx."'")or die($connection->error);
    }
    }
    }
