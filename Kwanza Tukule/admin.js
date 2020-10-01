@@ -1009,13 +1009,11 @@ function selectSeller(selection) {
      Total = +initial - +subTotal ;
      var button = document.getElementById(cartItems[i][0]);
        // button.disabled = false;
-      var index = cartItems.indexOf([cartItems[i][0],cartItems[i][1],cartItems[i][2],cartItems[i][3],cartItems[i][4],cartItems[i][5]]);
-       alert(index);
-        alert(cartItems)
-        //alert(id)
-        //alert(index)
-        cartItems.splice(index, 1);
-        alert(cartItems)
+      var check = getIndexOfProduct(cartItems,id);
+  alert(check);
+  alert(cartItems[check]);
+  cartItems.splice(check, 1);
+  alert(cartItems);
    }
    }
         $('#cartTotal').html(Total);
@@ -1025,13 +1023,11 @@ function selectSeller(selection) {
 
 function getIndexOfProduct(arr, k) {
   for (var i = 0; i < arr.length; i++) {
-    var index = arr[i].indexOf(k);
-    if (index > -1) {
-      return index;
+    if (k==arr[i][0]) {
+      return i;
     }
   }
 }
-
 
 
          $(document).ready(function(){

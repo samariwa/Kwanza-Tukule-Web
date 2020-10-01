@@ -80,11 +80,6 @@
       <a href="stock.php" class="btn btn-primary btn-md active float-left ml-3" role="button" aria-pressed="true"><i class="fa fa-arrow-left"></i>&ensp;Back</a>
       <div class="offset-3"> <h6 >Valuation based on live stock flow.</h6></div>
     </div><br>
-    <?php
-     $yesterday1 = date('d/m/Y',strtotime('-2 day'));
-     $yesterday2 = date('d/m/Y',strtotime('-3 day'));
-     $yesterday3 = date('d/m/Y',strtotime('-4 day'));
-    ?>
     <table  class="table table-striped table-hover paginate" style="display:block;overflow-y:scroll;text-align: center;" id="valuationTable">
   <thead class="thead-dark">
     <tr>
@@ -100,20 +95,23 @@
   <tbody >
     <?php
         $count = 0;
+        $closing = '';
         foreach($valuationQuery as $row){
          $count++;
          $id = $row['sfid'];
          $name = $row['sname'];
         $purchase = $row['purchased'];
-        $closing = $row['Quantity'];
+        $qty = $row['Quantity'];
+         if ($qty <= $purchase) {
+        $closing = $qty;
+        }
         $damaged = $row['damaged'];
         $bp = $row['Buying_price'];
-        $value = $bp * $closing;
-      /*  if ($closing > $purchase) {
-      $row3 = mysqli_fetch_array($previousValuation);
-       $closing2 = $closing - $purchase;
-       $closing3 = $closng
-       }*/
+        $previousValuation = mysqli_query($connection,"WITH qry AS (SELECT  s.id as sid, sf.id as sfid , s.Name as sname ,s.Opening_stock as Opening_stock,sf.Damaged as damaged,sf.purchased as purchased,s.Quantity as Quantity,sf.Buying_price as Buying_price,sf.Received_date as received, sf.Expiry_date as expiry, sf.Created_at,ROW_NUMBER() OVER (PARTITION BY s.id ORDER BY sf.id DESC) as rn FROM stock s JOIN stock_flow sf ON s.id = sf.Stock_id  )SELECT sfid, sname , Buying_price,damaged, purchased,  Quantity ,received FROM qry WHERE rn = 2 AND sname = '$name'")or die($connection->error);
+        if ($qty > $purchase) {
+          $closing = $purchase;
+       }
+       $value = $bp * $closing;
       ?>
     <tr>
       <th scope="row"><?php echo $id; ?></th>
@@ -125,14 +123,14 @@
       <td id="value<?php echo $count; ?>"><?php echo $value; ?></td>
     </tr>
     <?php
-    if ($closing > $purchase) {
+    if ($qty > $purchase) {
       $row2 = mysqli_fetch_array($previousValuation);
       $id2 = $row2['sfid'];
          $name2 = $row2['sname'];
         $purchase2 = $row2['purchased'];
         $damaged2 = $row2['damaged'];
         $bp2 = $row2['Buying_price'];
-        $quantity = $closing - $purchase;
+        $quantity = $qty - $purchase;
         $value2 = $bp2 * $quantity;
         ?>
       <tr>
