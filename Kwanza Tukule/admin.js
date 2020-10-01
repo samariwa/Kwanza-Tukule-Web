@@ -1049,6 +1049,7 @@ function getIndexOfProduct(arr, k) {
             }
           });
         }
+        alert("Order Successfully Added");
       }
 
       $(document).ready(function(){
@@ -1072,6 +1073,7 @@ function getIndexOfProduct(arr, k) {
             }
           });
         }
+        alert("Requisition Successfully Completed");
       }
 
       function fineCustomerLastMonth(idx){
