@@ -1069,7 +1069,7 @@ function getIndexOfProduct(arr, k) {
                // alert("Requisition Successfully Completed");
             }
             else if(result=='unavailable'){
-                alert("Quantity for stock id "+ stockID +" reduced below ordered quantity in ordering process. Order for the prodcust could not be completed.");
+                alert("Quantity for stock id "+ stockID +" reduced below ordered quantity in ordering process. Order for the product could not be completed.");
             }
           });
         }

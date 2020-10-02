@@ -37,12 +37,12 @@
 <hr>
 <div class="row">
 <div class="col-md-6">
-<h3><u>Orders</u></h3>
+<h3 style="text-align:center"><u>Orders</u></h3>
 <table class="table table-striped" style="display:block;text-align:center;"">
   <thead>
     <tr>
-      <th scope="col" width="70%""><h3>Product Name</h3></th>
-      <th scope="col" width="30%""><h3>Quantity</h3></th>
+      <th scope="col" width="70%""><h4><b>Product Name</b></h4></th>
+      <th scope="col" width="30%""><h4><b>Quantity</b></h4></th>
     </tr>
   </thead>
   <tbody >';
@@ -51,7 +51,7 @@
          $count++;
          $product = $row['name'];
          $quantity = $row['sum']; 
-   $pdf .= '<tr>
+   $pdf .= '<tr height="40px">
       <th scope="row">  '.$product.' </th>
       <td >  '.$quantity.' </td>
     </tr>';
@@ -60,12 +60,12 @@
 </table>
 </div>
 <div class="col-md-6">
-<h3><u>Sales</u></h3>
+<h3 style="text-align:center"><u>Sales</u></h3>
 <table class="table table-striped" style="display:block;text-align:center;"">
   <thead>
     <tr>
-      <th scope="col" width="70%""><h3>Product Name</h3></th>
-      <th scope="col" width="30%""><h3>Quantity</h3></th>
+      <th scope="col" width="70%""><h4><b>Product Name</b></h4></th>
+      <th scope="col" width="30%""><h4><b>Quantity</b></h4></th>
     </tr>
   </thead>
   <tbody >';
@@ -74,7 +74,7 @@
          $count++;
          $product = $row['name'];
          $quantity = $row['sum']; 
-   $pdf .= '<tr>
+   $pdf .= '<tr height="20px">
       <th scope="row">  '.$product.' </th>
       <td >  '.$quantity.' </td>
     </tr>';
@@ -114,12 +114,12 @@ echo $pdf;
 <hr>
 <div class="row">
 <div class="col-md-6">
-<h2><u>Orders</u></h2>
+<h3 style="text-align:center"><u>Orders</u></h3>
 <table class="table table-striped" style="display:block;"">
   <thead>
     <tr>
-      <th scope="col" width="70%""><h3>Product Name</h3></th>
-      <th scope="col" width="30%""><h3>Quantity</h3></th>
+      <th scope="col" width="70%""><h4><b>Product Name</b></h4></th>
+      <th scope="col" width="30%""><h4><b>Quantity</b></h4></th>
     </tr>
   </thead>
   <tbody >';
@@ -138,12 +138,12 @@ echo $pdf;
 </table>
 </div>
 <div class="col-md-6">
-<h3><u>Sales</u></h3>
+<h3 style="text-align:center"><u>Sales</u></h3>
 <table class="table table-striped" style="display:block;"">
   <thead>
     <tr>
-      <th scope="col" width="70%""><h3>Product Name</h3></th>
-      <th scope="col" width="30%""><h3>Quantity</h3></th>
+      <th scope="col" width="70%""><h4><b>Product Name</b></h4></th>
+      <th scope="col" width="30%""><h4><b>Quantity</b></h4></th>
     </tr>
   </thead>
   <tbody >';
