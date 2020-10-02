@@ -44,7 +44,7 @@ else if ($where == 'stock') {
        $result2 = mysqli_query($connection,"SELECT * FROM suppliers WHERE Name = '".$supplier."'")or die($connection->error);
        $row2 = mysqli_fetch_array($result2);
        $supplier = $row2['id'];
-        mysqli_query($connection,"INSERT INTO `stock` (`Category_id`,`Supplier_id`,`Name`,`Restock_Level`,`Buying_price`,`Price`,`Quantity`) VALUES ('$category','$supplier','$name','$restock','$bp','$sp','$qty');") or die(mysqli_error($connection));
+        mysqli_query($connection,"INSERT INTO `stock` (`Category_id`,`Supplier_id`,`Name`,`Restock_Level`,`Buying_price`,`Price`,`Quantity`,`Opening_stock`) VALUES ('$category','$supplier','$name','$restock','$bp','$sp','$qty','$qty');") or die(mysqli_error($connection));
         $result3 = mysqli_query($connection,"SELECT * FROM stock WHERE Name = '".$name."';")or die($connection->error);
        $row3 = mysqli_fetch_array($result3);
        $Stock_id = $row3['id'];
