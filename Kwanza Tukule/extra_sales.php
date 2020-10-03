@@ -502,7 +502,7 @@
       <td class="uneditable" id="productToday<?php echo $count; ?>"><?php echo $product; ?></td>
       <td class="editable" id="qtyToday<?php echo $count; ?>"><?php echo $qty; ?></td>
       <td class="uneditable" id="costToday<?php echo $id; ?>"><?php echo $cost; ?></td>
-      <td class="uneditable" id="discountToday<?php echo $count; ?>"><?php echo $discount; ?></td>
+      <td class="editable" id="discountToday<?php echo $count; ?>"><?php echo $discount; ?></td>
       <td class="uneditable" id="debtToday<?php echo $count; ?>"><?php echo $debt; ?></td>
        <?php
        if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO' || $view == 'Admin') {
@@ -627,7 +627,7 @@
       <td class="uneditable" id="productTomorrow<?php echo $count; ?>"><?php echo $product; ?></td>
       <td class="editable" id="qtyTomorrow<?php echo $count; ?>"><?php echo $qty; ?></td>
       <td class="uneditable" id="costTomorrow<?php echo $id; ?>"><?php echo $cost; ?></td>
-      <td class="uneditable" id="discountTomorrow<?php echo $count; ?>"><?php echo $discount; ?></td>
+      <td class="editable" id="discountTomorrow<?php echo $count; ?>"><?php echo $discount; ?></td>
       <td class="uneditable" id="debtTomorrow<?php echo $count; ?>"><?php echo $debt; ?></td>
        <?php
        if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO' || $view == 'Admin') {

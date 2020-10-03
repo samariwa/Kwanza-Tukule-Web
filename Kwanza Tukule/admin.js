@@ -1566,8 +1566,9 @@ $('#officeEditable').editableTableWidget();
   var banked = $(`#bankedLastMonth${rowx}`).text();
   var slip = $(`#slipLastMonth${rowx}`).text();
   var banker = $(`#bankerLastMonth${rowx}`).text();
+  var discount = $(`#discountLastMonth${rowx}`).text();
   var where = 'sales';
-  $.post("save.php",{id:id,qty:qty,mpesa:mpesa,cash:cash,banked:banked,slip:slip,banker:banker,where:where},
+  $.post("save.php",{id:id,qty:qty,mpesa:mpesa,discount:discount,cash:cash,banked:banked,slip:slip,banker:banker,where:where},
   function(result){
     location.reload(true);
   });
@@ -1628,8 +1629,9 @@ $('#extraSalesEditableYesterday').editableTableWidget();
   var banked = $(`#bankedYesterday${rowx}`).text();
   var slip = $(`#slipYesterday${rowx}`).text();
   var banker = $(`#bankerYesterday${rowx}`).text();
+  var discount = $(`#discountYesterday${rowx}`).text();
   var where = 'sales';
-  $.post("save.php",{id:id,qty:qty,mpesa:mpesa,cash:cash,banked:banked,slip:slip,banker:banker,where:where},
+  $.post("save.php",{id:id,qty:qty,mpesa:mpesa,cash:cash,discount:discount,banked:banked,slip:slip,banker:banker,where:where},
   function(result){
     location.reload(true);
   });
@@ -1666,12 +1668,14 @@ $('#extraSalesEditableYesterday').editableTableWidget();
   var qty = $(`#qtyToday${rowx}`).text();
   var mpesa = $(`#mpesaToday${rowx}`).text();
   var cash = $(`#cashToday${rowx}`).text();
+  var discount = $(`#discountToday${rowx}`).text();
   var banked = $(`#bankedToday${rowx}`).text();
   var slip = $(`#slipToday${rowx}`).text();
   var banker = $(`#bankerToday${rowx}`).text();
   var where = 'sales';
-  $.post("save.php",{id:id,qty:qty,mpesa:mpesa,cash:cash,banked:banked,slip:slip,banker:banker,where:where},
+  $.post("save.php",{id:id,qty:qty,mpesa:mpesa,discount:discount,cash:cash,banked:banked,slip:slip,banker:banker,where:where},
   function(result){
+    alert(result)
     location.reload(true);
   });
 });
@@ -1684,13 +1688,14 @@ $('#extraSalesEditableYesterday').editableTableWidget();
    var rowx = parseInt(evt.target._DT_CellIndex.row)+1;
   var id = $(`#idTomorrow${rowx}`).text();
   var qty = $(`#qtyTomorrow${rowx}`).text();
+  var discount = $(`#discountTomorrow${rowx}`).text();
   var mpesa = 0;
   var cash = 0;
   var banked = 0;
   var slip = "N/A";
   var banker = "N/A";
   var where = 'sales';
-  $.post("save.php",{id:id,qty:qty,mpesa:mpesa,cash:cash,banked:banked,slip:slip,banker:banker,where:where},
+  $.post("save.php",{id:id,qty:qty,mpesa:mpesa,cash:cash,discount:discount,banked:banked,slip:slip,banker:banker,where:where},
   function(result){
     location.reload(true);
   });
