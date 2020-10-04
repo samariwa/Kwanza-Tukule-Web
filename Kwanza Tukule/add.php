@@ -197,7 +197,7 @@ elseif ($where == 'purchase') {
      $sp = $_POST['sp'];
      $expiry = $_POST['expiry'];
      mysqli_query($connection,"INSERT INTO `stock_flow` (`Stock_id`,`Buying_price`,`Selling_Price`,`Received_date`,`Purchased`,`Expiry_date`) VALUES ('$id','$bp','$sp','$received','$qty','$expiry')") or die(mysqli_error($connection));
-mysqli_query($connection,"UPDATE `stock` SET `Quantity` = Quantity + '".$qty."' WHERE `id` = '".$id."'")or die($connection->error);
+mysqli_query($connection,"UPDATE `stock` SET `Quantity` = Quantity + '".$qty."',Buying_price = '".$bp."',Price = '".$sp."' WHERE `id` = '".$id."'")or die($connection->error);
 }
 elseif ($where == 'calendar') {
   if(isset($_POST["title"]))

@@ -52,8 +52,8 @@
          $product = $row['name'];
          $quantity = $row['sum']; 
    $pdf .= '<tr height="40px">
-      <th scope="row">  '.$product.' </th>
-      <td >  '.$quantity.' </td>
+      <th scope="row" style="text-align:center">  '.$product.' </th>
+      <td style="text-align:center">  '.$quantity.' </td>
     </tr>';
     }
  $pdf .=  '</tbody>
@@ -108,6 +108,7 @@ echo $pdf;
 <p align="center"><strong><img src="assets/img/Kwanza Tukule.png" height="60" width="155"></strong></p>
 <p align="center">Gate Pass</p>
 <p align="center">Products:'.$varietyNumber2.' </p>
+<p> Serial #: '.$random.'</p>
 <p> For: '.$deliverer.'</p>
 <hr>
 <p> '.$today.' </p>
@@ -130,8 +131,8 @@ echo $pdf;
          $quantity = $row['sum'];
       
    $pdf .= ' <tr>
-      <th scope="row">  '.$product.' </th>
-      <td >  '.$quantity.' </td>
+      <th scope="row" style="text-align:center">  '.$product.' </th>
+      <td style="text-align:center">  '.$quantity.' </td>
     </tr>';
     }
  $pdf .= ' </tbody>
@@ -139,7 +140,7 @@ echo $pdf;
 </div>
 <div class="col-md-6">
 <h3 style="text-align:center"><u>Sales</u></h3>
-<table class="table table-striped" style="display:block;"">
+<table class="table table-striped;text-align:center;" style="display:block;"">
   <thead>
     <tr>
       <th scope="col" width="70%""><h4><b>Product Name</b></h4></th>

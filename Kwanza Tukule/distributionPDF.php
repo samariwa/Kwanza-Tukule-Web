@@ -48,11 +48,11 @@
          $stock = $row['stock'];
          $quantity = $row['quantity'];    
     $pdf .= '<tr>
-      <th scope="row">  '.$name.' </th>
-      <td >  '.$number.' </td>
-      <td >  '.$location.' </td>
-      <td >  '.$stock.' </td>
-      <td >  '.$quantity.' </td>
+      <th scope="row" style="text-align:center">  '.$name.' </th>
+      <td style="text-align:center">  '.$number.' </td>
+      <td style="text-align:center">  '.$location.' </td>
+      <td style="text-align:center">  '.$stock.' </td>
+      <td style="text-align:center">  '.$quantity.' </td>
     </tr>';
     }
   $pdf .= '</tbody>
@@ -77,11 +77,12 @@ echo $pdf;
 <?php
 ?>
 <p align="center">No. of Customers who ordered:'.$varietyNumber2.' </p>
+<p> Serial #: '.$random.'</p>
 <p> For: '.$deliverer.'</p>
 <hr>
 <p> '.$today.' </p>
 <hr>
-<table class="table table-striped" style="display:block;text-align:center;"">
+<table class="table table-striped;text-align:center;" style="display:block;text-align:center;"">
   <thead class="thead-dark">
     <tr>
       <th scope="col" width="20%"">Customer Name</th>
@@ -101,11 +102,11 @@ echo $pdf;
     $stock = $row['stock'];
     $quantity = $row['quantity']; 
    $pdf .= ' <tr>
-      <th scope="row">  '.$name.' </th>
-      <td >  '.$number.' </td>
-      <td >  '.$location.' </td>
-      <td >  '.$stock.' </td>
-      <td >  '.$quantity.' </td>
+      <th scope="row" style="text-align:center">  '.$name.' </th>
+      <td style="text-align:center">  '.$number.' </td>
+      <td style="text-align:center">  '.$location.' </td>
+      <td style="text-align:center">  '.$stock.' </td>
+      <td style="text-align:center">  '.$quantity.' </td>
     </tr>';
     }
   $pdf .= '</tbody>

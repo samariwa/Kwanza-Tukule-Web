@@ -1675,7 +1675,6 @@ $('#extraSalesEditableYesterday').editableTableWidget();
   var where = 'sales';
   $.post("save.php",{id:id,qty:qty,mpesa:mpesa,discount:discount,cash:cash,banked:banked,slip:slip,banker:banker,where:where},
   function(result){
-    alert(result)
     location.reload(true);
   });
 });
@@ -2537,6 +2536,40 @@ $('#extraSalesEditableYesterday').editableTableWidget();
          });
        });
 
+  $(document).on('click','.printSalesInvoice',function(){
+         var deliverer = $(`#deliverer`).val();
+        var date = $(`#invoiceDate`).val();
+        $.post("sales_invoice_print.php",{deliverer:deliverer,date:date},
+        function(result){
+           var mywindow = window.open('', 'Kwanza Tukule', 'height=400,width=600');
+                        mywindow.document.write('<html><head><title></title>');
+                        mywindow.document.write('</head><body>');
+                        mywindow.document.write(result);
+                        mywindow.document.write('</body></html>');
+                        mywindow.document.close();
+                        mywindow.focus();
+                        mywindow.print();
+                        mywindow.close();
+         });
+       });
+
+  $(document).on('click','.printCreditNote',function(){
+         var deliverer = $(`#deliverer`).val();
+        var date = $(`#creditDate`).val();
+        $.post("credit_note_print.php",{deliverer:deliverer,date:date},
+        function(result){
+           var mywindow = window.open('', 'Kwanza Tukule', 'height=400,width=600');
+                        mywindow.document.write('<html><head><title></title>');
+                        mywindow.document.write('</head><body>');
+                        mywindow.document.write(result);
+                        mywindow.document.write('</body></html>');
+                        mywindow.document.close();
+                        mywindow.focus();
+                        mywindow.print();
+                        mywindow.close();
+         });
+       });
+
        $(document).ready(function(){
        var tableValuation = document.getElementById("valuationTable");
        var  sumVal = 0;    
@@ -2565,4 +2598,5 @@ $('#extraSalesEditableYesterday').editableTableWidget();
                 sumVal += parseInt(tableDamaged.rows[i].cells[6].innerHTML);
                 document.getElementById("totalDamagedValue").innerHTML = sumVal;
             }
-      });      
+      });    
+     

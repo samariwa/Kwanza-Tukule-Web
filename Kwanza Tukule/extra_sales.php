@@ -149,11 +149,17 @@
           }
         ?>
       <div class="row">
-        <div class="col-md-7">
+        <div class="col-md-3">
       <a href="sales.php" class="btn btn-primary btn-md active ml-3" role="button" aria-pressed="true"><i class="fa fa-arrow-left"></i>&ensp;Back</a>
       </div>
-    <div class="col-md-5">
-      <a href="goods_requisition.php" class="btn btn-success btn-md active offset-6" role="button" aria-pressed="true"><i class="fa fa-plus-circle"></i>&ensp;Goods Requisition</a>
+      <div class="col-md-3">
+      <a href="sales_invoice.php" class="btn btn-secondary btn-md active" role="button" aria-pressed="true">Sales Invoice</a>
+      </div>
+      <div class="col-md-3">
+      <a href="credit_note.php" class="btn btn-warning btn-md active offset-3" role="button" aria-pressed="true">Credit Note</a>
+      </div>
+    <div class="col-md-3">
+      <a href="goods_requisition.php" class="btn btn-success btn-md active offset-2" role="button" aria-pressed="true"><i class="fa fa-plus-circle"></i>&ensp;Goods Requisition</a>
     </div>
     </div><br>
           <div class="tab-content">

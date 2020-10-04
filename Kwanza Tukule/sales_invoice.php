@@ -2,16 +2,15 @@
  include "admin_nav.php";
  include('queries.php');
  ?> 
-
-        <!-- Begin Page Content -->
+ <!-- Begin Page Content -->
         <div class="container-fluid">
-
-          <!-- Page Heading -->
+  <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Dashboard <span style="font-size: 18px;">/Sales </span><span style="font-size: 15px;">/Returned Goods</span></h1>
+            <h1 class="h3 mb-0 text-gray-800">Dashboard <span style="font-size: 18px;">/Sales</span><span style="font-size: 15px;"> /Sales Invoice</span></h1>
            <h6 class="h6 mb-0 text-gray-600 mr-3">Time: <span id="time"></span></h6>
           </div>
-         <?php
+
+           <?php
        if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO') {
 
         ?>
@@ -29,7 +28,7 @@
                     </div>
                   </div>
                 </div>
-                </a> 
+                </a>
               </div>
             </div>
 
@@ -51,7 +50,7 @@
             <!-- Earnings (Monthly) Card Example -->
             <div class="col-xl-3 col-md-6 mb-4">
               <div class="card border-left-info shadow h-100 py-2">
-                <a class="text-xs font-weight-bold text-info text-uppercase mb-1" href="sales.php" style="text-decoration: none;">
+                <a class="text-xs font-weight-bold text-info text-uppercase mb-1" href="#" style="text-decoration: none;">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
@@ -71,11 +70,11 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <i class="fa fa-clipboard fa-2x"></i>&emsp;Summary
-                    </div>   
+                    </div>
                   </div>
                 </div>
-                </a>
               </div>
+              </a>
             </div>
           </div>
            <?php
@@ -94,7 +93,7 @@
                     </div>
                   </div>
                 </div>
-                </a> 
+                </a>
               </div>
             </div>
 
@@ -116,11 +115,11 @@
             <!-- Earnings (Monthly) Card Example -->
             <div class="col-xl-4 col-md-6 mb-4">
               <div class="card border-left-info shadow h-100 py-2">
-                <a class="text-xs font-weight-bold text-info text-uppercase mb-1" href="#" style="text-decoration: none;">
+                 <a class="text-xs font-weight-bold text-info text-uppercase mb-1" href="#" style="text-decoration: none;">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <i class="fa fa-shopping-cart fa-2x"></i>&emsp;Sales
+                     <i class="fa fa-shopping-cart fa-2x"></i>&emsp;Sales
                     </div>
                   </div>
                 </div>
@@ -132,119 +131,62 @@
             <?php
           }
         ?>
-   <div class="row">
-     <div class="col-md-4">
-          <a href="sales.php" class="btn btn-primary btn-md active" role="button" aria-pressed="true"><i class="fa fa-arrow-left"></i>&ensp;Back</a>
-    </div>
-    <div class="col-md-8">
-      <?php
-        $returnedrowcount = mysqli_num_rows($returnedList);
-      ?>
-      <h6 class="offset-2">Total Number: <?php echo $returnedrowcount; ?></h6>
-    </div>
-    </div>
-    <div class="row">
-      <div class="offset-5">Goods Returned for Today's Orders</div>
-    </div><br>
-    <table  class="table table-striped table-hover paginate" style="display:block;overflow-y:scroll;text-align: center;">
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col" >Order #</th>
-      <th scope="col">Customer</th>
-      <th scope="col" >Contact</th>
-      <th scope="col">Deliverer</th>
-      <th scope="col">Category</th>
-      <th scope="col">Product</th>
-      <th scope="col">Qty Ordered</th>
-      <th scope="col">Qty Taken</th>
-      <th scope="col">Qty Returned</th>
-    </tr>
-  </thead>
-  <tbody >
-    <?php
-        $count = 0;    
-        foreach($returnedList as $row){
-         $count++;
-          $id = $row['id'];
-         $customer = $row['customer'];
-        $number = $row['number'];
-        $deliverer = $row['deliverer'];
-        $category = $row['category'];
-        $stock = $row['stock'];
-        $ordered = $row['ordered'];
-        $returned = $row['returned'];
-        $initial = $ordered + $returned;
-      ?>
-    <tr>
-      <th scope="row" ><?php echo $id; ?></th>
-      <td ><?php echo $customer; ?></td>
-      <td ><?php echo $number; ?></td>
-      <td ><?php echo $deliverer; ?></td>
-      <td ><?php echo $category; ?></td>
-      <td ><?php echo $stock; ?></td>
-      <td ><?php echo $initial; ?></td>
-      <td ><?php echo $ordered; ?></td>
-      <td ><?php echo $returned; ?></td>
-    </tr>
-    <?php
-    }
-    ?>
-  </tbody>
-</table>
-<div class="row">
-<div class="col-md-8">
-      <?php
-        $extrareturnedrowcount = mysqli_num_rows($extraReturnedList);
-      ?>
-      <h6 class="offset-2">Total Number: <?php echo $extrareturnedrowcount; ?></h6>
-    </div>
-    </div>
-    <div class="row">
-      <div class="offset-5">Goods Returned from Today's Sales Made</div>
-    </div><br>
-    <table  class="table table-striped table-hover paginate" style="display:block;overflow-y:scroll;text-align: center;">
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col" >Order #</th>
-      <th scope="col">Sales Person</th>
-      <th scope="col" >Contact</th>
-      <th scope="col">Category</th>
-      <th scope="col">Product</th>
-      <th scope="col">Qty Requested</th>
-      <th scope="col">Qty Sold</th>
-      <th scope="col">Qty Returned</th>
-    </tr>
-  </thead>
-  <tbody >
-    <?php
-        $count = 0;    
-        foreach($extraReturnedList as $row){
-         $count++;
-          $id = $row['id'];
-         $name1 = $row['firstname'];
-         $name2 = $row['lastname'];
-        $number = $row['number'];
-        $category = $row['category'];
-        $stock = $row['stock'];
-        $ordered = $row['ordered'];
-        $returned = $row['returned'];
-        $initial = $ordered + $returned;
-      ?>
-    <tr>
-      <th scope="row" ><?php echo $id; ?></th>
-      <td ><?php echo $name1.' '.$name2; ?></td>
-      <td ><?php echo $number; ?></td>
-      <td ><?php echo $category; ?></td>
-      <td ><?php echo $stock; ?></td>
-      <td ><?php echo $initial; ?></td>
-      <td ><?php echo $ordered; ?></td>
-      <td ><?php echo $returned; ?></td>
-    </tr>
-    <?php
-    }
-    ?>
-  </tbody>
-</table>
 
+         <div class="row">
+      <a href="extra_sales.php" class="btn btn-primary btn-md active float-left ml-3" role="button" aria-pressed="true"><i class="fa fa-arrow-left"></i>&ensp;Back</a>
+    </div><br><br>
+     <div class="row">
+      <div class="col-md-10 offset-1">
+        <h6 class="col-md-10 offset-2">To print sales invoice, enter deliverer's name and click the 'Print button'.</h6><br>
+        </div>
+     </div>
+        <div class="row">
+          <div class="col-md-7 offset-2">
+                 <select type="text" name="deliverer" id="deliverer" class="form-control col-md-12 " style="padding-right:15px;padding-left:15px;" required onfocus='this.size=3;' onblur='this.size=1;' onchange='this.size=1; this.blur();' required>
+                  <option value="" selected="selected" disabled>Deliverer...</option>
+                  <?php
+                    $count = 0;
+                    foreach($deliverersStaffList as $row){
+                     $count++;
+                    $driver = $row['firstname'];
+                  ?>
+                   <option value="<?php echo $driver; ?>"><?php echo $driver; ?></option>
+                  <?php
+                    }
+                  ?>
+                 </select>
+                 </div>
+                  </div><br><br>
+                  <?php
+       if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO') {
+
+        ?>
+        <div class="row">
+      <div class="input-group-prepend" style="margin-left: 350px;" >
+           <span class="input-group-text" id="inputGroup-sizing-default">Date:</span>
+           </div>
+       <div class="col-md-5">
+       <input type="date"  class="form-control col-md-6" name="invoiceDate" id="invoiceDate" value="" aria-describedby="inputGroup-sizing-default" required autocomplete="date" autofocus style="font-family: FontAwesome, Arial; font-style: normal;">
+        </div>
+        </div><br>
+        <?php
+          }else{
+        ?>
+          <div class="row">
+      <div class="input-group-prepend" style="margin-left: 350px;" >
+           <span class="input-group-text" id="inputGroup-sizing-default">Date:</span>
+           </div>
+       <div class="col-md-5">
+       <input type="date"  class="form-control col-md-6" name="invoiceDate" id="invoiceDate" aria-describedby="inputGroup-sizing-default" required value="" disabled="true" autocomplete="date" autofocus style="font-family: FontAwesome, Arial; font-style: normal;">
+        </div>
+        </div><br>
+        <?php
+          }
+        ?>
+        <div class="row">
+          <div class="col-md-2 offset-5">
+           <button class="btn btn-light btn-md active printSalesInvoice" role="button" aria-pressed="true"><i class="fa fa-print"></i>&ensp;Print</button>
+         </div>
+        </div><br><br>
   <!-- Scroll to Top Button-->
   <?php include "admin_footer.php" ?> 
