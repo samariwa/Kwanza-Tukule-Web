@@ -75,9 +75,11 @@ else{
       <td style="text-align:center">  '.$time.' </td>
     </tr>';
     }
-    $paid = mysqli_query($connection,"select COALESCE(SUM(MPesa + Cash),0) as 'paid'from sales inner join users on users.staffID = sales.Staff_id where DATE(Sales_date) = CURRENT_DATE() and users.firstname LIKE '%".$deliverer."%' ")or die($connection->error);
+    $paid = mysqli_query($connection,"select COALESCE(SUM(MPesa),0) as 'mpesa',COALESCE(SUM(Cash),0) as 'cash',COALESCE(SUM(MPesa + Cash),0) as 'paid'from sales inner join users on users.staffID = sales.Staff_id where DATE(Sales_date) = CURRENT_DATE() and users.firstname LIKE '%".$deliverer."%' ")or die($connection->error);
     $row2 = mysqli_fetch_array($paid);
       $paid_amount = $row2['paid'];
+       $mpesa = $row2['mpesa'];
+       $cash = $row2['cash'];
       $balance = $totalCost - $paid_amount;
  $pdf .=  '
  <tr >
@@ -85,7 +87,15 @@ else{
       <td ><b>Ksh. '.$totalCost .'</b> </td>
     </tr>
     <tr >
-        <th colspan = "6"><b>Amount Paid:</b></th>
+        <th colspan = "6"><b>Paid via M-Pesa:</b></th>
+      <td ><b>Ksh. '.$mpesa .'</b> </td>
+    </tr>
+     <tr >
+        <th colspan = "6"><b>Paid in Cash:</b></th>
+      <td ><b>Ksh. '.$cash .'</b> </td>
+    </tr>
+    <tr >
+        <th colspan = "6"><b>Total Amount Paid:</b></th>
       <td ><b>Ksh. '.$paid_amount  .'</b> </td>
     </tr>
     <tr >
@@ -164,17 +174,27 @@ echo $pdf;
       <td style="text-align:center">  '.$time.' </td>
     </tr>';
     }
-     $paid = mysqli_query($connection,"select COALESCE(SUM(MPesa + Cash),0) as 'paid'from sales inner join users on users.staffID = sales.Staff_id where DATE(Sales_date) = CURRENT_DATE() and users.firstname LIKE '%".$deliverer."%' ")or die($connection->error);
+     $paid = mysqli_query($connection,"select COALESCE(SUM(MPesa),0) as 'mpesa',COALESCE(SUM(Cash),0) as 'cash',COALESCE(SUM(MPesa + Cash),0) as 'paid'from sales inner join users on users.staffID = sales.Staff_id where DATE(Sales_date) = CURRENT_DATE() and users.firstname LIKE '%".$deliverer."%' ")or die($connection->error);
     $row2 = mysqli_fetch_array($paid);
       $paid_amount = $row2['paid'];
+      $mpesa = $row2['mpesa'];
+       $cash = $row2['cash'];
       $balance = $totalCost - $paid_amount;
  $pdf .= ' 
  <tr >
         <th colspan = "6"><b>Cost of goods sold:</b></th>
       <td ><b>Ksh. '.$totalCost .'</b> </td>
     </tr>
+    <tr >
+        <th colspan = "6"><b>Paid via M-Pesa:</b></th>
+      <td ><b>Ksh. '.$mpesa .'</b> </td>
+    </tr>
      <tr >
-        <th colspan = "6"><b>Amount Paid:</b></th>
+        <th colspan = "6"><b>Paid in Cash:</b></th>
+      <td ><b>Ksh. '.$cash .'</b> </td>
+    </tr>
+     <tr >
+        <th colspan = "6"><b>Total Amount Paid:</b></th>
       <td ><b>Ksh. '.$paid_amount  .'</b> </td>
     </tr>
     <tr >
