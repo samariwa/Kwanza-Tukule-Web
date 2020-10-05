@@ -14,6 +14,7 @@ else{
  $random = generateRandomString();
   $creditNote = mysqli_query($connection,"SELECT stock.Name as 'name',SUM(sales.Quantity) AS 'sum',stock.Price as 'price',sales.discount as 'discount',SUM(sales.returned) as 'returned',sales.Created_at as 'time' FROM sales inner join stock on Stock_id = stock.id  inner join users on users.staffID = sales.Staff_id where DATE(sales.Sales_date) = CURRENT_DATE() and users.firstname LIKE '%".$deliverer."%' GROUP BY stock.ID")or die($connection->error);
  $creditNoteDate = mysqli_query($connection,"SELECT stock.Name as 'name',SUM(sales.Quantity) AS 'sum',stock.Price as 'price',sales.discount as 'discount',SUM(sales.returned) as 'returned',sales.Created_at as 'time' FROM sales inner join stock on Stock_id = stock.id  inner join users on users.staffID = sales.Staff_id where DATE(sales.Sales_date) LIKE '%".$date."%' and users.firstname LIKE '%".$deliverer."%' GROUP BY stock.ID")or die($connection->error);
+ 
  $creditNumber1 = mysqli_num_rows($creditNote);
  $creditNumber2 = mysqli_num_rows($creditNoteDate);
  $today = date("l, F d, Y h:i A", time());
@@ -76,11 +77,15 @@ else{
     </tr>';
     }
     $paid = mysqli_query($connection,"select COALESCE(SUM(MPesa),0) as 'mpesa',COALESCE(SUM(Cash),0) as 'cash',COALESCE(SUM(MPesa + Cash),0) as 'paid'from sales inner join users on users.staffID = sales.Staff_id where DATE(Sales_date) = CURRENT_DATE() and users.firstname LIKE '%".$deliverer."%' ")or die($connection->error);
+    $totalBalance = mysqli_query($connection,"SELECT Balance FROM `sales` inner join users on sales.Staff_id = users.staffID WHERE firstname='$deliverer' ORDER BY sales.id DESC LIMIT 1")or die($connection->error);
     $row2 = mysqli_fetch_array($paid);
       $paid_amount = $row2['paid'];
        $mpesa = $row2['mpesa'];
        $cash = $row2['cash'];
       $balance = $totalCost - $paid_amount;
+      $row3 = mysqli_fetch_array($totalBalance);
+      $total = $row3['Balance'];
+      $previous = $total + $balance;
  $pdf .=  '
  <tr >
         <th colspan = "6"><b>Cost of goods sold:</b></th>
@@ -102,13 +107,21 @@ else{
         <th colspan = "6"><b>Balance:</b></th>
       <td><b>Ksh. '.$balance.'</b> </td>
     </tr>
+    <tr >
+        <th colspan = "6"><b>Previous Balance:</b></th>
+      <td><b>Ksh. '.$previous.'</b> </td>
+    </tr>
+    <tr >
+        <th colspan = "6"><b>Total Balance:</b></th>
+      <td><b>Ksh. '.$total.'</b> </td>
+    </tr>
  </tbody>
 </table>
 
 <br>
 <p>Data Clerk Signature: ....................................................</p>
 <br>
-<p>Store Supervisor Signature: ....................................................</p>
+<p>Store / Dispatch Manager Signature: ....................................................</p>
 <br>
 <p>Sales Representative Signature: ....................................................</p>
 <br>
@@ -175,11 +188,15 @@ echo $pdf;
     </tr>';
     }
      $paid = mysqli_query($connection,"select COALESCE(SUM(MPesa),0) as 'mpesa',COALESCE(SUM(Cash),0) as 'cash',COALESCE(SUM(MPesa + Cash),0) as 'paid'from sales inner join users on users.staffID = sales.Staff_id where DATE(Sales_date) = CURRENT_DATE() and users.firstname LIKE '%".$deliverer."%' ")or die($connection->error);
+     $totalBalance = mysqli_query($connection,"SELECT Balance FROM `sales` inner join users on sales.Staff_id = users.staffID WHERE firstname='$deliverer' ORDER BY sales.id DESC LIMIT 1")or die($connection->error);
     $row2 = mysqli_fetch_array($paid);
       $paid_amount = $row2['paid'];
       $mpesa = $row2['mpesa'];
        $cash = $row2['cash'];
       $balance = $totalCost - $paid_amount;
+      $row3 = mysqli_fetch_array($totalBalance);
+      $total = $row3['Balance'];
+      $previous = $total + $balance;
  $pdf .= ' 
  <tr >
         <th colspan = "6"><b>Cost of goods sold:</b></th>
@@ -201,14 +218,24 @@ echo $pdf;
         <th colspan = "6"><b>Balance:</b></th>
       <td><b>Ksh. '.$balance.'</b> </td>
     </tr>
+    <tr >
+        <th colspan = "6"><b>Previous Balance:</b></th>
+      <td><b>Ksh. '.$previous.'</b> </td>
+    </tr>
+    <tr >
+        <th colspan = "6"><b>Total Balance:</b></th>
+      <td><b>Ksh. '.$total.'</b> </td>
+    </tr>
  </tbody>
 </table>
 <br>
-<p>Administrator Signature: ....................................................</p>
+<p>Data Clerk Signature: ....................................................</p>
 <br>
-<p>Store Supervisor Signature: ....................................................</p>
+<p>Store / Dispatch Manager Signature: ....................................................</p>
 <br>
-<p>Operations Manager Signature: ....................................................</p>
+<p>Sales Representative Signature: ....................................................</p>
+<br>
+<p>Operations / Finance Director Signature: ....................................................</p>
 <p>Prepared by: '.$_SESSION["user"].' 
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body></html>';

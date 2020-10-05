@@ -86,7 +86,7 @@
 <br>
 <p>Data Clerk Signature: ....................................................</p>
 <br>
-<p>Store Supervisor Signature: ....................................................</p>
+<p>Store / Dispatch Manager Signature: ....................................................</p>
 <br>
 <p>Sales Representative Signature: ....................................................</p>
 <br>
@@ -163,11 +163,13 @@ echo $pdf;
 </div>
 </div>
 <br>
-<p>Administrator Signature: ....................................................</p>
+<p>Data Clerk Signature: ....................................................</p>
 <br>
-<p>Store Supervisor Signature: ....................................................</p>
+<p>Store / Dispatch Manager Signature: ....................................................</p>
 <br>
-<p>Operations Manager Signature: ....................................................</p>
+<p>Sales Representative Signature: ....................................................</p>
+<br>
+<p>Operations / Finance Director Signature: ....................................................</p>
 <p>Prepared by: '.$_SESSION["user"].' 
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body></html>';

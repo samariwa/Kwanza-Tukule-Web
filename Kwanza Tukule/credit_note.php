@@ -146,7 +146,7 @@
                   <option value="" selected="selected" disabled>Deliverer...</option>
                   <?php
                     $count = 0;
-                    foreach($deliverersStaffList as $row){
+                    foreach($requisitionSellersList as $row){
                      $count++;
                     $driver = $row['firstname'];
                   ?>
