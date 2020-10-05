@@ -96,7 +96,7 @@ else{
       <td ><b>Ksh. '.$mpesa .'</b> </td>
     </tr>
      <tr >
-        <th colspan = "6"><b>Paid in Cash:</b></th>
+        <th colspan = "6"><b>Deposited:</b></th>
       <td ><b>Ksh. '.$cash .'</b> </td>
     </tr>
     <tr >
@@ -207,7 +207,7 @@ echo $pdf;
       <td ><b>Ksh. '.$mpesa .'</b> </td>
     </tr>
      <tr >
-        <th colspan = "6"><b>Paid in Cash:</b></th>
+        <th colspan = "6"><b>Deposited:</b></th>
       <td ><b>Ksh. '.$cash .'</b> </td>
     </tr>
      <tr >

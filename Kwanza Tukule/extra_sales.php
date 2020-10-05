@@ -185,7 +185,7 @@
       <th scope="col"width="5%">Discount</th>
       <th scope="col"width="5%">C/F/Debt</th>
       <?php
-       if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO' || $view == 'Admin') {
+       if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO' || $view == 'Admin' || $view == 'Admin2') {
 
         ?>
       <th scope="col"width="5%">MPesa</th>
@@ -260,7 +260,7 @@
       <td class="uneditable" id="discountLastMonth<?php echo $count; ?>"><?php echo $discount; ?></td>
       <td class="uneditable" id="debtLastMonth<?php echo $count; ?>"><?php echo $debt; ?></td>
        <?php
-       if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO' || $view == 'Admin') {
+       if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO' || $view == 'Admin' || $view == 'Admin2') {
 
         ?>
       <td class="editable" id="mpesaLastMonth<?php echo $count; ?>"><?php echo $mpesa; ?></td>
@@ -313,7 +313,7 @@
       <th scope="col"width="5%">Discount</th>
       <th scope="col"width="5%">C/F/Debt</th>
       <?php
-       if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO' || $view == 'Admin') {
+       if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO' || $view == 'Admin' || $view == 'Admin2') {
 
         ?>
       <th scope="col"width="5%">MPesa</th>
@@ -386,7 +386,7 @@
       <td class="uneditable" id="discountYesterday<?php echo $count; ?>"><?php echo $discount; ?></td>
       <td class="uneditable" id="debtYesterday<?php echo $count; ?>"><?php echo $debt; ?></td>
        <?php
-       if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO' || $view == 'Admin') {
+       if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO' || $view == 'Admin' || $view == 'Admin2') {
 
         ?>
       <td class="editable" id="mpesaYesterday<?php echo $count; ?>"><?php echo $mpesa; ?></td>
@@ -438,7 +438,7 @@
       <th scope="col"width="5%">Discount</th>
       <th scope="col"width="5%">C/F/Debt</th>
       <?php
-       if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO' || $view == 'Admin') {
+       if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO' || $view == 'Admin' || $view == 'Admin2') {
 
         ?>
       <th scope="col"width="5%">MPesa</th>
@@ -511,7 +511,7 @@
       <td class="editable" id="discountToday<?php echo $count; ?>"><?php echo $discount; ?></td>
       <td class="uneditable" id="debtToday<?php echo $count; ?>"><?php echo $debt; ?></td>
        <?php
-       if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO' || $view == 'Admin') {
+       if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO' || $view == 'Admin' || $view == 'Admin2') {
 
         ?>
       <td class="editable" id="mpesaToday<?php echo $count; ?>"><?php echo $mpesa; ?></td>
@@ -563,7 +563,7 @@
       <th scope="col"width="5%">Discount</th>
       <th scope="col"width="5%">C/F/Debt</th>
       <?php
-       if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO' || $view == 'Admin') {
+       if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO' || $view == 'Admin' || $view == 'Admin2') {
 
         ?>
       <th scope="col"width="5%">MPesa</th>
@@ -636,7 +636,7 @@
       <td class="editable" id="discountTomorrow<?php echo $count; ?>"><?php echo $discount; ?></td>
       <td class="uneditable" id="debtTomorrow<?php echo $count; ?>"><?php echo $debt; ?></td>
        <?php
-       if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO' || $view == 'Admin') {
+       if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO' || $view == 'Admin' || $view == 'Admin2') {
 
         ?>
       <td class="uneditable" id="mpesaTomorrow<?php echo $count; ?>"><?php echo $mpesa; ?></td>
