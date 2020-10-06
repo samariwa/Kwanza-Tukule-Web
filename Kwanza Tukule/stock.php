@@ -268,7 +268,7 @@
         <th scope="col" width="10%">Restock Level</th>
         <?php
        }
-       if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO' || $view == 'Admin2') {
+       if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO' ) {
         ?>
       <th scope="col"width="28%"></th>
     </tr>
