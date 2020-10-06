@@ -90,31 +90,31 @@ else{
       $previous = $total + $balance;
  $pdf .=  '
  <tr >
-        <th colspan = "6"><b>Cost of goods sold:</b></th>
+        <th colspan = "7"><b>Cost of goods sold:</b></th>
       <td ><b>Ksh. '.$totalCost .'</b> </td>
     </tr>
     <tr >
-        <th colspan = "6"><b>Paid via M-Pesa:</b></th>
+        <th colspan = "7"><b>Paid via M-Pesa:</b></th>
       <td ><b>Ksh. '.$mpesa .'</b> </td>
     </tr>
      <tr >
-        <th colspan = "6"><b>Deposited:</b></th>
+        <th colspan = "7"><b>Deposited:</b></th>
       <td ><b>Ksh. '.$cash .'</b> </td>
     </tr>
     <tr >
-        <th colspan = "6"><b>Total Amount Paid:</b></th>
+        <th colspan = "7"><b>Total Amount Paid:</b></th>
       <td ><b>Ksh. '.$paid_amount  .'</b> </td>
     </tr>
     <tr >
-        <th colspan = "6"><b>Balance:</b></th>
+        <th colspan = "7"><b>Balance:</b></th>
       <td><b>Ksh. '.$balance.'</b> </td>
     </tr>
     <tr >
-        <th colspan = "6"><b>Previous Balance:</b></th>
+        <th colspan = "7"><b>Previous Balance:</b></th>
       <td><b>Ksh. '.$previous.'</b> </td>
     </tr>
     <tr >
-        <th colspan = "6"><b>Total Balance:</b></th>
+        <th colspan = "7"><b>Total Balance:</b></th>
       <td><b>Ksh. '.$total.'</b> </td>
     </tr>
  </tbody>
@@ -203,31 +203,31 @@ echo $pdf;
       $previous = $total + $balance;
  $pdf .= ' 
  <tr >
-        <th colspan = "6"><b>Cost of goods sold:</b></th>
+        <th colspan = "7"><b>Cost of goods sold:</b></th>
       <td ><b>Ksh. '.$totalCost .'</b> </td>
     </tr>
     <tr >
-        <th colspan = "6"><b>Paid via M-Pesa:</b></th>
+        <th colspan = "7"><b>Paid via M-Pesa:</b></th>
       <td ><b>Ksh. '.$mpesa .'</b> </td>
     </tr>
      <tr >
-        <th colspan = "6"><b>Deposited:</b></th>
+        <th colspan = "7"><b>Deposited:</b></th>
       <td ><b>Ksh. '.$cash .'</b> </td>
     </tr>
      <tr >
-        <th colspan = "6"><b>Total Amount Paid:</b></th>
+        <th colspan = "7"><b>Total Amount Paid:</b></th>
       <td ><b>Ksh. '.$paid_amount  .'</b> </td>
     </tr>
     <tr >
-        <th colspan = "6"><b>Balance:</b></th>
+        <th colspan = "7"><b>Balance:</b></th>
       <td><b>Ksh. '.$balance.'</b> </td>
     </tr>
     <tr >
-        <th colspan = "6"><b>Previous Balance:</b></th>
+        <th colspan = "7"><b>Previous Balance:</b></th>
       <td><b>Ksh. '.$previous.'</b> </td>
     </tr>
     <tr >
-        <th colspan = "6"><b>Total Balance:</b></th>
+        <th colspan = "7"><b>Total Balance:</b></th>
       <td><b>Ksh. '.$total.'</b> </td>
     </tr>
  </tbody>

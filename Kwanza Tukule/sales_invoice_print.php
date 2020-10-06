@@ -70,7 +70,7 @@ else{
     }
  $pdf .=  '
   <tr >
-        <th colspan = "2"><b>Cost of goods requested:</b></th>
+        <th colspan = "3"><b>Cost of goods requested:</b></th>
       <td id = "invoiceTotal"><b>Ksh. '.$totalCost .'</b> </td>
     </tr>
  </tbody>
@@ -137,7 +137,7 @@ echo $pdf;
  $pdf .=
  ' 
   <tr >
-  <th colspan = "2"><b>Cost of goods requested</b></th>
+  <th colspan = "3"><b>Cost of goods requested</b></th>
   <td id = "invoiceTotal"><b>Ksh. '.$totalCost .'</b> </td>
     </tr>
  </tbody>
