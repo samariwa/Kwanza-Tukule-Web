@@ -262,10 +262,14 @@
       <th scope="col"width="11%">Selling Price</th>
       <th scope="col"width="12%">Quantity Available</th>
       <?php
-       if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO') {
+       if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO' || $view == 'Admin2') {
 
         ?>
         <th scope="col" width="10%">Restock Level</th>
+        <?php
+       }
+       if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO' || $view == 'Admin2') {
+        ?>
       <th scope="col"width="28%"></th>
     </tr>
     <?php
