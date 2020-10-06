@@ -231,6 +231,25 @@ $html = '<h1 style="text-align:center"><strong><img src="assets/img/Kwanza Tukul
       We reliably offer better food supply chain in Africa that feeds the community with affordable, healthy, nutritious foods, prepared under the utmost standards of hygiene that allow our clients to overcome food insecurity, post-harvest losses and energy consumption/ that allow our clients to enjoy a delicious meal while saving time and conserving energy.
     </p>
     <h2>Performance Analysis</h2>
+    <p>Below is the report for the number items sold for each brand with the corresponding value for <u><b>sales done yesterday.</b></u></p>
+    <table border="1" cellspacing="1" cellpadding="4" align="center">
+    <tr>
+        <th><b>Product</b></th>
+        <th><b>Quantity</b></th>
+        <th><b>Value</b></th>  
+    </tr>';
+  foreach($salesValueYesterday as $row){
+  $name = $row['name'];
+  $qty = $row['sum'];
+  $price = $row['price'];
+  $value = $qty * $price;
+   $html .= ' <tr>
+        <td>'.$name.'</td>
+        <td>'.$qty.'</td>
+        <td>'.$value.'</td>
+    </tr>';
+  }  
+$html .= '</table>
 <p>Below is the report that examines the company performance for the last one month.</p>
 <p>This month we managed to <b>sale products worth Ksh. '.$total_sales.'</b>. This income for sale of different products whose demands depended on the customers preferences. The <b>5 most demanded products</b> this month  that were <b>ordered from the company</b> with the corresponding sales quantities(units) were as follows:</p>
 <ol>

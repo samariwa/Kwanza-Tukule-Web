@@ -271,7 +271,7 @@ elseif ($where=='order') {
    $Restock_Level = $Name['Restock_Level'];
    if($Category_Name == 'Maize Flour' && strpos($Stock_Name, 'Pieces') !== false || $Category_Name == 'All Purpose Flour' && strpos($Stock_Name, 'Pieces') !== false){
    $Qty = $Name['Quantity'];
-   if ($Qty < 11) {
+   if ($Qty < $Restock_Level) {
      $Bundle_Name = str_replace("Pieces","Bundles",$Stock_Name);
      $Bundle_Qty = mysqli_query($connection,"SELECT Quantity  FROM `stock` WHERE stock.Name = '".$Bundle_Name."'")or die($connection->error);
    $bundle_qty = mysqli_fetch_array($Bundle_Qty);
@@ -283,7 +283,6 @@ elseif ($where=='order') {
      mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = Quantity + '".$newPiecesIncreament."' WHERE `id` = '".$stockIDx."'")or die($connection->error);
    }else{
       $newBundleQty = $bundleQuantity - 1;
-      $newPiecesIncreament = 12;
       mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = '$newBundleQty' WHERE `Name` = '".$Bundle_Name."'")or die($connection->error);
      mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = Quantity + '12' WHERE `id` = '".$stockIDx."'")or die($connection->error);
    }
@@ -296,16 +295,72 @@ elseif ($where=='order') {
      $Bag_Qty = mysqli_query($connection,"SELECT Quantity  FROM `stock` WHERE stock.Name = '".$Bag_Name."'")or die($connection->error);
    $bag_qty = mysqli_fetch_array($Bag_Qty);
    $bagQuantity = $bag_qty['Quantity'];
-   if ($bagQuantity <= 5) {
+   if ($bagQuantity = 1) {
      $newBagQty = 0;
-     $newPacketsIncreament = $bagQuantity * 12;
+     $newPacketsIncreament = 50;
      mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = '0' WHERE `Name` = '".$Bag_Name."'")or die($connection->error);
      mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = Quantity + '".$newPacketsIncreament."' WHERE `id` = '".$stockIDx."'")or die($connection->error);
    }else{
-      $newBagQty = $bagQuantity - 5;
-      $newPacketsIncreament = 60;
+      $newBagQty = $bagQuantity - 1;
       mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = '$newBagQty' WHERE `Name` = '".$Bag_Name."'")or die($connection->error);
-     mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = Quantity + '60' WHERE `id` = '".$stockIDx."'")or die($connection->error);
+     mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = Quantity + '50' WHERE `id` = '".$stockIDx."'")or die($connection->error);
+   }
+   }
+    }
+    if($Category_Name == 'Serviettes' && strpos($Stock_Name, 'Pieces') !== false){
+       $Qty = $Name['Quantity'];
+   if ($Qty < $Restock_Level) {
+     $Bundle_Name = str_replace("Pieces","Bundles",$Stock_Name);
+     $Bundle_Qty = mysqli_query($connection,"SELECT Quantity  FROM `stock` WHERE stock.Name = '".$Bundle_Name."'")or die($connection->error);
+   $bundle_qty = mysqli_fetch_array($Bundle_Qty);
+   $bundleQuantity = $bag_qty['Quantity'];
+   if ($bundleQuantity = 1) {
+     $newBundleQty = 0;
+     $newPiecesIncreament = 18;
+     mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = '0' WHERE `Name` = '".$Bundle_Name."'")or die($connection->error);
+     mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = Quantity + '".$newPiecesIncreament."' WHERE `id` = '".$stockIDx."'")or die($connection->error);
+   }else{
+      $newBundleQty = $bundleQuantity - 1;
+      mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = '$newBundleQty' WHERE `Name` = '".$Bundle_Name."'")or die($connection->error);
+     mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = Quantity + '18' WHERE `id` = '".$stockIDx."'")or die($connection->error);
+   }
+   }
+    }
+    if($Category_Name == 'Baking Powder' && strpos($Stock_Name, 'Pieces') !== false){
+       $Qty = $Name['Quantity'];
+   if ($Qty < $Restock_Level) {
+     $Dozen_Name = str_replace("Pieces","Dozen",$Stock_Name);
+     $Dozen_Qty = mysqli_query($connection,"SELECT Quantity  FROM `stock` WHERE stock.Name = '".$Dozen_Name."'")or die($connection->error);
+   $dozen_qty = mysqli_fetch_array($Dozen_Qty);
+   $dozenQuantity = $dozen_qty['Quantity'];
+   if ($dozenQuantity = 1) {
+     $newDozenQty = 0;
+     $newPiecesIncreament = 12;
+     mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = '0' WHERE `Name` = '".$Dozen_Name."'")or die($connection->error);
+     mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = Quantity + '".$newPiecesIncreament."' WHERE `id` = '".$stockIDx."'")or die($connection->error);
+   }else{
+      $newDozenQty = $dozenQuantity - 1;
+      mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = '$newDozenQty' WHERE `Name` = '".$Dozen_Name."'")or die($connection->error);
+     mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = Quantity + '12' WHERE `id` = '".$stockIDx."'")or die($connection->error);
+   }
+   }
+    }
+    if($Category_Name == 'Baking Powder' && strpos($Stock_Name, 'Dozen') !== false){
+       $Qty = $Name['Quantity'];
+   if ($Qty < $Restock_Level) {
+     $Box_Name = str_replace("Dozen","Boxes",$Stock_Name);
+     $Box_Qty = mysqli_query($connection,"SELECT Quantity  FROM `stock` WHERE stock.Name = '".$Box_Name."'")or die($connection->error);
+   $box_qty = mysqli_fetch_array($Dozen_Qty);
+   $boxQuantity = $box_qty['Quantity'];
+   if ($dozenQuantity = 1) {
+     $newBoxQty = 0;
+     $newDozenIncreament = 6;
+     mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = '0' WHERE `Name` = '".$Box_Name."'")or die($connection->error);
+     mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = Quantity + '".$newDozenIncreament."' WHERE `id` = '".$stockIDx."'")or die($connection->error);
+   }else{
+      $newBoxQty = $boxQuantity - 1;
+      mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = '$newBoxQty' WHERE `Name` = '".$Box_Name."'")or die($connection->error);
+     mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = Quantity + '6' WHERE `id` = '".$stockIDx."'")or die($connection->error);
    }
    }
     }
@@ -366,7 +421,7 @@ elseif ($where=='sales') {
    $Restock_Level = $Name['Restock_Level'];
    if($Category_Name == 'Maize Flour' && strpos($Stock_Name, 'Pieces') !== false || $Category_Name == 'All Purpose Flour' && strpos($Stock_Name, 'Pieces') !== false){
    $Qty = $Name['Quantity'];
-   if ($Qty < 11) {
+   if ($Qty < $Restock_Level) {
      $Bundle_Name = str_replace("Pieces","Bundles",$Stock_Name);
      $Bundle_Qty = mysqli_query($connection,"SELECT Quantity  FROM `stock` WHERE stock.Name = '".$Bundle_Name."'")or die($connection->error);
    $bundle_qty = mysqli_fetch_array($Bundle_Qty);
@@ -378,7 +433,6 @@ elseif ($where=='sales') {
      mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = Quantity + '".$newPiecesIncreament."' WHERE `id` = '".$stockIDx."'")or die($connection->error);
    }else{
       $newBundleQty = $bundleQuantity - 1;
-      $newPiecesIncreament = 12;
       mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = '$newBundleQty' WHERE `Name` = '".$Bundle_Name."'")or die($connection->error);
      mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = Quantity + '12' WHERE `id` = '".$stockIDx."'")or die($connection->error);
    }
@@ -391,16 +445,72 @@ elseif ($where=='sales') {
      $Bag_Qty = mysqli_query($connection,"SELECT Quantity  FROM `stock` WHERE stock.Name = '".$Bag_Name."'")or die($connection->error);
    $bag_qty = mysqli_fetch_array($Bag_Qty);
    $bagQuantity = $bag_qty['Quantity'];
-   if ($bagQuantity <= 5) {
+   if ($bagQuantity <= 1) {
      $newBagQty = 0;
-     $newPacketsIncreament = $bagQuantity * 12;
+     $newPacketsIncreament = 50;
      mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = '0' WHERE `Name` = '".$Bag_Name."'")or die($connection->error);
      mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = Quantity + '".$newPacketsIncreament."' WHERE `id` = '".$stockIDx."'")or die($connection->error);
    }else{
-      $newBagQty = $bagQuantity - 5;
-      $newPacketsIncreament = 60;
+      $newBagQty = $bagQuantity - 1;
       mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = '$newBagQty' WHERE `Name` = '".$Bag_Name."'")or die($connection->error);
-     mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = Quantity + '60' WHERE `id` = '".$stockIDx."'")or die($connection->error);
+     mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = Quantity + '50' WHERE `id` = '".$stockIDx."'")or die($connection->error);
+   }
+   }
+    }
+    if($Category_Name == 'Serviettes' && strpos($Stock_Name, 'Pieces') !== false){
+       $Qty = $Name['Quantity'];
+   if ($Qty < $Restock_Level) {
+     $Bundle_Name = str_replace("Pieces","Bundles",$Stock_Name);
+     $Bundle_Qty = mysqli_query($connection,"SELECT Quantity  FROM `stock` WHERE stock.Name = '".$Bundle_Name."'")or die($connection->error);
+   $bundle_qty = mysqli_fetch_array($Bundle_Qty);
+   $bundleQuantity = $bag_qty['Quantity'];
+   if ($bundleQuantity = 1) {
+     $newBundleQty = 0;
+     $newPiecesIncreament = 18;
+     mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = '0' WHERE `Name` = '".$Bundle_Name."'")or die($connection->error);
+     mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = Quantity + '".$newPiecesIncreament."' WHERE `id` = '".$stockIDx."'")or die($connection->error);
+   }else{
+      $newBundleQty = $bundleQuantity - 1;
+      mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = '$newBundleQty' WHERE `Name` = '".$Bundle_Name."'")or die($connection->error);
+     mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = Quantity + '18' WHERE `id` = '".$stockIDx."'")or die($connection->error);
+   }
+   }
+    }
+    if($Category_Name == 'Baking Powder' && strpos($Stock_Name, 'Pieces') !== false){
+       $Qty = $Name['Quantity'];
+   if ($Qty < $Restock_Level) {
+     $Dozen_Name = str_replace("Pieces","Dozen",$Stock_Name);
+     $Dozen_Qty = mysqli_query($connection,"SELECT Quantity  FROM `stock` WHERE stock.Name = '".$Dozen_Name."'")or die($connection->error);
+   $dozen_qty = mysqli_fetch_array($Dozen_Qty);
+   $dozenQuantity = $dozen_qty['Quantity'];
+   if ($dozenQuantity = 1) {
+     $newDozenQty = 0;
+     $newPiecesIncreament = 12;
+     mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = '0' WHERE `Name` = '".$Dozen_Name."'")or die($connection->error);
+     mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = Quantity + '".$newPiecesIncreament."' WHERE `id` = '".$stockIDx."'")or die($connection->error);
+   }else{
+      $newDozenQty = $dozenQuantity - 1;
+      mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = '$newDozenQty' WHERE `Name` = '".$Dozen_Name."'")or die($connection->error);
+     mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = Quantity + '12' WHERE `id` = '".$stockIDx."'")or die($connection->error);
+   }
+   }
+    }
+    if($Category_Name == 'Baking Powder' && strpos($Stock_Name, 'Dozen') !== false){
+       $Qty = $Name['Quantity'];
+   if ($Qty < $Restock_Level) {
+     $Box_Name = str_replace("Dozen","Boxes",$Stock_Name);
+     $Box_Qty = mysqli_query($connection,"SELECT Quantity  FROM `stock` WHERE stock.Name = '".$Box_Name."'")or die($connection->error);
+   $box_qty = mysqli_fetch_array($Dozen_Qty);
+   $boxQuantity = $box_qty['Quantity'];
+   if ($dozenQuantity = 1) {
+     $newBoxQty = 0;
+     $newDozenIncreament = 6;
+     mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = '0' WHERE `Name` = '".$Box_Name."'")or die($connection->error);
+     mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = Quantity + '".$newDozenIncreament."' WHERE `id` = '".$stockIDx."'")or die($connection->error);
+   }else{
+      $newBoxQty = $boxQuantity - 1;
+      mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = '$newBoxQty' WHERE `Name` = '".$Box_Name."'")or die($connection->error);
+     mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = Quantity + '6' WHERE `id` = '".$stockIDx."'")or die($connection->error);
    }
    }
     }

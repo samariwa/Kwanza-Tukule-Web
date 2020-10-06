@@ -273,7 +273,7 @@
       <td class="editable" id="bankerLastMonth<?php echo $count; ?>"><?php echo $banked_by; ?></td>
        <td>
           <?php
-       if ($view == 'Software'  || $view == 'CEO' || $view == 'General Operations Manager') {
+       if ($view == 'Software'  || $view == 'CEO' || $view == 'General Operations Manager' || $view == 'Admin2') {
 
         ?>
           <button id="<?php echo $id; ?>" data_id="<?php echo $id; ?>" class="btn btn-danger btn-sm active deleteSalesLastMonth" role="button" aria-pressed="true" onclick="deleteSalesLastMonth(this,<?php echo $id; ?>)"><i class="fa fa-trash"></i>&ensp;Delete</button>
@@ -398,7 +398,7 @@
       <td class="editable" id="bankerYesterday<?php echo $count; ?>"><?php echo $banked_by; ?></td>
        <td>
           <?php
-       if ($view == 'Software'  || $view == 'CEO' || $view == 'General Operations Manager') {
+       if ($view == 'Software'  || $view == 'CEO' || $view == 'General Operations Manager' || $view == 'Admin2') {
 
         ?>
           <button id="<?php echo $id; ?>" data_id="<?php echo $id; ?>" class="btn btn-danger btn-sm active deleteSalesYesterday" role="button" aria-pressed="true" onclick="deleteSalesYesterday(this,<?php echo $id; ?>)"><i class="fa fa-trash"></i>&ensp;Delete</button>
@@ -523,7 +523,7 @@
       <td class="editable" id="bankerToday<?php echo $count; ?>"><?php echo $banked_by; ?></td>
        <td>
           <?php
-       if ($view == 'Software'  || $view == 'CEO' || $view == 'General Operations Manager') {
+       if ($view == 'Software'  || $view == 'CEO' || $view == 'General Operations Manager' || $view == 'Admin2') {
 
         ?>
           <button id="<?php echo $id; ?>" data_id="<?php echo $id; ?>" class="btn btn-danger btn-sm active deleteSalesToday" role="button" aria-pressed="true" onclick="deleteSalesToday(this,<?php echo $id; ?>)"><i class="fa fa-trash"></i>&ensp;Delete</button>
@@ -648,7 +648,7 @@
       <td class="uneditable" id="bankerTomorrow<?php echo $count; ?>"><?php echo $banked_by; ?></td>
        <td>
           <?php
-       if ($view == 'Software'  || $view == 'CEO' || $view == 'General Operations Manager') {
+       if ($view == 'Software'  || $view == 'CEO' || $view == 'General Operations Manager' || $view == 'Admin2') {
 
         ?>
           <button id="<?php echo $id; ?>" data_id="<?php echo $id; ?>" class="btn btn-danger btn-sm active deleteSalesTomorrow" role="button" aria-pressed="true" onclick="deleteSalesTomorrow(this,<?php echo $id; ?>)"><i class="fa fa-trash"></i>&ensp;Delete</button>

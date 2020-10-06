@@ -306,10 +306,14 @@
       <td class="uneditable" id="qty<?php echo $count; ?>"><?php echo $quantity; ?></td>
       <?php
        }
-       if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO') {
+       if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO' || $view == 'Admin2') {
         ?>
         <td class="editable" id="restock_Level<?php echo $count; ?>"><?php echo $restock_Level; ?></td>
-       <td>  
+        <?php
+        }
+        if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO') {
+        ?>
+        <td>  
         <button data-toggle="modal" data-target="#exampleModalScrollable<?php echo $id; ?>" id="<?php echo $id; ?>" data_id="<?php echo $id; ?>" class="btn btn-light btn-sm active restock" role="button" aria-pressed="true" ><i class="fa fa-plus"></i>&ensp;Restock</button>
         <div class="modal fade" id="exampleModalScrollable<?php echo $id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">

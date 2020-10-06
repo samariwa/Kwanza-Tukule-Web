@@ -62,7 +62,14 @@ $result1 = mysqli_query($connection,"SELECT Customer_id,Quantity,Balance FROM or
     $oldBalance = $row['Balance'];
     $customer = $row['Customer_id'];
       $Returned = $Quantity - $qty;
-      mysqli_query($connection,"UPDATE `orders`  SET `Quantity` = '".$qty."',`Balance` = '".$newBalance."',`MPesa` = '".$mpesa."',`Cash` = '".$cash."',`Late_Order` = '".$date."',`Returned` = Returned +'".$Returned."',`Banked` = '".$banked."',`Slip_Number` = '".$slip."',`Banked_By` = '".$banker."' WHERE `id` = '".$id."'")or die($connection->error);
+      $qty_bal = '';
+    if ($Returned > 0) {
+      $qty_bal = $Returned;
+    }
+    else{
+      $qty_bal = '0';
+    }
+      mysqli_query($connection,"UPDATE `orders`  SET `Quantity` = '".$qty."',`Balance` = '".$newBalance."',`MPesa` = '".$mpesa."',`Cash` = '".$cash."',`Late_Order` = '".$date."',`Returned` = Returned +'".$qty_bal."',`Banked` = '".$banked."',`Slip_Number` = '".$slip."',`Banked_By` = '".$banker."' WHERE `id` = '".$id."'")or die($connection->error);
       mysqli_query($connection,"update stock set Quantity= Quantity +".$Returned." WHERE `id` = '".$stock_id."'")or die($connection->error);
       $result5 = mysqli_query($connection,"SELECT Category_Name FROM category join stock on category.id = stock.Category_id where stock.id = '".$stock_id."'")or die($connection->error);
       $row5 = mysqli_fetch_array($result5);
@@ -112,7 +119,14 @@ $result1 = mysqli_query($connection,"SELECT Staff_id,Quantity,Balance FROM sales
     $oldBalance = $row['Balance'];
     $staff = $row['Staff_id'];
       $Returned = $Quantity - $qty;
-      mysqli_query($connection,"UPDATE `sales`  SET `Quantity` = '".$qty."',`Balance` = '".$newBalance."',`MPesa` = '".$mpesa."',`Cash` = '".$cash."',`Discount` = '".$discount."',`Returned` = '".$Returned."',`Banked` = '".$banked."',`Slip_Number` = '".$slip."',`Banked_By` = '".$banker."' WHERE `id` = '".$id."'")or die($connection->error);
+      $qty_bal = '';
+    if ($Returned > 0) {
+      $qty_bal = $Returned;
+    }
+    else{
+      $qty_bal = '0';
+    }
+      mysqli_query($connection,"UPDATE `sales`  SET `Quantity` = '".$qty."',`Balance` = '".$newBalance."',`MPesa` = '".$mpesa."',`Cash` = '".$cash."',`Discount` = '".$discount."',`Returned` = Returned +'".$qty_bal."',`Banked` = '".$banked."',`Slip_Number` = '".$slip."',`Banked_By` = '".$banker."' WHERE `id` = '".$id."'")or die($connection->error);
       mysqli_query($connection,"update stock set Quantity= Quantity +".$Returned." WHERE `id` = '".$stock_id."'")or die($connection->error);
       $result5 = mysqli_query($connection,"SELECT Category_Name FROM category join stock on category.id = stock.Category_id where stock.id = '".$stock_id."'")or die($connection->error);
       $row5 = mysqli_fetch_array($result5);

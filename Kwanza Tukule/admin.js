@@ -903,7 +903,7 @@ function selectSeller(selection) {
           $('#cartEditable td').on('change', function(evt, newValue) {
             for (var i = 0; i < cartItems.length; i++) {
               if (parseInt($(`#quantity${cartItems[i][0]}`).html()) == newValue) {
-                //alert(newValue)
+                 alert(cartItems[i][5])
                 if (newValue <= cartItems[i][5] && newValue >0) {
                   var id = cartItems[i][0];
                   var price = parseInt($(`#price${id}`).html());
