@@ -44,10 +44,11 @@ else{
 <table class="table" style="display:block;text-align:center;"">
   <thead>
     <tr>
-      <th scope="col" width="25%""><h4><b>Product Name</b></h4></th>
-      <th scope="col" width="25%""><h4><b>Quantity</b></h4></th>
-      <th scope="col" width="25%""><h4><b>Cost</b></h4></th>
-      <th scope="col" width="25%""><h4><b>Requisition Timestamp</b></h4></th>
+      <th scope="col" width="20%""><h4><b>Product Name</b></h4></th>
+      <th scope="col" width="20%""><h4><b>Unit Price</b></h4></th>
+      <th scope="col" width="20%""><h4><b>Quantity(Units)</b></h4></th>
+      <th scope="col" width="20%""><h4><b>Cost</b></h4></th>
+      <th scope="col" width="20%""><h4><b>Requisition Timestamp</b></h4></th>
     </tr>
   </thead>
   <tbody >';
@@ -61,6 +62,7 @@ else{
          $time = $row['time'];
    $pdf .= '<tr height="40px">
       <th scope="row" style="text-align:center">  '.$product.' </th>
+      <td style="text-align:center"> Ksh. '.$price.' </td>
       <td style="text-align:center">  '.$quantity.' </td>
       <td style="text-align:center"> Ksh. '.$cost.' </td>
       <td style="text-align:center">  '.$time.' </td>
@@ -108,10 +110,11 @@ echo $pdf;
 <table class="table " style="display:block;text-align:center;"">
   <thead>
     <tr>
-      <th scope="col" width="25%""><h4><b>Product Name</b></h4></th>
-      <th scope="col" width="25%""><h4><b>Quantity(Units)</b></h4></th>
-      <th scope="col" width="25%""><h4><b>Cost</b></h4></th>
-      <th scope="col" width="25%""><h4><b>Requisition Timestamp</b></h4></th>
+      <th scope="col" width="20%""><h4><b>Product Name</b></h4></th>
+      <th scope="col" width="20%""><h4><b>Unit Price</b></h4></th>
+      <th scope="col" width="20%""><h4><b>Quantity(Units)</b></h4></th>
+      <th scope="col" width="20%""><h4><b>Cost</b></h4></th>
+      <th scope="col" width="20%""><h4><b>Requisition Timestamp</b></h4></th>
     </tr>
   </thead>
   <tbody >';
@@ -125,6 +128,7 @@ echo $pdf;
          $time = $row['time'];
    $pdf .= ' <tr>
       <th scope="row" style="text-align:center">  '.$product.' </th>
+      <td style="text-align:center"> Ksh. '.$price.' </td>
       <td style="text-align:center">  '.$quantity.' </td>
       <td style="text-align:center"> Ksh. '.$cost.' </td>
       <td style="text-align:center">  '.$time.' </td>

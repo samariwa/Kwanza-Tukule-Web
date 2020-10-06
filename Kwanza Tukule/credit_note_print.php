@@ -42,6 +42,7 @@ else{
   <thead>
     <tr>
       <th scope="col" width="12%""><b>Product Name</b></th>
+      <th scope="col" width="12%""><b>Unit Price</b></th>
       <th scope="col" width="12%""><b>Quantity Requested</b></th>
       <th scope="col" width="12%""><b>Quantity Returned</b></th>
       <th scope="col" width="12%""><b>Quantity Sold</b></th>
@@ -67,6 +68,7 @@ else{
          $time = $row['time'];
    $pdf .= '<tr height="40px">
       <th scope="row" style="text-align:center">  '.$product.' </th>
+      <td style="text-align:center">  '.$price.' </td>
       <td style="text-align:center">  '.$requested.' </td>
       <td style="text-align:center"> '.$returned.' </td>
       <td style="text-align:center">  '.$quantity.' </td>
@@ -152,6 +154,7 @@ echo $pdf;
   <thead>
     <tr>
       <th scope="col" width="12%""><b>Product Name</b></th>
+      <th scope="col" width="12%""><b>Unit Price</b></th>
       <th scope="col" width="12%""><b>Quantity Requested</b></th>
       <th scope="col" width="12%""<b>Quantity Returned</b></th>
       <th scope="col" width="12%""><b>Quantity Sold</b></th>
@@ -178,6 +181,7 @@ echo $pdf;
       
    $pdf .= ' <tr>
      <th scope="row" style="text-align:center">  '.$product.' </th>
+     <td style="text-align:center">  '.$price.' </td>
       <td style="text-align:center">  '.$requested.' </td>
       <td style="text-align:center"> '.$returned.' </td>
       <td style="text-align:center">  '.$quantity.' </td>
