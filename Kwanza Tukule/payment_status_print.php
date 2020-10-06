@@ -106,7 +106,7 @@ else{
       <td ><b>Ksh. '.$paid_amount  .'</b> </td>
     </tr>
     <tr >
-        <th colspan = "7"><b>Balance:</b></th>
+        <th colspan = "7"><b>Balance For Today:</b></th>
       <td><b>Ksh. '.$balance.'</b> </td>
     </tr>
     <tr >
@@ -123,7 +123,7 @@ else{
 <br>
 <p>Data Clerk Signature: ....................................................</p>
 <br>
-<p>Store / Dispatch Manager Signature: ....................................................</p>
+<p>Audit Manager Signature: ....................................................</p>
 <br>
 <p>Sales Representative Signature: ....................................................</p>
 <br>
@@ -219,7 +219,7 @@ echo $pdf;
       <td ><b>Ksh. '.$paid_amount  .'</b> </td>
     </tr>
     <tr >
-        <th colspan = "7"><b>Balance:</b></th>
+        <th colspan = "7"><b>Balance For Today:</b></th>
       <td><b>Ksh. '.$balance.'</b> </td>
     </tr>
     <tr >
@@ -235,7 +235,7 @@ echo $pdf;
 <br>
 <p>Data Clerk Signature: ....................................................</p>
 <br>
-<p>Store / Dispatch Manager Signature: ....................................................</p>
+<p>Audit Manager Signature: ....................................................</p>
 <br>
 <p>Sales Representative Signature: ....................................................</p>
 <br>

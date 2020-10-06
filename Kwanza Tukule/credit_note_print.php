@@ -102,7 +102,7 @@ else{
       <td ><b>Ksh. '.$paid_amount  .'</b> </td>
     </tr>
     <tr >
-        <th colspan = "7"><b>Balance:</b></th>
+        <th colspan = "7"><b>Balance For Today:</b></th>
       <td><b>Ksh. '.$balance.'</b> </td>
     </tr>
  </tbody>
@@ -203,7 +203,7 @@ echo $pdf;
       <td ><b>Ksh. '.$paid_amount  .'</b> </td>
     </tr>
     <tr >
-        <th colspan = "7"><b>Balance:</b></th>
+        <th colspan = "7"><b>Balance For Today:</b></th>
       <td><b>Ksh. '.$balance.'</b> </td>
     </tr>
  </tbody>
