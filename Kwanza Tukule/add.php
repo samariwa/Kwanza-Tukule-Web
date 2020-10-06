@@ -284,7 +284,7 @@ elseif ($where=='order') {
    }else{
       $newBundleQty = $bundleQuantity - 1;
       mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = '$newBundleQty' WHERE `Name` = '".$Bundle_Name."'")or die($connection->error);
-     mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = Quantity + '12' WHERE `id` = '".$stockIDx."'")or die($connection->error);
+     mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = Quantity + '24' WHERE `id` = '".$stockIDx."'")or die($connection->error);
    }
    }
    }
@@ -434,7 +434,7 @@ elseif ($where=='sales') {
    }else{
       $newBundleQty = $bundleQuantity - 1;
       mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = '$newBundleQty' WHERE `Name` = '".$Bundle_Name."'")or die($connection->error);
-     mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = Quantity + '12' WHERE `id` = '".$stockIDx."'")or die($connection->error);
+     mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = Quantity + '24' WHERE `id` = '".$stockIDx."'")or die($connection->error);
    }
    }
    }
