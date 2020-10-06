@@ -27,10 +27,10 @@ else{
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <title>Credit Note</title>
+    <title>Payment Status</title>
 </head><body>
 <p align="center"><strong><img src="assets/img/Kwanza Tukule.png" height="60" width="155"></strong></p>
-<p align="center">Credit Note</p>
+<p align="center">Payment Status</p>
 <p align="center">Products:'.$creditNumber1.' </p>
 <p> Serial #: '.$random.'</p>
 <p> For: '.$deliverer.'</p>
@@ -79,11 +79,15 @@ else{
     </tr>';
     }
     $paid = mysqli_query($connection,"select COALESCE(SUM(MPesa),0) as 'mpesa',COALESCE(SUM(Cash),0) as 'cash',COALESCE(SUM(MPesa + Cash),0) as 'paid'from sales inner join users on users.staffID = sales.Staff_id where DATE(Sales_date) = CURRENT_DATE() and users.firstname LIKE '%".$deliverer."%' ")or die($connection->error);
+    $totalBalance = mysqli_query($connection,"SELECT Balance FROM `sales` inner join users on sales.Staff_id = users.staffID WHERE firstname='$deliverer' ORDER BY sales.id DESC LIMIT 1")or die($connection->error);
     $row2 = mysqli_fetch_array($paid);
       $paid_amount = $row2['paid'];
        $mpesa = $row2['mpesa'];
        $cash = $row2['cash'];
       $balance = $totalCost - $paid_amount;
+      $row3 = mysqli_fetch_array($totalBalance);
+      $total = $row3['Balance'];
+      $previous = $total + $balance;
  $pdf .=  '
  <tr >
         <th colspan = "7"><b>Cost of goods sold:</b></th>
@@ -104,6 +108,14 @@ else{
     <tr >
         <th colspan = "7"><b>Balance:</b></th>
       <td><b>Ksh. '.$balance.'</b> </td>
+    </tr>
+    <tr >
+        <th colspan = "7"><b>Previous Balance:</b></th>
+      <td><b>Ksh. '.$previous.'</b> </td>
+    </tr>
+    <tr >
+        <th colspan = "7"><b>Total Balance:</b></th>
+      <td><b>Ksh. '.$total.'</b> </td>
     </tr>
  </tbody>
 </table>
@@ -180,11 +192,15 @@ echo $pdf;
     </tr>';
     }
      $paid = mysqli_query($connection,"select COALESCE(SUM(MPesa),0) as 'mpesa',COALESCE(SUM(Cash),0) as 'cash',COALESCE(SUM(MPesa + Cash),0) as 'paid'from sales inner join users on users.staffID = sales.Staff_id where DATE(Sales_date) = CURRENT_DATE() and users.firstname LIKE '%".$deliverer."%' ")or die($connection->error);
+     $totalBalance = mysqli_query($connection,"SELECT Balance FROM `sales` inner join users on sales.Staff_id = users.staffID WHERE firstname='$deliverer' ORDER BY sales.id DESC LIMIT 1")or die($connection->error);
     $row2 = mysqli_fetch_array($paid);
       $paid_amount = $row2['paid'];
       $mpesa = $row2['mpesa'];
        $cash = $row2['cash'];
       $balance = $totalCost - $paid_amount;
+      $row3 = mysqli_fetch_array($totalBalance);
+      $total = $row3['Balance'];
+      $previous = $total + $balance;
  $pdf .= ' 
  <tr >
         <th colspan = "7"><b>Cost of goods sold:</b></th>
@@ -205,6 +221,14 @@ echo $pdf;
     <tr >
         <th colspan = "7"><b>Balance:</b></th>
       <td><b>Ksh. '.$balance.'</b> </td>
+    </tr>
+    <tr >
+        <th colspan = "7"><b>Previous Balance:</b></th>
+      <td><b>Ksh. '.$previous.'</b> </td>
+    </tr>
+    <tr >
+        <th colspan = "7"><b>Total Balance:</b></th>
+      <td><b>Ksh. '.$total.'</b> </td>
     </tr>
  </tbody>
 </table>

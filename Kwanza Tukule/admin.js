@@ -2570,6 +2570,23 @@ $('#extraSalesEditableYesterday').editableTableWidget();
          });
        });
 
+  $(document).on('click','.printPaymentStatus',function(){
+         var deliverer = $(`#deliverer`).val();
+        var date = $(`#statusDate`).val();
+        $.post("payment_status_print.php",{deliverer:deliverer,date:date},
+        function(result){
+           var mywindow = window.open('', 'Kwanza Tukule', 'height=400,width=600');
+                        mywindow.document.write('<html><head><title></title>');
+                        mywindow.document.write('</head><body>');
+                        mywindow.document.write(result);
+                        mywindow.document.write('</body></html>');
+                        mywindow.document.close();
+                        mywindow.focus();
+                        mywindow.print();
+                        mywindow.close();
+         });
+       });
+
        $(document).ready(function(){
        var tableValuation = document.getElementById("valuationTable");
        var  sumVal = 0;    
