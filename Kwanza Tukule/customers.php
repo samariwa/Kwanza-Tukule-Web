@@ -13,7 +13,7 @@
              <button class="btn btn-light btn-md active printCustomers mr-3" role="button" aria-pressed="true" ><i class="fa fa-print"></i>&ensp;Print</button>
           </div>
          <?php
-       if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO') {
+       if ($view == 'Software' || $view == 'Director' || $view == 'CEO') {
 
         ?>
           <!-- Content Row -->
@@ -202,7 +202,7 @@
       <th scope="col"width="10%">Status</th>
       <th scope="col"width="10%">Note</th>
        <?php
-       if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO') {
+       if ($view == 'Software' || $view == 'Director' || $view == 'CEO') {
 
         ?>
       <th scope="col"width="22%"></th>
@@ -233,7 +233,7 @@
       <td class="uneditable"id="status<?php echo $count; ?>"><?php echo $status; ?></td>
       <td class="editable"id="note<?php echo $count; ?>"><?php echo $note; ?></td>
         <?php
-       if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO') {
+       if ($view == 'Software' || $view == 'Director' || $view == 'CEO') {
 
         ?>
        <td>&emsp;&emsp;

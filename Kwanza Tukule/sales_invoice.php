@@ -11,7 +11,7 @@
           </div>
 
            <?php
-       if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO') {
+       if ($view == 'Software' || $view == 'Director' || $view == 'CEO') {
 
         ?>
           <!-- Content Row -->
@@ -158,7 +158,7 @@
                  </div>
                   </div><br><br>
                   <?php
-       if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO') {
+       if ($view == 'Software' || $view == 'Director' || $view == 'CEO') {
 
         ?>
         <div class="row">

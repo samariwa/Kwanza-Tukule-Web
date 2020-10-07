@@ -12,7 +12,7 @@ include('queries.php');
             <h6 class="h6 mb-0 text-gray-600 mr-3">Time: <span id="time"></span></h6>
           </div>
            <?php
-       if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO') {
+       if ($view == 'Software' || $view == 'Director' || $view == 'CEO') {
 
         ?>
           <!-- Content Row -->
@@ -151,7 +151,7 @@ include('queries.php');
       <th scope="col" width="14%">Contact Number</th>
       <th scope="col" width="10%">Deliverer</th>
        <?php
-       if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO') {
+       if ($view == 'Software' || $view == 'Director' || $view == 'CEO') {
 
         ?>
       <th scope="col" width="10%">Balance</th>
@@ -180,7 +180,7 @@ include('queries.php');
       <td class="editable" id="number<?php echo $count; ?>"><?php echo $number; ?></td>
       <td class="uneditable" id="deliverer<?php echo $count; ?>"><?php echo $deliverer; ?></td>
       <?php
-       if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO') {
+       if ($view == 'Software' || $view == 'Director' || $view == 'CEO') {
 
         ?>
       <td class="editable" id="balance<?php echo $count; ?>"><?php echo $balance; ?></td>

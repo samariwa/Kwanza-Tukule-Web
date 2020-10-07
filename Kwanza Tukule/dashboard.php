@@ -6,7 +6,7 @@
         <!-- Begin Page Content -->
         <div class="container-fluid">
            <?php
-       if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO') {
+       if ($view == 'Software' || $view == 'Director' || $view == 'CEO') {
 
         ?>
           <!-- Page Heading -->
@@ -30,7 +30,7 @@
          }
         ?>
             <?php
-       if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO') {
+       if ($view == 'Software' || $view == 'Director' || $view == 'CEO') {
 
         ?>
           <!-- Content Row -->

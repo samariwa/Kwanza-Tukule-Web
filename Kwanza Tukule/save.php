@@ -51,9 +51,10 @@ $result2 = mysqli_query($connection,"select Stock_id, Debt, Fine,Quantity as Qty
     $Fine = $row2['Fine'];
     $Debt =  $row2['Debt'];
     $stock_id = $row2['Stock_id'];
-    $result4 = mysqli_query($connection,"SELECT Price FROM (SELECT s.id as id,sf.Selling_price as Price, sf.Created_at,ROW_NUMBER() OVER (PARTITION BY s.id ORDER BY sf.Created_at DESC) as rn FROM stock s JOIN stock_flow sf ON s.id = sf.Stock_id ) q WHERE rn = 1 AND id = '$stock_id'")or die($connection->error);
+    $result4 = mysqli_query($connection,"SELECT Price,quantity FROM (SELECT s.id as id,s.Quantity as quantity,sf.Selling_price as Price, sf.Created_at,ROW_NUMBER() OVER (PARTITION BY s.id ORDER BY sf.Created_at DESC) as rn FROM stock s JOIN stock_flow sf ON s.id = sf.Stock_id ) q WHERE rn = 1 AND id = '$stock_id'")or die($connection->error);
     $row4 = mysqli_fetch_array($result4);
     $Price = $row4['Price'];
+    $storeQty = $row4['quantity'];
      $cost = $Price * $qty;
      $newBalance = $Debt-$cost+$mpesa+$cash+$Fine;
 $result1 = mysqli_query($connection,"SELECT Customer_id,Quantity,Balance FROM orders where `id` = '".$id."'")or die($connection->error);
@@ -68,6 +69,10 @@ $result1 = mysqli_query($connection,"SELECT Customer_id,Quantity,Balance FROM or
     }
     else{
       $qty_bal = '0';
+    }
+    if ($storeQty < $qty) {
+      echo "Unavailable";
+      exit();
     }
       mysqli_query($connection,"UPDATE `orders`  SET `Quantity` = '".$qty."',`Balance` = '".$newBalance."',`MPesa` = '".$mpesa."',`Cash` = '".$cash."',`Late_Order` = '".$date."',`Returned` = Returned +'".$qty_bal."',`Banked` = '".$banked."',`Slip_Number` = '".$slip."',`Banked_By` = '".$banker."' WHERE `id` = '".$id."'")or die($connection->error);
       mysqli_query($connection,"update stock set Quantity= Quantity +".$Returned." WHERE `id` = '".$stock_id."'")or die($connection->error);
@@ -107,9 +112,10 @@ $result2 = mysqli_query($connection,"select Stock_id, Debt, Quantity as Qty from
     $old_Qty =  $row2['Qty'];
     $Debt =  $row2['Debt'];
     $stock_id = $row2['Stock_id'];
-    $result4 = mysqli_query($connection,"SELECT Price FROM (SELECT s.id as id,sf.Selling_price as Price, sf.Created_at,ROW_NUMBER() OVER (PARTITION BY s.id ORDER BY sf.Created_at DESC) as rn FROM stock s JOIN stock_flow sf ON s.id = sf.Stock_id ) q WHERE rn = 1 AND id = '$stock_id'")or die($connection->error);
+    $result4 = mysqli_query($connection,"SELECT Price,quantity FROM (SELECT s.id as id,s.Quantity as quantity,sf.Selling_price as Price, sf.Created_at,ROW_NUMBER() OVER (PARTITION BY s.id ORDER BY sf.Created_at DESC) as rn FROM stock s JOIN stock_flow sf ON s.id = sf.Stock_id ) q WHERE rn = 1 AND id = '$stock_id'")or die($connection->error);
     $row4 = mysqli_fetch_array($result4);
     $Price = $row4['Price'];
+    $storeQty = $row4['quantity'];
     $Discounted_Price = $Price - $discount;
      $cost = $Discounted_Price * $qty;
      $newBalance = $Debt-$cost+$mpesa+$cash;
@@ -125,6 +131,10 @@ $result1 = mysqli_query($connection,"SELECT Staff_id,Quantity,Balance FROM sales
     }
     else{
       $qty_bal = '0';
+    }
+    if ($storeQty < $qty) {
+      echo "Unavailable";
+      exit();
     }
       mysqli_query($connection,"UPDATE `sales`  SET `Quantity` = '".$qty."',`Balance` = '".$newBalance."',`MPesa` = '".$mpesa."',`Cash` = '".$cash."',`Discount` = '".$discount."',`Returned` = Returned +'".$qty_bal."',`Banked` = '".$banked."',`Slip_Number` = '".$slip."',`Banked_By` = '".$banker."' WHERE `id` = '".$id."'")or die($connection->error);
       mysqli_query($connection,"update stock set Quantity= Quantity +".$Returned." WHERE `id` = '".$stock_id."'")or die($connection->error);

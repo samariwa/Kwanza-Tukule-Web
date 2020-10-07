@@ -1549,7 +1549,12 @@ $('#officeEditable').editableTableWidget();
   var where = 'orders';
   $.post("save.php",{id:id,qty:qty,mpesa:mpesa,cash:cash,date:date,banked:banked,slip:slip,banker:banker,where:where},
   function(result){
+    if (result == 'Unavailable') {
+      alert("Quantity Entered Unavailable");
+    }
+    else{
     location.reload(true);
+  }
   });
 });
 
@@ -1570,7 +1575,12 @@ $('#officeEditable').editableTableWidget();
   var where = 'sales';
   $.post("save.php",{id:id,qty:qty,mpesa:mpesa,discount:discount,cash:cash,banked:banked,slip:slip,banker:banker,where:where},
   function(result){
+     if (result == 'Unavailable') {
+      alert("Quantity Entered Unavailable");
+    }
+    else{
     location.reload(true);
+  }
   });
 });
 
@@ -1591,7 +1601,12 @@ $('#officeEditable').editableTableWidget();
   var where = 'orders';
   $.post("save.php",{id:id,qty:qty,mpesa:mpesa,cash:cash,date:date,banked:banked,slip:slip,banker:banker,where:where},
   function(result){
+     if (result == 'Unavailable') {
+      alert("Quantity Entered Unavailable");
+    }
+    else{
     location.reload(true);
+  }
   });
 });
 
@@ -1612,7 +1627,12 @@ $('#officeEditable').editableTableWidget();
   var where = 'orders';
   $.post("save.php",{id:id,qty:qty,mpesa:mpesa,cash:cash,date:date,banked:banked,slip:slip,banker:banker,where:where},
   function(result){
+     if (result == 'Unavailable') {
+      alert("Quantity Entered Unavailable");
+    }
+    else{
     location.reload(true);
+  }
   });
 });
 
@@ -1633,7 +1653,12 @@ $('#extraSalesEditableYesterday').editableTableWidget();
   var where = 'sales';
   $.post("save.php",{id:id,qty:qty,mpesa:mpesa,cash:cash,discount:discount,banked:banked,slip:slip,banker:banker,where:where},
   function(result){
+     if (result == 'Unavailable') {
+      alert("Quantity Entered Unavailable");
+    }
+    else{
     location.reload(true);
+  }
   });
 });
 
@@ -1654,7 +1679,12 @@ $('#extraSalesEditableYesterday').editableTableWidget();
   var where = 'orders';
   $.post("save.php",{id:id,qty:qty,mpesa:mpesa,cash:cash,date:date,banked:banked,slip:slip,banker:banker,where:where},
   function(result){
+     if (result == 'Unavailable') {
+      alert("Quantity Entered Unavailable");
+    }
+    else{
     location.reload(true);
+  }
   });
 });
 
@@ -1675,7 +1705,12 @@ $('#extraSalesEditableYesterday').editableTableWidget();
   var where = 'sales';
   $.post("save.php",{id:id,qty:qty,mpesa:mpesa,discount:discount,cash:cash,banked:banked,slip:slip,banker:banker,where:where},
   function(result){
+     if (result == 'Unavailable') {
+      alert("Quantity Entered Unavailable");
+    }
+    else{
     location.reload(true);
+  }
   });
 });
 
@@ -1696,7 +1731,12 @@ $('#extraSalesEditableYesterday').editableTableWidget();
   var where = 'sales';
   $.post("save.php",{id:id,qty:qty,mpesa:mpesa,cash:cash,discount:discount,banked:banked,slip:slip,banker:banker,where:where},
   function(result){
+     if (result == 'Unavailable') {
+      alert("Quantity Entered Unavailable");
+    }
+    else{
     location.reload(true);
+  }
   });
 });
 
@@ -1717,7 +1757,12 @@ $('#extraSalesEditableYesterday').editableTableWidget();
   var where = 'orders';
   $.post("save.php",{id:id,qty:qty,mpesa:mpesa,cash:cash,date:date,banked:banked,slip:slip,banker:banker,where:where},
   function(result){
+     if (result == 'Unavailable') {
+      alert("Quantity Entered Unavailable");
+    }
+    else{
     location.reload(true);
+  }
   });
 });
 

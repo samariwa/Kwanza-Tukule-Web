@@ -12,7 +12,7 @@
            <h6 class="h6 mb-0 text-gray-600 mr-3">Time: <span id="time"></span></h6>
           </div>
            <?php
-       if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO') {
+       if ($view == 'Software' || $view == 'Director' || $view == 'CEO') {
 
         ?>
           <!-- Content Row -->

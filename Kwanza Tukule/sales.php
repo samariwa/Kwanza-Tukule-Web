@@ -6,7 +6,7 @@
         <!-- Begin Page Content -->
         <div class="container-fluid">
              <?php
-       if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO') {
+       if ($view == 'Software' || $view == 'Director' || $view == 'CEO') {
 
         ?>
           <!-- Page Heading -->
@@ -28,7 +28,7 @@
          }
         ?>
            <?php
-       if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO') {
+       if ($view == 'Software' || $view == 'Director' || $view == 'CEO') {
 
         ?>
           <!-- Content Row -->
@@ -147,7 +147,7 @@
           </div>
             <?php
           }
-       if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO' || $view == 'Admin' || $view == 'Admin2') {
+       if ($view == 'Software' || $view == 'Director' || $view == 'CEO' || $view == 'Stores Manager') {
         ?>
       <div class="row">
         <div class="col-md-2">
@@ -207,7 +207,7 @@
       <th scope="col"width="5%">Discount</th>
       <th scope="col"width="5%">C/F/Debt</th>
       <?php
-       if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO' || $view == 'Admin' || $view == 'Admin2') {
+       if ($view == 'Software' || $view == 'Director' || $view == 'CEO' || $view == 'Data Entry Clerk' || $view == 'Stores Manager') {
 
         ?>
       <th scope="col"width="5%">MPesa</th>
@@ -283,7 +283,7 @@
       <td class="uneditable" id="discountLastMonth<?php echo $count; ?>"><?php echo $discount; ?></td>
       <td class="uneditable" id="debtLastMonth<?php echo $count; ?>"><?php echo $debt; ?></td>
        <?php
-       if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO' || $view == 'Admin' || $view == 'Admin2') {
+       if ($view == 'Software' || $view == 'Director' || $view == 'CEO' || $view == 'Data Entry Clerk' || $view == 'Stores Manager') {
 
         ?>
       <td class="editable" id="mpesaLastMonth<?php echo $count; ?>"><?php echo $mpesa; ?></td>
@@ -298,7 +298,7 @@
        <td>
          <button id="<?php echo $id; ?>" data_id="<?php echo $id; ?>" class="btn btn-dark btn-sm active fineCustomerLastMonth" onclick="fineCustomerLastMonth(<?php echo $id; ?>)"role="button" aria-pressed="true" >Fine</button>
           <?php
-       if ($view == 'Software'  || $view == 'CEO' || $view == 'General Operations Manager') {
+       if ($view == 'Software'  || $view == 'CEO' || $view == 'Director' || $view == 'Stores Manager') {
 
         ?>
           <button id="<?php echo $id; ?>" data_id="<?php echo $id; ?>" class="btn btn-danger btn-sm active deleteOrderLastMonth" role="button" aria-pressed="true" onclick="deleteOrderLastMonth(this,<?php echo $id; ?>)"><i class="fa fa-trash"></i>&ensp;Delete</button>
@@ -338,7 +338,7 @@
       <th scope="col"width="5%">Discount</th>
       <th scope="col"width="5%">C/F/Debt</th>
       <?php
-       if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO' || $view == 'Admin' || $view == 'Admin2') {
+       if ($view == 'Software' || $view == 'Director' || $view == 'CEO' || $view == 'Data Entry Clerk' || $view == 'Stores Manager') {
 
         ?>
       <th scope="col"width="5%">MPesa</th>
@@ -414,7 +414,7 @@
       <td class="uneditable" id="discountYesterday<?php echo $count; ?>"><?php echo $discount; ?></td>
       <td class="uneditable" id="debtYesterday<?php echo $count; ?>"><?php echo $debt; ?></td>
        <?php
-       if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO' || $view == 'Admin' || $view == 'Admin2') {
+       if ($view == 'Software' || $view == 'Director' || $view == 'CEO' || $view == 'Data Entry Clerk' || $view == 'Stores Manager') {
 
         ?>
       <td class="editable" id="mpesaYesterday<?php echo $count; ?>"><?php echo $mpesa; ?></td>
@@ -429,7 +429,7 @@
        <td>
          <button id="<?php echo $id; ?>" data_id="<?php echo $id; ?>" class="btn btn-dark btn-sm active fineCustomerYesterday" onclick="fineCustomerYesterday(<?php echo $id; ?>)"role="button" aria-pressed="true" >Fine</button>
           <?php
-       if ($view == 'Software'  || $view == 'CEO' || $view == 'General Operations Manager') {
+       if ($view == 'Software'  || $view == 'CEO' || $view == 'Director' || $view == 'Stores Manager') {
 
         ?>
           <button id="<?php echo $id; ?>" data_id="<?php echo $id; ?>" class="btn btn-danger btn-sm active deleteOrderYesterday" role="button" aria-pressed="true" onclick="deleteOrderYesterday(this,<?php echo $id; ?>)"><i class="fa fa-trash"></i>&ensp;Delete</button>
@@ -469,7 +469,7 @@
       <th scope="col"width="5%">Discount</th>
       <th scope="col"width="5%">C/F/Debt</th>
       <?php
-       if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO' || $view == 'Admin' || $view == 'Admin2') {
+       if ($view == 'Software' || $view == 'Director' || $view == 'CEO' || $view == 'Data Entry Clerk' || $view == 'Stores Manager') {
 
         ?>
       <th scope="col"width="5%">MPesa</th>
@@ -545,7 +545,7 @@
       <td class="uneditable" id="discountToday<?php echo $count; ?>"><?php echo $discount; ?></td>
       <td class="uneditable" id="debtToday<?php echo $count; ?>"><?php echo $debt; ?></td>
        <?php
-       if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO' || $view == 'Admin' || $view == 'Admin2') {
+       if ($view == 'Software' || $view == 'Director' || $view == 'CEO' || $view == 'Data Entry Clerk' || $view == 'Stores Manager') {
 
         ?>
       <td class="editable" id="mpesaToday<?php echo $count; ?>"><?php echo $mpesa; ?></td>
@@ -560,7 +560,7 @@
        <td>
          <button id="<?php echo $id; ?>" data_id="<?php echo $id; ?>" class="btn btn-dark btn-sm active fineCustomerToday" onclick="fineCustomerToday(<?php echo $id; ?>)"role="button" aria-pressed="true" >Fine</button>
           <?php
-       if ($view == 'Software'  || $view == 'CEO' || $view == 'General Operations Manager') {
+       if ($view == 'Software'  || $view == 'CEO' || $view == 'Director' || $view == 'Stores Manager') {
 
         ?>
           <button id="<?php echo $id; ?>" data_id="<?php echo $id; ?>" class="btn btn-danger btn-sm active deleteOrderToday" role="button" aria-pressed="true" onclick="deleteOrderToday(this,<?php echo $id; ?>)"><i class="fa fa-trash"></i>&ensp;Delete</button>
@@ -600,7 +600,7 @@
       <th scope="col"width="5%">Discount</th>
       <th scope="col"width="5%">C/F/Debt</th>
       <?php
-       if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO' || $view == 'Admin' || $view == 'Admin2') {
+       if ($view == 'Software' || $view == 'Director' || $view == 'CEO' || $view == 'Data Entry Clerk' || $view == 'Stores Manager') {
 
         ?>
       <th scope="col"width="5%">MPesa</th>
@@ -676,7 +676,7 @@
       <td class="uneditable" id="discountTomorrow<?php echo $count; ?>"><?php echo $discount; ?></td>
       <td class="uneditable" id="debtTomorrow<?php echo $count; ?>"><?php echo $debt; ?></td>
        <?php
-       if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO' || $view == 'Admin' || $view == 'Admin2') {
+       if ($view == 'Software' || $view == 'Director' || $view == 'CEO' || $view == 'Data Entry Clerk' || $view == 'Stores Manager') {
 
         ?>
       <td class="editable" id="mpesaTomorrow<?php echo $count; ?>"><?php echo $mpesa; ?></td>
@@ -691,7 +691,7 @@
        <td>
          <button id="<?php echo $id; ?>" data_id="<?php echo $id; ?>" class="btn btn-dark btn-sm active fineCustomerTomorrow" onclick="fineCustomerTomorrow(<?php echo $id; ?>)"role="button" aria-pressed="true" >Fine</button>
           <?php
-       if ($view == 'Software'  || $view == 'CEO' || $view == 'General Operations Manager') {
+       if ($view == 'Software'  || $view == 'CEO' || $view == 'Director' || $view == 'Stores Manager') {
 
         ?>
           <button id="<?php echo $id; ?>" data_id="<?php echo $id; ?>" class="btn btn-danger btn-sm active deleteOrderTomorrow" role="button" aria-pressed="true" onclick="deleteOrderTomorrow(this,<?php echo $id; ?>)"><i class="fa fa-trash"></i>&ensp;Delete</button>
@@ -731,7 +731,7 @@
       <th scope="col"width="5%">Discount</th>
       <th scope="col"width="5%">C/F/Debt</th>
       <?php
-       if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO' || $view == 'Admin' || $view == 'Admin2') {
+       if ($view == 'Software' || $view == 'Director' || $view == 'CEO' || $view == 'Data Entry Clerk' || $view == 'Stores Manager') {
 
         ?>
       <th scope="col"width="5%">MPesa</th>
@@ -807,7 +807,7 @@
       <td class="uneditable" id="discountNextMonth<?php echo $count; ?>"><?php echo $discount; ?></td>
       <td class="uneditable" id="debtNextMonth<?php echo $count; ?>"><?php echo $debt; ?></td>
        <?php
-       if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO' || $view == 'Admin' || $view == 'Admin2') {
+       if ($view == 'Software' || $view == 'Director' || $view == 'CEO' || $view == 'Data Entry Clerk' || $view == 'Stores Manager') {
 
         ?>
       <td class="editable" id="mpesaNextMonth<?php echo $count; ?>"><?php echo $mpesa; ?></td>
@@ -821,7 +821,7 @@
       <td class="editable" id="bankerNextMonth<?php echo $count; ?>"><?php echo $banked_by; ?></td>
        <td>
           <?php
-       if ($view == 'Software'  || $view == 'CEO' || $view == 'General Operations Manager') {
+       if ($view == 'Software'  || $view == 'CEO' || $view == 'Director' || $view == 'Stores Manager') {
 
         ?>
           <button id="<?php echo $id; ?>" data_id="<?php echo $id; ?>" class="btn btn-danger btn-sm active deleteOrderNextMonth" role="button" aria-pressed="true" onclick="deleteOrderNextMonth(this,<?php echo $id; ?>)"><i class="fa fa-trash"></i>&ensp;Delete</button>

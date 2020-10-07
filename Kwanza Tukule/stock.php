@@ -12,7 +12,7 @@
             <h6 class="h6 mb-0 text-gray-600 mr-3">Time: <span id="time"></span></h6>
           </div>
            <?php
-       if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO') {
+       if ($view == 'Software' || $view == 'Director' || $view == 'CEO') {
 
         ?>
           <!-- Content Row -->
@@ -133,7 +133,7 @@
           }
         ?>
           <?php
-       if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO' || $view == 'Admin2') {
+       if ($view == 'Software' || $view == 'Director' || $view == 'CEO' || $view == 'Stores Manager' || $view == 'Stores Supervisor') {
 
         ?>
          <div class="row">
@@ -252,7 +252,7 @@
       <th scope="col" width="15%">Category</th>
       <th scope="col" width="17%">Stock Name</th>
        <?php
-       if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO') {
+       if ($view == 'Software' || $view == 'Director' || $view == 'CEO') {
 
         ?>
       <th scope="col" width="11%">Buying Price</th>
@@ -262,13 +262,13 @@
       <th scope="col"width="11%">Selling Price</th>
       <th scope="col"width="12%">Quantity Available</th>
       <?php
-       if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO' || $view == 'Admin2') {
+       if ($view == 'Software' || $view == 'Director' || $view == 'CEO' || $view == 'Stores Manager' || $view == 'Stores Supervisor') {
 
         ?>
         <th scope="col" width="10%">Restock Level</th>
         <?php
        }
-       if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO' ) {
+       if ($view == 'Software' || $view == 'Director' || $view == 'CEO' ) {
         ?>
       <th scope="col"width="28%"></th>
     </tr>
@@ -291,7 +291,7 @@
       ?>
     <tr>
       <?php
-       if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO') {
+       if ($view == 'Software' || $view == 'Director' || $view == 'CEO') {
 
         ?>
       <th scope="row" class="uneditable" id="id<?php echo $count; ?>"><?php echo $id; ?></th>
@@ -310,12 +310,12 @@
       <td class="uneditable" id="qty<?php echo $count; ?>"><?php echo $quantity; ?></td>
       <?php
        }
-       if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO' || $view == 'Admin2') {
+       if ($view == 'Software' || $view == 'Director' || $view == 'CEO' || $view == 'Stores Manager' || $view == 'Stores Supervisor') {
         ?>
         <td class="editable" id="restock_Level<?php echo $count; ?>"><?php echo $restock_Level; ?></td>
         <?php
         }
-        if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO') {
+        if ($view == 'Software' || $view == 'Director' || $view == 'CEO') {
         ?>
         <td>  
         <button data-toggle="modal" data-target="#exampleModalScrollable<?php echo $id; ?>" id="<?php echo $id; ?>" data_id="<?php echo $id; ?>" class="btn btn-light btn-sm active restock" role="button" aria-pressed="true" ><i class="fa fa-plus"></i>&ensp;Restock</button>

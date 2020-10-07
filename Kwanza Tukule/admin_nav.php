@@ -258,9 +258,14 @@ Preloader
       <li class="nav-item active">
         <a class="nav-link" href="dashboard.php" style="color: black;">
            <?php
-               if ($view == 'Admin' || $view == 'Admin2') {
+               if ( $view == 'Stores Manager') {
             ?>          
-            <span style="margin-left: 50px">Administrator</span></a>
+            <span style="margin-left: 45px">Stores Manager</span></a>
+              <?php
+               }
+               else if ($view == 'Data Entry Clerk'){
+               ?> 
+            <span style="margin-left: 30px">Data Entry Clerk</span></a>
               <?php
                }
                else if ($view == 'Software'){
@@ -268,9 +273,14 @@ Preloader
             <span style="margin-left: 30px">Software Developer</span></a>
               <?php
                }
-               else if ($view == 'General Operations Manager'){
+               else if ($view == 'Stores Supervisor'){
                ?> 
-            <span style="margin-left: 5px">General Operations Manager</span></a>
+            <span style="margin-left: 30px">Stores Supervisor</span></a>
+              <?php
+               }
+               else if ($view == 'Director'){
+               ?> 
+            <span style="margin-left: 60px">Director</span></a>
               <?php
                }
                else if ($view == 'CEO'){
@@ -290,7 +300,7 @@ Preloader
       </div>
       <br>
       <?php
-       if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO') {
+       if ($view == 'Software' || $view == 'Director' || $view == 'CEO') {
 
         ?>
       <!-- Nav Item - Pages Collapse Menu -->

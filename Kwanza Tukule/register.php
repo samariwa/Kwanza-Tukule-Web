@@ -238,9 +238,10 @@ if ((isset($_POST["pass"])) && (isset($_POST["user"])) && (isset($_POST["pass2"]
                                 <select id="role" name="role" class="form-control">
                                     <option value="">Role</option>
                                     <option value="CEO">CEO</option>
-                                    <option value="General Operations Manager">General Manager</option>
-                                    <option value="Admin">Admin 1</option>
+                                    <option value="Director">Director</option>
+                                    <option value="Data Entry Clerk">Data Entry Clerk</option>
                                     <option value="Admin2">Admin 2</option>
+                                    <option value="Stores Supervisor">Stores Supervisor</option>
                                     </select>
                             </div>
                             <label for="user"  class="offset-md-2 col-form-label text-md-right" style="margin-left: 65px">Username:</label>

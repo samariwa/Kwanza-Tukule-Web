@@ -12,7 +12,7 @@
             <h6 class="h6 mb-0 text-gray-600 mr-3">Time: <span id="time"></span></h6>
           </div>
           <?php
-       if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO') {
+       if ($view == 'Software' || $view == 'Director' || $view == 'CEO') {
 
         ?>
           <!-- Content Row -->
@@ -142,7 +142,7 @@
       <h6 class="offset-3">Total Number: <?php echo $categoriesrowcount; ?></h6>
     </div>
       <?php
-       if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO') {
+       if ($view == 'Software' || $view == 'Director' || $view == 'CEO') {
 
         ?>
      <div class="col-md-4">   
@@ -176,7 +176,7 @@
      </div>   
     </div><br> 
          <?php
-       if ($view == 'Software' || $view == 'General Operations Manager' || $view == 'CEO') {
+       if ($view == 'Software' || $view == 'Director' || $view == 'CEO') {
 
         ?>
       <table id="categoriesEditable" class="table table-striped table-hover paginate" style="display:block;overflow-y:scroll;text-align: center;">
