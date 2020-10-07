@@ -70,7 +70,8 @@ $result1 = mysqli_query($connection,"SELECT Customer_id,Quantity,Balance FROM or
     else{
       $qty_bal = '0';
     }
-    if ($storeQty < $qty) {
+    $qtyAdded = $qty - $Quantity;
+    if ($storeQty < $qtyAdded) {
       echo "Unavailable";
       exit();
     }
@@ -132,7 +133,8 @@ $result1 = mysqli_query($connection,"SELECT Staff_id,Quantity,Balance FROM sales
     else{
       $qty_bal = '0';
     }
-    if ($storeQty < $qty) {
+    $qtyAdded = $qty - $Quantity;
+    if ($storeQty < $qtyAdded) {
       echo "Unavailable";
       exit();
     }
