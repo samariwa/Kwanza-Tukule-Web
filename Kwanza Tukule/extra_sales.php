@@ -270,13 +270,13 @@
       <td class="editable" id="cashLastMonth<?php echo $count; ?>"><?php echo $cash; ?></td>
       <td class="uneditable" id="balanceLastMonth<?php echo $id; ?>"><?php echo $balance; ?></td>
       <td class="uneditable" id="dateLastMonth<?php echo $count; ?>"><?php echo $date; ?></td>
-      <td class="uneditable" id="returnedLastMonth<?php echo $count; ?>"><?php echo $returned; ?></td>
+      <td class="editable" id="returnedLastMonth<?php echo $count; ?>"><?php echo $returned; ?></td>
       <td class="editable" id="bankedLastMonth<?php echo $count; ?>"><?php echo $banked; ?></td>
       <td class="editable" id="slipLastMonth<?php echo $count; ?>"><?php echo $slip; ?></td>
       <td class="editable" id="bankerLastMonth<?php echo $count; ?>"><?php echo $banked_by; ?></td>
        <td>
           <?php
-       if ($view == 'Software'  || $view == 'CEO' || $view == 'Director' || $view == 'Stores Manager' || $view == 'Stores Supervisor') {
+       if ($view == 'Software'  || $view == 'CEO' || $view == 'Director' || $view == 'Stores Manager') {
 
         ?>
           <button id="<?php echo $id; ?>" data_id="<?php echo $id; ?>" class="btn btn-danger btn-sm active deleteSalesLastMonth" role="button" aria-pressed="true" onclick="deleteSalesLastMonth(this,<?php echo $id; ?>)"><i class="fa fa-trash"></i>&ensp;Delete</button>
@@ -395,13 +395,13 @@
       <td class="editable" id="mpesaYesterday<?php echo $count; ?>"><?php echo $mpesa; ?></td>
       <td class="editable" id="cashYesterday<?php echo $count; ?>"><?php echo $cash; ?></td>
       <td class="uneditable" id="balanceYesterday<?php echo $id; ?>"><?php echo $balance; ?></td>
-      <td class="uneditable" id="returnedYesterday<?php echo $count; ?>"><?php echo $returned; ?></td>
+      <td class="editable" id="returnedYesterday<?php echo $count; ?>"><?php echo $returned; ?></td>
       <td class="editable" id="bankedYesterday<?php echo $count; ?>"><?php echo $banked; ?></td>
       <td class="editable" id="slipYesterday<?php echo $count; ?>"><?php echo $slip; ?></td>
       <td class="editable" id="bankerYesterday<?php echo $count; ?>"><?php echo $banked_by; ?></td>
        <td>
           <?php
-       if ($view == 'Software'  || $view == 'CEO' || $view == 'Director' || $view == 'Stores Manager' || $view == 'Stores Supervisor') {
+       if ($view == 'Software'  || $view == 'CEO' || $view == 'Director' || $view == 'Stores Manager') {
 
         ?>
           <button id="<?php echo $id; ?>" data_id="<?php echo $id; ?>" class="btn btn-danger btn-sm active deleteSalesYesterday" role="button" aria-pressed="true" onclick="deleteSalesYesterday(this,<?php echo $id; ?>)"><i class="fa fa-trash"></i>&ensp;Delete</button>
@@ -520,13 +520,13 @@
       <td class="editable" id="mpesaToday<?php echo $count; ?>"><?php echo $mpesa; ?></td>
       <td class="editable" id="cashToday<?php echo $count; ?>"><?php echo $cash; ?></td>
       <td class="uneditable" id="balanceToday<?php echo $id; ?>"><?php echo $balance; ?></td>
-      <td class="uneditable" id="returnedToday<?php echo $count; ?>"><?php echo $returned; ?></td>
+      <td class="editable" id="returnedToday<?php echo $count; ?>"><?php echo $returned; ?></td>
       <td class="editable" id="bankedToday<?php echo $count; ?>"><?php echo $banked; ?></td>
       <td class="editable" id="slipToday<?php echo $count; ?>"><?php echo $slip; ?></td>
       <td class="editable" id="bankerToday<?php echo $count; ?>"><?php echo $banked_by; ?></td>
        <td>
           <?php
-       if ($view == 'Software'  || $view == 'CEO' || $view == 'Director' || $view == 'Stores Manager' || $view == 'Stores Supervisor') {
+       if ($view == 'Software'  || $view == 'CEO' || $view == 'Director' || $view == 'Stores Manager') {
 
         ?>
           <button id="<?php echo $id; ?>" data_id="<?php echo $id; ?>" class="btn btn-danger btn-sm active deleteSalesToday" role="button" aria-pressed="true" onclick="deleteSalesToday(this,<?php echo $id; ?>)"><i class="fa fa-trash"></i>&ensp;Delete</button>
@@ -651,7 +651,7 @@
       <td class="uneditable" id="bankerTomorrow<?php echo $count; ?>"><?php echo $banked_by; ?></td>
        <td>
           <?php
-       if ($view == 'Software'  || $view == 'CEO' || $view == 'Director' || $view == 'Stores Manager' || $view == 'Stores Supervisor') {
+       if ($view == 'Software'  || $view == 'CEO' || $view == 'Director' || $view == 'Stores Manager') {
 
         ?>
           <button id="<?php echo $id; ?>" data_id="<?php echo $id; ?>" class="btn btn-danger btn-sm active deleteSalesTomorrow" role="button" aria-pressed="true" onclick="deleteSalesTomorrow(this,<?php echo $id; ?>)"><i class="fa fa-trash"></i>&ensp;Delete</button>

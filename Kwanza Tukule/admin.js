@@ -1543,11 +1543,12 @@ $('#officeEditable').editableTableWidget();
   var mpesa = $(`#mpesaLastMonth${rowx}`).text();
   var cash = $(`#cashLastMonth${rowx}`).text();
   var date = $(`#dateLastMonth${rowx}`).text();
+  var returned = $(`#returnedLastMonth${rowx}`).text();
   var banked = $(`#bankedLastMonth${rowx}`).text();
   var slip = $(`#slipLastMonth${rowx}`).text();
   var banker = $(`#bankerLastMonth${rowx}`).text();
   var where = 'orders';
-  $.post("save.php",{id:id,qty:qty,mpesa:mpesa,cash:cash,date:date,banked:banked,slip:slip,banker:banker,where:where},
+  $.post("save.php",{id:id,qty:qty,mpesa:mpesa,cash:cash,returned:returned,date:date,banked:banked,slip:slip,banker:banker,where:where},
   function(result){
     if (result == 'Unavailable') {
       alert("Quantity Entered Unavailable");
@@ -1569,11 +1570,12 @@ $('#officeEditable').editableTableWidget();
   var mpesa = $(`#mpesaLastMonth${rowx}`).text();
   var cash = $(`#cashLastMonth${rowx}`).text();
   var banked = $(`#bankedLastMonth${rowx}`).text();
+  var returned = $(`#returnedLastMonth${rowx}`).text();
   var slip = $(`#slipLastMonth${rowx}`).text();
   var banker = $(`#bankerLastMonth${rowx}`).text();
   var discount = $(`#discountLastMonth${rowx}`).text();
   var where = 'sales';
-  $.post("save.php",{id:id,qty:qty,mpesa:mpesa,discount:discount,cash:cash,banked:banked,slip:slip,banker:banker,where:where},
+  $.post("save.php",{id:id,qty:qty,mpesa:mpesa,discount:discount,cash:cash,returned:returned,banked:banked,slip:slip,banker:banker,where:where},
   function(result){
      if (result == 'Unavailable') {
       alert("Quantity Entered Unavailable");
@@ -1595,11 +1597,12 @@ $('#officeEditable').editableTableWidget();
   var mpesa = $(`#mpesaNextMonth${rowx}`).text();
   var cash = $(`#cashNextMonth${rowx}`).text();
   var date = $(`#dateNextMonth${rowx}`).text();
+  var returned = 0;
   var banked = $(`#bankedNextMonth${rowx}`).text();
   var slip = $(`#slipNextMonth${rowx}`).text();
   var banker = $(`#bankerNextMonth${rowx}`).text();
   var where = 'orders';
-  $.post("save.php",{id:id,qty:qty,mpesa:mpesa,cash:cash,date:date,banked:banked,slip:slip,banker:banker,where:where},
+  $.post("save.php",{id:id,qty:qty,mpesa:mpesa,cash:cash,date:date,banked:banked,returned:returned,slip:slip,banker:banker,where:where},
   function(result){
      if (result == 'Unavailable') {
       alert("Quantity Entered Unavailable");
@@ -1622,10 +1625,11 @@ $('#officeEditable').editableTableWidget();
   var cash = $(`#cashYesterday${rowx}`).text();
   var date = $(`#dateYesterday${rowx}`).text();
   var banked = $(`#bankedYesterday${rowx}`).text();
+  var returned = $(`#returnedYesterday${rowx}`).text();
   var slip = $(`#slipYesterday${rowx}`).text();
   var banker = $(`#bankerYesterday${rowx}`).text();
   var where = 'orders';
-  $.post("save.php",{id:id,qty:qty,mpesa:mpesa,cash:cash,date:date,banked:banked,slip:slip,banker:banker,where:where},
+  $.post("save.php",{id:id,qty:qty,mpesa:mpesa,cash:cash,date:date,banked:banked,returned:returned,slip:slip,banker:banker,where:where},
   function(result){
      if (result == 'Unavailable') {
       alert("Quantity Entered Unavailable");
@@ -1647,11 +1651,12 @@ $('#extraSalesEditableYesterday').editableTableWidget();
   var mpesa = $(`#mpesaYesterday${rowx}`).text();
   var cash = $(`#cashYesterday${rowx}`).text();
   var banked = $(`#bankedYesterday${rowx}`).text();
+   var returned = $(`#returnedYesterday${rowx}`).text();
   var slip = $(`#slipYesterday${rowx}`).text();
   var banker = $(`#bankerYesterday${rowx}`).text();
   var discount = $(`#discountYesterday${rowx}`).text();
   var where = 'sales';
-  $.post("save.php",{id:id,qty:qty,mpesa:mpesa,cash:cash,discount:discount,banked:banked,slip:slip,banker:banker,where:where},
+  $.post("save.php",{id:id,qty:qty,mpesa:mpesa,cash:cash,discount:discount,returned:returned,banked:banked,slip:slip,banker:banker,where:where},
   function(result){
      if (result == 'Unavailable') {
       alert("Quantity Entered Unavailable");
@@ -1673,11 +1678,12 @@ $('#extraSalesEditableYesterday').editableTableWidget();
   var mpesa = $(`#mpesaToday${rowx}`).text();
   var cash = $(`#cashToday${rowx}`).text();
   var date = $(`#dateToday${rowx}`).text();
+  var returned = $(`#returnedToday${rowx}`).text();
   var banked = $(`#bankedToday${rowx}`).text();
   var slip = $(`#slipToday${rowx}`).text();
   var banker = $(`#bankerToday${rowx}`).text();
   var where = 'orders';
-  $.post("save.php",{id:id,qty:qty,mpesa:mpesa,cash:cash,date:date,banked:banked,slip:slip,banker:banker,where:where},
+  $.post("save.php",{id:id,qty:qty,mpesa:mpesa,cash:cash,date:date,banked:banked,returned:returned,slip:slip,banker:banker,where:where},
   function(result){
      if (result == 'Unavailable') {
       alert("Quantity Entered Unavailable");
@@ -1700,10 +1706,11 @@ $('#extraSalesEditableYesterday').editableTableWidget();
   var cash = $(`#cashToday${rowx}`).text();
   var discount = $(`#discountToday${rowx}`).text();
   var banked = $(`#bankedToday${rowx}`).text();
+  var returned = $(`#returnedToday${rowx}`).text();
   var slip = $(`#slipToday${rowx}`).text();
   var banker = $(`#bankerToday${rowx}`).text();
   var where = 'sales';
-  $.post("save.php",{id:id,qty:qty,mpesa:mpesa,discount:discount,cash:cash,banked:banked,slip:slip,banker:banker,where:where},
+  $.post("save.php",{id:id,qty:qty,mpesa:mpesa,discount:discount,cash:cash,banked:banked,returned:returned,slip:slip,banker:banker,where:where},
   function(result){
      if (result == 'Unavailable') {
       alert("Quantity Entered Unavailable");
@@ -1726,10 +1733,11 @@ $('#extraSalesEditableYesterday').editableTableWidget();
   var mpesa = 0;
   var cash = 0;
   var banked = 0;
+  var returned = 0;
   var slip = "N/A";
   var banker = "N/A";
   var where = 'sales';
-  $.post("save.php",{id:id,qty:qty,mpesa:mpesa,cash:cash,discount:discount,banked:banked,slip:slip,banker:banker,where:where},
+  $.post("save.php",{id:id,qty:qty,mpesa:mpesa,cash:cash,discount:discount,banked:banked,returned:returned,slip:slip,banker:banker,where:where},
   function(result){
      if (result == 'Unavailable') {
       alert("Quantity Entered Unavailable");
@@ -1751,11 +1759,12 @@ $('#extraSalesEditableYesterday').editableTableWidget();
   var mpesa = $(`#mpesaTomorrow${rowx}`).text();
   var cash = $(`#cashTomorrow${rowx}`).text();
   var date = $(`#dateTomorrow${rowx}`).text();
+  var returned = 0;
   var banked = $(`#bankedTomorrow${rowx}`).text();
   var slip = $(`#slipTomorrow${rowx}`).text();
   var banker = $(`#bankerTomorrow${rowx}`).text();
   var where = 'orders';
-  $.post("save.php",{id:id,qty:qty,mpesa:mpesa,cash:cash,date:date,banked:banked,slip:slip,banker:banker,where:where},
+  $.post("save.php",{id:id,qty:qty,mpesa:mpesa,cash:cash,date:date,banked:banked,slip:slip,returned:returned,banker:banker,where:where},
   function(result){
      if (result == 'Unavailable') {
       alert("Quantity Entered Unavailable");

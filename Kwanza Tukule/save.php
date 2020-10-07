@@ -45,12 +45,14 @@ $date = $_POST['date'];
 $banked = $_POST['banked'];
 $slip = $_POST['slip'];
 $banker = $_POST['banker'];
-$result2 = mysqli_query($connection,"select Stock_id, Debt, Fine,Quantity as Qty from  orders where id='".$id."';")or die($connection->error);
+$returned = $_POST['returned'];
+$result2 = mysqli_query($connection,"select Stock_id, Debt, Fine,Quantity as Qty,Returned from  orders where id='".$id."';")or die($connection->error);
    $row2 = mysqli_fetch_array($result2);
     $old_Qty =  $row2['Qty'];
     $Fine = $row2['Fine'];
     $Debt =  $row2['Debt'];
     $stock_id = $row2['Stock_id'];
+    $returns = $row2['Returned'];
     $result4 = mysqli_query($connection,"SELECT Price,quantity FROM (SELECT s.id as id,s.Quantity as quantity,sf.Selling_price as Price, sf.Created_at,ROW_NUMBER() OVER (PARTITION BY s.id ORDER BY sf.Created_at DESC) as rn FROM stock s JOIN stock_flow sf ON s.id = sf.Stock_id ) q WHERE rn = 1 AND id = '$stock_id'")or die($connection->error);
     $row4 = mysqli_fetch_array($result4);
     $Price = $row4['Price'];
@@ -62,8 +64,15 @@ $result1 = mysqli_query($connection,"SELECT Customer_id,Quantity,Balance FROM or
     $Quantity = $row['Quantity'];
     $oldBalance = $row['Balance'];
     $customer = $row['Customer_id'];
+    $Returned = '';
+    if ($returns == $returned) {
       $Returned = $Quantity - $qty;
-      $qty_bal = '';
+    }
+    else{
+      $Returned = $returned;
+      $qty = $qty - $returned; 
+    }
+    $qty_bal = '';
     if ($Returned > 0) {
       $qty_bal = $Returned;
     }
@@ -210,11 +219,13 @@ $discount = $_POST['discount'];
 $banked = $_POST['banked'];
 $slip = $_POST['slip'];
 $banker = $_POST['banker'];
-$result2 = mysqli_query($connection,"select Stock_id, Debt, Quantity as Qty from  sales where id='".$id."';")or die($connection->error);
+$returned = $_POST['returned'];
+$result2 = mysqli_query($connection,"select Stock_id, Debt, Quantity as Qty,Returned from  sales where id='".$id."';")or die($connection->error);
    $row2 = mysqli_fetch_array($result2);
     $old_Qty =  $row2['Qty'];
     $Debt =  $row2['Debt'];
     $stock_id = $row2['Stock_id'];
+    $returns = $row2['Returned'];
     $result4 = mysqli_query($connection,"SELECT Price,quantity FROM (SELECT s.id as id,s.Quantity as quantity,sf.Selling_price as Price, sf.Created_at,ROW_NUMBER() OVER (PARTITION BY s.id ORDER BY sf.Created_at DESC) as rn FROM stock s JOIN stock_flow sf ON s.id = sf.Stock_id ) q WHERE rn = 1 AND id = '$stock_id'")or die($connection->error);
     $row4 = mysqli_fetch_array($result4);
     $Price = $row4['Price'];
@@ -227,7 +238,14 @@ $result1 = mysqli_query($connection,"SELECT Staff_id,Quantity,Balance FROM sales
     $Quantity = $row['Quantity'];
     $oldBalance = $row['Balance'];
     $staff = $row['Staff_id'];
+      $Returned = '';
+    if ($returns == $returned) {
       $Returned = $Quantity - $qty;
+    }
+    else{
+      $Returned = $returned;
+      $qty = $qty - $returned; 
+    }
       $qty_bal = '';
     if ($Returned > 0) {
       $qty_bal = $Returned;

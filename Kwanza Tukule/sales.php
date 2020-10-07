@@ -207,7 +207,7 @@
       <th scope="col"width="5%">Discount</th>
       <th scope="col"width="5%">C/F/Debt</th>
       <?php
-       if ($view == 'Software' || $view == 'Director' || $view == 'CEO' || $view == 'Data Entry Clerk' || $view == 'Stores Manager') {
+       if ($view == 'Software' || $view == 'Director' || $view == 'CEO' || $view == 'Data Entry Clerk' || $view == 'Stores Manager' || $view == 'Stores Supervisor') {
 
         ?>
       <th scope="col"width="5%">MPesa</th>
@@ -283,7 +283,7 @@
       <td class="uneditable" id="discountLastMonth<?php echo $count; ?>"><?php echo $discount; ?></td>
       <td class="uneditable" id="debtLastMonth<?php echo $count; ?>"><?php echo $debt; ?></td>
        <?php
-       if ($view == 'Software' || $view == 'Director' || $view == 'CEO' || $view == 'Data Entry Clerk' || $view == 'Stores Manager') {
+       if ($view == 'Software' || $view == 'Director' || $view == 'CEO' || $view == 'Data Entry Clerk' || $view == 'Stores Manager' || $view == 'Stores Supervisor') {
 
         ?>
       <td class="editable" id="mpesaLastMonth<?php echo $count; ?>"><?php echo $mpesa; ?></td>
@@ -291,7 +291,7 @@
       <td class="uneditable" id="fineLastMonth<?php echo $count; ?>"><?php echo $fine; ?></td>
       <td class="uneditable" id="balanceLastMonth<?php echo $id; ?>"><?php echo $balance; ?></td>
       <td class="editable" id="dateLastMonth<?php echo $count; ?>"><?php echo $delivery_date; ?></td>
-      <td class="uneditable" id="returnedLastMonth<?php echo $count; ?>"><?php echo $returned; ?></td>
+      <td class="editable" id="returnedLastMonth<?php echo $count; ?>"><?php echo $returned; ?></td>
       <td class="editable" id="bankedLastMonth<?php echo $count; ?>"><?php echo $banked; ?></td>
       <td class="editable" id="slipLastMonth<?php echo $count; ?>"><?php echo $slip; ?></td>
       <td class="editable" id="bankerLastMonth<?php echo $count; ?>"><?php echo $banked_by; ?></td>
@@ -338,7 +338,7 @@
       <th scope="col"width="5%">Discount</th>
       <th scope="col"width="5%">C/F/Debt</th>
       <?php
-       if ($view == 'Software' || $view == 'Director' || $view == 'CEO' || $view == 'Data Entry Clerk' || $view == 'Stores Manager') {
+       if ($view == 'Software' || $view == 'Director' || $view == 'CEO' || $view == 'Data Entry Clerk' || $view == 'Stores Manager' || $view == 'Stores Supervisor') {
 
         ?>
       <th scope="col"width="5%">MPesa</th>
@@ -414,7 +414,7 @@
       <td class="uneditable" id="discountYesterday<?php echo $count; ?>"><?php echo $discount; ?></td>
       <td class="uneditable" id="debtYesterday<?php echo $count; ?>"><?php echo $debt; ?></td>
        <?php
-       if ($view == 'Software' || $view == 'Director' || $view == 'CEO' || $view == 'Data Entry Clerk' || $view == 'Stores Manager') {
+       if ($view == 'Software' || $view == 'Director' || $view == 'CEO' || $view == 'Data Entry Clerk' || $view == 'Stores Manager' || $view == 'Stores Supervisor') {
 
         ?>
       <td class="editable" id="mpesaYesterday<?php echo $count; ?>"><?php echo $mpesa; ?></td>
@@ -422,7 +422,7 @@
       <td class="uneditable" id="fineYesterday<?php echo $count; ?>"><?php echo $fine; ?></td>
       <td class="uneditable" id="balanceYesterday<?php echo $id; ?>"><?php echo $balance; ?></td>
       <td class="editable" id="dateYesterday<?php echo $count; ?>"><?php echo $delivery_date; ?></td>
-      <td class="uneditable" id="returnedYesterday<?php echo $count; ?>"><?php echo $returned; ?></td>
+      <td class="editable" id="returnedYesterday<?php echo $count; ?>"><?php echo $returned; ?></td>
       <td class="editable" id="bankedYesterday<?php echo $count; ?>"><?php echo $banked; ?></td>
       <td class="editable" id="slipYesterday<?php echo $count; ?>"><?php echo $slip; ?></td>
       <td class="editable" id="bankerYesterday<?php echo $count; ?>"><?php echo $banked_by; ?></td>
@@ -469,7 +469,7 @@
       <th scope="col"width="5%">Discount</th>
       <th scope="col"width="5%">C/F/Debt</th>
       <?php
-       if ($view == 'Software' || $view == 'Director' || $view == 'CEO' || $view == 'Data Entry Clerk' || $view == 'Stores Manager') {
+       if ($view == 'Software' || $view == 'Director' || $view == 'CEO' || $view == 'Data Entry Clerk' || $view == 'Stores Manager' || $view == 'Stores Supervisor') {
 
         ?>
       <th scope="col"width="5%">MPesa</th>
@@ -545,7 +545,7 @@
       <td class="uneditable" id="discountToday<?php echo $count; ?>"><?php echo $discount; ?></td>
       <td class="uneditable" id="debtToday<?php echo $count; ?>"><?php echo $debt; ?></td>
        <?php
-       if ($view == 'Software' || $view == 'Director' || $view == 'CEO' || $view == 'Data Entry Clerk' || $view == 'Stores Manager') {
+       if ($view == 'Software' || $view == 'Director' || $view == 'CEO' || $view == 'Data Entry Clerk' || $view == 'Stores Manager' || $view == 'Stores Supervisor') {
 
         ?>
       <td class="editable" id="mpesaToday<?php echo $count; ?>"><?php echo $mpesa; ?></td>
@@ -553,7 +553,7 @@
       <td class="uneditable" id="fineToday<?php echo $count; ?>"><?php echo $fine; ?></td>
       <td class="uneditable" id="balanceToday<?php echo $id; ?>"><?php echo $balance; ?></td>
       <td class="editable" id="dateToday<?php echo $count; ?>"><?php echo $delivery_date; ?></td>
-      <td class="uneditable" id="returnedToday<?php echo $count; ?>"><?php echo $returned; ?></td>
+      <td class="editable" id="returnedToday<?php echo $count; ?>"><?php echo $returned; ?></td>
       <td class="editable" id="bankedToday<?php echo $count; ?>"><?php echo $banked; ?></td>
       <td class="editable" id="slipToday<?php echo $count; ?>"><?php echo $slip; ?></td>
       <td class="editable" id="bankerToday<?php echo $count; ?>"><?php echo $banked_by; ?></td>
@@ -600,7 +600,7 @@
       <th scope="col"width="5%">Discount</th>
       <th scope="col"width="5%">C/F/Debt</th>
       <?php
-       if ($view == 'Software' || $view == 'Director' || $view == 'CEO' || $view == 'Data Entry Clerk' || $view == 'Stores Manager') {
+       if ($view == 'Software' || $view == 'Director' || $view == 'CEO' || $view == 'Data Entry Clerk' || $view == 'Stores Manager' || $view == 'Stores Supervisor') {
 
         ?>
       <th scope="col"width="5%">MPesa</th>
@@ -676,7 +676,7 @@
       <td class="uneditable" id="discountTomorrow<?php echo $count; ?>"><?php echo $discount; ?></td>
       <td class="uneditable" id="debtTomorrow<?php echo $count; ?>"><?php echo $debt; ?></td>
        <?php
-       if ($view == 'Software' || $view == 'Director' || $view == 'CEO' || $view == 'Data Entry Clerk' || $view == 'Stores Manager') {
+       if ($view == 'Software' || $view == 'Director' || $view == 'CEO' || $view == 'Data Entry Clerk' || $view == 'Stores Manager' || $view == 'Stores Supervisor') {
 
         ?>
       <td class="editable" id="mpesaTomorrow<?php echo $count; ?>"><?php echo $mpesa; ?></td>
@@ -684,7 +684,7 @@
       <td class="uneditable" id="fineTomorrow<?php echo $count; ?>"><?php echo $fine; ?></td>
       <td class="uneditable" id="balanceTomorrow<?php echo $id; ?>"><?php echo $balance; ?></td>
       <td class="editable" id="dateTomorrow<?php echo $count; ?>"><?php echo $delivery_date; ?></td>
-      <td class="uneditable" id="returnedTomorrow<?php echo $count; ?>"><?php echo $returned; ?></td>
+      <td class="editable" id="returnedTomorrow<?php echo $count; ?>"><?php echo $returned; ?></td>
       <td class="editable" id="bankedTomorrow<?php echo $count; ?>"><?php echo $banked; ?></td>
       <td class="editable" id="slipTomorrow<?php echo $count; ?>"><?php echo $slip; ?></td>
       <td class="editable" id="bankerTomorrow<?php echo $count; ?>"><?php echo $banked_by; ?></td>
@@ -731,7 +731,7 @@
       <th scope="col"width="5%">Discount</th>
       <th scope="col"width="5%">C/F/Debt</th>
       <?php
-       if ($view == 'Software' || $view == 'Director' || $view == 'CEO' || $view == 'Data Entry Clerk' || $view == 'Stores Manager') {
+       if ($view == 'Software' || $view == 'Director' || $view == 'CEO' || $view == 'Data Entry Clerk' || $view == 'Stores Manager' || $view == 'Stores Supervisor') {
 
         ?>
       <th scope="col"width="5%">MPesa</th>
@@ -807,7 +807,7 @@
       <td class="uneditable" id="discountNextMonth<?php echo $count; ?>"><?php echo $discount; ?></td>
       <td class="uneditable" id="debtNextMonth<?php echo $count; ?>"><?php echo $debt; ?></td>
        <?php
-       if ($view == 'Software' || $view == 'Director' || $view == 'CEO' || $view == 'Data Entry Clerk' || $view == 'Stores Manager') {
+       if ($view == 'Software' || $view == 'Director' || $view == 'CEO' || $view == 'Data Entry Clerk' || $view == 'Stores Manager' || $view == 'Stores Supervisor') {
 
         ?>
       <td class="editable" id="mpesaNextMonth<?php echo $count; ?>"><?php echo $mpesa; ?></td>
@@ -815,7 +815,7 @@
       <td class="uneditable" id="fineNextMonth<?php echo $count; ?>"><?php echo $fine; ?></td>
       <td class="uneditable" id="balanceNextMonth<?php echo $id; ?>"><?php echo $balance; ?></td>
       <td class="editable" id="dateNextMonth<?php echo $count; ?>"><?php echo $delivery_date; ?></td>
-      <td class="uneditable" id="returnedNextMonth<?php echo $count; ?>"><?php echo $returned; ?></td>
+      <td class="editable" id="returnedNextMonth<?php echo $count; ?>"><?php echo $returned; ?></td>
       <td class="editable" id="bankedNextMonth<?php echo $count; ?>"><?php echo $banked; ?></td>
       <td class="editable" id="slipNextMonth<?php echo $count; ?>"><?php echo $slip; ?></td>
       <td class="editable" id="bankerNextMonth<?php echo $count; ?>"><?php echo $banked_by; ?></td>
