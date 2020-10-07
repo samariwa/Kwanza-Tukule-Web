@@ -1716,7 +1716,7 @@ $('#extraSalesEditableYesterday').editableTableWidget();
       alert("Quantity Entered Unavailable");
     }
     else{
-    location.reload(true);
+      location.reload(true);
   }
   });
 });

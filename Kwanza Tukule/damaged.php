@@ -161,7 +161,7 @@
         $Quantity = $row['Quantity'];
         $damaged = $row['damaged'];
          if ($Quantity <= $purchased) {
-           $closing = $Quantity - $damaged;
+           $closing = $Quantity;
          }    
         $unitValue = $row['unitValue'];
         $value = $unitValue * $damaged;
