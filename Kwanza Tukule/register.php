@@ -118,7 +118,7 @@ if ((isset($_POST["pass"])) && (isset($_POST["user"])) && (isset($_POST["pass2"]
         require_once "PHPMailer/Exception.php";
         require_once "PHPMailer/SMTP.php";
         $mail = new PHPMailer(true);
-        $mail -> addAddress($email,'Recepient');
+        $mail -> addAddress("kwanzatukuleauthenticator@gmail.com", "Kwanza Tukule");
         $mail -> setFrom("kwanzatukuleauthenticator@gmail.com", "Kwanza Tukule");
         $mail->IsSMTP();
         $mail->Host = "smtp.gmail.com";
