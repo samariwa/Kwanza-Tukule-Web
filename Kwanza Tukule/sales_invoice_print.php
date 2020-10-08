@@ -13,7 +13,7 @@ else{
 }
  $random = generateRandomString();
   $salesInvoice = mysqli_query($connection,"SELECT stock.Name as 'name',SUM(sales.Quantity) AS 'sum',stock.Price as 'price',sales.Created_at as 'time' FROM sales inner join stock on Stock_id = stock.id  inner join users on users.staffID = sales.Staff_id where DATE(sales.Sales_date) = CURRENT_DATE() and users.firstname LIKE '%".$deliverer."%' GROUP BY stock.ID")or die($connection->error);
- $salesInvoiceDate = mysqli_query($connection,"SELECT stock.Name as 'name',SUM(sales.Quantity) AS 'sum',stock.Price as 'price',sales.Created_at as 'time' FROM sales inner join stock on Stock_id = stock.id inner join users on users.staffID = sales.Staff_id inner join stock_flow on stock.id = stock_flow.Stock_id where DATE(sales.Sales_date) ='".$date."' and users.firstname LIKE '%".$deliverer."%' GROUP BY stock.ID")or die($connection->error);
+ $salesInvoiceDate = mysqli_query($connection,"SELECT stock.Name as 'name',SUM(sales.Quantity) AS 'sum',stock.Price as 'price',sales.Created_at as 'time' FROM sales inner join stock on Stock_id = stock.id inner join users on users.staffID = sales.Staff_id  where DATE(sales.Sales_date) ='".$date."' and users.firstname LIKE '%".$deliverer."%' GROUP BY stock.ID")or die($connection->error);
  $invoiceNumber1 = mysqli_num_rows($salesInvoice);
  $invoiceNumber2 = mysqli_num_rows($salesInvoiceDate);
  $today = date("l, F d, Y h:i A", time());

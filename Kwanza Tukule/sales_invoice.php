@@ -162,7 +162,7 @@
            <span class="input-group-text" id="inputGroup-sizing-default">Date:</span>
            </div>
        <div class="col-md-5">
-       <input type="date"  class="form-control col-md-6" name="invoiceDate" id="invoiceDate" value="" aria-describedby="inputGroup-sizing-default" <?php if ($view == 'Store Manager') { ?> disabled <?php } ?> required autocomplete="date" autofocus style="font-family: FontAwesome, Arial; font-style: normal;">
+       <input type="date"  class="form-control col-md-6" name="invoiceDate" id="invoiceDate" value="" aria-describedby="inputGroup-sizing-default" <?php if ($view == 'Stores Manager') { ?> disabled <?php } ?> required autocomplete="date" autofocus style="font-family: FontAwesome, Arial; font-style: normal;">
         </div>
         </div><br>
         <div class="row">
