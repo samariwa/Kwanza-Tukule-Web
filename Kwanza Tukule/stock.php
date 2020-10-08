@@ -9,7 +9,8 @@
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Dashboard <span style="font-size: 18px;">/Stock</span></h1>
-            <h6 class="h6 mb-0 text-gray-600 mr-3">Time: <span id="time"></span></h6>
+            <h6 class="h6 mb-0 text-gray-600 " style="margin-left: 550px;">Time: <span id="time"></span></h6>
+            <button class="btn btn-light btn-md active printStock mr-1" role="button" aria-pressed="true" ><i class="fa fa-print"></i>&ensp;Print</button>
           </div>
            <?php
        if ($view == 'Software' || $view == 'Director' || $view == 'CEO') {
