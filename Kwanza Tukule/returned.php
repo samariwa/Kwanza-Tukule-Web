@@ -196,11 +196,11 @@
       <?php
         $extrareturnedrowcount = mysqli_num_rows($extraReturnedList);
       ?>
-      <h6 class="offset-2">Total Number: <?php echo $extrareturnedrowcount; ?></h6>
+      <h6 class="offset-8">Total Number: <?php echo $extrareturnedrowcount; ?></h6>
     </div>
     </div>
     <div class="row">
-      <div class="offset-5">Goods Returned from Today's Sales Made</div>
+      <div class="offset-4">Goods Returned from Today's Sales Made</div>
     </div><br>
     <table  class="table table-striped table-hover paginate" style="display:block;overflow-y:scroll;text-align: center;">
   <thead class="thead-dark">
