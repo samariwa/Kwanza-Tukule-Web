@@ -153,7 +153,7 @@
       <a href="sales.php" class="btn btn-primary btn-md active ml-3" role="button" aria-pressed="true"><i class="fa fa-arrow-left"></i>&ensp;Back</a>
       </div>
       <div class="col-md-2">
-      <a <?php if ($view == 'Software' || $view == 'Director' || $view == 'CEO' || $view == 'Stores Manager') { ?> href="sales_invoice.php" <?php }else{ ?> href = "#" <?php } ?> class="btn btn-secondary btn-md active"  role="button" aria-pressed="true">Sales Invoice</a>
+      <a <?php if ($view == 'Software' || $view == 'Director' || $view == 'CEO' || $view == 'Stores Manager' || $view == 'Stores Supervisor') { ?> href="sales_invoice.php" <?php }else{ ?> href = "#" <?php } ?> class="btn btn-secondary btn-md active"  role="button" aria-pressed="true">Sales Invoice</a>
       </div>
       <div class="col-md-2">
       <a  class="btn btn-warning btn-md active offset-3" <?php if ($view == 'Software' || $view == 'Director' || $view == 'CEO' || $view == 'Stores Supervisor') { ?> href="credit_note.php" <?php }else{ ?> href = "#" <?php } ?> role="button" aria-pressed="true">Credit Note</a>
