@@ -118,3 +118,34 @@ $view = $_SESSION['role'];
     ?>
   </tbody>
 </table>
+ <script src="assets/js/mindmup-editabletable.js"></script>
+ <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script type="text/javascript">
+  $('#extraSalesEditableToday').editableTableWidget();
+  $('#extraSalesEditableToday td.uneditable').on('change', function(evt, newValue) {
+  return false;
+});
+  $('#extraSalesEditableToday td').on('change', function(evt, newValue) {
+   var rowx = parseInt(evt.target._DT_CellIndex.row)+1;
+  var id = $(`#idToday${rowx}`).text();
+  var qty = $(`#qtyToday${rowx}`).text();
+  var mpesa = $(`#mpesaToday${rowx}`).text();
+  var cash = $(`#cashToday${rowx}`).text();
+  var discount = $(`#discountToday${rowx}`).text();
+  var banked = $(`#bankedToday${rowx}`).text();
+  var returned = $(`#returnedToday${rowx}`).text();
+  var slip = $(`#slipToday${rowx}`).text();
+  var banker = $(`#bankerToday${rowx}`).text();
+  var where = 'sales';
+  $.post("save.php",{id:id,qty:qty,mpesa:mpesa,discount:discount,cash:cash,banked:banked,returned:returned,slip:slip,banker:banker,where:where},
+  function(result){
+     if (result == 'Unavailable') {
+      alert("Quantity Entered Unavailable");
+    }
+    else{
+      $('#extraSalesEditableToday').load("loadExtraSalesToday.php");
+  }
+  });
+});
+</script>

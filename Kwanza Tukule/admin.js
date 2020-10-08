@@ -1716,7 +1716,8 @@ $('#extraSalesEditableYesterday').editableTableWidget();
       alert("Quantity Entered Unavailable");
     }
     else{
-      $('#extraSalesEditableToday').load("loadExtraSalesToday.php");
+      location.reload(true);
+      //$('#extraSalesEditableToday').load("loadExtraSalesToday.php");
   }
   });
 });
