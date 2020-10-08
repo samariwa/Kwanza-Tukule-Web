@@ -96,6 +96,7 @@
     <?php
         $count = 0;
         $closing = '';
+        $totalValue = 0;
         foreach($valuationQuery as $row){
          $count++;
          $id = $row['sfid'];
@@ -112,6 +113,7 @@
           $closing = $purchase;
        }
        $value = $bp * $closing;
+       $totalValue += $value;
       ?>
     <tr>
       <th scope="row"><?php echo $id; ?></th>
@@ -132,6 +134,7 @@
         $bp2 = $row2['Buying_price'];
         $quantity = $qty - $purchase;
         $value2 = $bp2 * $quantity;
+        $totalValue += $value2;
         ?>
       <tr>
       <th scope="row"><?php echo $id2; ?></th>
@@ -146,13 +149,10 @@
     }
     }
     ?>
-    <tr>
-      <th colspan="6">Total Stock Value</th>
-      <td id="totalStockValue"></td>
-    </tr>
   </tbody>
 </table>
-        
+<br>
+<div style="text-align: center;"><b>Total Value of Stock: Ksh. <?php echo $totalValue; ?></b></div>       
 
   <!-- Scroll to Top Button-->
   <?php include "admin_footer.php" ?> 

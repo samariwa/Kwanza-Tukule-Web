@@ -153,6 +153,7 @@
     <?php
         $count = 0;
         $closing = '';
+        $totalDamaged = 0;
         foreach($damaged as $row){
          $count++;
          $id = $row['id'];
@@ -165,6 +166,7 @@
          }    
         $unitValue = $row['unitValue'];
         $value = $unitValue * $damaged;
+        $totalDamaged += $value;
         if ($Quantity > $purchased) {
           $closing = $purchased - $damaged;
        }
@@ -190,6 +192,7 @@
         $Quantity2 = $Quantity - $purchased - $damaged2;
         $unitValue2 = $row2['unitValue'];
         $value2 = $unitValue2 * $damaged2;
+        $totalDamaged += $value2;
         ?>
       <tr>
         <th class="uneditable" scope="row"  id="id<?php echo $count; ?>"><?php echo $id2; ?></th>
@@ -204,12 +207,10 @@
     }
     }
     ?>
-    <tr>
-      <th colspan="6">Total Damaged Value</th>
-      <td id="totalDamagedValue">0  </td>
-    </tr>
   </tbody>
-</table>   
+</table> 
+ <br>
+ <div style="text-align: center;"><b>Total Value of Damaged: Ksh. <?php echo $totalDamaged; ?></b></div>  
 
   <!-- Scroll to Top Button-->
   <?php include "admin_footer.php" ?> 

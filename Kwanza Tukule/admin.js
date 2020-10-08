@@ -2640,16 +2640,6 @@ $('#extraSalesEditableYesterday').editableTableWidget();
                         mywindow.close();
          });
        });
-
-       $(document).ready(function(){
-       var tableValuation = document.getElementById("valuationTable");
-       var  sumVal = 0;    
-            for(var i = 1; i < tableValuation.rows.length; i++)
-            {
-                sumVal += parseInt(tableValuation.rows[i].cells[6].innerHTML);
-                document.getElementById("totalStockValue").innerHTML = sumVal;
-            }
-      });
       
       $(document).ready(function(){
        var tableLeftovers = document.getElementById("leftoversEditable");
@@ -2661,13 +2651,5 @@ $('#extraSalesEditableYesterday').editableTableWidget();
             }
       });
 
-      $(document).ready(function(){
-       var tableDamaged = document.getElementById("damagedEditable");
-       var  sumVal = 0;    
-            for(var i = 1; i < tableDamaged.rows.length; i++)
-            {
-                sumVal += parseInt(tableDamaged.rows[i].cells[6].innerHTML);
-                document.getElementById("totalDamagedValue").innerHTML = sumVal;
-            }
-      });    
+   
      

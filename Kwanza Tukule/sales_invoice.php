@@ -157,32 +157,14 @@
                  </select>
                  </div>
                   </div><br><br>
-                  <?php
-       if ($view == 'Software' || $view == 'Director' || $view == 'CEO') {
-
-        ?>
         <div class="row">
       <div class="input-group-prepend" style="margin-left: 350px;" >
            <span class="input-group-text" id="inputGroup-sizing-default">Date:</span>
            </div>
        <div class="col-md-5">
-       <input type="date"  class="form-control col-md-6" name="invoiceDate" id="invoiceDate" value="" aria-describedby="inputGroup-sizing-default" required autocomplete="date" autofocus style="font-family: FontAwesome, Arial; font-style: normal;">
+       <input type="date"  class="form-control col-md-6" name="invoiceDate" id="invoiceDate" value="" aria-describedby="inputGroup-sizing-default" <?php if ($view == 'Store Manager') { ?> disabled <?php } ?> required autocomplete="date" autofocus style="font-family: FontAwesome, Arial; font-style: normal;">
         </div>
         </div><br>
-        <?php
-          }else{
-        ?>
-          <div class="row">
-      <div class="input-group-prepend" style="margin-left: 350px;" >
-           <span class="input-group-text" id="inputGroup-sizing-default">Date:</span>
-           </div>
-       <div class="col-md-5">
-       <input type="date"  class="form-control col-md-6" name="invoiceDate" id="invoiceDate" aria-describedby="inputGroup-sizing-default" required value="" disabled="true" autocomplete="date" autofocus style="font-family: FontAwesome, Arial; font-style: normal;">
-        </div>
-        </div><br>
-        <?php
-          }
-        ?>
         <div class="row">
           <div class="col-md-2 offset-5">
            <button class="btn btn-light btn-md active printSalesInvoice" role="button" aria-pressed="true"><i class="fa fa-print"></i>&ensp;Print</button>
