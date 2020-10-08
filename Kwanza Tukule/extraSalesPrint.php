@@ -30,7 +30,8 @@ $today = date('l, F d, Y h:i A', time());
       <th scope="col" width="14%">Seller Name</th>
       <th scope="col" width="12%">Number</th>
       <th scope="col" width="17%">Stock Name</th>
-      <th scope="col" width="10%">Quantity Requested</th>
+      <th scope="col" width="10%">Quantity Sold</th>
+      <th scope="col" width="10%">Quantity Returned</th>
       <th scope="col"width="10%">Cost</th>
       <th scope="col"width="10%">C/F/Debt</th>
       <th scope="col" width="10%">MPesa</th>
@@ -54,6 +55,7 @@ $today = date('l, F d, Y h:i A', time());
         $debt = $row['Debt'];
         $mpesa = $row['MPesa'];
         $cash = $row['Cash'];
+        $returned = $row['Returned'];
         $balance = ($mpesa + $cash) + $debt - $cost;
       ?>
     <tr>
@@ -62,6 +64,7 @@ $today = date('l, F d, Y h:i A', time());
       <td><?php echo $contact; ?></td>
       <td><?php echo $product; ?></td>
       <td ><?php echo $qty; ?></td>
+      <td ><?php echo $returned; ?></td>
       <td ><?php echo $cost; ?></td>
       <td><?php echo $debt; ?></td>
       <td ><?php echo $mpesa; ?></td>
