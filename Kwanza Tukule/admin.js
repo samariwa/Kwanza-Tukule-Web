@@ -904,7 +904,7 @@ function selectSeller(selection) {
             for (var i = 0; i < cartItems.length; i++) {
                if (parseInt($(`#quantity${cartItems[i][0]}`).html()) == newValue) {
                 //alert(newValue)
-                if (newValue >= cartItems[i][5] && newValue >0) {
+                if (newValue <= cartItems[i][5] && newValue >0) {
                   var id = cartItems[i][0];
                   var price = parseInt($(`#price${id}`).html());
                   var discount = parseInt($(`#discount${id}`).html());
