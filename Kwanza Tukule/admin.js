@@ -1716,11 +1716,25 @@ $('#extraSalesEditableYesterday').editableTableWidget();
       alert("Quantity Entered Unavailable");
     }
     else{
-      location.reload(true);
+      //readsales();
+      //var data = JSON.parse(result);
+     // $('#extraSalesEditableToday').DataTable().ajax.reload();
+      //location.reload(true);
       //$('#extraSalesEditableToday').load("loadExtraSalesToday.php");
-  }
+  } 
   });
 });
+
+  function readsales() {
+            $.ajax({
+                type: 'get',
+                url: 'loadExtraSalesToday.php',
+                dataType: 'html',
+                success: function (data) {
+                    $('#extraSalesEditableToday').html(data);
+                }
+            })
+        }
 
   $('#extraSalesEditableTomorrow').editableTableWidget();
   $('#extraSalesEditableTomorrow td.uneditable').on('change', function(evt, newValue) {
