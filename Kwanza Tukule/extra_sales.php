@@ -194,7 +194,7 @@
       <th scope="col"width="5%">MPesa</th>
       <th scope="col"width="5%">Deposit</th>
       <th scope="col"width="5%">Balance</th>
-      <th scope="col"width="10%">Delivery Date</th>
+      <th scope="col"width="10%">Sales Date</th>
       <th scope="col"width="5%">Returned</th>
       <th scope="col"width="5%">Banked</th>
       <th scope="col"width="5%">Slip No.</th>
@@ -669,6 +669,134 @@
   </tbody>
 </table>
     </div> 
+     <div id="menu5" class="tab-pane fade">
+        <?php
+        $ordersrowcount = mysqli_num_rows($extraSalesListNextMonth);
+      ?>
+      <div class="row">
+         <div class="col-md-12">
+      <h6 class="offset-5">Total Number: <?php echo $ordersrowcount; ?></h6>
+    </div>
+      </div> 
+      <table id="extraSalesEditableNextMonth" class="table table-striped table-hover table-responsive  paginate" style="display:block;overflow-x:scroll;overflow-y:scroll;text-align: center;">
+      <caption>Goods Requested for the Next Month</caption>
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col" width="5%">#</th>
+      <th scope="col" width="5%">Sales Person</th>
+      <th scope="col" width="10%">Contact No.</th>
+      <th scope="col" width="20%">Product</th>
+      <th scope="col"width="5%">Quantity</th>
+      <th scope="col"width="5%">Cost</th>
+      <th scope="col"width="5%">Discount</th>
+      <th scope="col"width="5%">C/F/Debt</th>
+      <?php
+       if ($view == 'Software' || $view == 'Director' || $view == 'CEO' || $view == 'Data Entry Clerk' || $view == 'Stores Manager' || $view == 'Stores Supervisor') {
+
+        ?>
+      <th scope="col"width="5%">MPesa</th>
+      <th scope="col"width="5%">Deposit</th>
+      <th scope="col"width="5%">Balance</th>
+       <th scope="col"width="10%">Sales Date</th>
+      <th scope="col"width="5%">Returned</th>
+      <th scope="col"width="5%">Banked</th>
+      <th scope="col"width="5%">Slip No.</th>
+      <th scope="col"width="5%">Banked By</th>
+      <th scope="col"width="30%"></th>
+      <?php
+       }
+      ?>
+    </tr>
+  </thead>
+  <tbody >
+    <?php
+        $count = 0;
+        foreach($extraSalesListNextMonth as $row){
+         $count++;
+         $id = $row['id'];
+        $firstname = $row['firstname'];
+        $lastname = $row['lastname'];
+        $contact = $row['Number'];
+        $product = $row['name'];
+        $qty = $row['Quantity'];
+        $selling_price = mysqli_query($connection,"SELECT Selling_price FROM (SELECT s.Name as sname,sf.Selling_price as Selling_Price, sf.Created_at,ROW_NUMBER() OVER (PARTITION BY s.id ORDER BY sf.Created_at DESC) as rn FROM stock s JOIN stock_flow sf ON s.id = sf.Stock_id join sales sl on s.id = sl.Stock_id ) q WHERE rn = 1 AND sname = '$product'")or die($connection->error);
+         $row2 = mysqli_fetch_array($selling_price);
+        $price = $row2['Selling_price'];
+        $discount = $row['Discount'];
+        $newCost = $price - $discount;
+        $cost = $qty * $newCost; 
+        $debt = $row['Debt'];
+        $mpesa = $row['MPesa'];
+        $cash = $row['Cash'];
+        $date = $row['date'];
+        $balance = ($mpesa + $cash) + $debt - $cost;
+        $returned = $row['Returned'];
+        $banked = $row['Banked'];
+        $slip = $row['Slip_Number'];
+        $banked_by = $row['Banked_By'];
+      ?>
+    <tr>
+      <th scope="row" class="uneditable" id="idNextMonth<?php echo $count; ?>"><?php echo $id; ?></th>
+      <?php
+        if ($balance == "0.0" ) {
+       ?>
+      <td style = "background-color: #2ECC71;color: white"class="uneditable" id="nameNextMonth<?php echo $count; ?>"><?php echo $firstname.' '.$lastname; ?></td>
+      <?php
+       }
+        if ($balance  < "0.0" && $balance  >= "-5000.0" ) {
+       ?>
+      <td style = "background-color: grey;color: white"class="uneditable" id="nameNextMonth<?php echo $count; ?>"><?php echo $firstname.' '.$lastname; ?></td>
+      <?php
+       }
+        if ($balance > "0.0" ) {
+       ?>
+      <td style = "background-color: orange;color: white"class="uneditable" id="nameNextMonth<?php echo $count; ?>"><?php echo $firstname.' '.$lastname; ?></td>
+      <?php
+       }
+        if ($balance < "-5000.0" ) {
+       ?>
+      <td style = "background-color: red;color: white"class="uneditable" id="nameNextMonth<?php echo $count; ?>"><?php echo $firstname.' '.$lastname; ?></td>
+      <?php
+       }
+      ?>
+      <td class="uneditable" id="numberNextMonth<?php echo $count; ?>"><?php echo $contact; ?></td>
+      <td class="uneditable" id="productNextMonth<?php echo $count; ?>"><?php echo $product; ?></td>
+      <td class="editable" id="qtyNextMonth<?php echo $count; ?>"><?php echo $qty; ?></td>
+      <td class="uneditable" id="costNextMonth<?php echo $id; ?>"><?php echo $cost; ?></td>
+      <td class="editable" id="discountNextMonth<?php echo $count; ?>"><?php echo $discount; ?></td>
+      <td class="uneditable" id="debtNextMonth<?php echo $count; ?>"><?php echo $debt; ?></td>
+       <?php
+       if ($view == 'Software' || $view == 'Director' || $view == 'CEO' || $view == 'Data Entry Clerk' || $view == 'Stores Manager' || $view == 'Stores Supervisor') {
+
+        ?>
+      <td class="uneditable" id="mpesaNextMonth<?php echo $count; ?>"><?php echo $mpesa; ?></td>
+      <td class="uneditable" id="cashNextMonth<?php echo $count; ?>"><?php echo $cash; ?></td>
+      <td class="uneditable" id="balanceNextMonth<?php echo $id; ?>"><?php echo $balance; ?></td>
+      <td class="uneditable" id="dateNextMonth<?php echo $count; ?>"><?php echo $date; ?></td>
+      <td class="uneditable" id="returnedNextMonth<?php echo $count; ?>"><?php echo $returned; ?></td>
+      <td class="uneditable" id="bankedNextMonth<?php echo $count; ?>"><?php echo $banked; ?></td>
+      <td class="uneditable" id="slipNextMonth<?php echo $count; ?>"><?php echo $slip; ?></td>
+      <td class="uneditable" id="bankerNextMonth<?php echo $count; ?>"><?php echo $banked_by; ?></td>
+       <td>
+          <?php
+       if ($view == 'Software'  || $view == 'CEO' || $view == 'Director' || $view == 'Stores Manager') {
+
+        ?>
+          <button id="<?php echo $id; ?>" data_id="<?php echo $id; ?>" class="btn btn-danger btn-sm active deleteSalesNextMonth" role="button" aria-pressed="true" onclick="deleteSalesTomorrow(this,<?php echo $id; ?>)"><i class="fa fa-trash"></i>&ensp;Delete</button>
+          <?php
+          }
+          ?>
+       </td>
+       <?php
+         }
+       ?>
+    </tr>
+    <?php
+    }
+    ?>
+  </tbody>
+</table>
+    </div> 
   </div>
 
     <ul class="nav nav-tabs">
@@ -676,6 +804,7 @@
     <li><a data-toggle="tab" class="nav-link salesTab" href="#menu2" style="color: inherit;">Yesterday's Sales</a></li>
     <li class="active"><a data-toggle="tab" class="nav-link salesTab active" href="#menu3" style="color: inherit;">Today's Sales</a></li>
     <li ><a data-toggle="tab" class="nav-link salesTab" href="#menu4" style="color: inherit;">Tomorrow's Requisitions</a></li>
+    <li ><a data-toggle="tab" class="nav-link salesTab" href="#menu5" style="color: inherit;">Next 1 Month's Requisitions</a></li>
   </ul>
 
 

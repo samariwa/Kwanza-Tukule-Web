@@ -1554,7 +1554,7 @@ $('#officeEditable').editableTableWidget();
       alert("Quantity Entered Unavailable");
     }
     else{
-    location.reload(true);
+    //location.reload(true);
   }
   });
 });
@@ -1581,7 +1581,7 @@ $('#officeEditable').editableTableWidget();
       alert("Quantity Entered Unavailable");
     }
     else{
-    location.reload(true);
+    //location.reload(true);
   }
   });
 });
@@ -1608,7 +1608,7 @@ $('#officeEditable').editableTableWidget();
       alert("Quantity Entered Unavailable");
     }
     else{
-    location.reload(true);
+    //location.reload(true);
   }
   });
 });
@@ -1635,7 +1635,7 @@ $('#officeEditable').editableTableWidget();
       alert("Quantity Entered Unavailable");
     }
     else{
-    location.reload(true);
+    //location.reload(true);
   }
   });
 });
@@ -1662,7 +1662,7 @@ $('#extraSalesEditableYesterday').editableTableWidget();
       alert("Quantity Entered Unavailable");
     }
     else{
-    location.reload(true);
+    //location.reload(true);
   }
   });
 });
@@ -1689,7 +1689,7 @@ $('#extraSalesEditableYesterday').editableTableWidget();
       alert("Quantity Entered Unavailable");
     }
     else{
-    location.reload(true);
+    //location.reload(true);
   }
   });
 });
@@ -1758,7 +1758,34 @@ $('#extraSalesEditableYesterday').editableTableWidget();
       alert("Quantity Entered Unavailable");
     }
     else{
-    location.reload(true);
+    //location.reload(true);
+  }
+  });
+});
+
+   $('#extraSalesEditableNextMonth').editableTableWidget();
+  $('#extraSalesEditableNextMonth td.uneditable').on('change', function(evt, newValue) {
+  return false;
+});
+  $('#extraSalesEditableNextMonth td').on('change', function(evt, newValue) {
+   var rowx = parseInt(evt.target._DT_CellIndex.row)+1;
+  var id = $(`#idNextMonth${rowx}`).text();
+  var qty = $(`#qtyNextMonth${rowx}`).text();
+  var discount = $(`#discountNextMonth${rowx}`).text();
+  var mpesa = 0;
+  var cash = 0;
+  var banked = 0;
+  var returned = 0;
+  var slip = "N/A";
+  var banker = "N/A";
+  var where = 'sales';
+  $.post("save.php",{id:id,qty:qty,mpesa:mpesa,cash:cash,discount:discount,banked:banked,returned:returned,slip:slip,banker:banker,where:where},
+  function(result){
+     if (result == 'Unavailable') {
+      alert("Quantity Entered Unavailable");
+    }
+    else{
+    //location.reload(true);
   }
   });
 });
@@ -1785,7 +1812,7 @@ $('#extraSalesEditableYesterday').editableTableWidget();
       alert("Quantity Entered Unavailable");
     }
     else{
-    location.reload(true);
+    //location.reload(true);
   }
   });
 });

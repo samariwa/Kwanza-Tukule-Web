@@ -248,7 +248,7 @@
 </div><br>
 <div class="row">
       <div class="input-group-prepend" style="margin-left: 310px;" >
-           <span class="input-group-text" id="inputGroup-sizing-default">Date of Delivery:</span>
+           <span class="input-group-text" id="inputGroup-sizing-default">Sales Date:</span>
            </div>
        <div class="col-md-5">
        <input type="date"  class="form-control col-md-6" name="deliveryDate" id="deliveryDate" value="" aria-describedby="inputGroup-sizing-default" required autocomplete="date" autofocus style="font-family: FontAwesome, Arial; font-style: normal;">
