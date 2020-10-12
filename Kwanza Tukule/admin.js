@@ -902,9 +902,9 @@ function selectSeller(selection) {
         });
           $('#cartEditable td').on('change', function(evt, newValue) {
             for (var i = 0; i < cartItems.length; i++) {
+              var availableQty = cartItems[i][5];
                if (parseInt($(`#quantity${cartItems[i][0]}`).html()) == newValue) {
-                //alert(newValue)
-                if (newValue <= cartItems[i][5] && newValue >0) {
+                if (parseInt(newValue) <= availableQty && parseInt(newValue) > 0) {
                   var id = cartItems[i][0];
                   var price = parseInt($(`#price${id}`).html());
                   var discount = parseInt($(`#discount${id}`).html());
