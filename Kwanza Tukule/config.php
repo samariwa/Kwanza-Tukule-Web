@@ -8,7 +8,7 @@
 $username = "mariwa";
 $password = "Yu4kPkB8fpb5ZqBD";
 $hostname = "mariwa.ddns.net";
-$database = "tukule_kwanza";
+$database = "tukule_kwanza_test";
 
 //Definition of canonical domain including trailing slash!:
 $domain = "http://www.xyz.com/";
@@ -32,7 +32,7 @@ $maxfailedattempt = 5;
 
 //Defining session timeout in seconds
 //minimum 60 (for one minute)
-$sessiontimeout = 60*20;
+$sessiontimeout = 60*30;
 
 ////////////////////////////////////
 //END OF USER CONFIGURATION/////////

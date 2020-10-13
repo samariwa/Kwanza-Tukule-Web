@@ -1,8 +1,8 @@
 <?php
- include "admin_nav.php";
  include('queries.php');
- ?> 
-
+ session_start();
+$view = $_SESSION['role'];
+ ?>
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
@@ -141,13 +141,22 @@
          <div class="row" id="status_change" style="margin-left: 50px">
            <h2>Users</h2>
            <?php
+                function reload(){
+                  ?>
+                  <script>
+                      $("#status_change").load("users_reload.php");
+                 </script>
+                 <?php
+                }
                 function deactivate($user){
                   $username = $user;
                 mysqli_query($connection,"UPDATE `users` SET `active` = '2' WHERE `username` = '".$username."'")or die($connection->error);
+                reload();
                  }
                  function reactivate($user){
                   $username = $user;
                 mysqli_query($connection,"UPDATE `users` SET `active` = '1',`loginattempts` = '0' WHERE `username` = '".$username."'")or die($connection->error); 
+                reload();
                  }
              $usersrowcount = mysqli_num_rows($usersList);
            ?>
@@ -179,6 +188,7 @@
                 </div><br/>";  
                 if (isset($_POST[$name])){
                   mysqli_query($connection,"UPDATE `users` SET `active` = '2' WHERE `username` = '".$name."'")or die($connection->error);
+                  reload();
                 }    
                }
                else if (($activity == 1) && ($active == 2)) {
@@ -194,6 +204,7 @@
                 </div><br/>"; 
                 if (isset($_POST[$name])){
                   mysqli_query($connection,"UPDATE `users` SET `active` = '1',`loginattempt` = '0' WHERE `username` = '".$name."'")or die($connection->error); 
+                  reload();
                 }   
                }
              }
@@ -230,6 +241,7 @@
                 </div><br/>"; 
                 if (isset($_POST[$name])){
                    mysqli_query($connection,"UPDATE `users` SET `active` = '2' WHERE `username` = '".$name."'")or die($connection->error);  
+                   reload();
                 } 
                }
                 else if (($activity == 0) && ($day == $yesterday) && ($active == 2)) {
@@ -245,6 +257,7 @@
                 </div><br/>"; 
                 if (isset($_POST[$name])){
                 mysqli_query($connection,"UPDATE `users` SET `active` = '1',`loginattempt` = '0' WHERE `username` = '".$name."'")or die($connection->error); 
+                reload();
                 }     
                }
                else if(($activity == 0) && ($day == $today) && ($active == 1)){
@@ -260,6 +273,7 @@
                  </div><br/>"; 
                  if (isset($_POST[$name])){
                    mysqli_query($connection,"UPDATE `users` SET `active` = '2' WHERE `username` = '".$name."'")or die($connection->error);
+                   reload();
                 } 
                }
                 else if (($activity == 0) && ($day == $yesterday) && ($active == 2)) {
@@ -275,6 +289,7 @@
                  </div><br/>";  
                  if (isset($_POST[$name])){
                  mysqli_query($connection,"UPDATE `users` SET `active` = '1',`loginattempt` = '0' WHERE `username` = '".$name."'")or die($connection->error); 
+                 reload();
                 }   
                }
                else if(($activity == 0) && ($day != $yesterday) && ($day != $today) && ($active == 1)){
@@ -290,6 +305,7 @@
                 </div><br/>"; 
                 if (isset($_POST[$name])){
                    mysqli_query($connection,"UPDATE `users` SET `active` = '2' WHERE `username` = '".$name."'")or die($connection->error);
+                   reload();
                 } 
                }
                else if(($activity == 0) && ($day != $yesterday) && ($day != $today) && ($active == 2)){
@@ -305,6 +321,7 @@
                 </div><br/>"; 
                 if (isset($_POST[$name])){
                   mysqli_query($connection,"UPDATE `users` SET `active` = '1',`loginattempt` = '0' WHERE `username` = '".$name."'")or die($connection->error); 
+                  reload();
                 }   
                }
                else if($active == 0){
@@ -398,5 +415,3 @@
         <?php
           }
         ?>
-  <!-- Scroll to Top Button-->
-  <?php include "admin_footer.php" ?> 
