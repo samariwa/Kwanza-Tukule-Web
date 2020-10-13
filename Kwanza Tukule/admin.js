@@ -858,9 +858,9 @@ function selectSeller(selection) {
           var available = $(`#qty${id}`).text();
           var quantity = '1';
           var discount = '0';
-          var button = document.getElementById(id);
+          var button = document.getElementById(`add_product${id}`);
           button.disabled = true;
-           cartItems.push([productId,productName, productPrice,quantity, discount,available]);
+           cartItems.push([productId,productName, productPrice,quantity, discount,available,button]);
                populateCart();
        };
 
@@ -1007,8 +1007,8 @@ function selectSeller(selection) {
     var subTotal = (price * qty) - +discount;
      var initial = $('#cartTotal').html();
      Total = +initial - +subTotal ;
-     var button = document.getElementById(cartItems[i][0]);
-       // button.disabled = false;
+     var button = cartItems[i][6];
+       button.disabled = false;
       var check = getIndexOfProduct(cartItems,id);
   cartItems.splice(check, 1);
    }

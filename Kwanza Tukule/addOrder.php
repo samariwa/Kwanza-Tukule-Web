@@ -206,11 +206,11 @@
       <?php
        if ($quantity > 0) {
       ?>
-      <td><button type="button" class="btn btn-warning addToCart" onclick="cartArray(<?php echo $id; ?>)" id="<?php echo $id; ?>" data_id="<?php echo $id; ?>"><i class="fa fa-cart-plus" ></i>&emsp;Add To Cart</button></td>
+      <td><button type="button" class="btn btn-warning addToCart" onclick="cartArray(<?php echo $id; ?>)" id="add_product<?php echo $id; ?>" data_id="<?php echo $id; ?>"><i class="fa fa-cart-plus" ></i>&emsp;Add To Cart</button></td>
       <?php
        }else{
       ?>
-        <td><button type="button" class="btn btn-warning addToCart" disabled onclick="cartArray(<?php echo $id; ?>)" id="<?php echo $id; ?>" data_id="<?php echo $id; ?>"><i class="fa fa-cart-plus" ></i>&emsp;Add To Cart</button></td>
+        <td><button type="button" class="btn btn-warning addToCart" disabled onclick="cartArray(<?php echo $id; ?>)" id="add_product<?php echo $id; ?>" data_id="<?php echo $id; ?>"><i class="fa fa-cart-plus" ></i>&emsp;Add To Cart</button></td>
       <?php
         }
       ?>
