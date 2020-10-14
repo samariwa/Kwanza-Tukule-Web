@@ -68,13 +68,13 @@ else{
          $time = $row['time'];
    $pdf .= '<tr height="40px">
       <th scope="row" style="text-align:center">  '.$product.' </th>
-      <td style="text-align:center">  '.$price.' </td>
-      <td style="text-align:center">  '.$requested.' </td>
-      <td style="text-align:center"> '.$returned.' </td>
-      <td style="text-align:center">  '.$quantity.' </td>
-       <td style="text-align:center">Ksh. '.$cost.' </td>
-      <td style="text-align:center">Ksh. '.$discount.' </td>
-      <td style="text-align:center">Ksh. '.$discounted_cost.' </td>
+      <td style="text-align:center">  '.number_format($price).' </td>
+      <td style="text-align:center">  '.number_format($requested).' </td>
+      <td style="text-align:center"> '.number_format($returned).' </td>
+      <td style="text-align:center">  '.number_format($quantity).' </td>
+       <td style="text-align:center">Ksh. '.number_format($cost).' </td>
+      <td style="text-align:center">Ksh. '.number_format($discount).' </td>
+      <td style="text-align:center">Ksh. '.number_format($discounted_cost).' </td>
       <td style="text-align:center">  '.$time.' </td>
     </tr>';
     }
@@ -91,31 +91,31 @@ else{
  $pdf .=  '
  <tr >
         <th colspan = "7"><b>Cost of goods sold:</b></th>
-      <td ><b>Ksh. '.$totalCost .'</b> </td>
+      <td ><b>Ksh. '.number_format($totalCost) .'</b> </td>
     </tr>
     <tr >
         <th colspan = "7"><b>Paid via M-Pesa:</b></th>
-      <td ><b>Ksh. '.$mpesa .'</b> </td>
+      <td ><b>Ksh. '.number_format($mpesa) .'</b> </td>
     </tr>
      <tr >
         <th colspan = "7"><b>Deposited:</b></th>
-      <td ><b>Ksh. '.$cash .'</b> </td>
+      <td ><b>Ksh. '.number_format($cash).'</b> </td>
     </tr>
     <tr >
         <th colspan = "7"><b>Total Amount Paid:</b></th>
-      <td ><b>Ksh. '.$paid_amount  .'</b> </td>
+      <td ><b>Ksh. '.number_format($paid_amount) .'</b> </td>
     </tr>
     <tr >
         <th colspan = "7"><b>Balance For Today:</b></th>
-      <td><b>Ksh. '.$balance.'</b> </td>
+      <td><b>Ksh. '.number_format($balance).'</b> </td>
     </tr>
     <tr >
         <th colspan = "7"><b>Previous Balance:</b></th>
-      <td><b>Ksh. '.$previous.'</b> </td>
+      <td><b>Ksh. '.number_format($previous).'</b> </td>
     </tr>
     <tr >
         <th colspan = "7"><b>Total Balance:</b></th>
-      <td><b>Ksh. '.$total.'</b> </td>
+      <td><b>Ksh. '.number_format($total).'</b> </td>
     </tr>
  </tbody>
 </table>
@@ -181,13 +181,13 @@ echo $pdf;
       
    $pdf .= ' <tr>
      <th scope="row" style="text-align:center">  '.$product.' </th>
-     <td style="text-align:center">  '.$price.' </td>
-      <td style="text-align:center">  '.$requested.' </td>
-      <td style="text-align:center"> '.$returned.' </td>
-      <td style="text-align:center">  '.$quantity.' </td>
-       <td style="text-align:center">Ksh. '.$cost.' </td>
-      <td style="text-align:center">Ksh. '.$discount.' </td>
-      <td style="text-align:center">Ksh. '.$discounted_cost.' </td>
+     <td style="text-align:center">  '.number_format($price).' </td>
+      <td style="text-align:center">  '.number_format($requested).' </td>
+      <td style="text-align:center"> '.number_format($returned).' </td>
+      <td style="text-align:center">  '.number_format($quantity).' </td>
+       <td style="text-align:center">Ksh. '.number_format($cost).' </td>
+      <td style="text-align:center">Ksh. '.number_format($discount).' </td>
+      <td style="text-align:center">Ksh. '.number_format($discounted_cost).' </td>
       <td style="text-align:center">  '.$time.' </td>
     </tr>';
     }
@@ -204,31 +204,31 @@ echo $pdf;
  $pdf .= ' 
  <tr >
         <th colspan = "7"><b>Cost of goods sold:</b></th>
-      <td ><b>Ksh. '.$totalCost .'</b> </td>
+      <td ><b>Ksh. '.number_format($totalCost) .'</b> </td>
     </tr>
     <tr >
         <th colspan = "7"><b>Paid via M-Pesa:</b></th>
-      <td ><b>Ksh. '.$mpesa .'</b> </td>
+      <td ><b>Ksh. '.number_format($mpesa) .'</b> </td>
     </tr>
      <tr >
         <th colspan = "7"><b>Deposited:</b></th>
-      <td ><b>Ksh. '.$cash .'</b> </td>
+      <td ><b>Ksh. '.number_format($cash) .'</b> </td>
     </tr>
      <tr >
         <th colspan = "7"><b>Total Amount Paid:</b></th>
-      <td ><b>Ksh. '.$paid_amount  .'</b> </td>
+      <td ><b>Ksh. '.number_format($paid_amount)  .'</b> </td>
     </tr>
     <tr >
         <th colspan = "7"><b>Balance For Today:</b></th>
-      <td><b>Ksh. '.$balance.'</b> </td>
+      <td><b>Ksh. '.number_format($balance).'</b> </td>
     </tr>
     <tr >
         <th colspan = "7"><b>Previous Balance:</b></th>
-      <td><b>Ksh. '.$previous.'</b> </td>
+      <td><b>Ksh. '.number_format($previous).'</b> </td>
     </tr>
     <tr >
         <th colspan = "7"><b>Total Balance:</b></th>
-      <td><b>Ksh. '.$total.'</b> </td>
+      <td><b>Ksh. '.number_format($total).'</b> </td>
     </tr>
  </tbody>
 </table>

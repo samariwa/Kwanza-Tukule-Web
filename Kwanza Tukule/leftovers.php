@@ -181,12 +181,12 @@
     <tr>
       <th class="uneditable" scope="row"  id="id<?php echo $count; ?>"><?php echo $id; ?></th>
       <td class="uneditable" id="name<?php echo $count; ?>"><?php echo $name; ?></td>
-      <td class="uneditable" id="ordered<?php echo $count; ?>"><?php echo $ordered; ?></td>
-      <td class="uneditable"id="prepared<?php echo $count; ?>"><?php echo $prepared; ?></td>
-      <td class="uneditable"id="returned<?php echo $count; ?>"><?php echo $returned; ?></td>
-      <td  class="editable" id="difference<?php echo $count; ?>"><?php echo $difference; ?></td>
-      <td  class="uneditable" id="leftover<?php echo $count; ?>"><?php echo $leftover; ?></td>
-      <td  class="uneditable" id="value<?php echo $count; ?>"><?php echo $value; ?></td>
+      <td class="uneditable" id="ordered<?php echo $count; ?>"><?php echo number_format($ordered); ?></td>
+      <td class="uneditable"id="prepared<?php echo $count; ?>"><?php echo number_format($prepared); ?></td>
+      <td class="uneditable"id="returned<?php echo $count; ?>"><?php echo number_format($returned); ?></td>
+      <td  class="editable" id="difference<?php echo $count; ?>"><?php echo number_format($difference); ?></td>
+      <td  class="uneditable" id="leftover<?php echo $count; ?>"><?php echo number_format($leftover); ?></td>
+      <td  class="uneditable" id="value<?php echo $count; ?>"><?php echo number_format($value); ?></td>
     </tr>
     <?php
     }

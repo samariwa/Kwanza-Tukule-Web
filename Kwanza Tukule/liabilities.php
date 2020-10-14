@@ -112,7 +112,7 @@
       <th scope="row" id="id<?php echo $count; ?>"><?php echo $id; ?></th>
       <td id="name<?php echo $count; ?>"><?php echo $name; ?></td>
       <td id="contact<?php echo $count; ?>"><?php echo $party; ?></td>
-      <td id="staffId<?php echo $count; ?>"><?php echo $due; ?></td>
+      <td id="staffId<?php echo $count; ?>">Ksh. <?php echo number_format($due); ?></td>
       <td id="nationalId<?php echo $count; ?>"><?php echo $date; ?></td>
     </tr>
     <?php

@@ -245,47 +245,47 @@ $html = '<h1 style="text-align:center"><strong><img src="assets/img/Kwanza Tukul
   $value = $qty * $price;
    $html .= ' <tr>
         <td>'.$name.'</td>
-        <td>'.$qty.'</td>
-        <td>'.$value.'</td>
+        <td>'.number_format($qty).'</td>
+        <td>'.number_format($value).'</td>
     </tr>';
   }  
 $html .= '</table>
 <p>Below is the report that examines the company performance for the last one month.</p>
 <p>This month we managed to <b>sale products worth Ksh. '.$total_sales.'</b>. This income for sale of different products whose demands depended on the customers preferences. The <b>5 most demanded products</b> this month  that were <b>ordered from the company</b> with the corresponding sales quantities(units) were as follows:</p>
 <ol>
-    <b><li>'.$fastmovingproducts[0][0].' - '.$fastmovingproducts[0][1].'</li>
-    <li>'.$fastmovingproducts[1][0].' - '.$fastmovingproducts[1][1].'</li>
-    <li>'.$fastmovingproducts[2][0].' - '.$fastmovingproducts[2][1].'</li>
-    <li>'.$fastmovingproducts[3][0].' - '.$fastmovingproducts[3][1].'</li>
-    <li>'.$fastmovingproducts[4][0].' - '.$fastmovingproducts[4][1].'</li></b>
+    <b><li>'.$fastmovingproducts[0][0].' - '.number_format($fastmovingproducts[0][1]).'</li>
+    <li>'.$fastmovingproducts[1][0].' - '.number_format($fastmovingproducts[1][1]).'</li>
+    <li>'.$fastmovingproducts[2][0].' - '.number_format($fastmovingproducts[2][1]).'</li>
+    <li>'.$fastmovingproducts[3][0].' - '.number_format($fastmovingproducts[3][1]).'</li>
+    <li>'.$fastmovingproducts[4][0].' - '.number_format($fastmovingproducts[4][1]).'</li></b>
 </ol>
 The <b>5 most demanded products</b> this month <b>based on sales made</b> with the corresponding sales quantities(units) were as follows:</p>
 <ol>
-    <b><li>'.$fastsellingproducts[0][0].' - '.$fastsellingproducts[0][1].'</li>
-    <li>'.$fastsellingproducts[1][0].' - '.$fastsellingproducts[1][1].'</li>
-    <li>'.$fastsellingproducts[2][0].' - '.$fastsellingproducts[2][1].'</li>
-    <li>'.$fastsellingproducts[3][0].' - '.$fastsellingproducts[3][1].'</li>
-    <li>'.$fastsellingproducts[4][0].' - '.$fastsellingproducts[4][1].'</li></b>
+    <b><li>'.$fastsellingproducts[0][0].' - '.number_format($fastsellingproducts[0][1]).'</li>
+    <li>'.$fastsellingproducts[1][0].' - '.number_format($fastsellingproducts[1][1]).'</li>
+    <li>'.$fastsellingproducts[2][0].' - '.number_format($fastsellingproducts[2][1]).'</li>
+    <li>'.$fastsellingproducts[3][0].' - '.number_format($fastsellingproducts[3][1]).'</li>
+    <li>'.$fastsellingproducts[4][0].' - '.number_format($fastsellingproducts[4][1]).'</li></b>
 </ol>
 <p>On the other hand the <b>5 least  demanded</b> products of the month that were <b>ordered from the company</b> with their corresponding sales quantities(units) were as follows:</p>
 <ol>
-    <b><li>'.$slowmovingproducts[0][0].' - '.$slowmovingproducts[0][1].'</li>
-    <li>'.$slowmovingproducts[1][0].' - '.$slowmovingproducts[1][1].'</li>
-    <li>'.$slowmovingproducts[2][0].' - '.$slowmovingproducts[2][1].'</li>
-    <li>'.$slowmovingproducts[3][0].' - '.$slowmovingproducts[3][1].'</li>
-    <li>'.$slowmovingproducts[4][0].' - '.$slowmovingproducts[4][1].'</li></b>
+    <b><li>'.$slowmovingproducts[0][0].' - '.number_format($slowmovingproducts[0][1]).'</li>
+    <li>'.$slowmovingproducts[1][0].' - '.number_format($slowmovingproducts[1][1]).'</li>
+    <li>'.$slowmovingproducts[2][0].' - '.number_format($slowmovingproducts[2][1]).'</li>
+    <li>'.$slowmovingproducts[3][0].' - '.number_format($slowmovingproducts[3][1]).'</li>
+    <li>'.$slowmovingproducts[4][0].' - '.number_format($slowmovingproducts[4][1]).'</li></b>
 </ol>
 <p>The <b>5 least  demanded</b> products of the month <b>based on sales made</b> with their corresponding sales quantities(units) were as follows:</p>
 <ol>
-    <b><li>'.$slowsellingproducts[0][0].' - '.$slowsellingproducts[0][1].'</li>
-    <li>'.$slowsellingproducts[1][0].' - '.$slowsellingproducts[1][1].'</li>
-    <li>'.$slowsellingproducts[2][0].' - '.$slowsellingproducts[2][1].'</li>
-    <li>'.$slowsellingproducts[3][0].' - '.$slowsellingproducts[3][1].'</li>
-    <li>'.$slowsellingproducts[4][0].' - '.$slowsellingproducts[4][1].'</li></b>
+    <b><li>'.$slowsellingproducts[0][0].' - '.number_format($slowsellingproducts[0][1]).'</li>
+    <li>'.$slowsellingproducts[1][0].' - '.number_format($slowsellingproducts[1][1]).'</li>
+    <li>'.$slowsellingproducts[2][0].' - '.number_format($slowsellingproducts[2][1]).'</li>
+    <li>'.$slowsellingproducts[3][0].' - '.number_format($slowsellingproducts[3][1]).'</li>
+    <li>'.$slowsellingproducts[4][0].' - '.number_format($slowsellingproducts[4][1]).'</li></b>
 </ol>
-<p>All products combined generated a <b>revenue of Ksh. '.$total_income.'</b>.</p>
-<p>With that the <b>gross '.$gross_profit_loss.' was Ksh. '.$gross.'</b>.This is '.$gross_up_down.' gross projection by '.intval($gross_pc).'%.Last month there was a '.$last_gross_up_down.' of Ksh. '.$last_gross.'.</p>
-<p>Various <b>expenses</b> were incurred during the month which <b>totaled to Ksh. '.$expenses.'</b>. Below is a breakdown of the various expense details for the past one month with their respective amounts paid and due.</p>
+<p>All products combined generated a <b>revenue of Ksh. '.number_format($total_income).'</b>.</p>
+<p>With that the <b>gross '.$gross_profit_loss.' was Ksh. '.number_format($gross).'</b>.This is '.$gross_up_down.' gross projection by '.intval($gross_pc).'%.Last month there was a '.$last_gross_up_down.' of Ksh. '.number_format($last_gross).'.</p>
+<p>Various <b>expenses</b> were incurred during the month which <b>totaled to Ksh. '.number_format($expenses).'</b>. Below is a breakdown of the various expense details for the past one month with their respective amounts paid and due.</p>
 <table border="1" cellspacing="1" cellpadding="4" align="center">
     <tr>
         <th><b>Date of Payment</b></th>
@@ -305,22 +305,22 @@ The <b>5 most demanded products</b> this month <b>based on sales made</b> with t
         <td>'.$day.'</td>
         <td>'.$name.'</td>
         <td>'.$name.'</td>
-        <td>Ksh. '.$paid.'</td>
-        <td>Ksh. '.$due.'</td>
+        <td>Ksh. '.number_format($paid).'</td>
+        <td>Ksh. '.number_format($due).'</td>
     </tr>';
   }  
 $html .= '</table>
-<p>Given the data above the <b>projected '.$net_profit_loss.'</b> made during this month <b>was therefore Ksh. '.$net.'</b>.This is '.$net_up_down.' net projection by '.intval($net_pc).'%.Last month there was a '.$last_net_up_down.' of Ksh. '.$last_net.'.</p>
-<p>Based on the due amounts above, the <b>added liability this month resulted to Ksh. '.$monthLiability.'</b> summing up the <b>total liability of the company to Ksh. '.$totalLiability.'</b>.</p>
-<p>In the given period, a <b>total of '.$customersTotal.' customers</b> out of the total possible '.$customersrowcount.' customers have ordered various products from the company. This was '.$customers_difference.' from last month where '.$customersTotalLast.' customers made orders. '.$newCustomerStatement.'</p>
+<p>Given the data above the <b>projected '.$net_profit_loss.'</b> made during this month <b>was therefore Ksh. '.number_format($net).'</b>.This is '.$net_up_down.' net projection by '.intval($net_pc).'%.Last month there was a '.$last_net_up_down.' of Ksh. '.number_format($last_net).'.</p>
+<p>Based on the due amounts above, the <b>added liability this month resulted to Ksh. '.number_format($monthLiability).'</b> summing up the <b>total liability of the company to Ksh. '.number_format($totalLiability).'</b>.</p>
+<p>In the given period, a <b>total of '.number_format($customersTotal).' customers</b> out of the total possible '.number_format($customersrowcount).' customers have ordered various products from the company. This was '.$customers_difference.' from last month where '.number_format($customersTotalLast).' customers made orders. '.$newCustomerStatement.'</p>
 
 <p>In general all the customers had different payment tendencies during the period. The <b>top 5 customers who made the biggest payments</b> during the period with their corresponding payments were as follows:</p>
 <ol>
-    <b><li>'.$payerList[0][0].' - Ksh.'.$payerList[0][1].'</li>
-    <li>'.$payerList[1][0].' - Ksh.'.$payerList[1][1].'</li>
-    <li>'.$payerList[2][0].' - Ksh.'.$payerList[2][1].'</li>
-    <li>'.$payerList[3][0].' - Ksh.'.$payerList[3][1].'</li>
-    <li>'.$payerList[4][0].' - Ksh.'.$payerList[4][1].'</li></b>
+    <b><li>'.$payerList[0][0].' - Ksh.'.number_format($payerList[0][1]).'</li>
+    <li>'.$payerList[1][0].' - Ksh.'.number_format($payerList[1][1]).'</li>
+    <li>'.$payerList[2][0].' - Ksh.'.number_format($payerList[2][1]).'</li>
+    <li>'.$payerList[3][0].' - Ksh.'.number_format($payerList[3][1]).'</li>
+    <li>'.$payerList[4][0].' - Ksh.'.number_format($payerList[4][1]).'</li></b>
 </ol>
 <p>The above customers are the new key customers for the coming month given that they made the biggest orders and made timely payments.</p>
 <p>During the month, we had deliverers who made deliveries to the various customers. Each deliverer had their own sub-set of customers that they made deliveries to. The <b>deliverers <u>this month</u> with their corresponding value of worth of orders delivered to customers and amount of money collected</b> durig the period are as follows:</p>
@@ -336,8 +336,8 @@ $deliverer = $row['deliverer'];
   $worth = $row['worth'];
    $html .= ' <tr>
         <td>'.$deliverer.'</td>
-        <td>'.$worth.'</td>
-        <td>'.$collected.'</td>
+        <td>Ksh. '.number_format($worth).'</td>
+        <td>Ksh. '.number_format($collected).'</td>
     </tr>';
   }  
 $html .= '</table>
@@ -354,8 +354,8 @@ $deliverer = $row['deliverer'];
   $worth = $row['worth'];
    $html .= ' <tr>
         <td>'.$deliverer.'</td>
-        <td>'.$worth.'</td>
-        <td>'.$collected.'</td>
+        <td>Ksh. '.number_format($worth).'</td>
+        <td>Ksh. '.number_format($collected).'</td>
     </tr>';
   }  
 $html .= '</table>
@@ -373,8 +373,8 @@ $lastname = $row['lastname'];
   $worth = $row['worth'];
    $html .= ' <tr>
         <td>'.$firstname.' '.$lastname.'</td>
-        <td>'.$worth.'</td>
-        <td>'.$collected.'</td>
+        <td>Ksh. '.number_format($worth).'</td>
+        <td>Ksh. '.number_format($collected).'</td>
     </tr>';
   }  
 $html .= '</table>
@@ -392,8 +392,8 @@ $lastname = $row['lastname'];
   $worth = $row['worth'];
    $html .= ' <tr>
         <td>'.$firstname.' '.$lastname.'</td>
-        <td>'.$worth.'</td>
-        <td>'.$collected.'</td>
+        <td>Ksh. '.number_format($worth).'</td>
+        <td>Ksh. '.number_format($collected).'</td>
     </tr>';
   }  
 $html .= '</table>

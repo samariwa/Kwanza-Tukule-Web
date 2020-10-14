@@ -231,28 +231,28 @@
         ?>
         <div class="row" style="margin-left: 50px;"><h5>Summary for <?php echo $yesterday; ?></h5> </div><br>
         <div class="row" style="margin-left: 50px;">
-            <h6>Total Sales Value: Ksh. <?php echo $totalSalesYesterday; ?></h6>
+            <h6>Total Sales Value: Ksh. <?php echo number_format($totalSalesYesterday); ?></h6>
         </div><br>
         <div class="row" style="margin-left: 50px;">
-            <h6>Revenue Realized: Ksh. <?php echo $totalRevenueYesterday; ?></h6>
+            <h6>Revenue Realized: Ksh. <?php echo number_format($totalRevenueYesterday); ?></h6>
         </div><br>
         <div class="row" style="margin-left: 50px;">
-            <h6>Total Paid via M-Pesa for Yesterday's Sales: Ksh. <?php echo $totalMpesaYesterday; ?></h6>
+            <h6>Total Paid via M-Pesa for Yesterday's Sales: Ksh. <?php echo number_format($totalMpesaYesterday); ?></h6>
         </div><br>
         <div class="row" style="margin-left: 50px;">
-            <h6>Total Paid in Cash for Yesterday's Sales: Ksh. <?php echo $totalCashYesterday; ?></h6>
+            <h6>Total Paid in Cash for Yesterday's Sales: Ksh. <?php echo number_format($totalCashYesterday); ?></h6>
         </div><br>
         <div class="row" style="margin-left: 50px;">
-            <h6>Total Debt Paid via M-Pesa: Ksh. <?php echo $totalMpesaDebt; ?></h6>
+            <h6>Total Debt Paid via M-Pesa: Ksh. <?php echo number_format($totalMpesaDebt); ?></h6>
         </div><br>
         <div class="row" style="margin-left: 50px;">
-            <h6>Total Debt Paid in Cash: Ksh. <?php echo $totalCashDebt; ?></h6>
+            <h6>Total Debt Paid in Cash: Ksh. <?php echo number_format($totalCashDebt); ?></h6>
         </div><br>
         <div class="row" style="margin-left: 50px;">
-            <h6>Total Banked: Ksh. <?php echo $totalBankedYesterday; ?></h6>
+            <h6>Total Banked: Ksh. <?php echo number_format($totalBankedYesterday); ?></h6>
         </div><br>
         <div class="row" style="margin-left: 50px;">
-            <h6>Expenditure: Ksh. <?php echo $expenditureYesterday; ?></h6>
+            <h6>Expenditure: Ksh. <?php echo number_format($expenditureYesterday); ?></h6>
         </div><br>
         
         

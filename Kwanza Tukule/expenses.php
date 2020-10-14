@@ -174,9 +174,9 @@
       <td class="uneditable" id="name<?php echo $count; ?>"><?php echo $name; ?></td>
       <td class="editable" id="particular<?php echo $count; ?>"><?php echo $particular; ?></td>
       <td class="editable" id="party<?php echo $count; ?>"><?php echo $party; ?></td>
-      <td class="editable" id="total<?php echo $count; ?>"><?php echo $total; ?></td>
-      <td class="editable" id="paid<?php echo $count; ?>"><?php echo $paid; ?></td>
-      <td class="uneditable" id="due<?php echo $count; ?>"><?php echo $due; ?></td>
+      <td class="editable" id="total<?php echo $count; ?>">Ksh. <?php echo $total; ?></td>
+      <td class="editable" id="paid<?php echo $count; ?>">Ksh. <?php echo $paid; ?></td>
+      <td class="uneditable" id="due<?php echo $count; ?>">Ksh. <?php echo number_format($due); ?></td>
       <td class="editable" id="date<?php echo $count; ?>"><?php echo $date; ?></td>
        <td>
         <button id="<?php echo $id; ?>" data_id="<?php echo $id; ?>" class="btn btn-danger btn-sm active deleteExpense" role="button" aria-pressed="true" ><i class="fa fa-trash"></i>&ensp;Delete</button>

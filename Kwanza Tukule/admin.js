@@ -1553,6 +1553,9 @@ $('#officeEditable').editableTableWidget();
     if (result == 'Unavailable') {
       alert("Quantity Entered Unavailable");
     }
+    else if (result == 'excess returned') {
+      alert("Error: Returned greater than quantity requested");
+    }
     else{
     //location.reload(true);
   }
@@ -1579,6 +1582,9 @@ $('#officeEditable').editableTableWidget();
   function(result){
      if (result == 'Unavailable') {
       alert("Quantity Entered Unavailable");
+    }
+    else if (result == 'excess returned') {
+      alert("Error: Returned greater than quantity requested");
     }
     else{
     //location.reload(true);
@@ -1607,6 +1613,9 @@ $('#officeEditable').editableTableWidget();
      if (result == 'Unavailable') {
       alert("Quantity Entered Unavailable");
     }
+    else if (result == 'excess returned') {
+      alert("Error: Returned greater than quantity requested");
+    }
     else{
     //location.reload(true);
   }
@@ -1633,6 +1642,9 @@ $('#officeEditable').editableTableWidget();
   function(result){
      if (result == 'Unavailable') {
       alert("Quantity Entered Unavailable");
+    }
+    else if (result == 'excess returned') {
+      alert("Error: Returned greater than quantity requested");
     }
     else{
     //location.reload(true);
@@ -1661,6 +1673,9 @@ $('#extraSalesEditableYesterday').editableTableWidget();
      if (result == 'Unavailable') {
       alert("Quantity Entered Unavailable");
     }
+    else if (result == 'excess returned') {
+      alert("Error: Returned greater than quantity requested");
+    }
     else{
     //location.reload(true);
   }
@@ -1688,6 +1703,9 @@ $('#extraSalesEditableYesterday').editableTableWidget();
      if (result == 'Unavailable') {
       alert("Quantity Entered Unavailable");
     }
+    else if (result == 'excess returned') {
+      alert("Error: Returned greater than quantity requested");
+    }
     else{
     //location.reload(true);
   }
@@ -1714,6 +1732,9 @@ $('#extraSalesEditableYesterday').editableTableWidget();
   function(result){
      if (result == 'Unavailable') {
       alert("Quantity Entered Unavailable");
+    }
+    else if (result == 'excess returned') {
+      alert("Error: Returned greater than quantity requested");
     }
     else{
       //readsales();

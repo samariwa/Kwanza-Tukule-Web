@@ -174,11 +174,11 @@
     <tr>
       <th class="uneditable" scope="row"  id="id<?php echo $count; ?>"><?php echo $id; ?></th>
       <td class="uneditable" id="name<?php echo $count; ?>"><?php echo $name; ?></td>
-      <td class="uneditable" id="purchased<?php echo $count; ?>"><?php echo $purchased; ?></td>
-      <td class="uneditable"id="undamaged<?php echo $count; ?>"><?php echo $closing; ?></td>
+      <td class="uneditable" id="purchased<?php echo $count; ?>"><?php echo number_format($purchased); ?></td>
+      <td class="uneditable"id="undamaged<?php echo $count; ?>"><?php echo number_format($closing); ?></td>
       <td  class="editable" id="newDamaged<?php echo $count; ?>">0</td>
-      <td  class="uneditable" id="damaged<?php echo $count; ?>"><?php echo $damaged; ?></td>
-      <td  class="uneditable" id="value<?php echo $count; ?>"><?php echo $value; ?></td>
+      <td  class="uneditable" id="damaged<?php echo $count; ?>"><?php echo number_format($damaged); ?></td>
+      <td  class="uneditable" id="value<?php echo $count; ?>"><?php echo number_format($value); ?></td>
     </tr>
     <?php
     if ($Quantity > $purchased) {
@@ -197,11 +197,11 @@
       <tr>
         <th class="uneditable" scope="row"  id="id<?php echo $count; ?>"><?php echo $id2; ?></th>
       <td class="uneditable" id="name<?php echo $count; ?>"><?php echo $name2; ?></td>
-      <td class="uneditable" id="purchased<?php echo $count; ?>"><?php echo $purchased2; ?></td>
-      <td class="uneditable"id="undamaged<?php echo $count; ?>"><?php echo $Quantity2; ?></td>
+      <td class="uneditable" id="purchased<?php echo $count; ?>"><?php echo number_format($purchased2); ?></td>
+      <td class="uneditable"id="undamaged<?php echo $count; ?>"><?php echo number_format($Quantity2); ?></td>
       <td  class="editable" id="newDamaged<?php echo $count; ?>">0</td>
-      <td  class="uneditable" id="damaged<?php echo $count; ?>"><?php echo $damaged2; ?></td>
-      <td  class="uneditable" id="value<?php echo $count; ?>"><?php echo $value2; ?></td>
+      <td  class="uneditable" id="damaged<?php echo $count; ?>"><?php echo number_format($damaged2); ?></td>
+      <td  class="uneditable" id="value<?php echo $count; ?>"><?php echo number_format($value2); ?></td>
     </tr>
     <?php
     }
@@ -210,7 +210,7 @@
   </tbody>
 </table> 
  <br>
- <div style="text-align: center;"><b>Total Value of Damaged: Ksh. <?php echo $totalDamaged; ?></b></div>  
+ <div style="text-align: center;"><b>Total Value of Damaged: Ksh. <?php echo number_format($totalDamaged); ?></b></div>  
 
   <!-- Scroll to Top Button-->
   <?php include "admin_footer.php" ?> 

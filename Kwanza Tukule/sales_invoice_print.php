@@ -62,16 +62,16 @@ else{
          $time = $row['time'];
    $pdf .= '<tr height="40px">
       <th scope="row" style="text-align:center">  '.$product.' </th>
-      <td style="text-align:center"> Ksh. '.$price.' </td>
+      <td style="text-align:center"> Ksh. '.number_format($price).' </td>
       <td style="text-align:center">  '.$quantity.' </td>
-      <td style="text-align:center"> Ksh. '.$cost.' </td>
+      <td style="text-align:center"> Ksh. '.number_format($cost).' </td>
       <td style="text-align:center">  '.$time.' </td>
     </tr>';
     }
  $pdf .=  '
   <tr >
         <th colspan = "3"><b>Cost of goods requested:</b></th>
-      <td id = "invoiceTotal"><b>Ksh. '.$totalCost .'</b> </td>
+      <td id = "invoiceTotal"><b>Ksh. '.number_format($totalCost).'</b> </td>
     </tr>
  </tbody>
 </table>
@@ -128,9 +128,9 @@ echo $pdf;
          $time = $row['time'];
    $pdf .= ' <tr>
       <th scope="row" style="text-align:center">  '.$product.' </th>
-      <td style="text-align:center"> Ksh. '.$price.' </td>
+      <td style="text-align:center"> Ksh. '.number_format($price).' </td>
       <td style="text-align:center">  '.$quantity.' </td>
-      <td style="text-align:center"> Ksh. '.$cost.' </td>
+      <td style="text-align:center"> Ksh. '.number_format($cost).' </td>
       <td style="text-align:center">  '.$time.' </td>
     </tr>';
     }
@@ -138,7 +138,7 @@ echo $pdf;
  ' 
   <tr >
   <th colspan = "3"><b>Cost of goods requested</b></th>
-  <td id = "invoiceTotal"><b>Ksh. '.$totalCost .'</b> </td>
+  <td id = "invoiceTotal"><b>Ksh. '.number_format($totalCost).'</b> </td>
     </tr>
  </tbody>
 </table>
