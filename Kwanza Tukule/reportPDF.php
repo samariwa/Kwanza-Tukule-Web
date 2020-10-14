@@ -246,7 +246,7 @@ $html = '<h1 style="text-align:center"><strong><img src="assets/img/Kwanza Tukul
    $html .= ' <tr>
         <td>'.$name.'</td>
         <td>'.number_format($qty).'</td>
-        <td>'.number_format($value).'</td>
+        <td>Ksh. '.number_format($value).'</td>
     </tr>';
   }  
 $html .= '</table>
