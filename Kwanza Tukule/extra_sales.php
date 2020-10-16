@@ -26,128 +26,8 @@
           </div>
         <?php
          }
-        ?>
-           <?php
-       if ($view == 'Software' || $view == 'Director' || $view == 'CEO') {
-
-        ?>
-          <!-- Content Row -->
-          <div class="row">
-
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-primary shadow h-100 py-2">
-                <a class="text-xs font-weight-bold text-primary text-uppercase mb-1" href="customers.php" style="text-decoration: none;">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <i class="fa fa-users fa-2x"></i>&emsp;Customers
-                    </div>
-                  </div>
-                </div>
-                </a>
-              </div>
-            </div>
-
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-success shadow h-100 py-2">
-                <a class="text-xs font-weight-bold text-success text-uppercase mb-1" href="stock.php" style="text-decoration: none;">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <i class="fa fa-cubes fa-2x"></i>&emsp;Stock
-                    </div>
-                  </div>
-                </div>
-                </a>
-              </div>
-            </div>
-
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-info shadow h-100 py-2">
-                <a class="text-xs font-weight-bold text-info text-uppercase mb-1" href="#" style="text-decoration: none;">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <i class="fa fa-shopping-cart fa-2x"></i>&emsp;Sales
-                    </div>
-                  </div>
-                </div>
-                </a>
-              </div>
-            </div>
-
-            <!-- Pending Requests Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-warning shadow h-100 py-2">
-                <a class="text-xs font-weight-bold text-warning text-uppercase mb-1" href="summary.php" style="text-decoration: none;">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <i class="fa fa-clipboard fa-2x"></i>&emsp;Summary
-                    </div>
-                  </div>
-                </div>
-              </div>
-              </a>
-            </div>
-          </div>
-           <?php
-              }else{
-           ?>
-             <div class="row">
-
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-4 col-md-6 mb-4">
-              <div class="card border-left-primary shadow h-100 py-2">
-                <a class="text-xs font-weight-bold text-primary text-uppercase mb-1" href="customers.php" style="text-decoration: none;">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <i class="fa fa-users fa-2x"></i>&emsp;Customers
-                    </div>
-                  </div>
-                </div>
-                </a>
-              </div>
-            </div>
-
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-4 col-md-6 mb-4">
-              <div class="card border-left-success shadow h-100 py-2">
-                <a class="text-xs font-weight-bold text-success text-uppercase mb-1" href="stock.php" style="text-decoration: none;">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <i class="fa fa-cubes fa-2x"></i>&emsp;Stock
-                    </div>
-                  </div>
-                </div>
-                </a>
-              </div>
-            </div>
-
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-4 col-md-6 mb-4">
-              <div class="card border-left-info shadow h-100 py-2">
-                 <a class="text-xs font-weight-bold text-info text-uppercase mb-1" href="#" style="text-decoration: none;">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                     <i class="fa fa-shopping-cart fa-2x"></i>&emsp;Sales
-                    </div>
-                  </div>
-                </div>
-                </a>
-              </div>
-            </div>
-
-          </div>
-            <?php
-          }
-        ?>
+           include "dashboard_tabs.php";
+          ?>
       <div class="row">
         <div class="col-md-2">
       <a href="sales.php" class="btn btn-primary btn-md active ml-3" role="button" aria-pressed="true"><i class="fa fa-arrow-left"></i>&ensp;Back</a>
@@ -258,7 +138,7 @@
       ?>
       <td class="uneditable" id="numberLastMonth<?php echo $count; ?>"><?php echo $contact; ?></td>
       <td class="uneditable" id="productLastMonth<?php echo $count; ?>"><?php echo $product; ?></td>
-      <td class="editable" id="qtyLastMonth<?php echo $count; ?>"><?php echo $qty; ?></td>
+      <td class="uneditable" id="qtyLastMonth<?php echo $count; ?>"><?php echo $qty; ?></td>
       <td class="uneditable" id="costLastMonth<?php echo $id; ?>"><?php echo $cost; ?></td>
       <td class="uneditable" id="discountLastMonth<?php echo $count; ?>"><?php echo $discount; ?></td>
       <td class="uneditable" id="debtLastMonth<?php echo $count; ?>"><?php echo $debt; ?></td>
@@ -384,7 +264,7 @@
       ?>
       <td class="uneditable" id="numberYesterday<?php echo $count; ?>"><?php echo $contact; ?></td>
       <td class="uneditable" id="productYesterday<?php echo $count; ?>"><?php echo $product; ?></td>
-      <td class="editable" id="qtyYesterday<?php echo $count; ?>"><?php echo $qty; ?></td>
+      <td class="uneditable" id="qtyYesterday<?php echo $count; ?>"><?php echo $qty; ?></td>
       <td class="uneditable" id="costYesterday<?php echo $id; ?>"><?php echo $cost; ?></td>
       <td class="uneditable" id="discountYesterday<?php echo $count; ?>"><?php echo $discount; ?></td>
       <td class="uneditable" id="debtYesterday<?php echo $count; ?>"><?php echo $debt; ?></td>
@@ -509,7 +389,7 @@
       ?>
       <td class="uneditable" id="numberToday<?php echo $count; ?>"><?php echo $contact; ?></td>
       <td class="uneditable" id="productToday<?php echo $count; ?>"><?php echo $product; ?></td>
-      <td class="editable" id="qtyToday<?php echo $count; ?>"><?php echo $qty; ?></td>
+      <td class="uneditable" id="qtyToday<?php echo $count; ?>"><?php echo $qty; ?></td>
       <td class="uneditable" id="costToday<?php echo $id; ?>"><?php echo $cost; ?></td>
       <td class="editable" id="discountToday<?php echo $count; ?>"><?php echo $discount; ?></td>
       <td class="uneditable" id="debtToday<?php echo $count; ?>"><?php echo $debt; ?></td>
@@ -634,7 +514,7 @@
       ?>
       <td class="uneditable" id="numberTomorrow<?php echo $count; ?>"><?php echo $contact; ?></td>
       <td class="uneditable" id="productTomorrow<?php echo $count; ?>"><?php echo $product; ?></td>
-      <td class="editable" id="qtyTomorrow<?php echo $count; ?>"><?php echo $qty; ?></td>
+      <td class="uneditable" id="qtyTomorrow<?php echo $count; ?>"><?php echo $qty; ?></td>
       <td class="uneditable" id="costTomorrow<?php echo $id; ?>"><?php echo $cost; ?></td>
       <td class="editable" id="discountTomorrow<?php echo $count; ?>"><?php echo $discount; ?></td>
       <td class="uneditable" id="debtTomorrow<?php echo $count; ?>"><?php echo $debt; ?></td>
@@ -761,7 +641,7 @@
       ?>
       <td class="uneditable" id="numberNextMonth<?php echo $count; ?>"><?php echo $contact; ?></td>
       <td class="uneditable" id="productNextMonth<?php echo $count; ?>"><?php echo $product; ?></td>
-      <td class="editable" id="qtyNextMonth<?php echo $count; ?>"><?php echo $qty; ?></td>
+      <td class="uneditable" id="qtyNextMonth<?php echo $count; ?>"><?php echo $qty; ?></td>
       <td class="uneditable" id="costNextMonth<?php echo $id; ?>"><?php echo $cost; ?></td>
       <td class="editable" id="discountNextMonth<?php echo $count; ?>"><?php echo $discount; ?></td>
       <td class="uneditable" id="debtNextMonth<?php echo $count; ?>"><?php echo $debt; ?></td>
