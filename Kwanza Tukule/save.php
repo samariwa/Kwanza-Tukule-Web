@@ -72,23 +72,27 @@ $result1 = mysqli_query($connection,"SELECT Customer_id,Quantity,Balance FROM or
     if ($returns == $returned) {
       $Returned = $Quantity - $qty;
     }
+        else if ($returned < $returns && $returned >= 0) {
+      $Returned = $returned;
+      $initialAmt = $Quantity + $returns;
+      $qty = $initialAmt - $returned;
+    }
+    else if ($returned < 0) {
+      $Returned = 0;
+      $initialAmt = $Quantity + $returns;
+      $qty = $initialAmt - 0;
+    }
     else{
       $Returned = $returned;
-      $qty = $qty - $returned; 
-    }
-    $qty_bal = '';
-    if ($Returned > 0) {
-      $qty_bal = $Returned;
-    }
-    else{
-      $qty_bal = '0';
+      $initialAmt = $Quantity + $returns;
+      $qty = $initialAmt - $returned;
     }
     $qtyAdded = $qty - $Quantity;
     if ($storeQty < $qtyAdded) {
       echo "Unavailable";
       exit();
     }
-      mysqli_query($connection,"UPDATE `orders`  SET `Quantity` = '".$qty."',`Balance` = '".$newBalance."',`MPesa` = '".$mpesa."',`Cash` = '".$cash."',`Late_Order` = '".$date."',`Returned` = Returned +'".$qty_bal."',`Banked` = '".$banked."',`Slip_Number` = '".$slip."',`Banked_By` = '".$banker."' WHERE `id` = '".$id."'")or die($connection->error);
+      mysqli_query($connection,"UPDATE `orders`  SET `Quantity` = '".$qty."',`Balance` = '".$newBalance."',`MPesa` = '".$mpesa."',`Cash` = '".$cash."',`Late_Order` = '".$date."',`Returned` = '".$Returned."',`Banked` = '".$banked."',`Slip_Number` = '".$slip."',`Banked_By` = '".$banker."' WHERE `id` = '".$id."'")or die($connection->error);
       mysqli_query($connection,"update stock set Quantity= Quantity +".$Returned." WHERE `id` = '".$stock_id."'")or die($connection->error);
       $product = mysqli_query($connection,"SELECT Name,Category_Name  FROM `stock` inner join category on stock.Category_id = category.id WHERE stock.id = '".$stock_id."'")or die($connection->error);
    $Product = mysqli_fetch_array($product);
@@ -250,23 +254,27 @@ $result1 = mysqli_query($connection,"SELECT Staff_id,Quantity,Balance FROM sales
     if ($returns == $returned) {
       $Returned = $Quantity - $qty;
     }
+        else if ($returned < $returns && $returned >= 0) {
+      $Returned = $returned;
+      $initialAmt = $Quantity + $returns;
+      $qty = $initialAmt - $returned;
+    }
+    else if ($returned < 0) {
+      $Returned = 0;
+      $initialAmt = $Quantity + $returns;
+      $qty = $initialAmt - 0;
+    }
     else{
       $Returned = $returned;
-      $qty = $qty - $returned; 
-    }
-      $qty_bal = '';
-    if ($Returned > 0) {
-      $qty_bal = $Returned;
-    }
-    else{
-      $qty_bal = '0';
+      $initialAmt = $Quantity + $returns;
+      $qty = $initialAmt - $returned;
     }
     $qtyAdded = $qty - $Quantity;
     if ($storeQty < $qtyAdded) {
       echo "Unavailable";
       exit();
     }
-      mysqli_query($connection,"UPDATE `sales`  SET `Quantity` = '".$qty."',`Balance` = '".$newBalance."',`MPesa` = '".$mpesa."',`Cash` = '".$cash."',`Discount` = '".$discount."',`Returned` = Returned +'".$qty_bal."',`Banked` = '".$banked."',`Slip_Number` = '".$slip."',`Banked_By` = '".$banker."' WHERE `id` = '".$id."'")or die($connection->error);
+      mysqli_query($connection,"UPDATE `sales`  SET `Quantity` = '".$qty."',`Balance` = '".$newBalance."',`MPesa` = '".$mpesa."',`Cash` = '".$cash."',`Discount` = '".$discount."',`Returned` = '".$Returned."',`Banked` = '".$banked."',`Slip_Number` = '".$slip."',`Banked_By` = '".$banker."' WHERE `id` = '".$id."'")or die($connection->error);
       mysqli_query($connection,"update stock set Quantity= Quantity +".$Returned." WHERE `id` = '".$stock_id."'")or die($connection->error);
       $product = mysqli_query($connection,"SELECT Name,Category_Name  FROM `stock` inner join category on stock.Category_id = category.id WHERE stock.id = '".$stock_id."'")or die($connection->error);
    $Product = mysqli_fetch_array($product);
