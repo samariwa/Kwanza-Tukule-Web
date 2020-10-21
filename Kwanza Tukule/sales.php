@@ -26,6 +26,7 @@
           </div>
         <?php
          }
+         include "dashboard_tabs.php";
        if ($view == 'Software' || $view == 'Director' || $view == 'CEO' || $view == 'Stores Manager') {
         ?>
       <div class="row">
