@@ -164,7 +164,7 @@ if ((isset($_POST["pass"])) && (isset($_POST["user"])) && (isset($_POST["pass2"]
   <body>
             <nav style="background-color: white;opacity: 0.9">
                <div class="logo">&emsp;&emsp;
-                  <a class="navbar-brand" href="#"><img src="../Kwanza Tukule/assets/img/Kwanza Tukule.png" height="55" width="140"></a>
+                  <a class="navbar-brand" href="#"><img src="assets/img/Kwanza Tukule.png" height="55" width="140"></a>
                </div>
             </nav>
           <div  style="background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);margin-right: 0px;margin-left: 0px;width: 100% ">

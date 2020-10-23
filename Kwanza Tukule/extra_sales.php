@@ -48,11 +48,11 @@
           <div class="tab-content">
             <div id="menu1" class="tab-pane fade">
         <?php
-        $ordersrowcount = mysqli_num_rows($extraSalesListLastMonth );
+        $extraSalesLastMonthrowcount = mysqli_num_rows($extraSalesListLastMonth );
       ?>
       <div class="row">
          <div class="col-md-12">
-      <h6 class="offset-5">Total Number: <?php echo $ordersrowcount; ?></h6>
+      <h6 class="offset-5">Total Number: <?php echo $extraSalesLastMonthrowcount; ?></h6>
     </div>
       </div> 
       <table id="extraSalesEditableLastMonth" class="table table-striped table-hover table-responsive  paginate" style="overflow-x:scroll;overflow-y:scroll;text-align: center;">

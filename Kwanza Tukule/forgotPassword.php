@@ -66,7 +66,7 @@ $exists = TRUE;
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <script src="response.js" defer></script>
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-    <link rel = "icon" href ="../Kwanza Tukule/assets/img/logo.png" type = "image/x-icon">
+    <link rel = "icon" href ="assets/img/Kwanza Tukule.png" type = "image/x-icon">
   </head>
   <body>
             <nav style="background-color: white;opacity: 0.9">
