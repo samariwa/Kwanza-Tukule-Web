@@ -36,7 +36,7 @@ $exists = TRUE;
               Hi $name;<br><br>
                 In order to reset your password, please click on the link below:<br>
                 <a href='
-                http://mariwa.ddns.net:10080/Kwanza-Tukule-Web/Kwanza%20Tukule/resetPassword?email=$email&token=$random'>http://mariwa.ddns.net/Kwanza%20Tukule%20Web/Kwanza%20Tukule/resetPassword.php?email=$email&token=$random</a><br><br>
+                http://kwanzatukule.ddns.net/resetPassword?email=$email&token=$random'>Password Reset Link</a><br><br>
                 Kindly reset your password in the given time limit of 5 minutes.<br><br>
                 Kind Regards,
                 ";
